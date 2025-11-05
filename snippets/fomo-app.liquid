@@ -1,0 +1,35 @@
+{% comment %} version: 1000 {% endcomment %}
+
+{%- if template == 'product' -%}
+    {%- assign fomo_inventory_threshold = 100 -%}
+    {%- if shop.metafields.fomo_app.inventory_low_threshold -%}
+        {%- assign fomo_inventory_threshold = shop.metafields.fomo_app.inventory_low_threshold.value -%}
+    {%- endif -%}
+
+    <template id="fomo-app-json">
+        {
+            "firstLoadVariantId": "{{ product.selected_or_first_available_variant.id }}",
+            "variants": {
+                {% for variant in product.variants %}
+                    {%- assign fomo_title = '' -%}
+                    {%- assign fomo_quantity = '' -%}
+                    {%- assign fomo_inventory_low = 'false' -%}
+                    {%- if variant.inventory_quantity > 0 and variant.inventory_quantity < fomo_inventory_threshold -%}
+                        {%- assign fomo_title = product.title -%}
+                        {%- if variant.title != 'Default Title' -%}
+                            {%- assign fomo_title = product.title | append: ' - ' | append: variant.title -%}
+                        {%- endif -%}
+                        {%- assign fomo_quantity = variant.inventory_quantity -%}
+                        {%- assign fomo_inventory_low = 'true' -%}
+                    {%- endif -%}
+                "{{ variant.id }}": {
+                    "inventoryLow": {{ fomo_inventory_low }},
+                    "title": "{{ fomo_title }}",
+                    "quantity": "{{ fomo_quantity }}"
+                },
+                {% endfor %}
+                "ending": "dummy"
+            }
+        }
+    </template>
+{%- endif -%}

@@ -1,0 +1,222 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "featured_collections_UUwcHP": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_9WE6Ui": {
+          "type": "collection",
+          "settings": {
+            "collection": "rainbow",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_gqxQgM": {
+          "type": "collection",
+          "settings": {
+            "collection": "red",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_JtddVM": {
+          "type": "collection",
+          "settings": {
+            "collection": "pink",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_R6angz": {
+          "type": "collection",
+          "settings": {
+            "collection": "orange",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_PGpTap": {
+          "type": "collection",
+          "settings": {
+            "collection": "yellow",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_EEjUr7": {
+          "type": "collection",
+          "settings": {
+            "collection": "green",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_wL8mzr": {
+          "type": "collection",
+          "settings": {
+            "collection": "blue",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_tXBj6K": {
+          "type": "collection",
+          "settings": {
+            "collection": "purple",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_BwjAnx": {
+          "type": "collection",
+          "settings": {
+            "collection": "maroon",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_i6xrRV": {
+          "type": "collection",
+          "settings": {
+            "collection": "white",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_4dWxJy": {
+          "type": "collection",
+          "settings": {
+            "collection": "black",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_yWfcQK": {
+          "type": "collection",
+          "settings": {
+            "collection": "silver",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_F67LwJ": {
+          "type": "collection",
+          "settings": {
+            "collection": "gold",
+            "title": "",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_9WE6Ui",
+        "collection_gqxQgM",
+        "collection_JtddVM",
+        "collection_R6angz",
+        "collection_PGpTap",
+        "collection_EEjUr7",
+        "collection_wL8mzr",
+        "collection_tXBj6K",
+        "collection_BwjAnx",
+        "collection_i6xrRV",
+        "collection_4dWxJy",
+        "collection_yWfcQK",
+        "collection_F67LwJ"
+      ],
+      "settings": {
+        "title": "colors of Brianna Cannon",
+        "divider": false,
+        "per_row": 5,
+        "enable_gutter": true
+      }
+    },
+    "featured_collection_tA63WE": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection",
+        "home_featured_products": "rainbow",
+        "per_row": 5,
+        "rows": 3,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "68c9183e-cb59-424c-98da-765617ae55f9": {
+      "type": "map",
+      "settings": {
+        "map_title": "VISIT OUR FLAGSHIP STORE",
+        "address": "<p><strong>Brianna Cannon<\/strong><br\/>1900 Preston Road<br\/>Suite 155<br\/>Plano, TX 75093<\/p><p>469-847-8877<\/p><p>Mon - Sat 10:00am-6:00pm<br\/>Sunday CLOSED<\/p>",
+        "map_address": "1900 Preston Road, Suite 155, Plano, TX 75093",
+        "api_key": "",
+        "show_button": true,
+        "background_image": "shopify:\/\/shop_images\/Untitled_design-122.png",
+        "background_image_position": "top left"
+      }
+    },
+    "1736739960757ccb0f": {
+      "type": "apps",
+      "blocks": {
+        "rebuy_personalization_engine_rebuy_widget_VPaCiY": {
+          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "193167",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        },
+        "rebuy_personalization_engine_rebuy_widget_adticp": {
+          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        }
+      },
+      "block_order": [
+        "rebuy_personalization_engine_rebuy_widget_VPaCiY",
+        "rebuy_personalization_engine_rebuy_widget_adticp"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
+    "173674078114731778": {
+      "type": "apps",
+      "blocks": {
+        "rebuy_personalization_engine_rebuy_widget_dWmjz3": {
+          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "193168",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        }
+      },
+      "block_order": [
+        "rebuy_personalization_engine_rebuy_widget_dWmjz3"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "featured_collections_UUwcHP",
+    "featured_collection_tA63WE",
+    "68c9183e-cb59-424c-98da-765617ae55f9",
+    "1736739960757ccb0f",
+    "173674078114731778"
+  ]
+}

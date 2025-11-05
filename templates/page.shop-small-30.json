@@ -1,0 +1,313 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-full-width",
+      "settings": {}
+    },
+    "featured_collections_LaGre6": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_DUDJrw": {
+          "type": "collection",
+          "settings": {
+            "collection": "arizona-cardinals",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_ArQTLR": {
+          "type": "collection",
+          "settings": {
+            "collection": "atlanta-falcons",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_QQjJjb": {
+          "type": "collection",
+          "settings": {
+            "collection": "baltimore-ravens",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_KwiRAF": {
+          "type": "collection",
+          "settings": {
+            "collection": "buffalo-bills",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_qjwkcK": {
+          "type": "collection",
+          "settings": {
+            "collection": "carolina-panthers",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_FUGcxN": {
+          "type": "collection",
+          "settings": {
+            "collection": "chicago-bears",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_g8aX4q": {
+          "type": "collection",
+          "settings": {
+            "collection": "cincinnati-bengals",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_6JzHre": {
+          "type": "collection",
+          "settings": {
+            "collection": "cleveland-browns",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_NyNrQy": {
+          "type": "collection",
+          "settings": {
+            "collection": "dallas-cowboys",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_bKyHqX": {
+          "type": "collection",
+          "settings": {
+            "collection": "denver-broncos",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_EazN8e": {
+          "type": "collection",
+          "settings": {
+            "collection": "detroit-lions",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_ejGVnj": {
+          "type": "collection",
+          "settings": {
+            "collection": "green-bay-packers",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_xcFUig": {
+          "type": "collection",
+          "settings": {
+            "collection": "houston-texans",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_RVPNfT": {
+          "type": "collection",
+          "settings": {
+            "collection": "indianapolis-colts",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_rEBXfR": {
+          "type": "collection",
+          "settings": {
+            "collection": "jacksonville-jaguars",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_ERVcTA": {
+          "type": "collection",
+          "settings": {
+            "collection": "kansas-city-chiefs",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_aefHrz": {
+          "type": "collection",
+          "settings": {
+            "collection": "las-vegas-raiders",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_KmRKAK": {
+          "type": "collection",
+          "settings": {
+            "collection": "los-angeles-chargers",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_AecxzA": {
+          "type": "collection",
+          "settings": {
+            "collection": "los-angeles-rams",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_fDVNbx": {
+          "type": "collection",
+          "settings": {
+            "collection": "miami-dolphins",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_RzHjtr": {
+          "type": "collection",
+          "settings": {
+            "collection": "minnesota-vikings",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_6HFJbb": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-england-patriots",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_jWQWmj": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-orleans-saints",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_CnMphz": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-york-giants",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_q99een": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-york-jets",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_YncKUi": {
+          "type": "collection",
+          "settings": {
+            "collection": "philadelphia-eagles",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_qP433U": {
+          "type": "collection",
+          "settings": {
+            "collection": "pittsburgh-steelers",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_Lyi8Dz": {
+          "type": "collection",
+          "settings": {
+            "collection": "san-francisco-49ers",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_mzmAej": {
+          "type": "collection",
+          "settings": {
+            "collection": "seattle-seahawks",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_6T7CKP": {
+          "type": "collection",
+          "settings": {
+            "collection": "tampa-bay-buccaneers",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_gQynEN": {
+          "type": "collection",
+          "settings": {
+            "collection": "tennessee-titans",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_AemdDp": {
+          "type": "collection",
+          "settings": {
+            "collection": "washington-commanders",
+            "title": "",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_DUDJrw",
+        "collection_ArQTLR",
+        "collection_QQjJjb",
+        "collection_KwiRAF",
+        "collection_qjwkcK",
+        "collection_FUGcxN",
+        "collection_g8aX4q",
+        "collection_6JzHre",
+        "collection_NyNrQy",
+        "collection_bKyHqX",
+        "collection_EazN8e",
+        "collection_ejGVnj",
+        "collection_xcFUig",
+        "collection_RVPNfT",
+        "collection_rEBXfR",
+        "collection_ERVcTA",
+        "collection_aefHrz",
+        "collection_KmRKAK",
+        "collection_AecxzA",
+        "collection_fDVNbx",
+        "collection_RzHjtr",
+        "collection_6HFJbb",
+        "collection_jWQWmj",
+        "collection_CnMphz",
+        "collection_q99een",
+        "collection_YncKUi",
+        "collection_qP433U",
+        "collection_Lyi8Dz",
+        "collection_mzmAej",
+        "collection_6T7CKP",
+        "collection_gQynEN",
+        "collection_AemdDp"
+      ],
+      "settings": {
+        "title": "",
+        "divider": false,
+        "per_row": 4,
+        "enable_gutter": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "featured_collections_LaGre6"
+  ]
+}

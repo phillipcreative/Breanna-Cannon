@@ -1,0 +1,659 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "custom_css": [],
+      "settings": {}
+    },
+    "slideshow_mWNHqE": {
+      "type": "slideshow",
+      "blocks": {
+        "image_fhyMUq": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "",
+            "title": "ONE STOP\nNCAA SHOP",
+            "title_size": 80,
+            "subheading": "OFFICIALLY LICENSED APPAREL & ACCESSORIES",
+            "link": "shopify:\/\/pages\/gameday",
+            "link_text": "SHOP NCAA",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-bottom horizontal-left",
+            "image": "shopify:\/\/shop_images\/709A1888-4.jpg",
+            "overlay_opacity": 0,
+            "focal_point": "center center"
+          }
+        },
+        "image_jjdkKJ": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "OFFICIALLY LICENSED",
+            "title": "NFL ACCESSORIES",
+            "title_size": 80,
+            "subheading": "",
+            "link": "",
+            "link_text": "SHOP NFL",
+            "link_2": "shopify:\/\/pages\/nfl",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-bottom horizontal-center",
+            "image": "shopify:\/\/shop_images\/BC_NFL-255.jpg",
+            "overlay_opacity": 0,
+            "focal_point": "bottom center"
+          }
+        }
+      },
+      "block_order": [
+        "image_fhyMUq",
+        "image_jjdkKJ"
+      ],
+      "name": "t:sections.slideshow.presets.hero_optional_slideshow.name",
+      "settings": {
+        "section_height": "650px",
+        "mobile_height": "auto",
+        "parallax": true,
+        "style": "bars",
+        "autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "rich_text_PiBLnR": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Re7N7X": {
+          "type": "heading",
+          "settings": {
+            "title": "BRIANNA CANNON GAMEDAY"
+          }
+        },
+        "text_MqAgnj": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>Brianna Cannon has been creating the very best Officially Licensed gameday products since 2018. <\/p><p>With apparel, jewelry, and hair accessories, Brianna Cannon is an industry leader in Officially Licensed gameday fashion, including products for over 40 NCAA teams, the NFL, and numerous custom products for K-12 schools.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Re7N7X",
+        "text_MqAgnj"
+      ],
+      "name": "t:sections.rich-text.presets.rich_text.name",
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "text_and_image_yQKWaj": {
+      "type": "text-and-image",
+      "name": "t:sections.text-and-image.presets.image_with_text.name",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/BC_NFL_DallasCowboys-34_51378d14-219d-439b-9534-405a3fef7582.jpg",
+        "image2": "shopify:\/\/shop_images\/709A7997.jpg",
+        "image_width": 700,
+        "subtitle": "",
+        "title": "WINNERS WEAR BC GAMEDAY",
+        "text": "<p>Often imitated but never duplicated, the winning look for gameday is always BC. <\/p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "align_text": "left",
+        "layout": "right",
+        "divider": false
+      }
+    },
+    "promo_grid_bQgg9q": {
+      "type": "promo-grid",
+      "blocks": {
+        "advanced_fBD3PJ": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "OFFICIALLY LICENSED",
+            "heading": "COLLEGIATE PRODUCTS",
+            "textarea": "FOR 40+ NCAA TEAMS",
+            "cta_text1": "FIND YOUR TEAM",
+            "cta_link1": "shopify:\/\/pages\/gameday",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify:\/\/shop_images\/709A7844.jpg",
+            "video_url": "",
+            "width": "50",
+            "height": 720,
+            "text_size": 100,
+            "text_align": "vertical-bottom horizontal-left",
+            "focal_point": "center",
+            "color_accent": "rgba(0,0,0,0)",
+            "boxed": false,
+            "framed": false
+          }
+        },
+        "advanced_YgkE4q": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "OFFICIALLY LICENSED",
+            "heading": "NFL PRODUCTS",
+            "textarea": "ACCESSORIES FOR ALL 32 TEAMS",
+            "cta_text1": "FIND YOUR TEAM",
+            "cta_link1": "shopify:\/\/pages\/nfl",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify:\/\/shop_images\/BC_NFL-243_6e657c83-6c6b-47e1-b881-78e434f455e8.jpg",
+            "video_url": "",
+            "width": "50",
+            "height": 720,
+            "text_size": 100,
+            "text_align": "vertical-top horizontal-right",
+            "focal_point": "center",
+            "color_accent": "rgba(0,0,0,0)",
+            "boxed": false,
+            "framed": false
+          }
+        }
+      },
+      "block_order": [
+        "advanced_fBD3PJ",
+        "advanced_YgkE4q"
+      ],
+      "name": "t:sections.promo-grid.presets.promotional_grid.name",
+      "settings": {
+        "full_width": false,
+        "gutter_size": 20,
+        "space_above": false,
+        "space_below": true
+      }
+    },
+    "faq_NeXALq": {
+      "type": "faq",
+      "blocks": {
+        "question_F7E3Md": {
+          "type": "question",
+          "settings": {
+            "title": "NFL",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/collections\/arizona-cardinals\">ARIZONA CARDINALS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/atlanta-falcons\">ATLANTA FALCONS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/baltimore-ravens\">BALTIMORE RAVENS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/buffalo-bills\">BUFFALO BILLS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/carolina-panthers\">CAROLINA PANTHERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/chicago-bears\">CHICAGO BEARS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/cincinnati-bengals\">CINCINNATI BENGALS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/cleveland-browns\">CLEVELAND BROWNS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/dallas-cowboys\">DALLAS COWBOYS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/denver-broncos\">DENVER BRONCOS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/detroit-lions\">DETROIT LIONS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/green-bay-packers\">GREEN BAY PACKERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/houston-texans\">HOUSTON TEXANS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/indianapolis-colts\">INDIANAPOLIS COLTS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/jacksonville-jaguars\">JACKSONVILLE JAGUARS <\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/kansas-city-chiefs\">KANSAS CITY CHIEFS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/las-vegas-raiders\">LAS VEGAS RAIDERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/los-angeles-chargers\">LOS ANGELES CHARGERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/los-angeles-rams\">LOS ANGELES RAMS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/miami-dolphins\">MIAMI DOLPHINS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/minnesota-vikings\">MINNESOTA VIKINGS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/new-england-patriots\">NEW ENGLAND PATRIOTS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/new-orleans-saints\">NEW ORLEANS SAINTS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/new-york-giants\">NEW YORK GIANTS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/new-york-jets\">NEW YORK JETS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/philadelphia-eagles\">PHILADELPHIA EAGLES<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/pittsburgh-steelers\">PITTSBURGH STEELERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/san-francisco-49ers\">SAN FRANCISCO 49ERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/seattle-seahawks\">SEATTLE SEAHAWKS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/tampa-bay-buccaneers\">TAMPA BAY BUCCANEERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/tennessee-titans\">TENNESSEE TITANS<\/a><\/p><p><\/p>{{ page.content }}<p><a href=\"https:\/\/briannacannon.com\/collections\/washington-commanders\">WASHINGTON COMMANDERS<\/a><\/p>"
+          }
+        },
+        "question_6nkpfi": {
+          "type": "question",
+          "settings": {
+            "title": "NCAA",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/collections\/bama\">ALABAMA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-arizona\">ARIZONA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/arizona-state-university-1\">ARIZONA STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/arkansas-the-university-of-arkansas\">ARKANSAS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/auburn-university\">AUBURN<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/baylor\">BAYLOR<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-central-florida-1\">CENTRAL FLORIDA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/clemson-university\">CLEMSON<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-colorado-1\">COLORADO<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/east-carolina-university-1\">EAST CAROLINA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-florida\">FLORIDA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/florida-state-university\">FLORIDA STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-georgia\">GEORGIA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-houston\">HOUSTON<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/indiana-university\">INDIANA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-kansas\">KANSAS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/kansas-state-university\">KANSAS STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-kentucky\">KENTUCKY<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/lsu\">LSU<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/louisiana-tech-university\">LOUISIANA TECH<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/ole-miss\">OLE MISS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-michigan-1\">MICHIGAN<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/michigan-state-university-1\">MICHIGAN STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/mississippi-state-university\">MISSISSIPPI STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/mizzou\">MISSOURI<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/nc-state-university\">NC STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-north-carolina-1\">NORTH CAROLINA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-north-texas\">NORTH TEXAS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/ohio-state-university\">OHIO STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-oklahoma\">OKLAHOMA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/osu-oklahoma-state-university\">OKLAHOMA STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/penn-state\">PENN STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/pepperdine-university\">PEPPERDINE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/purdue-university-1\">PURDUE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-south-carolina\">SOUTH CAROLINA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/smu\">SOUTHERN METHODIST<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-tennessee\">TENNESSEE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/texas\">TEXAS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/texas-a-m-university\">TEXAS A&M<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/tcu\">TCU<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/texas-tech-university\">TEXAS TECH<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/vanderbilt-university\">VANDERBILT<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-virginia\">VIRGINIA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/wake-forest-university-1\">WAKE FOREST<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/west-virginia-university-1\">WEST VIRGINIA<\/a><\/p>"
+          }
+        },
+        "question_Tab4mW": {
+          "type": "question",
+          "settings": {
+            "title": "COLLEGE VAULT",
+            "text": "<p>We are honored to be part of the College Vault program, which allows us to utilize vintage and retired trademarks for participating Universities. Each College Vault piece is thoughtfully produced in small batches to preserve the uniqueness and limited availability of each style.<\/p><p><a href=\"\/collections\/college-vault\" title=\"College Vault\">SHOP VAULT<\/a><\/p>"
+          }
+        },
+        "question_9jmYj3": {
+          "type": "question",
+          "settings": {
+            "title": "BANANA BALL",
+            "text": "<p><a href=\"\/collections\/savannah-bananas-party-animals\" title=\"Savannah Bananas & Party Animals\">SAVANNAH BANANAS<br\/><\/a><\/p><p><a href=\"\/collections\/savannah-bananas-party-animals\" title=\"Savannah Bananas & Party Animals\">PARTY ANIMALS<\/a><\/p>"
+          }
+        },
+        "question_MfaAba": {
+          "type": "question",
+          "settings": {
+            "title": "FAN GEAR FOR ANY TEAM",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/collections\/football\">FOOTBALL<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/baseball-softball\">BASEBALL & SOFTBALL<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/basketball\">BASKETBALL<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/golf-1\">GOLF<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/tennis\">TENNIS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/pickleball\">PICKLEBALL<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/soccer\">SOCCER<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/hockey\">HOCKEY<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/ice-skating\">ICE SKATING<\/a><\/p><p><\/p>"
+          }
+        },
+        "question_dyWWbD": {
+          "type": "question",
+          "settings": {
+            "title": "HIGH SCHOOLS + OTHER",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/collections\/legacy-christian-academy\">LEGACY CHRISTIAN ACADEMY<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/kentucky-derby\">KENTUCKY DERBY<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/prestonwood-christian-academy\">PRESTONWOOD CHRISTIAN ACADEMY<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/prince-of-peace-christian-school\">PRINCE OF PEACE CHRISTIAN SCHOOL<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/southlake-carroll-dragons\">SOUTHLAKE CARROLL DRAGONS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/trinity-christian-academy\">TRINITY CHRISTIAN ACADEMY<\/a><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_F7E3Md",
+        "question_6nkpfi",
+        "question_Tab4mW",
+        "question_9jmYj3",
+        "question_MfaAba",
+        "question_dyWWbD"
+      ],
+      "custom_css": [
+        "h2 {text-align: left;}"
+      ],
+      "name": "t:sections.faq.presets.faq.name",
+      "settings": {
+        "title": "GAMEDAY MENU"
+      }
+    },
+    "background_image_text_nycybG": {
+      "type": "background-image-text",
+      "name": "t:sections.background-image-text.presets.large_image_with_text_box.name",
+      "settings": {
+        "subtitle": "Head to Toe",
+        "title": "gameday style",
+        "text": "<p>Beautiful hair accessories, clothing, and jewelry to elevate your gameday look<\/p>",
+        "button_label": "SHOP NCAA",
+        "button_link": "shopify:\/\/pages\/gameday",
+        "image": "shopify:\/\/shop_images\/709A6525-2.jpg",
+        "focal_point": "top",
+        "layout": "left",
+        "height": 650,
+        "framed": false,
+        "parallax": true
+      }
+    },
+    "text_columns_6n9rNx": {
+      "type": "text-columns",
+      "blocks": {
+        "text_block_qJxKMe": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/Facetune_21-08-2024-14-04-05.jpg",
+            "image_width": 650,
+            "title": "HEADBANDS",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/pages\/nfl\" title=\"https:\/\/briannacannon.com\/pages\/nfl\">NFL<\/a>   -  <a href=\"https:\/\/briannacannon.com\/pages\/gameday\" title=\"https:\/\/briannacannon.com\/pages\/gameday\">NCAA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\" title=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\">SAVANNAH BANANAS<\/a><\/p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "text_block_6y7tQ4": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/B99I5181_7bf94da7-c63b-451e-81b3-e3f5f9e80f7b.jpg",
+            "image_width": 650,
+            "title": "DRESSES",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/pages\/gameday\" title=\"https:\/\/briannacannon.com\/pages\/gameday\">NCAA<\/a><\/p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "text_block_z737H4": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/B99I4017_4b59e697-2d13-4c38-8925-211b4fcfa76e.jpg",
+            "image_width": 650,
+            "title": "SWEATSHIRTS",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/pages\/gameday\" title=\"https:\/\/briannacannon.com\/pages\/gameday\">NCAA<\/a><\/p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "text_block_mKwVBN": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/B99I6025_08000ccb-f0fb-4d47-b3ae-128a9b1731e7.jpg",
+            "image_width": 650,
+            "title": "T SHIRTS",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/pages\/gameday\" title=\"https:\/\/briannacannon.com\/pages\/gameday\">NCAA<\/a><\/p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "text_block_pEYwmh": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/B99I5699_090a8b83-a5bc-4906-bcb6-3aabe5554280.jpg",
+            "image_width": 650,
+            "title": "STATEMENT EARRINGS",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/pages\/gameday\" title=\"https:\/\/briannacannon.com\/pages\/gameday\">NCAA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\" title=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\">SAVANNAH BANANAS<\/a><\/p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "text_block_ECMaH4": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/IMG_8013_623f7c46-1e6d-490d-aa18-dbe7f6a6eff6.heic",
+            "image_width": 650,
+            "title": "NECKLACES",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/pages\/gameday\" title=\"https:\/\/briannacannon.com\/pages\/gameday\">NCAA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\" title=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\">SAVANNAH BANANAS<\/a><\/p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "text_block_wKzbLX": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/709A7065_f0452ac1-0fc0-412a-8a14-ba9d69d8820c.jpg",
+            "image_width": 650,
+            "title": "STUD EARRINGS",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/pages\/gameday\" title=\"https:\/\/briannacannon.com\/pages\/gameday\">NCAA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\" title=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\">SAVANNAH BANANAS<\/a><\/p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "text_block_Y6XUyR": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/6_de08a5de-439f-485e-836d-971aa6591c85.png",
+            "image_width": 650,
+            "title": "BOWS",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/pages\/nfl\" title=\"https:\/\/briannacannon.com\/pages\/nfl\">NFL<\/a>   -  <a href=\"https:\/\/briannacannon.com\/pages\/gameday\" title=\"https:\/\/briannacannon.com\/pages\/gameday\">NCAA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\" title=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\">SAVANNAH BANANAS<\/a><\/p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "text_block_YMHMWR": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/BriannaCannon-GameDay-565_1cde0db0-ac00-4979-9a56-0ca828c1c17e.jpg",
+            "image_width": 650,
+            "title": "BRACELETS",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/pages\/gameday\" title=\"https:\/\/briannacannon.com\/pages\/gameday\">NCAA<\/a><\/p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "text_block_BfJDLR": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/BC_NFL_Steelers-23_3918151b-c403-461f-b464-af20f253c3cf.jpg",
+            "image_width": 650,
+            "title": "SCRUNCHIES",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/pages\/nfl\" title=\"https:\/\/briannacannon.com\/pages\/nfl\">NFL<\/a>   -  <a href=\"https:\/\/briannacannon.com\/pages\/gameday\" title=\"https:\/\/briannacannon.com\/pages\/gameday\">NCAA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\" title=\"https:\/\/briannacannon.com\/collections\/savannah-bananas-party-animals\">SAVANNAH BANANAS<\/a><\/p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_block_qJxKMe",
+        "text_block_6y7tQ4",
+        "text_block_z737H4",
+        "text_block_mKwVBN",
+        "text_block_pEYwmh",
+        "text_block_ECMaH4",
+        "text_block_wKzbLX",
+        "text_block_Y6XUyR",
+        "text_block_YMHMWR",
+        "text_block_BfJDLR"
+      ],
+      "name": "t:sections.text-columns.presets.text_columns_with_images.name",
+      "settings": {
+        "title": "PRODUCT CATEGORIES",
+        "align_text": "center",
+        "divider": false
+      }
+    },
+    "featured_collections_ntwYzU": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_ELFf7D": {
+          "type": "collection",
+          "settings": {
+            "collection": "football",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_kWWkQB": {
+          "type": "collection",
+          "settings": {
+            "collection": "baseball-softball",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_DWd8Cp": {
+          "type": "collection",
+          "settings": {
+            "collection": "basketball",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_VAWNUz": {
+          "type": "collection",
+          "settings": {
+            "collection": "golf-1",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_bmqrBf": {
+          "type": "collection",
+          "settings": {
+            "collection": "soccer",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_Tjfic7": {
+          "type": "collection",
+          "settings": {
+            "collection": "tennis",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_bWAwE9": {
+          "type": "collection",
+          "settings": {
+            "collection": "pickleball",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_EcLiyY": {
+          "type": "collection",
+          "settings": {
+            "collection": "hockey",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_f9Qnf4": {
+          "type": "collection",
+          "settings": {
+            "collection": "ice-skating",
+            "title": "",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_ELFf7D",
+        "collection_kWWkQB",
+        "collection_DWd8Cp",
+        "collection_VAWNUz",
+        "collection_bmqrBf",
+        "collection_Tjfic7",
+        "collection_bWAwE9",
+        "collection_EcLiyY",
+        "collection_f9Qnf4"
+      ],
+      "name": "t:sections.featured-collections.presets.collection_list.name",
+      "settings": {
+        "title": "fan gear for any team",
+        "divider": false,
+        "per_row": 5,
+        "enable_gutter": true
+      }
+    },
+    "text_and_image_KTpYWm": {
+      "type": "text-and-image",
+      "name": "t:sections.text-and-image.presets.image_with_text.name",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/9CE86495-EDF2-49C6-903E-E7999CEF270B.jpg",
+        "image_width": 310,
+        "subtitle": "",
+        "title": "OFFICIAL ACCESSORIES OF THE SAVANNAH BANANAS",
+        "text": "<p>We are proud to bring the glam world of BC to Banana Ball with our Officially Licensed Savannah Bananas and Party Animals Hair Accessories & Jewelry.<\/p>",
+        "button_label": "Shop Now",
+        "button_link": "shopify:\/\/collections\/savannah-bananas-party-animals",
+        "button_style": "primary",
+        "align_text": "left",
+        "layout": "right",
+        "divider": false
+      }
+    },
+    "featured_collections_X8tn4w": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_LyEiDK": {
+          "type": "collection",
+          "settings": {
+            "collection": "legacy-christian-academy",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_nfD8CC": {
+          "type": "collection",
+          "settings": {
+            "collection": "prestonwood-christian-academy",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_fiABLm": {
+          "type": "collection",
+          "settings": {
+            "collection": "prince-of-peace-christian-school",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_FnmQrf": {
+          "type": "collection",
+          "settings": {
+            "collection": "southlake-carroll-dragons",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_ezV4G7": {
+          "type": "collection",
+          "settings": {
+            "collection": "trinity-christian-academy",
+            "title": "",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_LyEiDK",
+        "collection_nfD8CC",
+        "collection_fiABLm",
+        "collection_FnmQrf",
+        "collection_ezV4G7"
+      ],
+      "name": "t:sections.featured-collections.presets.collection_list.name",
+      "settings": {
+        "title": "high schools",
+        "divider": false,
+        "per_row": 5,
+        "enable_gutter": true
+      }
+    },
+    "faq_C7mbCT": {
+      "type": "faq",
+      "blocks": {
+        "question_g8t3PM": {
+          "type": "question",
+          "settings": {
+            "title": "NFL",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/collections\/arizona-cardinals\">ARIZONA CARDINALS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/atlanta-falcons\">ATLANTA FALCONS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/baltimore-ravens\">BALTIMORE RAVENS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/buffalo-bills\">BUFFALO BILLS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/carolina-panthers\">CAROLINA PANTHERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/chicago-bears\">CHICAGO BEARS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/cincinnati-bengals\">CINCINNATI BENGALS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/cleveland-browns\">CLEVELAND BROWNS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/dallas-cowboys\">DALLAS COWBOYS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/denver-broncos\">DENVER BRONCOS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/detroit-lions\">DETROIT LIONS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/green-bay-packers\">GREEN BAY PACKERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/houston-texans\">HOUSTON TEXANS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/indianapolis-colts\">INDIANAPOLIS COLTS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/jacksonville-jaguars\">JACKSONVILLE JAGUARS <\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/kansas-city-chiefs\">KANSAS CITY CHIEFS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/las-vegas-raiders\">LAS VEGAS RAIDERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/los-angeles-chargers\">LOS ANGELES CHARGERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/los-angeles-rams\">LOS ANGELES RAMS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/miami-dolphins\">MIAMI DOLPHINS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/minnesota-vikings\">MINNESOTA VIKINGS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/new-england-patriots\">NEW ENGLAND PATRIOTS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/new-orleans-saints\">NEW ORLEANS SAINTS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/new-york-giants\">NEW YORK GIANTS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/new-york-jets\">NEW YORK JETS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/philadelphia-eagles\">PHILADELPHIA EAGLES<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/pittsburgh-steelers\">PITTSBURGH STEELERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/san-francisco-49ers\">SAN FRANCISCO 49ERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/seattle-seahawks\">SEATTLE SEAHAWKS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/tampa-bay-buccaneers\">TAMPA BAY BUCCANEERS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/tennessee-titans\">TENNESSEE TITANS<\/a><\/p><p><\/p>{{ page.content }}<p><a href=\"https:\/\/briannacannon.com\/collections\/washington-commanders\">WASHINGTON COMMANDERS<\/a><\/p>"
+          }
+        },
+        "question_mAcrwQ": {
+          "type": "question",
+          "settings": {
+            "title": "NCAA",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/collections\/bama\">ALABAMA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-arizona\">ARIZONA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/arizona-state-university-1\">ARIZONA STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/arkansas-the-university-of-arkansas\">ARKANSAS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/auburn-university\">AUBURN<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/baylor\">BAYLOR<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-central-florida-1\">CENTRAL FLORIDA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/clemson-university\">CLEMSON<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-colorado-1\">COLORADO<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/east-carolina-university-1\">EAST CAROLINA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-florida\">FLORIDA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/florida-state-university\">FLORIDA STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-georgia\">GEORGIA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-houston\">HOUSTON<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/indiana-university\">INDIANA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-kansas\">KANSAS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/kansas-state-university\">KANSAS STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-kentucky\">KENTUCKY<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/lsu\">LSU<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/louisiana-tech-university\">LOUISIANA TECH<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/ole-miss\">OLE MISS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-michigan-1\">MICHIGAN<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/michigan-state-university-1\">MICHIGAN STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/mississippi-state-university\">MISSISSIPPI STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/mizzou\">MISSOURI<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/nc-state-university\">NC STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-north-carolina-1\">NORTH CAROLINA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-north-texas\">NORTH TEXAS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/ohio-state-university\">OHIO STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-oklahoma\">OKLAHOMA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/osu-oklahoma-state-university\">OKLAHOMA STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/penn-state\">PENN STATE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/pepperdine-university\">PEPPERDINE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/purdue-university-1\">PURDUE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-south-carolina\">SOUTH CAROLINA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/smu\">SOUTHERN METHODIST<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-tennessee\">TENNESSEE<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/texas\">TEXAS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/texas-a-m-university\">TEXAS A&M<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/tcu\">TCU<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/texas-tech-university\">TEXAS TECH<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/vanderbilt-university\">VANDERBILT<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/university-of-virginia\">VIRGINIA<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/wake-forest-university-1\">WAKE FOREST<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/west-virginia-university-1\">WEST VIRGINIA<\/a><\/p>"
+          }
+        },
+        "question_HnFMVm": {
+          "type": "question",
+          "settings": {
+            "title": "BANANA BALL",
+            "text": "<p><a href=\"\/collections\/savannah-bananas-party-animals\" title=\"Savannah Bananas & Party Animals\">SAVANNAH BANANAS<br\/><\/a><\/p><p><a href=\"\/collections\/savannah-bananas-party-animals\" title=\"Savannah Bananas & Party Animals\">PARTY ANIMALS<\/a><\/p>"
+          }
+        },
+        "question_tMWpLw": {
+          "type": "question",
+          "settings": {
+            "title": "FAN GEAR FOR ANY TEAM",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/collections\/football\">FOOTBALL<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/baseball-softball\">BASEBALL & SOFTBALL<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/basketball\">BASKETBALL<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/golf-1\">GOLF<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/tennis\">TENNIS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/pickleball\">PICKLEBALL<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/soccer\">SOCCER<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/hockey\">HOCKEY<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/ice-skating\">ICE SKATING<\/a><\/p><p><\/p>"
+          }
+        },
+        "question_taWVgB": {
+          "type": "question",
+          "settings": {
+            "title": "HIGH SCHOOLS + OTHER",
+            "text": "<p><a href=\"https:\/\/briannacannon.com\/collections\/legacy-christian-academy\">LEGACY CHRISTIAN ACADEMY<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/kentucky-derby\">KENTUCKY DERBY<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/prestonwood-christian-academy\">PRESTONWOOD CHRISTIAN ACADEMY<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/prince-of-peace-christian-school\">PRINCE OF PEACE CHRISTIAN SCHOOL<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/southlake-carroll-dragons\">SOUTHLAKE CARROLL DRAGONS<\/a><\/p><p><a href=\"https:\/\/briannacannon.com\/collections\/trinity-christian-academy\">TRINITY CHRISTIAN ACADEMY<\/a><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_g8t3PM",
+        "question_mAcrwQ",
+        "question_HnFMVm",
+        "question_tMWpLw",
+        "question_taWVgB"
+      ],
+      "name": "t:sections.faq.presets.faq.name",
+      "settings": {
+        "title": "GAMEDAY MENU"
+      }
+    },
+    "newsletter_gt6F9A": {
+      "type": "newsletter",
+      "blocks": {
+        "title_MbTR4d": {
+          "type": "title",
+          "settings": {
+            "title": "STAY IN TOUCH"
+          }
+        },
+        "text_jxCerj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Be the first to know about new teams, new products & special savings!<\/p>"
+          }
+        },
+        "form_jredRi": {
+          "type": "form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title_MbTR4d",
+        "text_jxCerj",
+        "form_jredRi"
+      ],
+      "name": "t:sections.newsletter.presets.email_signup.name",
+      "settings": {
+        "color_background": "#f9f9f9",
+        "color_text": "#1c1d1d"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_mWNHqE",
+    "rich_text_PiBLnR",
+    "text_and_image_yQKWaj",
+    "promo_grid_bQgg9q",
+    "faq_NeXALq",
+    "background_image_text_nycybG",
+    "text_columns_6n9rNx",
+    "featured_collections_ntwYzU",
+    "text_and_image_KTpYWm",
+    "featured_collections_X8tn4w",
+    "faq_C7mbCT",
+    "newsletter_gt6F9A"
+  ]
+}

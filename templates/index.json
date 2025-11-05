@@ -1,0 +1,563 @@
+{
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "image_Yax8V6": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "COUNTING DOWN TO",
+            "title": "CHRISTMAS",
+            "title_size": 80,
+            "subheading": "SHOP THE NEW COLLECTION",
+            "link": "shopify:\/\/collections\/holiday",
+            "link_text": "HOLIDAY",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-bottom horizontal-center",
+            "image": "shopify:\/\/shop_images\/Facetune_16-10-2025-15-31-47.jpg",
+            "overlay_opacity": 0,
+            "focal_point": "bottom center"
+          }
+        },
+        "image_6wCceA": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "Let's Go Ghouls",
+            "title": "It's SPOOKY SZN",
+            "title_size": 80,
+            "subheading": "",
+            "link": "shopify:\/\/collections\/halloween",
+            "link_text": "Shop Now",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "#ff5833",
+            "text_align": "vertical-bottom horizontal-center",
+            "image": "shopify:\/\/shop_images\/HALLOWEEN.png",
+            "overlay_opacity": 0,
+            "focal_point": "center center"
+          }
+        },
+        "image_RMhGnU": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "",
+            "title": "FALL IN LOVE",
+            "title_size": 100,
+            "subheading": "BRIANNA CANNON FALL '25 HAS ARRIVED",
+            "link": "shopify:\/\/collections\/fall-collection",
+            "link_text": "SHOP NOW",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-bottom horizontal-center",
+            "image": "shopify:\/\/shop_images\/R529983_ff822072-ffa8-4a59-bf83-f0681d206f50.jpg",
+            "overlay_opacity": 0,
+            "focal_point": "center center"
+          }
+        },
+        "image_QEdRBM": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 80,
+            "subheading": "",
+            "link": "shopify:\/\/collections\/warehouse-sale-2025",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-center horizontal-center",
+            "image": "shopify:\/\/shop_images\/Website_cover_images_2000_x_1000_px_-28.png",
+            "overlay_opacity": 0,
+            "focal_point": "center center"
+          }
+        },
+        "fc0f772a-f60f-460c-929a-87742b812863": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "BRAND NEW",
+            "title": "GAMEDAY",
+            "title_size": 100,
+            "subheading": "NEW TEAMS, NEW ACCESSORIES & NEW GAMEDAY DRESSES",
+            "link": "shopify:\/\/pages\/brianna-cannon-gameday",
+            "link_text": "SHOP NOW",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "#ffffff",
+            "text_align": "vertical-bottom horizontal-center",
+            "image": "shopify:\/\/shop_images\/Newsletter_Banners-4.png",
+            "image_mobile": "shopify:\/\/shop_images\/Newsletter_Banners-4.png",
+            "overlay_opacity": 0,
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "image_Yax8V6",
+        "image_6wCceA",
+        "image_RMhGnU",
+        "image_QEdRBM",
+        "fc0f772a-f60f-460c-929a-87742b812863"
+      ],
+      "settings": {
+        "section_height": "650px",
+        "mobile_height": "auto",
+        "parallax": false,
+        "style": "bars",
+        "autoplay": true,
+        "autoplay_speed": 6
+      }
+    },
+    "rich-text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "Brianna Cannon"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>A beautifully bold lifestyle brand, designed in Texas, specializing in Fashion, Seasonal and Officially Licensed Women's Apparel, Jewelry, and Hair Accessories.<\/p><p><\/p><p><\/p><p> <\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_EaW6ad": {
+          "type": "collection",
+          "settings": {
+            "collection": "holiday",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_JmwrjK": {
+          "type": "collection",
+          "settings": {
+            "collection": "halloween",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_h7889P": {
+          "type": "collection",
+          "settings": {
+            "collection": "fall-collection",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_EcYTKY": {
+          "type": "collection",
+          "settings": {
+            "collection": "warehouse-sale-2025",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_36XNyj": {
+          "type": "collection",
+          "settings": {
+            "collection": "bc-mens",
+            "title": "BC MENS",
+            "focal_point": "center center"
+          }
+        },
+        "30fc79a2-3f30-42de-bddb-6bfc9c26f92a": {
+          "type": "collection",
+          "settings": {
+            "collection": "dresses",
+            "title": "DRESSES",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_EaW6ad",
+        "collection_JmwrjK",
+        "collection_h7889P",
+        "collection_EcYTKY",
+        "collection_36XNyj",
+        "30fc79a2-3f30-42de-bddb-6bfc9c26f92a"
+      ],
+      "settings": {
+        "title": "HOT COLLECTIONS",
+        "divider": false,
+        "per_row": 3,
+        "enable_gutter": true
+      }
+    },
+    "1669620656f5ef9fcd": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_JUekTP": {
+          "type": "shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_JUekTP"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
+    "featured_collection_JEakX6": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "SPOOKY SZN",
+        "home_featured_products": "halloween",
+        "per_row": 4,
+        "rows": 2,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "text_and_image_kY7hRt": {
+      "type": "text-and-image",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Untitled_design-101.png",
+        "image_width": 390,
+        "subtitle": "OFFICIALLY LICENSED",
+        "title": "NFL HAIR ACCESSORIES",
+        "text": "<p>FOR ALL 32 TEAMS.<\/p>",
+        "button_label": "SHOP NFL",
+        "button_link": "shopify:\/\/pages\/nfl",
+        "button_style": "primary",
+        "align_text": "left",
+        "layout": "left",
+        "divider": false
+      }
+    },
+    "text_and_image_8XADLp": {
+      "type": "text-and-image",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/new_gameday-3.png",
+        "image_width": 390,
+        "subtitle": "THE LEADER IN",
+        "title": "OFFICIALLY LICENSED GAMEDAY FASHION",
+        "text": "<p>100'S OF PRODUCTS.<br\/>DOZENS OF TEAMS.<\/p>",
+        "button_label": "SHOP NCAA",
+        "button_link": "shopify:\/\/pages\/gameday",
+        "button_style": "primary",
+        "align_text": "right",
+        "layout": "right",
+        "divider": false
+      }
+    },
+    "featured_collection_Wi3GKr": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.featured_collection.name",
+      "settings": {
+        "title": "STEALS & DEALS",
+        "home_featured_products": "warehouse-sale-2025",
+        "per_row": 4,
+        "rows": 2,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured_collection_fQ7XjU": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "MOM LIFE",
+        "home_featured_products": "mom-life",
+        "per_row": 4,
+        "rows": 2,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured_collection_CgLEJz": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "fall in love with style",
+        "home_featured_products": "fall-collection",
+        "per_row": 4,
+        "rows": 2,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "1651084254753291af": {
+      "type": "apps",
+      "blocks": {
+        "53f68919-ba0d-46d5-bc4a-f5885b2d08b5": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/featured_carousel\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1080
+          }
+        }
+      },
+      "block_order": [
+        "53f68919-ba0d-46d5-bc4a-f5885b2d08b5"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
+    "promo-grid": {
+      "type": "promo-grid",
+      "blocks": {
+        "promo-1": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "PICTURE PERFECT",
+            "heading": "DARLING DRESSES",
+            "textarea": "",
+            "cta_text1": "Shop Now",
+            "cta_link1": "shopify:\/\/collections\/dresses",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify:\/\/shop_images\/IMG_3797.jpg",
+            "video_url": "",
+            "width": "50",
+            "height": 800,
+            "text_size": 100,
+            "text_align": "vertical-bottom horizontal-center",
+            "focal_point": "80% 50%",
+            "color_accent": "rgba(0,0,0,0)",
+            "boxed": false,
+            "framed": true
+          }
+        },
+        "promo-0": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "SUPPORT YOUR TEAM IN STYLE",
+            "heading": "SHOP GAMEDAY",
+            "textarea": "",
+            "cta_text1": "GO TEAM",
+            "cta_link1": "shopify:\/\/pages\/brianna-cannon-gameday",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify:\/\/shop_images\/Gameday_Stories_-4.png",
+            "video_url": "",
+            "width": "50",
+            "height": 800,
+            "text_size": 90,
+            "text_align": "vertical-bottom horizontal-center",
+            "focal_point": "center",
+            "color_accent": "rgba(0,0,0,0)",
+            "boxed": false,
+            "framed": true
+          }
+        }
+      },
+      "block_order": [
+        "promo-1",
+        "promo-0"
+      ],
+      "settings": {
+        "full_width": true,
+        "gutter_size": 20,
+        "space_above": false,
+        "space_below": false
+      }
+    },
+    "1660957127983f73b8": {
+      "type": "text-and-image",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Edited_Summer_Photoshoot_Images-2.png",
+        "image_width": 440,
+        "subtitle": "sophisticated & timeless",
+        "title": "BC Dresses",
+        "text": "",
+        "button_label": "SHOP NOW",
+        "button_link": "shopify:\/\/collections\/dresses",
+        "button_style": "primary",
+        "align_text": "left",
+        "layout": "right",
+        "divider": false
+      }
+    },
+    "text_and_image_LTnzdx": {
+      "type": "text-and-image",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Edited_FALL_Photoshoot_Images-2.png",
+        "image_width": 440,
+        "subtitle": "",
+        "title": "COLORS OF BC",
+        "text": "<p>SHOP BY COLOR!<\/p>",
+        "button_label": "SHOP NOW",
+        "button_link": "shopify:\/\/pages\/colors-of-bc",
+        "button_style": "primary",
+        "align_text": "left",
+        "layout": "left",
+        "divider": false
+      }
+    },
+    "featured_collection_D8CmtX": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "BRIANNA'S BRIDAL SHOP",
+        "home_featured_products": "bridal",
+        "per_row": 5,
+        "rows": 2,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured-collections": {
+      "type": "featured-collections",
+      "blocks": {
+        "featured-collections-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "earrings",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "featured-collections-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "headbands",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "featured-collections-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "necklaces-bracelets",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "featured-collections-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "sunglasses",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_bmjr3W": {
+          "type": "collection",
+          "settings": {
+            "collection": "dresses",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_NHw6U8": {
+          "type": "collection",
+          "settings": {
+            "collection": "sweat-sets",
+            "title": "ATHLEISURE",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "featured-collections-0",
+        "featured-collections-1",
+        "featured-collections-2",
+        "featured-collections-3",
+        "collection_bmjr3W",
+        "collection_NHw6U8"
+      ],
+      "settings": {
+        "title": "Shop by category",
+        "divider": false,
+        "per_row": 3,
+        "enable_gutter": true
+      }
+    },
+    "promo-grid2": {
+      "type": "promo-grid",
+      "blocks": {
+        "promo2-0": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "Twin with your mini",
+            "heading": "MOMMY & ME HEADBANDS",
+            "textarea": "Our child size headbands are thoughtfully made shorter and thinner \nthan adult size headbands to comfortably fit your darling daughter.",
+            "cta_text1": "Shop Mommy + ME",
+            "cta_link1": "shopify:\/\/collections\/mommy-me",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify:\/\/shop_images\/D86429F2-B7AA-4206-987E-68C60347203C.jpg",
+            "video_url": "",
+            "width": "100",
+            "height": 720,
+            "text_size": 120,
+            "text_align": "vertical-top horizontal-left",
+            "focal_point": "top",
+            "color_accent": "rgba(0,0,0,0)",
+            "boxed": false,
+            "framed": false
+          }
+        }
+      },
+      "block_order": [
+        "promo2-0"
+      ],
+      "settings": {
+        "full_width": false,
+        "gutter_size": 20,
+        "space_above": false,
+        "space_below": false
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "rich-text",
+    "dc614b3d-93ca-4ccf-a040-51892f06ebec",
+    "1669620656f5ef9fcd",
+    "featured_collection_JEakX6",
+    "text_and_image_kY7hRt",
+    "text_and_image_8XADLp",
+    "featured_collection_Wi3GKr",
+    "featured_collection_fQ7XjU",
+    "featured_collection_CgLEJz",
+    "1651084254753291af",
+    "promo-grid",
+    "1660957127983f73b8",
+    "text_and_image_LTnzdx",
+    "featured_collection_D8CmtX",
+    "featured-collections",
+    "promo-grid2"
+  ]
+}

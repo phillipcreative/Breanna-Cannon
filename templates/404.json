@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {}
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "BRIANNA'S FAVORITEs",
+        "home_featured_products": "briannas-favorites",
+        "per_row": 5,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "featured-collection"
+  ]
+}

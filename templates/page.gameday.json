@@ -1,0 +1,498 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-full-width",
+      "settings": {}
+    },
+    "16538807039c724845": {
+      "type": "featured-collections",
+      "blocks": {
+        "16538807036ab84dc1-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "bama",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "e7c437fa-9c1a-49cb-97bc-9c714920c3a6": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-arizona",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_Awrq4q": {
+          "type": "collection",
+          "settings": {
+            "collection": "arizona-state-university-1",
+            "title": "ARIZONA STATE UNIVERSITY",
+            "focal_point": "center center"
+          }
+        },
+        "0df49594-0aef-49b3-a6aa-5eb841750624": {
+          "type": "collection",
+          "settings": {
+            "collection": "arkansas-the-university-of-arkansas",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "c889147f-0833-404a-ae3c-6ffbfcdbb48f": {
+          "type": "collection",
+          "settings": {
+            "collection": "auburn-university",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "c5cbc953-cc8e-4bd6-9d2e-6fb83085f08b": {
+          "type": "collection",
+          "settings": {
+            "collection": "baylor",
+            "title": "Baylor University",
+            "focal_point": "center center"
+          }
+        },
+        "collection_6Q8bwY": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-central-florida-1",
+            "title": "UNIVERSITY OF CENTRAL FLORIDA",
+            "focal_point": "center center"
+          }
+        },
+        "33d0ce3f-5fac-4540-96a3-271f3d241307": {
+          "type": "collection",
+          "settings": {
+            "collection": "clemson-university",
+            "title": "Clemson University",
+            "focal_point": "center center"
+          }
+        },
+        "collection_8VkXWc": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-colorado-1",
+            "title": "UNIVERSITY OF COLORADO",
+            "focal_point": "center center"
+          }
+        },
+        "collection_Vmk9Wd": {
+          "type": "collection",
+          "settings": {
+            "collection": "east-carolina-university-1",
+            "title": "East Carolina University",
+            "focal_point": "center center"
+          }
+        },
+        "771fe1d7-4f4f-4a59-a2d4-644060fcb50e": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-florida",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "b3ee2f2d-7e97-4d32-8731-af78d8bbd8a8": {
+          "type": "collection",
+          "settings": {
+            "collection": "florida-state-university",
+            "title": "Florida State University",
+            "focal_point": "center center"
+          }
+        },
+        "8ee06b17-8d61-4049-b422-98fa654f7084": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-georgia",
+            "title": "University of Georgia",
+            "focal_point": "center center"
+          }
+        },
+        "834555f5-622f-4bab-87f7-1743480d3cfc": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-houston",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_rGEbcA": {
+          "type": "collection",
+          "settings": {
+            "collection": "indiana-university",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_WjqaF9": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-kansas",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_C9jiEi": {
+          "type": "collection",
+          "settings": {
+            "collection": "kansas-state-university",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_Aff7Bf": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-kentucky",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_C6ALTf": {
+          "type": "collection",
+          "settings": {
+            "collection": "lsu",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_34PDtN": {
+          "type": "collection",
+          "settings": {
+            "collection": "louisiana-tech-university",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_yapTTH": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-michigan-1",
+            "title": "UNIVERSITY OF MICHIGAN",
+            "focal_point": "center center"
+          }
+        },
+        "collection_Py6LFH": {
+          "type": "collection",
+          "settings": {
+            "collection": "michigan-state-university-1",
+            "title": "MICHIGAN STATE UNIVERSITY",
+            "focal_point": "center center"
+          }
+        },
+        "collection_rHpUMF": {
+          "type": "collection",
+          "settings": {
+            "collection": "ole-miss",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_mx4WFq": {
+          "type": "collection",
+          "settings": {
+            "collection": "mississippi-state-university",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_zD7hyg": {
+          "type": "collection",
+          "settings": {
+            "collection": "mizzou",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_r6wwHe": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-north-carolina-1",
+            "title": "UNIVERSITY OF NORTH CAROLINA",
+            "focal_point": "center center"
+          }
+        },
+        "collection_4q4nKB": {
+          "type": "collection",
+          "settings": {
+            "collection": "nc-state-university",
+            "title": "NC STATE UNIVERSITY",
+            "focal_point": "center center"
+          }
+        },
+        "collection_KtyBE8": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-north-texas",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_XYixWH": {
+          "type": "collection",
+          "settings": {
+            "collection": "ohio-state-university",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_y4qKXP": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-oklahoma",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_HTG64f": {
+          "type": "collection",
+          "settings": {
+            "collection": "osu-oklahoma-state-university",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_3qbqEQ": {
+          "type": "collection",
+          "settings": {
+            "collection": "penn-state",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_nGcnTQ": {
+          "type": "collection",
+          "settings": {
+            "collection": "pepperdine-university",
+            "title": "Pepperdine University",
+            "focal_point": "center center"
+          }
+        },
+        "collection_NiLfEC": {
+          "type": "collection",
+          "settings": {
+            "collection": "purdue-university-1",
+            "title": "PURDUE UNIVERSITY",
+            "focal_point": "center center"
+          }
+        },
+        "collection_NkEU67": {
+          "type": "collection",
+          "settings": {
+            "collection": "savannah-bananas-party-animals",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_BExz6U": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-south-carolina",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_zee49L": {
+          "type": "collection",
+          "settings": {
+            "collection": "smu",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_XLqVBb": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-tennessee",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_GRpGHm": {
+          "type": "collection",
+          "settings": {
+            "collection": "texas",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_nMf7gi": {
+          "type": "collection",
+          "settings": {
+            "collection": "texas-a-m-university",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_9hfYqT": {
+          "type": "collection",
+          "settings": {
+            "collection": "tcu",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_Pzm6rK": {
+          "type": "collection",
+          "settings": {
+            "collection": "texas-tech-university",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_CLfyP7": {
+          "type": "collection",
+          "settings": {
+            "collection": "vanderbilt-university",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_rM48Da": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-virginia",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_8ArPAa": {
+          "type": "collection",
+          "settings": {
+            "collection": "wake-forest-university-1",
+            "title": "WAKE FOREST UNIVERSITY",
+            "focal_point": "center center"
+          }
+        },
+        "collection_MiCGhB": {
+          "type": "collection",
+          "settings": {
+            "collection": "west-virginia-university-1",
+            "title": "WEST VIRGINIA UNIVERSITY",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "16538807036ab84dc1-0",
+        "e7c437fa-9c1a-49cb-97bc-9c714920c3a6",
+        "collection_Awrq4q",
+        "0df49594-0aef-49b3-a6aa-5eb841750624",
+        "c889147f-0833-404a-ae3c-6ffbfcdbb48f",
+        "c5cbc953-cc8e-4bd6-9d2e-6fb83085f08b",
+        "collection_6Q8bwY",
+        "33d0ce3f-5fac-4540-96a3-271f3d241307",
+        "collection_8VkXWc",
+        "collection_Vmk9Wd",
+        "771fe1d7-4f4f-4a59-a2d4-644060fcb50e",
+        "b3ee2f2d-7e97-4d32-8731-af78d8bbd8a8",
+        "8ee06b17-8d61-4049-b422-98fa654f7084",
+        "834555f5-622f-4bab-87f7-1743480d3cfc",
+        "collection_rGEbcA",
+        "collection_WjqaF9",
+        "collection_C9jiEi",
+        "collection_Aff7Bf",
+        "collection_C6ALTf",
+        "collection_34PDtN",
+        "collection_yapTTH",
+        "collection_Py6LFH",
+        "collection_rHpUMF",
+        "collection_mx4WFq",
+        "collection_zD7hyg",
+        "collection_r6wwHe",
+        "collection_4q4nKB",
+        "collection_KtyBE8",
+        "collection_XYixWH",
+        "collection_y4qKXP",
+        "collection_HTG64f",
+        "collection_3qbqEQ",
+        "collection_nGcnTQ",
+        "collection_NiLfEC",
+        "collection_NkEU67",
+        "collection_BExz6U",
+        "collection_zee49L",
+        "collection_XLqVBb",
+        "collection_GRpGHm",
+        "collection_nMf7gi",
+        "collection_9hfYqT",
+        "collection_Pzm6rK",
+        "collection_CLfyP7",
+        "collection_rM48Da",
+        "collection_8ArPAa",
+        "collection_MiCGhB"
+      ],
+      "settings": {
+        "title": "",
+        "divider": false,
+        "per_row": 5,
+        "enable_gutter": true
+      }
+    },
+    "d8e93656-e6da-45a7-805d-7b06545c8450": {
+      "type": "featured-collections",
+      "blocks": {
+        "586deee9-56fd-4e72-b4f6-ec99655f8a15": {
+          "type": "collection",
+          "settings": {
+            "collection": "legacy-christian-academy",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "prestonwood-christian-academy",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-4": {
+          "type": "collection",
+          "settings": {
+            "collection": "prince-of-peace-christian-school",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "southlake-carroll-dragons",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "trinity-christian-academy",
+            "title": "",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "586deee9-56fd-4e72-b4f6-ec99655f8a15",
+        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-3",
+        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-4",
+        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-1",
+        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-2"
+      ],
+      "settings": {
+        "title": "HIGH SCHOOLS",
+        "divider": false,
+        "per_row": 5,
+        "enable_gutter": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16538807039c724845",
+    "d8e93656-e6da-45a7-805d-7b06545c8450"
+  ]
+}

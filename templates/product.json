@@ -1,0 +1,217 @@
+{
+  "sections": {
+    "16696209407406aec5": {
+      "type": "apps",
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "a44cf324-a4dc-4ed2-a3e9-2255e32eeef5": {
+          "type": "shopify:\/\/apps\/sezzle-widget\/blocks\/widget-block\/f3a53793-e118-4764-a86b-a79bfedb0d5f",
+          "settings": {
+            "heading": "Sezzle Widget",
+            "font_size": 14,
+            "font_family": "inherit"
+          }
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "linked_products_MqndzF": {
+          "type": "linked-products",
+          "settings": {
+            "option_name": "COLORS",
+            "swatches_size": "small",
+            "swatches_aspect_ratio": "square",
+            "linked_products": "{{ product.metafields.custom.linked_products.value }}",
+            "margin_bottom": 20
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "size_chart": "",
+            "variant_labels": true,
+            "picker_type": "button",
+            "color_swatches": false
+          }
+        },
+        "sales_point": {
+          "type": "sales_point",
+          "settings": {
+            "icon": "truck",
+            "text": "Free shipping on orders $65+"
+          }
+        },
+        "inventory_status": {
+          "type": "inventory_status",
+          "settings": {
+            "inventory_threshold": 4,
+            "inventory_transfers_enable": true
+          }
+        },
+        "87892d94-b5eb-4338-932a-3362b0a02d3d": {
+          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "86779",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        },
+        "b047476b-d4ff-4418-afa0-36a0f3656994": {
+          "type": "shopify:\/\/apps\/joy-loyalty-program\/blocks\/joy-points-calculator-block\/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+          "settings": {
+            "points_calculator_alignment": "left"
+          }
+        },
+        "168f9bb6-fa3d-49a2-8ee8-de6f3c10d89f": {
+          "type": "shopify:\/\/apps\/pre-order-restock-notifier\/blocks\/back_in_stock_notifier\/1fadf77e-ebd8-4e68-90cb-f24d97d07bde",
+          "settings": {
+            "notify_btn_text": "NOTIFY ME WHEN IN STOCK",
+            "notify_btn_backColor": "#000000",
+            "notify_btn_textColor": "#ffffff",
+            "notify_btn_borderColor": "#000000",
+            "notify_btn_border_radius": 2,
+            "notify_btn_border_size": 1,
+            "notify_btn_position_desktop": "other",
+            "notify_btn_position_mobile": "other",
+            "hide_buy_now_btn": true,
+            "notify_btn_fullwidth": true
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "surface_pickup_enable": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "is_tab": false
+          }
+        },
+        "d360d95e-91d1-4993-a2b3-225541fea599": {
+          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "112438",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        },
+        "tab": {
+          "type": "tab",
+          "settings": {
+            "title": "Shipping information",
+            "content": "<p>We ship most orders within 1-3 business days after the order is placed unless the item is a Pre-Order, Custom Product, or Made-to-Order. <\/p><p>We ship from Plano, TX - transit times will vary depending on distance from our shipping location.<\/p><p>Orders $65+ qualify for free USPS First Class Shipping.<br\/><br\/>Upgraded shipping options are available at checkout for faster transit times (FedEx Ground, 2nd Day, or Overnight). <\/p><p><\/p><p>**PLEASE NOTE, expediting shipping does not expedite processing or production time.<\/p>",
+            "page": ""
+          }
+        },
+        "54907725-29c1-4a43-84d2-db6a65572797": {
+          "type": "tab",
+          "settings": {
+            "title": "Return Policy",
+            "content": "<p><strong>Dresses\/Apparel: <\/strong><\/p><p>We accept returns or exchanges for approved dresses or apparel items within 14 days of when your item delivered. You may request a return or exchange by emailing customerservice@briannacannon.com, and a return label will be issued to you once the return or exchange is approved. The item must be in new and unworn condition with all tags attached. If the item shows signs of wear (excessive wrinkles, stains, snags, perfume smell, etc.) then the item will not be eligible for return or exchange.<\/p><p><strong>Accessories\/Jewelry\/Headbands: <\/strong><\/p><p>We do not accept returns for accessories. We may approve exchanges if the items are still in stock, however the customer will be responsible for shipping charges. Please contact customerservice@briannacannon.com if you have concerns about your order or wish to request an exchange and we will do our best to find a reasonable resolution. <\/p>",
+            "page": ""
+          }
+        },
+        "contact": {
+          "type": "contact",
+          "settings": {
+            "title": "Ask a question",
+            "phone": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {}
+        },
+        "345e430c-e2f8-4108-bd02-5a843f169b8e": {
+          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "44468",
+            "product_id_enabled": true,
+            "collection_id_enabled": true
+          }
+        }
+      },
+      "block_order": [
+        "price",
+        "a44cf324-a4dc-4ed2-a3e9-2255e32eeef5",
+        "separator",
+        "linked_products_MqndzF",
+        "variant_picker",
+        "sales_point",
+        "inventory_status",
+        "87892d94-b5eb-4338-932a-3362b0a02d3d",
+        "b047476b-d4ff-4418-afa0-36a0f3656994",
+        "168f9bb6-fa3d-49a2-8ee8-de6f3c10d89f",
+        "buy_buttons",
+        "description",
+        "d360d95e-91d1-4993-a2b3-225541fea599",
+        "tab",
+        "54907725-29c1-4a43-84d2-db6a65572797",
+        "contact",
+        "share",
+        "345e430c-e2f8-4108-bd02-5a843f169b8e"
+      ],
+      "settings": {
+        "sku_enable": false,
+        "image_position": "left",
+        "image_size": "medium",
+        "product_zoom_enable": true,
+        "thumbnail_position": "beside",
+        "thumbnail_arrows": false,
+        "mobile_layout": "partial",
+        "enable_video_looping": true,
+        "product_video_style": "muted"
+      }
+    },
+    "sub": {
+      "type": "product-full-width",
+      "disabled": true,
+      "settings": {
+        "max_width": true
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "show_product_recommendations": true,
+        "product_recommendations_heading": "Other pretty things",
+        "related_count": 5
+      }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed",
+      "settings": {
+        "recent_count": 5
+      }
+    },
+    "collection-return": {
+      "type": "collection-return",
+      "settings": {}
+    }
+  },
+  "order": [
+    "16696209407406aec5",
+    "main",
+    "sub",
+    "product-recommendations",
+    "recently-viewed",
+    "collection-return"
+  ]
+}
