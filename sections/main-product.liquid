@@ -29,6 +29,13 @@
   "settings": [
     {
       "type": "checkbox",
+      "id": "show_product_ratings",
+      "label": "Show Product Ratings",
+      "info": "When enabled, product ratings will utilize third party and show below bread crumbs.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
       "id": "sku_enable",
       "label": "t:sections.main-product.settings.sku_enable.label"
     },
@@ -315,6 +322,50 @@
         "label": "t:product_block.buy_buttons.settings.surface_pickup_enable.label",
         "info": "t:product_block.buy_buttons.settings.surface_pickup_enable.info",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "discount_code_copy_paste_enable",
+        "label": "Enable Discount Code Copy",
+        "info": "If Enabled, a copy of the discount code will be displayed below the buy buttons for user to copy and use in checkout.",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "discount_active_code",
+        "label": "Discount Active Code",
+        "info": "Text is case sensitive and has to match with what is used in the discount admin."
+      },
+      {
+        "type": "text",
+        "id": "discount_active_code_text",
+        "label": "Discount Active Code Text",
+        "info": "description goes here."
+      },
+      {
+        "type": "checkbox",
+        "id": "orders_ship_copy_enable",
+        "label": "Enable 'Orders ship' copy",
+        "info": "If Enabled, copy for 'Orders ship' will be displayed below the buy buttons.",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "orders_ship_copy",
+        "label": "Orders ship copy",
+        "default": "Orders ship in 15 hours",
+        "info": "Text is case sensitive and has to match with what is used in the discount admin."
+      }
+    ]
+  },
+  {
+    "type": "top-text",
+    "name": "Top Text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text"
       }
     ]
   },
@@ -398,6 +449,10 @@
           {
             "value": "truck",
             "label": "t:product_block.sales_point.settings.icon.options.truck.label"
+          },
+          {
+            "value": "custom-truck",
+            "label": "Custom Truck"
           }
         ]
       },
@@ -456,6 +511,24 @@
     ]
   },
   {
+    "type": "ugc_tab",
+    "name": "UGC Tab",
+    "settings": [
+      {
+        "type": "text",
+        "id": "enable_ugc_tab_label",
+        "label": "Enable UGC Tab Label",
+        "default": "Customer reviews"
+      },
+      {
+        "type": "metaobject_list",
+        "metaobject_type": "ugc_video",
+        "id": "ugc_videos",
+        "label": "UGC Videos"
+      }
+    ]
+  },
+  {
     "type": "share",
     "name": "t:product_block.share_on_social.name",
     "limit": 1,
@@ -469,6 +542,69 @@
   {
     "type": "separator",
     "name": "t:product_block.separator.name"
+  },
+  {
+    "type": "custom-quantity-selector",
+    "name": "Custom Quantity Selector",
+    "settings": [
+      {
+        "type": "text",
+        "id": "quantity_header",
+        "label": "Quantity Header"
+      },
+      {
+        "type": "text",
+        "id": "label",
+        "label": "Quantity Label"
+      },
+      { "type": "checkbox",
+        "id": "show_strike_total",
+        "label": "Show crossed-out original total",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "quantity_range",
+        "label": "Quantity Range",
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "default": 3
+      },
+      {
+        "type": "metaobject_list",
+        "metaobject_type": "quantity_selector_badges",
+        "id": "quantity_selector_badges",
+        "label": "Discount Tier Badges"
+      },
+      {
+        "type": "color",
+        "id": "discount_tier_badge_color",
+        "label": "Discount Tier Sale Badge Color",
+        "default": "#fbd8e6"
+      },
+      {
+        "type": "color",
+        "id": "discount_tier_badge_text_color",
+        "label": "Discount Tier Sale Badge Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "text",
+        "id": "discount_tier_one_percentage",
+        "label": "Discount Tier One Percentage"
+      },
+      {
+        "type": "text",
+        "id": "discount_tier_two_percentage",
+        "label": "Discount Tier Two Percentage"
+      },
+      {
+        "type": "text",
+        "id": "discount_tier_three_percentage",
+        "label": "Discount Tier Three Percentage"
+      }
+    ]
   },
   {
     "type": "contact",

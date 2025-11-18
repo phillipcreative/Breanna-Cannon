@@ -1,0 +1,215 @@
+{% comment %}
+  Tabbed Feature Section
+  - Each BLOCK represents one tab.
+  - Clicking a tab updates the left content (title/description) and the right image.
+{% endcomment %}
+
+<section id="tabbed-feature-{{ section.id }}" class="tabbed-feature">
+  <div class="tabbed-feature__inner page-width">
+    <!-- LEFT: Tabs + Content -->
+    <div class="tabbed-feature__left">
+      {% if section.settings.tabs_label != blank %}
+        <div class="tabbed-feature__tabs-label">{{ section.settings.tabs_label }}</div>
+      {% endif %}
+
+      <div class="tabbed-feature__tabs" role="tablist" aria-label="{{ section.settings.tabs_aria_label | escape }}">
+        {%- for block in section.blocks -%}
+          {%- assign is_active = forloop.first -%}
+          <button
+            id="tab-{{ block.id }}"
+            class="tabbed-feature__tab{% if is_active %} is-active{% endif %}"
+            role="tab"
+            aria-selected="{{ is_active }}"
+            aria-controls="panel-{{ block.id }}"
+            tabindex="{% if is_active %}0{% else %}-1{% endif %}"
+            data-tab-target="panel-{{ block.id }}"
+          >
+            <span class="tabbed-feature__tab-text">{{ block.settings.tab_label | escape }}</span>
+            <span class="tabbed-feature__tab-plus" aria-hidden="true">{% render 'plus-icon' %}</span>
+          </button>
+        {%- endfor -%}
+      </div>
+
+      <div class="tabbed-feature__content">
+        {%- for block in section.blocks -%}
+          {%- assign is_active = forloop.first -%}
+          <div
+            id="panel-{{ block.id }}"
+            class="tabbed-feature__panel"
+            role="tabpanel"
+            aria-labelledby="tab-{{ block.id }}"
+            {% unless is_active %}hidden{% endunless %}
+            {{ block.shopify_attributes }}
+          >
+            {% if block.settings.kicker != blank %}
+              <div class="tabbed-feature__kicker">{{ block.settings.kicker }}</div>
+            {% endif %}
+            {% if block.settings.title != blank %}
+              <h2 class="tabbed-feature__title">{{ block.settings.title }}</h2>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <div class="tabbed-feature__description rte">
+                {{ block.settings.description }}
+              </div>
+            {% endif %}
+            {% if block.settings.cta_label != blank and block.settings.cta_link != blank %}
+              <div class="tabbed-feature__cta">
+                <a class="tabbed-feature__button" href="{{ block.settings.cta_link }}">{{ block.settings.cta_label }}</a>
+              </div>
+            {% endif %}
+
+            <div class="tab-tag-container {% if block.settings.tag_label_one == blank and block.settings.tag_label_two == blank and block.settings.tag_label_three == blank and block.settings.tag_label_four == blank %}hidden{% endif %}">
+              {% if block.settings.tag_section_label != blank %}
+                <div class="tabbed-feature__tag-section-label">{{ block.settings.tag_section_label }}</div>
+              {% endif %}
+
+              <div class="tabbed-feature__tags {% if block.settings.tag_label_four == blank %}no-grid{% endif %}">
+                {% if block.settings.tag_label_one != blank %}
+                  <div class="tabbed-feature__tag">
+                    <a href="{{ block.settings.tag_link_one }}">{% render 'plus-icon' %} {{ block.settings.tag_label_one }}</a>
+                  </div>
+                {% endif %}
+                {% if block.settings.tag_label_two != blank %}
+                  <div class="tabbed-feature__tag">
+                    <a href="{{ block.settings.tag_link_two }}">{% render 'plus-icon' %} {{ block.settings.tag_label_two }}</a>
+                  </div>
+                {% endif %}
+                {% if block.settings.tag_label_three != blank %}
+                  <div class="tabbed-feature__tag">
+                    <a href="{{ block.settings.tag_link_three }}">{% render 'plus-icon' %} {{ block.settings.tag_label_three }}</a>
+                  </div>
+                {% endif %}
+                {% if block.settings.tag_label_four != blank %}
+                  <div class="tabbed-feature__tag">
+                    <a href="{{ block.settings.tag_link_four }}">{% render 'plus-icon' %} {{ block.settings.tag_label_four }}</a>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <!-- RIGHT: Images (switch per tab) -->
+    <div class="tabbed-feature__right">
+      {%- for block in section.blocks -%}
+        {%- assign is_active = forloop.first -%}
+        <figure
+          id="image-{{ block.id }}"
+          class="tabbed-feature__image-wrap"
+          {% unless is_active %}hidden{% endunless %}
+          {% if is_active %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %}
+        >
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image
+              | image_url: width: 1400
+              | image_tag:
+                class: 'tabbed-feature__image',
+                loading: 'lazy',
+                widths: '400,700,900,1200,1400',
+                alt: block.settings.image_alt | escape
+            }}
+          {%- else -%}
+            <div class="tabbed-feature__image--placeholder">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {%- endif -%}
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const root = document.getElementById('tabbed-feature-{{ section.id }}');
+      if (!root) return;
+
+      const tabs = root.querySelectorAll('.tabbed-feature__tab');
+      const panels = root.querySelectorAll('.tabbed-feature__panel');
+      const images = root.querySelectorAll('.tabbed-feature__image-wrap');
+
+      function activate(targetId) {
+        // Tabs
+        tabs.forEach(btn => {
+          const active = btn.dataset.tabTarget === targetId;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+          btn.tabIndex = active ? 0 : -1;
+        });
+        // Panels
+        panels.forEach(panel => {
+          panel.hidden = panel.id !== targetId;
+        });
+        // Images (use matching suffix)
+        const suffix = targetId.replace('panel-', '');
+        images.forEach(img => {
+          console.log(suffix);
+          img.hidden = img.id !== ('image-' + suffix);
+          img.setAttribute('aria-hidden', img.hidden ? 'true' : 'false');
+        });
+      }
+
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => activate(btn.dataset.tabTarget));
+        btn.addEventListener('keydown', (e) => {
+          // Arrow key roving for accessibility
+          if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+          const arr = Array.from(tabs);
+          const idx = arr.indexOf(e.currentTarget);
+          const nextIdx = e.key === 'ArrowRight'
+            ? (idx + 1) % arr.length
+            : (idx - 1 + arr.length) % arr.length;
+          arr[nextIdx].focus();
+          arr[nextIdx].click();
+        });
+      });
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Tabbed Feature",
+  "settings": [
+    { "type": "text", "id": "tabs_label", "label": "Tabs label (optional)", "default": "Topics" },
+    { "type": "text", "id": "tabs_aria_label", "label": "Tabs ARIA label", "default": "Feature tabs" }
+  ],
+  "blocks": [
+    {
+      "type": "tab_item",
+      "name": "Tab item",
+      "settings": [
+        { "type": "text", "id": "tab_label", "label": "Tab label", "default": "Styling" },
+        { "type": "text", "id": "kicker", "label": "Kicker / small heading", "default": "How to Style the Caftan" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Effortless Styling, Endless Compliments" },
+        { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Pair it with gold hoops and strappy sandals for a night out, or keep it casual with sneakers and a denim jacket. Designed to move seamlessly from brunch to evening cocktails.</p>" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_alt", "label": "Image alt text" },
+        { "type": "text", "id": "cta_label", "label": "Optional button label" },
+        { "type": "url", "id": "cta_link", "label": "Optional button link" },
+        { "type": "text", "id": "tag_section_label", "label": "Tag section label", "default": "shop similar styles" },
+        { "type": "text", "id": "tag_label_one", "label": "Tag label one" },
+        { "type": "url", "id": "tag_link_one", "label": "Tag link one" },
+        { "type": "text", "id": "tag_label_two", "label": "Tag label two" },
+        { "type": "url", "id": "tag_link_two", "label": "Tag link two" },
+        { "type": "text", "id": "tag_label_three", "label": "Tag label three" },
+        { "type": "url", "id": "tag_link_three", "label": "Tag link three" },
+        { "type": "text", "id": "tag_label_four", "label": "Tag label four" },
+        { "type": "url", "id": "tag_link_four", "label": "Tag link four" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Tabbed Feature",
+      "blocks": [
+        { "type": "tab_item" },
+        { "type": "tab_item", "settings": { "tab_label": "Occasions" } },
+        { "type": "tab_item", "settings": { "tab_label": "From our Founder" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

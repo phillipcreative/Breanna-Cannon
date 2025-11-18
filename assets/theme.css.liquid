@@ -2345,7 +2345,13 @@ button[disabled],html input[disabled]{
 .add-to-cart.btn--secondary{
   border:1px solid;
   border-color:{{ settings.color_body_text | default: "#1c1d1d" }};
-  border-color:var(--colorTextBody)
+  border-color:var(--colorTextBody);
+  background-color: #000000;
+  color: #fff;
+  letter-spacing: normal;
+  font-size: 18px;
+  border-radius: 4px;
+  font-weight: 200;
 }
 
 [data-button_style=angled] .add-to-cart.btn--secondary{

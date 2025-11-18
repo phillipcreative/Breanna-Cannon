@@ -1,30 +1,55 @@
-{
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
   "sections": {
-    "16696209407406aec5": {
-      "type": "apps",
-      "settings": {
-        "full_width": false,
-        "space_around": true
-      }
-    },
     "main": {
       "type": "main-product",
       "blocks": {
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
-        "a44cf324-a4dc-4ed2-a3e9-2255e32eeef5": {
-          "type": "shopify:\/\/apps\/sezzle-widget\/blocks\/widget-block\/f3a53793-e118-4764-a86b-a79bfedb0d5f",
+        "top_text_yLFd3P": {
+          "type": "top-text",
           "settings": {
-            "heading": "Sezzle Widget",
-            "font_size": 14,
-            "font_family": "inherit"
+            "text": "{{ product.metafields.custom.top_text_snippet_copy.value }}"
+          }
+        },
+        "inventory_status": {
+          "type": "inventory_status",
+          "settings": {
+            "inventory_threshold": 4,
+            "inventory_transfers_enable": true
+          }
+        },
+        "sales_point": {
+          "type": "sales_point",
+          "settings": {
+            "icon": "custom-truck",
+            "text": "Free shipping on orders $65+"
           }
         },
         "separator": {
           "type": "separator",
           "settings": {}
+        },
+        "custom_quantity_selector_zFpjgG": {
+          "type": "custom-quantity-selector",
+          "settings": {
+            "quantity_header": "The more you shop, the more you save.",
+            "label": "Headband",
+            "show_strike_total": true,
+            "quantity_range": 3,
+            "quantity_selector_badges": [],
+            "discount_tier_badge_color": "#fbd8e6",
+            "discount_tier_badge_text_color": "#000000",
+            "discount_tier_one_percentage": "5",
+            "discount_tier_two_percentage": "10",
+            "discount_tier_three_percentage": "15"
+          }
         },
         "linked_products_MqndzF": {
           "type": "linked-products",
@@ -40,70 +65,32 @@
           "type": "variant_picker",
           "settings": {
             "size_chart": "",
-            "variant_labels": true,
+            "variant_labels": false,
             "picker_type": "button",
             "color_swatches": false
-          }
-        },
-        "sales_point": {
-          "type": "sales_point",
-          "settings": {
-            "icon": "truck",
-            "text": "Free shipping on orders $65+"
-          }
-        },
-        "inventory_status": {
-          "type": "inventory_status",
-          "settings": {
-            "inventory_threshold": 4,
-            "inventory_transfers_enable": true
-          }
-        },
-        "87892d94-b5eb-4338-932a-3362b0a02d3d": {
-          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
-          "settings": {
-            "enabled": true,
-            "id": "86779",
-            "product_id_enabled": true,
-            "collection_id_enabled": false
-          }
-        },
-        "b047476b-d4ff-4418-afa0-36a0f3656994": {
-          "type": "shopify:\/\/apps\/joy-loyalty-program\/blocks\/joy-points-calculator-block\/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
-          "settings": {
-            "points_calculator_alignment": "left"
-          }
-        },
-        "168f9bb6-fa3d-49a2-8ee8-de6f3c10d89f": {
-          "type": "shopify:\/\/apps\/pre-order-restock-notifier\/blocks\/back_in_stock_notifier\/1fadf77e-ebd8-4e68-90cb-f24d97d07bde",
-          "settings": {
-            "notify_btn_text": "NOTIFY ME WHEN IN STOCK",
-            "notify_btn_backColor": "#000000",
-            "notify_btn_textColor": "#ffffff",
-            "notify_btn_borderColor": "#000000",
-            "notify_btn_border_radius": 2,
-            "notify_btn_border_size": 1,
-            "notify_btn_position_desktop": "other",
-            "notify_btn_position_mobile": "other",
-            "hide_buy_now_btn": true,
-            "notify_btn_fullwidth": true
           }
         },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
-            "surface_pickup_enable": true
+            "show_dynamic_checkout": false,
+            "surface_pickup_enable": false,
+            "discount_code_copy_paste_enable": true,
+            "discount_active_code": "SANTA",
+            "discount_active_code_text": "Save an additional 10% on orders $60+",
+            "orders_ship_copy_enable": true,
+            "orders_ship_copy": "Orders ship in 15 hours"
           }
         },
         "description": {
           "type": "description",
+          "disabled": true,
           "settings": {
             "is_tab": false
           }
         },
         "d360d95e-91d1-4993-a2b3-225541fea599": {
-          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
           "settings": {
             "enabled": true,
             "id": "112438",
@@ -111,11 +98,23 @@
             "collection_id_enabled": false
           }
         },
+        "ugc_tab_P33w67": {
+          "type": "ugc_tab",
+          "settings": {}
+        },
+        "tab_aPEtUN": {
+          "type": "tab",
+          "settings": {
+            "title": "Description",
+            "content": "<p>{{ product.description }}</p>",
+            "page": ""
+          }
+        },
         "tab": {
           "type": "tab",
           "settings": {
             "title": "Shipping information",
-            "content": "<p>We ship most orders within 1-3 business days after the order is placed unless the item is a Pre-Order, Custom Product, or Made-to-Order. <\/p><p>We ship from Plano, TX - transit times will vary depending on distance from our shipping location.<\/p><p>Orders $65+ qualify for free USPS First Class Shipping.<br\/><br\/>Upgraded shipping options are available at checkout for faster transit times (FedEx Ground, 2nd Day, or Overnight). <\/p><p><\/p><p>**PLEASE NOTE, expediting shipping does not expedite processing or production time.<\/p>",
+            "content": "<p>We ship most orders within 1-3 business days after the order is placed unless the item is a Pre-Order, Custom Product, or Made-to-Order. </p><p>We ship from Plano, TX - transit times will vary depending on distance from our shipping location.</p><p>Orders $65+ qualify for free USPS First Class Shipping.<br/><br/>Upgraded shipping options are available at checkout for faster transit times (FedEx Ground, 2nd Day, or Overnight). </p><p></p><p>**PLEASE NOTE, expediting shipping does not expedite processing or production time.</p>",
             "page": ""
           }
         },
@@ -123,7 +122,7 @@
           "type": "tab",
           "settings": {
             "title": "Return Policy",
-            "content": "<p><strong>Dresses\/Apparel: <\/strong><\/p><p>We accept returns or exchanges for approved dresses or apparel items within 14 days of when your item delivered. You may request a return or exchange by emailing customerservice@briannacannon.com, and a return label will be issued to you once the return or exchange is approved. The item must be in new and unworn condition with all tags attached. If the item shows signs of wear (excessive wrinkles, stains, snags, perfume smell, etc.) then the item will not be eligible for return or exchange.<\/p><p><strong>Accessories\/Jewelry\/Headbands: <\/strong><\/p><p>We do not accept returns for accessories. We may approve exchanges if the items are still in stock, however the customer will be responsible for shipping charges. Please contact customerservice@briannacannon.com if you have concerns about your order or wish to request an exchange and we will do our best to find a reasonable resolution. <\/p>",
+            "content": "<p><strong>Dresses/Apparel: </strong></p><p>We accept returns or exchanges for approved dresses or apparel items within 14 days of when your item delivered. You may request a return or exchange by emailing customerservice@briannacannon.com, and a return label will be issued to you once the return or exchange is approved. The item must be in new and unworn condition with all tags attached. If the item shows signs of wear (excessive wrinkles, stains, snags, perfume smell, etc.) then the item will not be eligible for return or exchange.</p><p><strong>Accessories/Jewelry/Headbands: </strong></p><p>We do not accept returns for accessories. We may approve exchanges if the items are still in stock, however the customer will be responsible for shipping charges. Please contact customerservice@briannacannon.com if you have concerns about your order or wish to request an exchange and we will do our best to find a reasonable resolution. </p>",
             "page": ""
           }
         },
@@ -139,7 +138,7 @@
           "settings": {}
         },
         "345e430c-e2f8-4108-bd02-5a843f169b8e": {
-          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
           "settings": {
             "enabled": true,
             "id": "44468",
@@ -149,19 +148,18 @@
         }
       },
       "block_order": [
-        "price",
-        "a44cf324-a4dc-4ed2-a3e9-2255e32eeef5",
+        "top_text_yLFd3P",
+        "inventory_status",
+        "sales_point",
         "separator",
+        "custom_quantity_selector_zFpjgG",
         "linked_products_MqndzF",
         "variant_picker",
-        "sales_point",
-        "inventory_status",
-        "87892d94-b5eb-4338-932a-3362b0a02d3d",
-        "b047476b-d4ff-4418-afa0-36a0f3656994",
-        "168f9bb6-fa3d-49a2-8ee8-de6f3c10d89f",
         "buy_buttons",
         "description",
         "d360d95e-91d1-4993-a2b3-225541fea599",
+        "ugc_tab_P33w67",
+        "tab_aPEtUN",
         "tab",
         "54907725-29c1-4a43-84d2-db6a65572797",
         "contact",
@@ -169,7 +167,9 @@
         "345e430c-e2f8-4108-bd02-5a843f169b8e"
       ],
       "settings": {
+        "show_product_ratings": true,
         "sku_enable": false,
+        "enable_gallery_grid_view": true,
         "image_position": "left",
         "image_size": "medium",
         "product_zoom_enable": true,
@@ -180,38 +180,158 @@
         "product_video_style": "muted"
       }
     },
-    "sub": {
-      "type": "product-full-width",
-      "disabled": true,
+    "style_tab_P9HwJB": {
+      "type": "style-tab",
+      "blocks": {
+        "tab_item_PgCEB4": {
+          "type": "tab_item",
+          "settings": {
+            "tab_label": "Styling",
+            "kicker": "How to Style the Caftan",
+            "title": "Effortless Styling, Endless Compliments",
+            "description": "<p>Pair it with gold hoops and strappy sandals for a night out, or keep it casual with sneakers and a denim jacket. Designed to move seamlessly from brunch to evening cocktails.</p>",
+            "image": "shopify://shop_images/image_114.jpg",
+            "image_alt": "",
+            "cta_label": "",
+            "cta_link": "",
+            "tag_section_label": "shop similar styles",
+            "tag_label_one": "Dresses",
+            "tag_link_one": "",
+            "tag_label_two": "Caftans",
+            "tag_link_two": "",
+            "tag_label_three": "Pink",
+            "tag_link_three": "",
+            "tag_label_four": "",
+            "tag_link_four": ""
+          }
+        },
+        "tab_item_qgrwtQ": {
+          "type": "tab_item",
+          "settings": {
+            "tab_label": "Occasions",
+            "kicker": "Fall Favorites",
+            "title": "Find This Season's Classics",
+            "description": "<p>Experience the cozy tradition of Christmas pajamas with our festive and comfortable collection. Celebrate in style this holiday season.</p>",
+            "image": "shopify://shop_images/R522521.jpg",
+            "image_alt": "",
+            "cta_label": "",
+            "cta_link": "",
+            "tag_section_label": "shop similar styles",
+            "tag_label_one": "test1",
+            "tag_link_one": "",
+            "tag_label_two": "test2",
+            "tag_link_two": "",
+            "tag_label_three": "test3",
+            "tag_link_three": "",
+            "tag_label_four": "",
+            "tag_link_four": ""
+          }
+        },
+        "tab_item_drqxCb": {
+          "type": "tab_item",
+          "settings": {
+            "tab_label": "From our Founder",
+            "kicker": "How to Style the Caftan",
+            "title": "Effortless Styling, Endless Compliments",
+            "description": "<p>Pair it with gold hoops and strappy sandals for a night out, or keep it casual with sneakers and a denim jacket. Designed to move seamlessly from brunch to evening cocktails.</p>",
+            "image_alt": "",
+            "cta_label": "",
+            "cta_link": "",
+            "tag_section_label": "shop similar styles",
+            "tag_label_one": "Dresses",
+            "tag_link_one": "",
+            "tag_label_two": "Apparel",
+            "tag_link_two": "",
+            "tag_label_three": "Accessories",
+            "tag_link_three": "",
+            "tag_label_four": "",
+            "tag_link_four": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_item_PgCEB4",
+        "tab_item_qgrwtQ",
+        "tab_item_drqxCb"
+      ],
+      "name": "Tabbed Feature",
       "settings": {
-        "max_width": true
+        "tabs_label": "",
+        "tabs_aria_label": "Feature tabs"
       }
     },
-    "product-recommendations": {
-      "type": "product-recommendations",
+    "recommendation_slider_MkgayM": {
+      "type": "recommendation-slider",
+      "name": "Recommendation Carousel",
       "settings": {
         "show_product_recommendations": true,
-        "product_recommendations_heading": "Other pretty things",
-        "related_count": 5
+        "product_recommendations_heading": "Also Buy With",
+        "product_source": "collection",
+        "featured_collection": "boots",
+        "related_count": 8,
+        "section_url": "",
+        "section_button_label": ""
       }
     },
-    "recently-viewed": {
-      "type": "recently-viewed",
+    "recommendation_slider_xrGJLY": {
+      "type": "recommendation-slider",
+      "name": "Recommendation Carousel",
       "settings": {
-        "recent_count": 5
+        "show_product_recommendations": true,
+        "product_recommendations_heading": "Trending Products",
+        "product_source": "recommended",
+        "featured_collection": "",
+        "related_count": 8,
+        "section_url": "shopify://collections/category",
+        "section_button_label": "Shop All"
       }
     },
-    "collection-return": {
-      "type": "collection-return",
-      "settings": {}
+    "17629708078581ed17": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_4MKgUt": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_4MKgUt"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
+    "newsletter_footer_bGBKPK": {
+      "type": "newsletter-footer",
+      "name": "Newsletter Footer",
+      "settings": {
+        "desktop_background_image": "shopify://shop_images/image_136.jpg",
+        "image_opacity": 70,
+        "heading": "Your Home Base For All Things GameDay.",
+        "heading_size": 48,
+        "mobile_heading_size": 32,
+        "heading_weight": "normal",
+        "heading_spacing": 20,
+        "subheading": "This is a sentence that is cute.",
+        "subheading_size": 18,
+        "mobile_subheading_size": 16,
+        "subheading_spacing": 30,
+        "text_color": "#ffffff"
+      }
     }
   },
   "order": [
-    "16696209407406aec5",
     "main",
-    "sub",
-    "product-recommendations",
-    "recently-viewed",
-    "collection-return"
+    "style_tab_P9HwJB",
+    "recommendation_slider_MkgayM",
+    "recommendation_slider_xrGJLY",
+    "17629708078581ed17",
+    "newsletter_footer_bGBKPK"
   ]
 }

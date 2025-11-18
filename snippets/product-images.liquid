@@ -31,6 +31,7 @@
           </div>
 
           <ul class="media-gallery__grid list-unstyled small--hide medium-up--show" data-testid="media-gallery-grid">
+            {%- assign image_index = 0 -%}
             {%- for media in product.media -%}
               {%- liquid
                 assign media_alt_parts = media.alt | split: '|'
@@ -45,8 +46,13 @@
 
                 if media.media_type == 'image'
                   assign media_aspect = media.aspect_ratio
+                  assign media_width = media.width
+                  assign media_height = media.height
+                  assign image_index = image_index | plus: 1
                 else
                   assign media_aspect = media.preview_image.aspect_ratio
+                  assign media_width = media.preview_image.width
+                  assign media_height = media.preview_image.height
                 endif
               -%}
               <li
@@ -56,13 +62,6 @@
                   data-view-transition-type="product-image-transition"
                 {% endif %}
               >
-                {%- if product_zoom_enable and media.media_type == 'image' -%}
-                  <a
-                    href="{{ media_url }}"
-                    {% if product_zoom_enable %}data-fancybox="gallery"{% endif %}
-                    class="product-media-container__zoom-link"
-                  >
-                {%- endif -%}
                 <div class="product-media">
                   {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
                     <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: media_aspect }}%;">
@@ -93,6 +92,13 @@
                       </noscript>
                     </div>
                   {%- else -%}
+                    {%- if product_zoom_enable and media.media_type == 'image' -%}
+                      <a
+                        href="{{ media_url }}"
+                        data-fancybox="gallery"
+                        class="product-media-container__zoom-link"
+                      >
+                    {%- endif -%}
                     <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: media_aspect }}%;">
                       <img class="lazyload"
                         data-src="{{ img_url }}"
@@ -106,15 +112,15 @@
                           alt="{{ media_alt_text }}">
                       </noscript>
                     </div>
+                    {%- if product_zoom_enable and media.media_type == 'image' -%}
+                      </a>
+                    {%- endif -%}
                   {%- endif -%}
 
                   {%- if media_description != blank -%}
                     <span class="image-description">{{ media_description }}</span>
                   {%- endif -%}
                 </div>
-                {%- if product_zoom_enable and media.media_type == 'image' -%}
-                  </a>
-                {%- endif -%}
               </li>
             {%- endfor -%}
           </ul>

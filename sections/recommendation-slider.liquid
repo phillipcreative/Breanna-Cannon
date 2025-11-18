@@ -1,0 +1,481 @@
+
+
+
+{%- liquid
+  assign related_collection = null
+
+  if section.settings.product_source == 'collection' and section.settings.featured_collection != blank
+    assign featured_collection = collections[section.settings.featured_collection]
+    if featured_collection != empty and featured_collection.products_count > 0
+      assign related_collection = featured_collection
+    endif
+  elsif section.settings.product_source == 'recommended'
+    if recommendations.products and recommendations.products_count > 0
+      assign related_collection = recommendations
+    endif
+  endif
+
+  assign number_of_products = section.settings.related_count
+-%}
+
+{%- if section.settings.show_product_recommendations -%}
+<div id="Recommendations-{{ section.id }}"
+      class="page-width recommendation-carousel-container"
+      data-section-id="{{ section.id }}"
+      data-product-id="{{ product.id }}"
+      data-product-source="{{ section.settings.product_source }}"
+      data-subsection
+      data-section-type="collection-grid">
+      <div class="recommendation">
+        <div class="recommendations__inner">
+          <h3 class="recommendations__heading">{{ section.settings.product_recommendations_heading }}</h3>
+          <div class="recommendations__actions">
+            <div class="recommendations__nav">
+              <button type="button" class="recommendations__nav-btn js-recommendations-prev-{{ section.id }}" aria-label="{{ 'general.pagination.previous' | t }}">
+                <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.8999 5.8999H0.899902M0.899902 5.8999L5.7749 0.899902M0.899902 5.8999L5.7749 10.8999" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button type="button" class="recommendations__nav-btn js-recommendations-next-{{ section.id }}" aria-label="{{ 'general.pagination.next' | t }}">
+                <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.899902 5.8999H13.8999M13.8999 5.8999L9.0249 0.899902M13.8999 5.8999L9.0249 10.8999" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            {%- if related_collection and related_collection.url and section.settings.product_source == 'collection' -%}
+              <a class="recommendations__shop-all" href="{{ related_collection.url }}">Shop all</a>
+            {%- elsif section.settings.section_url != blank and section.settings.section_button_label != blank -%}
+              <a class="recommendations__shop-all" href="{{ section.settings.section_url }}">{{ section.settings.section_button_label }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+
+        <div class="recommendations__wrapper new-product-recommendations__wrapper">
+          {%- if related_collection and related_collection.products_count > 0 -%}
+            <div class="recommendations__swiper swiper js-product-recommendations-swiper-{{ section.id }}" data-aos="overflow__animation">
+              <div class="swiper-wrapper">
+                {%- for product in related_collection.products limit: number_of_products -%}
+                  <div class="swiper-slide">
+                    {%- render 'new-product-grid-item',
+                      product: product,
+                      per_row: number_of_products,
+                      quick_shop_enable: settings.quick_shop_enable
+                    -%}
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- elsif section.settings.product_source == 'recommended' -%}
+            {%- comment -%}Empty swiper structure for AJAX-loaded recommendations{%- endcomment -%}
+            <div class="recommendations__swiper swiper js-product-recommendations-swiper-{{ section.id }}" data-aos="overflow__animation">
+              <div class="swiper-wrapper">
+                {%- comment -%}Will be populated via AJAX{%- endcomment -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+    </div>
+
+
+    <style>
+    .new-product-recommendations__wrapper .grid-product__tag{
+      display: none;
+    }
+
+    #Recommendations-{{ section.id }} .recommendations__inner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    #Recommendations-{{ section.id }} .recommendations__heading {
+      font-size: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    #Recommendations-{{ section.id }} .recommendations__actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    #Recommendations-{{ section.id }} .recommendations__shop-all {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: normal;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    #Recommendations-{{ section.id }} .recommendations__nav {
+      display: flex;
+      align-items: center;
+    }
+
+    #Recommendations-{{ section.id }} .recommendations__nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color .2s ease, border-color .2s ease;
+    }
+    #Recommendations-{{ section.id }} .recommendations__nav-btn[disabled] { opacity: .4; cursor: not-allowed; }
+    #Recommendations-{{ section.id }} .recommendations__nav-btn:hover { background: rgba(0,0,0,.04); border-color: rgba(0,0,0,.16); }
+
+    /* Swiper tweaks */
+    #Recommendations-{{ section.id }} .recommendations__swiper { overflow: visible; }
+    #Recommendations-{{ section.id }} .recommendations__swiper .swiper-slide { height: auto; }
+    #Recommendations-{{ section.id }} .recommendations__swiper .grid__item {
+       height: 100%;
+       width: 100%;
+       padding-left: 0px;
+    }
+
+    /* Product image aspect ratio - 400x498 */
+    #Recommendations-{{ section.id }} .grid-product__image-mask .grid__image-ratio {
+      aspect-ratio: 400 / 498;
+    }
+    #Recommendations-{{ section.id }} .grid-product__image-mask .image-wrap {
+      height: 0 !important;
+      padding-bottom: 124.5% !important; /* 498/400 * 100% */
+      position: relative;
+    }
+    #Recommendations-{{ section.id }} .grid-product__image-mask .image-wrap img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #Recommendations-{{ section.id }} .grid-product__image-mask .grid__image-ratio img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 749px) {
+      #Recommendations-{{ section.id }} .recommendations__inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      #Recommendations-{{ section.id }} .recommendations__actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const containers = document.querySelectorAll('[id^="Recommendations-"]');
+
+      containers.forEach(container => {
+        if (!container) return;
+
+        const source = container.dataset.productSource;
+        const sectionId = container.dataset.sectionId;
+        const productId = container.dataset.productId;
+        const limit = {{ number_of_products }};
+
+        // Only fetch dynamically if using Shopify recommendations
+        if (source === 'recommended') {
+          const url = '{{ routes.product_recommendations_url }}?section_id=recommendation-slider&limit=' + limit + '&product_id=' + productId;
+          console.log('Fetching recommendations from:', url);
+
+          fetch(url)
+            .then(res => {
+              if (!res.ok) {
+                throw new Error('Failed to fetch recommendations: ' + res.status);
+              }
+              return res.text();
+            })
+            .then(html => {
+              if (!html || !html.trim()) {
+                console.warn('Empty response from recommendations API');
+                return;
+              }
+
+              const temp = document.createElement('div');
+              temp.innerHTML = html;
+
+              // Find the recommendations wrapper in the fetched HTML
+              const fetchedContainer = temp.querySelector('[id^="Recommendations-"]');
+              if (!fetchedContainer) {
+                console.warn('Could not find recommendations container in response. HTML:', html.substring(0, 500));
+                return;
+              }
+
+              const wrapper = fetchedContainer.querySelector('.recommendations__wrapper');
+              const fetchedSwiper = fetchedContainer.querySelector('.recommendations__swiper');
+              const fetchedSwiperWrapper = fetchedSwiper ? fetchedSwiper.querySelector('.swiper-wrapper') : null;
+              console.log('Found wrapper:', !!wrapper, 'Found swiper:', !!fetchedSwiper, 'Found swiper-wrapper:', !!fetchedSwiperWrapper);
+
+              if (fetchedSwiperWrapper && fetchedSwiperWrapper.innerHTML.trim()) {
+                // Find the existing swiper wrapper and replace its content
+                const currentSwiper = container.querySelector('.js-product-recommendations-swiper-' + sectionId);
+                const currentSwiperWrapper = currentSwiper ? currentSwiper.querySelector('.swiper-wrapper') : null;
+
+                if (currentSwiperWrapper && currentSwiper) {
+                  // Replace only the swiper-wrapper content, keeping the swiper structure intact
+                  currentSwiperWrapper.innerHTML = fetchedSwiperWrapper.innerHTML;
+
+                  // Initialize Swiper directly after content is loaded
+                  setTimeout(() => {
+                    const root = container;
+                    const currentSectionId = sectionId;
+                    const prevBtn = root.querySelector('.js-recommendations-prev-' + currentSectionId);
+                    const nextBtn = root.querySelector('.js-recommendations-next-' + currentSectionId);
+                    const sliderEl = currentSwiper; // Use the existing swiper element
+
+                    if (prevBtn && nextBtn && sliderEl && !sliderEl.dataset.bound) {
+                      // Load Swiper assets if needed
+                      const loadSwiperAssets = () => {
+                        return new Promise((resolve) => {
+                          if (window.Swiper) {
+                            resolve();
+                            return;
+                          }
+
+                          const linkEl = document.createElement('link');
+                          linkEl.rel = 'stylesheet';
+                          linkEl.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css';
+                          document.head.appendChild(linkEl);
+
+                          const script = document.createElement('script');
+                          script.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js';
+                          script.async = true;
+                          script.onload = () => resolve();
+                          script.onerror = () => resolve(); // Continue even if fails
+                          document.head.appendChild(script);
+                        });
+                      };
+
+                      loadSwiperAssets().then(() => {
+                        if (!window.Swiper) {
+                          console.warn('Swiper library not loaded');
+                          return;
+                        }
+
+                        sliderEl.dataset.bound = 'true';
+
+                        const toggleNavStates = (swiper, prevBtn, nextBtn) => {
+                          if (!swiper) return;
+                          prevBtn.disabled = swiper.isBeginning || swiper.slides.length <= swiper.params.slidesPerView;
+                          nextBtn.disabled = swiper.isEnd || swiper.slides.length <= swiper.params.slidesPerView;
+                        };
+
+                        const swiper = new window.Swiper(sliderEl, {
+                          slidesPerView: 1.2,
+                          spaceBetween: 16,
+                          navigation: {
+                            prevEl: prevBtn,
+                            nextEl: nextBtn
+                          },
+                          watchOverflow: true,
+                          breakpoints: {
+                            576: { slidesPerView: 2.2 },
+                            768: { slidesPerView: 2.6 },
+                            1024: { slidesPerView: 3.2 },
+                            1400: { slidesPerView: 4.2 }
+                          },
+                          on: {
+                            afterInit(sw) { toggleNavStates(sw, prevBtn, nextBtn); },
+                            slideChange(sw) { toggleNavStates(sw, prevBtn, nextBtn); },
+                            reachBeginning(sw) { toggleNavStates(sw, prevBtn, nextBtn); },
+                            reachEnd(sw) { toggleNavStates(sw, prevBtn, nextBtn); },
+                            fromEdge(sw) { toggleNavStates(sw, prevBtn, nextBtn); },
+                            resize(sw) { toggleNavStates(sw, prevBtn, nextBtn); }
+                          }
+                        });
+                      });
+
+                      // Also trigger event for theme.js compatibility
+                      document.dispatchEvent(new CustomEvent('shopify:section:load', {
+                        detail: {
+                          sectionId: sectionId
+                        }
+                      }));
+                    }
+                  }, 150);
+                }
+              } else {
+                console.warn('No recommendations found in response');
+              }
+            })
+            .catch(err => console.error('Error loading recommendations:', err));
+        }
+      });
+    });
+
+  (function() {
+    const sectionId = '{{ section.id }}';
+    let swiperLoaded = false;
+
+    function loadSwiperAssets() {
+      return new Promise((resolve, reject) => {
+        if (window.Swiper) {
+          resolve();
+          return;
+        }
+
+        if (swiperLoaded) {
+          const checkInterval = setInterval(() => {
+            if (window.Swiper) {
+              clearInterval(checkInterval);
+              resolve();
+            }
+          }, 50);
+          return;
+        }
+
+        swiperLoaded = true;
+
+        const linkEl = document.createElement('link');
+        linkEl.rel = 'stylesheet';
+        linkEl.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css';
+        document.head.appendChild(linkEl);
+
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js';
+        script.async = true;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Failed to load Swiper'));
+        document.head.appendChild(script);
+      });
+    }
+
+    function toggleNavStates(swiper, prevBtn, nextBtn) {
+      if (!swiper) return;
+      prevBtn.disabled = swiper.isBeginning || swiper.slides.length <= swiper.params.slidesPerView;
+      nextBtn.disabled = swiper.isEnd || swiper.slides.length <= swiper.params.slidesPerView;
+    }
+
+    function initRecommendationsSwiper(evt) {
+      let rootId;
+
+      if (evt && evt.detail && evt.detail.sectionId) {
+        rootId = 'Recommendations-' + evt.detail.sectionId;
+      } else {
+        rootId = 'Recommendations-' + sectionId;
+      }
+
+      const root = document.getElementById(rootId);
+      if (!root) return;
+
+      const currentSectionId = root.dataset.sectionId || sectionId;
+      const prevBtn = root.querySelector('.js-recommendations-prev-' + currentSectionId);
+      const nextBtn = root.querySelector('.js-recommendations-next-' + currentSectionId);
+      if (!prevBtn || !nextBtn) return;
+
+      const sliderEl = root.querySelector('.js-product-recommendations-swiper-' + currentSectionId);
+      if (!sliderEl || sliderEl.dataset.bound === 'true') return;
+
+      loadSwiperAssets().then(() => {
+        if (!window.Swiper) return;
+
+        sliderEl.dataset.bound = 'true';
+
+        const swiper = new Swiper(sliderEl, {
+          slidesPerView: 1.2,
+          spaceBetween: 16,
+          navigation: {
+            prevEl: prevBtn,
+            nextEl: nextBtn
+          },
+          watchOverflow: true,
+          breakpoints: {
+            576: { slidesPerView: 2.2 },
+            768: { slidesPerView: 2.6 },
+            1024: { slidesPerView: 3.2 },
+            1400: { slidesPerView: 4.2 }
+          },
+          on: {
+            afterInit(sw) { toggleNavStates(sw, prevBtn, nextBtn); },
+            slideChange(sw) { toggleNavStates(sw, prevBtn, nextBtn); },
+            reachBeginning(sw) { toggleNavStates(sw, prevBtn, nextBtn); },
+            reachEnd(sw) { toggleNavStates(sw, prevBtn, nextBtn); },
+            fromEdge(sw) { toggleNavStates(sw, prevBtn, nextBtn); },
+            resize(sw) { toggleNavStates(sw, prevBtn, nextBtn); }
+          }
+        });
+      }).catch(() => {});
+    }
+
+    document.addEventListener('DOMContentLoaded', () => initRecommendationsSwiper());
+    document.addEventListener('shopify:section:load', (evt) => initRecommendationsSwiper(evt));
+  })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Recommendation Slider",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_product_recommendations",
+      "label": "t:sections.product-recommendations.settings.show_product_recommendations.label",
+      "info": "t:sections.product-recommendations.settings.show_product_recommendations.info",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "product_recommendations_heading",
+      "label": "t:sections.product-recommendations.settings.product_recommendations_heading.label",
+      "default": "Also Buy With"
+    },
+    {
+      "type": "select",
+      "id": "product_source",
+      "label": "Product source",
+      "options": [
+        {
+          "value": "recommended",
+          "label": "Recommended products"
+        },
+        {
+          "value": "collection",
+          "label": "Featured collection"
+        }
+      ],
+      "default": "recommended"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Featured collection",
+      "info": "Select a collection to display products from. This setting is only used when 'Featured collection' is selected as the product source."
+    },
+    {
+      "type": "range",
+      "id": "related_count",
+      "label": "t:sections.product-recommendations.settings.related_count.label",
+      "default": 8,
+      "min": 2,
+      "max": 12,
+      "step": 1
+    },
+    {
+      "type": "url",
+      "id": "section_url",
+      "label": "Section URL"
+    },
+    {
+      "type": "text",
+      "id": "section_button_label",
+      "label": "Section Button Label"
+    }
+  ],
+  "presets": [{ "name": "Recommendation Slider" }]
+}
+{% endschema %}

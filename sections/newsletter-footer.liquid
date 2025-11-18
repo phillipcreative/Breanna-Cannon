@@ -1,0 +1,301 @@
+{%- liquid
+  assign desktop_image = section.settings.desktop_background_image
+  assign mobile_image = section.settings.mobile_background_image
+  assign overlay_opacity = section.settings.image_opacity | divided_by: 100.0
+-%}
+
+{%- style -%}
+  .newsletter-footer--{{ section.id }} {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    min-height: 695px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  {%- if desktop_image != blank -%}
+    @media screen and (min-width: 769px) {
+      .newsletter-footer--{{ section.id }} {
+        background-image: url({{ desktop_image | img_url: '1800x' }});
+      }
+    }
+  {%- endif -%}
+
+  {%- if mobile_image != blank -%}
+    @media screen and (max-width: 768px) {
+      .newsletter-footer--{{ section.id }} {
+        background-image: url({{ mobile_image | img_url: '800x' }});
+      }
+    }
+  {%- elsif desktop_image != blank -%}
+    @media screen and (max-width: 768px) {
+      .newsletter-footer--{{ section.id }} {
+        background-image: url({{ desktop_image | img_url: '800x' }});
+      }
+    }
+  {%- endif -%}
+
+  {%- if overlay_opacity > 0 -%}
+    .newsletter-footer--{{ section.id }}:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: #000;
+      opacity: {{ overlay_opacity }};
+      z-index: 1;
+    }
+  {%- endif -%}
+
+  .newsletter-footer__content--{{ section.id }} {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: {{ section.settings.text_color }};
+    padding: 60px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .newsletter-footer__heading--{{ section.id }} {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    margin-bottom: {{ section.settings.heading_spacing }}px;
+    color: {{ section.settings.text_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .newsletter-footer__heading--{{ section.id }} {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+    }
+  }
+
+  .newsletter-footer__subheading--{{ section.id }} {
+    font-size: {{ section.settings.subheading_size }}px;
+    margin-bottom: {{ section.settings.subheading_spacing }}px;
+    color: {{ section.settings.text_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .newsletter-footer__subheading--{{ section.id }} {
+      font-size: {{ section.settings.mobile_subheading_size }}px;
+    }
+  }
+
+  .newsletter-footer__form--{{ section.id }} {
+    margin-top: 40px;
+  }
+
+  .newsletter-footer__form--{{ section.id }} .newsletter__input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid {{ section.settings.text_color }};
+    padding-bottom: 10px;
+    max-width: 305px;
+    margin: 0 auto;
+  }
+
+  .newsletter-footer__form--{{ section.id }} .newsletter__input {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0 15px 0 0;
+    flex: 1;
+    color: {{ section.settings.text_color }};
+    font-size: 16px;
+  }
+
+  .newsletter-footer__form--{{ section.id }} .newsletter__input:focus {
+    outline: none;
+  }
+
+  .newsletter-footer__form--{{ section.id }} .input-group-btn {
+    margin-left: 0;
+  }
+
+  .newsletter-footer__form--{{ section.id }} .input-group-btn .btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: {{ section.settings.text_color }};
+  }
+
+  .newsletter-footer__form--{{ section.id }} .input-group-btn .btn:hover {
+    opacity: 0.8;
+  }
+
+  .newsletter-footer__form--{{ section.id }} .newsletter__input::-webkit-input-placeholder {
+    color: {{ section.settings.text_color }};
+    opacity: 0.8;
+  }
+  .newsletter-footer__form--{{ section.id }} .newsletter__input::-moz-placeholder {
+    color: {{ section.settings.text_color }};
+    opacity: 0.8;
+  }
+  .newsletter-footer__form--{{ section.id }} .newsletter__input::-ms-input-placeholder {
+    color: {{ section.settings.text_color }};
+    opacity: 0.8;
+  }
+{%- endstyle -%}
+
+<div class="newsletter-footer newsletter-footer--{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="newsletter-footer">
+  <div class="newsletter-footer__content newsletter-footer__content--{{ section.id }}">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="newsletter-footer__heading newsletter-footer__heading--{{ section.id }}">
+        {{ section.settings.heading | escape }}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="newsletter-footer__subheading newsletter-footer__subheading--{{ section.id }}">
+        {{ section.settings.subheading | escape }}
+      </p>
+    {%- endif -%}
+
+    <div class="newsletter-footer__form newsletter-footer__form--{{ section.id }}">
+      {%- render 'new-newsletter-form', section_id: section.id, snippet_context: 'footer' -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Newsletter Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_background_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_background_image",
+      "label": "Mobile background image",
+      "info": "Optional. If not set, desktop image will be used on mobile."
+    },
+    {
+      "type": "range",
+      "id": "image_opacity",
+      "label": "Image overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50,
+      "info": "Adds a dark overlay to improve text readability."
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your Home Base For All Things GameDay."
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size (desktop)",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Heading size (mobile)",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "default": "bold",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Heading bottom spacing",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "This is a sentence that is cute."
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading size (desktop)",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_subheading_size",
+      "label": "Subheading size (mobile)",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subheading_spacing",
+      "label": "Subheading bottom spacing",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter Footer"
+    }
+  ]
+}
+{% endschema %}
