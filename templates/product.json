@@ -82,13 +82,6 @@
             "orders_ship_copy": "Orders ship in 15 hours"
           }
         },
-        "description": {
-          "type": "description",
-          "disabled": true,
-          "settings": {
-            "is_tab": false
-          }
-        },
         "d360d95e-91d1-4993-a2b3-225541fea599": {
           "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
           "settings": {
@@ -100,7 +93,14 @@
         },
         "ugc_tab_P33w67": {
           "type": "ugc_tab",
-          "settings": {}
+          "settings": {
+            "enable_ugc_tab_label": "Customer reviews",
+            "ugc_videos": [
+              "ugc-video-phzu1fnh",
+              "ugc-video-jnx1a6up",
+              "ugc-video-dc2rwxkm"
+            ]
+          }
         },
         "tab_aPEtUN": {
           "type": "tab",
@@ -156,7 +156,6 @@
         "linked_products_MqndzF",
         "variant_picker",
         "buy_buttons",
-        "description",
         "d360d95e-91d1-4993-a2b3-225541fea599",
         "ugc_tab_P33w67",
         "tab_aPEtUN",

@@ -851,7 +851,7 @@ Product Page Updates - Phillip Creative
   font-weight: 400;
   color: #4D4D4D;
   text-align: center;
-  padding: 18px 20px;
+  padding: 15px 20px;
 }
 
 .discount-code-block .text-copy,
@@ -859,15 +859,102 @@ Product Page Updates - Phillip Creative
   font-size: 14px;
 }
 
+.discount-code-block .discount-code {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+}
+
 .discount-code-block .discount-code .code-copy {
+  box-sizing: border-box;
   background-color: #FFF7F2;
   color: #E93079;
-  text-decoration: underline;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin: 0;
   display: flex;
-  height: 100%;
-  width: 100%;
-  padding: 18px 20px;
-  max-width: 125px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: normal;
+  line-height: normal;
+  text-decoration: none;
+  flex: 1;
+  height: auto;
+  width: auto;
+  gap: 0;
+}
+
+.discount-copy-btn {
+  position: relative;
+  box-sizing: border-box;
+  background-color: transparent;
+  color: #E93079;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 500;
+  /* text-transform: uppercase; */
+  padding: 5px;
+  border: 0;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.discount-copy-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.discount-copy-btn:before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  clip-path: polygon(50% 40%, 0% 100%, 100% 100%);
+}
+
+.discount-copy-btn:after {
+  content: attr(tooltip);
+  width: 140px;
+  bottom: -46px;
+  left: -15px;
+  right: -19px;
+  margin: auto;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: .8rem;
+}
+
+.discount-copy-btn:before,
+.discount-copy-btn:after {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  box-sizing: border-box;
+  background-color: #000000;
+  color: #ffffff;
+  transform: translateY(-10px);
+  transition: all 300ms ease;
+}
+
+.discount-copy-btn:hover:before,
+.discount-copy-btn:hover:after {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .code-copy svg {
@@ -915,6 +1002,13 @@ Product Page Updates - Phillip Creative
 
 .tabbed-feature {
   margin: 3rem 0;
+  padding: 0 17px;
+}
+
+@media only screen and (min-width: 769px) {
+  .tabbed-feature {
+    padding: 0 40px;
+  }
 }
 
 .tabbed-feature__inner {
@@ -1042,6 +1136,10 @@ Product Page Updates - Phillip Creative
    Tabs
 ========================================================================== */
 
+.product-block.hidden {
+  display: none;
+}
+
 .tab-tag-container {
   margin-top: 5rem;
 }
@@ -1049,6 +1147,8 @@ Product Page Updates - Phillip Creative
 .tab-tag-container.hidden {
   display: none;
 }
+
+
 
 .tabbed-feature__tabs {
   display: flex;
@@ -1087,6 +1187,10 @@ Product Page Updates - Phillip Creative
   font-weight: 600;
   position: absolute;
   right: 16px;
+}
+
+.collapsible-content__inner.rte h1, .collapsible-content__inner.rte h2, .collapsible-content__inner.rte h3, .collapsible-content__inner.rte h4, .collapsible-content__inner.rte h5, .collapsible-content__inner.rte h6 {
+  margin-top: 0px !important;
 }
 
 /* ==========================================================================
@@ -1272,8 +1376,18 @@ Product Page Updates - Phillip Creative
   }
 
   /* Discount Code Block */
+  .discount-code-block .discount-code {
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .discount-code-block .discount-code .code-copy {
     padding: 12px 20px;
+    width: 100%;
+  }
+
+  .discount-copy-btn {
+    width: 100%;
   }
 
   .discount-code-block .text-copy {
@@ -1379,4 +1493,125 @@ Product Page Updates - Phillip Creative
   .newsletter-footer__form {
     margin-top: 20px;
   }
+}
+
+/* ==========================================================================
+   UGC Videos Section
+========================================================================== */
+
+.ugc-videos-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 0;
+  margin: 0 -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.ugc-video-card {
+  flex: 0 0 auto;
+  width: 127px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  cursor: pointer;
+}
+
+.ugc-video-card__thumbnail {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f4f4f4;
+}
+
+.ugc-video-card__thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ugc-video-card__play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.ugc-video-card:hover .ugc-video-card__play-icon {
+  transform: translate(-50%, -50%) scale(1.1);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.ugc-video-card__video {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ugc-video-card__video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ugc-video-card.is-playing .ugc-video-card__thumbnail {
+  display: none;
+}
+
+.ugc-video-card.is-playing .ugc-video-card__video {
+  display: block !important;
+}
+
+.ugc-videos-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.ugc-videos-container::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 4px;
+}
+
+.ugc-videos-container {
+  scrollbar-width: thin;
+}
+
+@media only screen and (max-width: 768px) {
+  .ugc-video-card {
+    width: 160px;
+  }
+
+  .ugc-videos-container {
+    gap: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin: 0 -12px;
+  }
+}
+
+/* Rebuy Widget */
+
+.rebuy-widget.widget-type-product-addon .primary-title {
+  letter-spacing: normal;
+}
+
+
+.rebuy-widget.widget-type-product-addon {
+  margin-bottom: 30px;
 }

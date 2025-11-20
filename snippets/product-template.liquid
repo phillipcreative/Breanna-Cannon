@@ -203,21 +203,45 @@
                     </div>
 
                   {%- when 'ugc_tab' -%}
-                    <div class="product-block product-block--tab" {{ block.shopify_attributes }}>
-                      {% assign tab_id = block.id | append: product.id %}
-                      {% assign ugc_videos = block.settings.ugc_videos %}
-                      {% for video in ugc_videos %}
-                        {% assign designated_product_video_id = video.designated_product | split: 'gid://shopify/Product/' | last %}
-                        {% assign video_data = video.ugc_video %}
-                        <script>
-                          console.log('Designated Product Video ID:', '{{ designated_product_video_id }}');
-                          console.log('Video Data:', '{{ video_data }}');
-                        </script>
-                      {% endfor %}
-                      {% capture tab_content %}
-                        TEST
-                      {% endcapture %}
-                      {%- render 'tab', id: tab_id, title: block.settings.enable_ugc_tab_label, content: tab_content -%}
+                    {% assign blank_ugc_data = false %}
+                    {% assign tab_id = block.id | append: product.id %}
+                    {% assign ugc_videos = block.settings.ugc_videos %}
+
+                    {% capture tab_content %}
+                      <div class="ugc-videos-container">
+                        {% for video in ugc_videos %}
+                          {%- assign media = video.ugc_video.value -%}
+                          {% assign designated_product = video.designated_product.value %}
+
+                          {% if media != blank and designated_product.id == product.id %}
+                            <div class="ugc-video-card">
+                              <div class="ugc-video-card__thumbnail">
+                                {% if media.preview_image %}
+                                  <img src="{{ media.preview_image | img_url: '400x600' }}" alt="Video thumbnail" width="400" height="600" loading="lazy">
+                                {% endif %}
+                                <div class="ugc-video-card__play-icon">
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                                  </svg>
+                                </div>
+                              </div>
+                              <div class="ugc-video-card__video" style="display: none;">
+                                {{ media | video_tag: controls: true, autoplay: false, muted: true, playsinline: true, loop: false }}
+                              </div>
+                            </div>
+                          {% else %}
+                            {% assign blank_ugc_data = true %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    {% endcapture %}
+
+                    <div class="product-block product-block--tab {% if blank_ugc_data %} hidden{% endif %}" {{ block.shopify_attributes }}>
+                      {%- render 'tab',
+                        id: tab_id,
+                        title: block.settings.enable_ugc_tab_label,
+                        content: tab_content
+                      -%}
                     </div>
 
                   {%- when 'tab' -%}
@@ -434,8 +458,17 @@
                             <span class="text-copy">{{ block.settings.discount_active_code_text }}</span>
                           {% endif %}
                           {% if block.settings.discount_active_code != blank %}
-                            <span class="discount-code"><span class="code-copy">code:{{ block.settings.discount_active_code }}{% render 'copy-paste-icon' %}</span></span>
+                            {% assign discount_code_id = 'discount-code-' | append: block.id | append: '-' | append: product.id %}
+                            {% assign discount_copy_id = 'discount-copy-' | append: block.id | append: '-' | append: product.id %}
+                            <div class="discount-code">
+                              <span id="{{ discount_code_id }}" class="code-copy"><button id="{{ discount_copy_id }}" class="discount-copy-btn" tooltip="Copy to clipboard">
+                                code:{{ block.settings.discount_active_code }}
+                                {% render 'copy-paste-icon' %}
+                              </button>
+                              </span>
+                            </div>
                           {% endif %}
+
                         </div>
                       {%- endif-%}
 

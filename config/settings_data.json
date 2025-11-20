@@ -1,4 +1,13 @@
-{
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
   "current": {
     "color_body_bg": "#ffffff",
     "color_body_text": "#000000",
@@ -62,14 +71,14 @@
     "cart_additional_buttons": true,
     "cart_notes_enable": true,
     "cart_terms_conditions_enable": false,
-    "social_facebook_link": "https:\/\/www.facebook.com\/briannacannonofficial",
-    "social_pinterest_link": "https:\/\/www.pinterest.com\/briannacannonofficial",
-    "social_instagram_link": "https:\/\/instagram.com\/briannacannonofficial",
-    "social_tiktok_link": "https:\/\/www.tiktok.com\/@briannacannonofficial",
+    "social_facebook_link": "https://www.facebook.com/briannacannonofficial",
+    "social_pinterest_link": "https://www.pinterest.com/briannacannonofficial",
+    "social_instagram_link": "https://instagram.com/briannacannonofficial",
+    "social_tiktok_link": "https://www.tiktok.com/@briannacannonofficial",
     "share_twitter": false,
-    "favicon": "shopify:\/\/shop_images\/Brianna_Cannon_logo.jpg",
+    "favicon": "shopify://shop_images/Brianna_Cannon_logo.jpg",
     "show_breadcrumbs": true,
-    "checkout_logo_image": "shopify:\/\/shop_images\/Brianna_Cannon_Logo_with_Emblem_and_whitespace_f5f34a5b-921b-4081-a6f4-24b37e523b3d.png",
+    "checkout_logo_image": "shopify://shop_images/Brianna_Cannon_Logo_with_Emblem_and_whitespace_f5f34a5b-921b-4081-a6f4-24b37e523b3d.png",
     "checkout_logo_position": "left",
     "checkout_logo_size": "medium",
     "checkout_body_background_color": "#ffffff",
@@ -86,7 +95,7 @@
           "1524770014057": {
             "type": "logo",
             "settings": {
-              "logo": "shopify:\/\/shop_images\/Brianna_Cannon_Logo_vertical.png",
+              "logo": "shopify://shop_images/Brianna_Cannon_Logo_vertical.png",
               "desktop_logo_width": 110,
               "mobile_logo_width": 90
             }
@@ -104,7 +113,7 @@
             "settings": {
               "text": "WAREHOUSE SALE",
               "link_text": "shop now",
-              "link": "shopify:\/\/collections\/warehouse-sale-2025"
+              "link": "shopify://collections/warehouse-sale-2025"
             }
           },
           "announcement_e3BWKA": {
@@ -112,7 +121,7 @@
             "settings": {
               "text": "SHOP NFL:",
               "link_text": "Officially Licensed Products for all 32 Teams!",
-              "link": "shopify:\/\/pages\/nfl"
+              "link": "shopify://pages/nfl"
             }
           }
         },
@@ -144,7 +153,7 @@
           "31a8531a-e108-4dc9-9be7-af43eddfeb42": {
             "type": "logo_social",
             "settings": {
-              "logo": "shopify:\/\/shop_images\/Brianna_Cannon_logo.jpg",
+              "logo": "shopify://shop_images/Brianna_Cannon_logo.jpg",
               "desktop_logo_height": 34,
               "container_width": 25
             }
@@ -170,7 +179,7 @@
             "settings": {
               "show_footer_title": true,
               "title": "BE THE FIRST TO KNOW",
-              "text": "<p>Join our mailing list to receive our newsletters and be the first to know when a new collection launches!<\/p>",
+              "text": "<p>Join our mailing list to receive our newsletters and be the first to know when a new collection launches!</p>",
               "container_width": 33
             }
           }
@@ -197,8 +206,8 @@
           "popup_seconds": 15,
           "popup_days": 10,
           "popup_title": "LET'S KEEP IN TOUCH!",
-          "popup_image": "shopify:\/\/shop_images\/IMG_3728_2.jpg",
-          "popup_text": "<p>Join our mailing list to receive our newsletters and be the first to know when a new collection launches!<\/p>",
+          "popup_image": "shopify://shop_images/IMG_3728_2.jpg",
+          "popup_text": "<p>Join our mailing list to receive our newsletters and be the first to know when a new collection launches!</p>",
           "close_text": "No thanks",
           "enable_newsletter": true,
           "button_label": "",
@@ -219,35 +228,38 @@
         "blocks": {
           "footer-promotions-0": {
             "type": "promotion",
+            "disabled": true,
             "settings": {
               "enable_image": true,
-              "image": "shopify:\/\/shop_images\/26979D1E-555F-4540-94AB-F4714118FFEB.jpg",
+              "image": "shopify://shop_images/26979D1E-555F-4540-94AB-F4714118FFEB.jpg",
               "title": "SHOP THE RAINBOW",
-              "text": "<p>An assortment of products that will add a joyful splash of color to your wardrobe!<\/p>",
+              "text": "<p>An assortment of products that will add a joyful splash of color to your wardrobe!</p>",
               "button_label": "SHOP RAINBOW",
-              "button_link": "shopify:\/\/collections\/rainbow"
+              "button_link": "shopify://collections/rainbow"
             }
           },
           "footer-promotions-1": {
             "type": "promotion",
+            "disabled": true,
             "settings": {
               "enable_image": true,
-              "image": "shopify:\/\/shop_images\/BC_NFL-243_656546e2-6eba-4b31-8e5e-13cd72fca799.jpg",
+              "image": "shopify://shop_images/BC_NFL-243_656546e2-6eba-4b31-8e5e-13cd72fca799.jpg",
               "title": "NFL",
-              "text": "<p>Shop Officially Licensed NFL hair accessories for all 32 teams!<\/p>",
+              "text": "<p>Shop Officially Licensed NFL hair accessories for all 32 teams!</p>",
               "button_label": "Shop NFL",
-              "button_link": "shopify:\/\/pages\/nfl"
+              "button_link": "shopify://pages/nfl"
             }
           },
           "footer-promotions-2": {
             "type": "promotion",
+            "disabled": true,
             "settings": {
               "enable_image": true,
-              "image": "shopify:\/\/shop_images\/3_840711ab-ff07-4af1-b100-8b3903556204.png",
+              "image": "shopify://shop_images/3_840711ab-ff07-4af1-b100-8b3903556204.png",
               "title": "COLLEGE GAMEDAY",
-              "text": "<p>Shop Officially Licensed clothing and accessories for 40+ Universities <\/p>",
+              "text": "<p>Shop Officially Licensed clothing and accessories for 40+ Universities </p>",
               "button_label": "SHOP GAMEDAY",
-              "button_link": "shopify:\/\/pages\/gameday"
+              "button_link": "shopify://pages/gameday"
             }
           }
         },
@@ -276,22 +288,22 @@
     "content_for_index": [],
     "blocks": {
       "uppromote-affiliate-referral-customer-referral-82608-64c32457-930d-4cb9-9641-e24c0d9cf1f4": {
-        "type": "shopify:\/\/apps\/uppromote-affiliate-referral\/blocks\/customer-referral\/64c32457-930d-4cb9-9641-e24c0d9cf1f4",
+        "type": "shopify://apps/uppromote-affiliate-referral/blocks/customer-referral/64c32457-930d-4cb9-9641-e24c0d9cf1f4",
         "disabled": true,
         "settings": {}
       },
       "uppromote-affiliate-referral-message-bar-82608-64c32457-930d-4cb9-9641-e24c0d9cf1f4": {
-        "type": "shopify:\/\/apps\/uppromote-affiliate-referral\/blocks\/message-bar\/64c32457-930d-4cb9-9641-e24c0d9cf1f4",
+        "type": "shopify://apps/uppromote-affiliate-referral/blocks/message-bar/64c32457-930d-4cb9-9641-e24c0d9cf1f4",
         "disabled": true,
         "settings": {}
       },
       "7584948915495707528": {
-        "type": "shopify:\/\/apps\/joy-loyalty-program\/blocks\/app-embed\/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+        "type": "shopify://apps/joy-loyalty-program/blocks/app-embed/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
         "disabled": false,
         "settings": {}
       },
       "11468047240823483236": {
-        "type": "shopify:\/\/apps\/sezzle-widget\/blocks\/checkout-embed\/f3a53793-e118-4764-a86b-a79bfedb0d5f",
+        "type": "shopify://apps/sezzle-widget/blocks/checkout-embed/f3a53793-e118-4764-a86b-a79bfedb0d5f",
         "disabled": false,
         "settings": {
           "heading": "Sezzle Checkout Button",
@@ -300,19 +312,19 @@
         }
       },
       "14060646107696862457": {
-        "type": "shopify:\/\/apps\/judge-me-product-reviews\/blocks\/judgeme_core\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "type": "shopify://apps/judge-me-product-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
       },
       "12120936241911852800": {
-        "type": "shopify:\/\/apps\/judge-me-product-reviews\/blocks\/reviews_tab\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "type": "shopify://apps/judge-me-product-reviews/blocks/reviews_tab/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {
           "position": "right"
         }
       },
       "12608439564960700138": {
-        "type": "shopify:\/\/apps\/sezzle-widget\/blocks\/widget-embed\/f3a53793-e118-4764-a86b-a79bfedb0d5f",
+        "type": "shopify://apps/sezzle-widget/blocks/widget-embed/f3a53793-e118-4764-a86b-a79bfedb0d5f",
         "disabled": false,
         "settings": {
           "heading": "Sezzle Widget",
@@ -321,14 +333,14 @@
         }
       },
       "18208872656243357035": {
-        "type": "shopify:\/\/apps\/joy-loyalty-program\/blocks\/joy-points-calculator-embed\/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+        "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-embed/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
         "disabled": false,
         "settings": {
           "points_calculator_alignment": "left"
         }
       },
       "15683396631634586217": {
-        "type": "shopify:\/\/apps\/inbox\/blocks\/chat\/841fc607-4181-4ad1-842d-e24d7f8bad6b",
+        "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": false,
         "settings": {
           "button_color": "#000000",
@@ -340,28 +352,23 @@
         }
       },
       "13828304447940757039": {
-        "type": "shopify:\/\/apps\/retargeting-for-google\/blocks\/script-block\/a7e9a0a9-e2ad-4582-8cee-19ef96b598c0",
+        "type": "shopify://apps/retargeting-for-google/blocks/script-block/a7e9a0a9-e2ad-4582-8cee-19ef96b598c0",
         "disabled": false,
         "settings": {}
       },
       "3138269044488530766": {
-        "type": "shopify:\/\/apps\/uppromote-affiliate\/blocks\/core-script\/64c32457-930d-4cb9-9641-e24c0d9cf1f4",
+        "type": "shopify://apps/uppromote-affiliate/blocks/core-script/64c32457-930d-4cb9-9641-e24c0d9cf1f4",
         "disabled": false,
         "settings": {}
       },
       "855628211100114053": {
-        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
       },
       "back-in-stock-restock-alerts-4bb73be2-b7c2-4870-949f-c528145452a3": {
-        "type": "shopify:\/\/apps\/back-in-stock-restock-alerts\/blocks\/main\/4bb73be2-b7c2-4870-949f-c528145452a3",
+        "type": "shopify://apps/back-in-stock-restock-alerts/blocks/main/4bb73be2-b7c2-4870-949f-c528145452a3",
         "disabled": false,
-        "settings": {}
-      },
-      "1513253815146976218": {
-        "type": "shopify:\/\/apps\/omnisend-email-marketing-sms\/blocks\/app-embed\/44704aa2-794f-4c5d-8c8e-039c841158e9",
-        "disabled": true,
         "settings": {}
       }
     }
@@ -609,7 +616,7 @@
               "settings": {
                 "text": "Free shipping",
                 "link_text": "On all orders over $100",
-                "link": "shopify:\/\/collections\/all"
+                "link": "shopify://collections/all"
               }
             },
             "1520888647304": {
@@ -617,7 +624,7 @@
               "settings": {
                 "text": "Hassle-free returns",
                 "link_text": "30-day postage paid returns",
-                "link": "shopify:\/\/collections\/all"
+                "link": "shopify://collections/all"
               }
             }
           },
@@ -658,7 +665,7 @@
               "settings": {
                 "show_footer_title": true,
                 "title": "Sign up and save",
-                "text": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.<\/p>",
+                "text": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
                 "container_width": 30
               }
             },
@@ -693,7 +700,7 @@
             "popup_days": 30,
             "popup_title": "Sign up and save",
             "popup_image": "",
-            "popup_text": "<p>Entice customers to sign up for your mailing list with discounts or exclusive offers. Include an image for extra impact.<\/p>",
+            "popup_text": "<p>Entice customers to sign up for your mailing list with discounts or exclusive offers. Include an image for extra impact.</p>",
             "close_text": "No thanks",
             "enable_newsletter": true,
             "button_label": "Optional button",
@@ -718,7 +725,7 @@
                 "enable_image": true,
                 "image": "",
                 "title": "Site-wide promotion",
-                "text": "<p>Use this section to promote content throughout every page of your site. Add images for further impact.<\/p>",
+                "text": "<p>Use this section to promote content throughout every page of your site. Add images for further impact.</p>",
                 "button_label": "Optional button",
                 "button_link": ""
               }
@@ -729,7 +736,7 @@
                 "enable_image": true,
                 "image": "",
                 "title": "Site-wide promotion",
-                "text": "<p>Use this section to promote content throughout every page of your site. Add images for further impact.<\/p>",
+                "text": "<p>Use this section to promote content throughout every page of your site. Add images for further impact.</p>",
                 "button_label": "Optional button",
                 "button_link": ""
               }
@@ -740,7 +747,7 @@
                 "enable_image": true,
                 "image": "",
                 "title": "Site-wide promotion",
-                "text": "<p>Use this section to promote content throughout every page of your site. Add images for further impact.<\/p>",
+                "text": "<p>Use this section to promote content throughout every page of your site. Add images for further impact.</p>",
                 "button_label": "Optional button",
                 "button_link": ""
               }
