@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-product",
@@ -43,7 +43,10 @@
             "label": "Headband",
             "show_strike_total": true,
             "quantity_range": 3,
-            "quantity_selector_badges": [],
+            "quantity_selector_badges": [
+              "test",
+              "free-shipping"
+            ],
             "discount_tier_badge_color": "#fbd8e6",
             "discount_tier_badge_text_color": "#000000",
             "discount_tier_one_percentage": "5",

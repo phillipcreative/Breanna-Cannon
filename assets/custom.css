@@ -1369,15 +1369,6 @@ Product Page Updates - Phillip Creative
 
 @media only screen and (max-width: 450px) {
 
-  /* Product Content */
-  .page-content--product .page-width{
-    padding: 0 10px !important;
-  }
-
-  /* Badge */
-  .quantity-option__badge, .quantity-option__discount {
-    font-size: 10px;
-  }
 
   /* Quantity Selector */
   .quantity-option {
@@ -1385,32 +1376,18 @@ Product Page Updates - Phillip Creative
   }
 
   /* Discount Code Block */
-
-  .discount-code-block {
-    flex-direction: column;
-    gap: 0px;
-    width: 100%;
-  }
-
-  .discount-copy-btn svg {
-    width: 10px;
-    height: 15px;
-  }
-
   .discount-code-block .discount-code {
     flex-direction: column;
-    gap: 0px;
-    width: 100%;
+    gap: 10px;
   }
 
   .discount-code-block .discount-code .code-copy {
-    padding: 10px 5px;
+    padding: 12px 20px;
     width: 100%;
   }
 
   .discount-copy-btn {
     width: 100%;
-    padding: 0px;
   }
 
   .discount-code-block .text-copy {
@@ -1544,10 +1521,6 @@ Product Page Updates - Phillip Creative
   cursor: pointer;
 }
 
-.ugc-video-card.is-playing  video{
-  width: 100%;
-}
-
 .ugc-video-card__thumbnail {
   position: relative;
   width: 100%;
@@ -1604,148 +1577,10 @@ Product Page Updates - Phillip Creative
 
 .ugc-video-card.is-playing .ugc-video-card__video {
   display: block !important;
-  position: relative;
-}
-
-.ugc-video-card__video video {
-  cursor: pointer;
-}
-
-.ugc-video-card__fullscreen-btn {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  width: 36px;
-  height: 36px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  color: #fff;
-  padding: 0;
-}
-
-.ugc-video-card.is-playing .ugc-video-card__video:hover .ugc-video-card__fullscreen-btn {
-  display: flex;
-}
-
-.ugc-video-card__fullscreen-btn:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-  transform: scale(1.1);
-}
-
-.ugc-video-card__fullscreen-btn:active {
-  transform: scale(0.95);
-}
-
-.ugc-video-card__fullscreen-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.ugc-video-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.ugc-video-modal.is-open {
-  display: flex;
-}
-
-.ugc-video-modal__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.ugc-video-modal__container {
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  max-height: 90vh;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ugc-video-modal__video-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  max-height: 90vh;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #000;
-}
-
-.ugc-video-modal__video-wrapper video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.ugc-video-modal__close {
-  position: absolute;
-  top: -50px;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10001;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  color: #000;
-  font-size: 24px;
-  line-height: 1;
-  padding: 0;
-}
-
-.ugc-video-modal__close:hover {
-  background-color: rgba(255, 255, 255, 1);
-  transform: scale(1.1);
-}
-
-.ugc-video-modal__close:active {
-  transform: scale(0.95);
-}
-
-.ugc-video-modal__close svg {
-  width: 20px;
-  height: 20px;
 }
 
 .ugc-videos-container::-webkit-scrollbar {
   height: 4px;
-  background-color: #000000;
-}
-
-.ugc-videos-container::-webkit-scrollbar-track {
-  background-color: #000000;
 }
 
 .ugc-videos-container::-webkit-scrollbar-thumb {
@@ -1755,7 +1590,6 @@ Product Page Updates - Phillip Creative
 
 .ugc-videos-container {
   scrollbar-width: thin;
-  scrollbar-color: #000000 #000000;
 }
 
 @media only screen and (max-width: 768px) {
@@ -1765,35 +1599,9 @@ Product Page Updates - Phillip Creative
 
   .ugc-videos-container {
     gap: 12px;
-    padding-left: 0px;
+    padding-left: 12px;
     padding-right: 12px;
     margin: 0 -12px;
-  }
-
-  .ugc-video-modal {
-    padding: 16px;
-  }
-
-  .ugc-video-modal__container {
-    max-width: 100%;
-  }
-
-  .ugc-video-modal__video-wrapper {
-    aspect-ratio: 9 / 16;
-    max-height: 85vh;
-    border-radius: 8px;
-  }
-
-  .ugc-video-modal__close {
-    top: -45px;
-    width: 36px;
-    height: 36px;
-    font-size: 20px;
-  }
-
-  .ugc-video-modal__close svg {
-    width: 18px;
-    height: 18px;
   }
 }
 

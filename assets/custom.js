@@ -70,139 +70,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // UGC video card functionality
   const ugcVideoCards = document.querySelectorAll('.ugc-video-card');
-  let modal = document.querySelector('.ugc-video-modal');
-
-  if (!modal) {
-    modal = document.createElement('div');
-    modal.className = 'ugc-video-modal';
-    modal.innerHTML = `
-      <div class="ugc-video-modal__overlay"></div>
-      <div class="ugc-video-modal__container">
-        <div class="ugc-video-modal__video-wrapper"></div>
-        <button class="ugc-video-modal__close" aria-label="Close video">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  }
-
-  const modalOverlay = modal.querySelector('.ugc-video-modal__overlay');
-  const modalVideoWrapper = modal.querySelector('.ugc-video-modal__video-wrapper');
-  const modalClose = modal.querySelector('.ugc-video-modal__close');
-
-  const pauseAllVideos = (exceptVideo = null) => {
-    ugcVideoCards.forEach((card) => {
-      const videoContainer = card.querySelector('.ugc-video-card__video');
-      const video = videoContainer?.querySelector('video');
-
-      if (video && video !== exceptVideo && !video.paused) {
-        video.pause();
-        card.classList.remove('is-playing');
-      }
-    });
-  };
-
-  const openModal = (videoElement) => {
-    pauseAllVideos();
-
-    const clonedVideo = videoElement.cloneNode(true);
-    clonedVideo.setAttribute('controls', 'true');
-    clonedVideo.setAttribute('autoplay', 'true');
-    clonedVideo.setAttribute('playsinline', 'true');
-
-    modalVideoWrapper.innerHTML = '';
-    modalVideoWrapper.appendChild(clonedVideo);
-    modal.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
-
-    clonedVideo.play().catch((error) => {
-      console.error('Error playing video in modal:', error);
-    });
-  };
-
-  const closeModal = () => {
-    const modalVideo = modalVideoWrapper.querySelector('video');
-    if (modalVideo) {
-      modalVideo.pause();
-      modalVideo.src = '';
-    }
-    modal.classList.remove('is-open');
-    document.body.style.overflow = '';
-    modalVideoWrapper.innerHTML = '';
-  };
-
-  modalOverlay.addEventListener('click', closeModal);
-  modalClose.addEventListener('click', closeModal);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-      closeModal();
-    }
-  });
 
   ugcVideoCards.forEach((card) => {
     const thumbnail = card.querySelector('.ugc-video-card__thumbnail');
     const videoContainer = card.querySelector('.ugc-video-card__video');
     const video = videoContainer?.querySelector('video');
-    const fullscreenBtn = videoContainer?.querySelector('.ugc-video-card__fullscreen-btn');
 
     if (thumbnail && video) {
       thumbnail.addEventListener('click', () => {
-        pauseAllVideos(video);
         card.classList.add('is-playing');
         video.play().catch((error) => {
           console.error('Error playing video:', error);
         });
       });
 
-      video.addEventListener('play', () => {
-        pauseAllVideos(video);
-        card.classList.add('is-playing');
-      });
-
-      video.addEventListener('pause', () => {
-        if (video.paused) {
-          card.classList.remove('is-playing');
-        }
-      });
-
       video.addEventListener('click', (e) => {
         e.stopPropagation();
         if (video.paused) {
-          pauseAllVideos(video);
           video.play();
         } else {
           video.pause();
         }
-      });
-
-      if (fullscreenBtn) {
-        fullscreenBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          openModal(video);
-        });
-      }
-
-      video.addEventListener('fullscreenchange', () => {
-        if (document.fullscreenElement === video || document.webkitFullscreenElement === video || document.mozFullScreenElement === video || document.msFullscreenElement === video) {
-          openModal(video);
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-          }
-        }
-      });
-
-      video.addEventListener('dblclick', () => {
-        openModal(video);
       });
     }
   });
