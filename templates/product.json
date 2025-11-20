@@ -101,7 +101,8 @@
             "ugc_videos": [
               "ugc-video-phzu1fnh",
               "ugc-video-jnx1a6up",
-              "ugc-video-dc2rwxkm"
+              "ugc-video-dc2rwxkm",
+              "phills-awesome-video"
             ]
           }
         },
@@ -109,7 +110,7 @@
           "type": "tab",
           "settings": {
             "title": "Description",
-            "content": "<p>{{ product.description }}</p>",
+            "content": "{{ product.description }}",
             "page": ""
           }
         },
@@ -198,7 +199,7 @@
             "cta_link": "",
             "tag_section_label": "shop similar styles",
             "tag_label_one": "Dresses",
-            "tag_link_one": "",
+            "tag_link_one": "shopify://collections/arizona-cardinals",
             "tag_label_two": "Caftans",
             "tag_link_two": "",
             "tag_label_three": "Pink",
