@@ -40,7 +40,7 @@
           "type": "custom-quantity-selector",
           "settings": {
             "quantity_header": "The more you shop, the more you save.",
-            "label": "Headband",
+            "label": "Item",
             "show_strike_total": true,
             "quantity_range": 3,
             "quantity_selector_badges": [
