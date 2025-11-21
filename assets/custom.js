@@ -206,4 +206,82 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  // Quantity selector accordion functionality
+  const quantityOptions = document.querySelectorAll('.custom-quantity-selector .quantity-option');
+
+  const reinitializeSwiperInAccordion = (accordionContent) => {
+    const sliderContainer = accordionContent.querySelector('.recommended-product-slider');
+    if (!sliderContainer) return;
+
+    const swiperWrapper = sliderContainer.querySelector('.swiper-wrapper');
+    if (!swiperWrapper || !swiperWrapper.innerHTML.trim()) return;
+
+    const swiperEl = sliderContainer.querySelector('.rebuy-recommendations-swiper');
+    if (!swiperEl || swiperEl.swiperInstance) return;
+
+    // Start with opacity 0, then fade in after initialization
+    sliderContainer.classList.remove('fading-out');
+    sliderContainer.classList.add('fading-in');
+
+    // Trigger custom event to reinitialize Swiper
+    const event = new CustomEvent('rebuy-reinitialize-swiper', {
+      detail: { container: sliderContainer }
+    });
+    document.dispatchEvent(event);
+  };
+
+  const toggleAccordion = (option) => {
+    const content = option.nextElementSibling;
+
+    if (!content || !content.classList.contains('quantity-selector-accordion')) {
+      return;
+    }
+
+    const isOpen = content.classList.contains('is-open');
+
+    if (isOpen) {
+      content.classList.remove('is-open');
+      content.style.maxHeight = null;
+    } else {
+      // Close all other accordions
+      quantityOptions.forEach((otherOption) => {
+        const otherContent = otherOption.nextElementSibling;
+        if (otherContent && otherContent.classList.contains('quantity-selector-accordion')) {
+          otherContent.classList.remove('is-open');
+          otherContent.style.maxHeight = null;
+        }
+      });
+
+      content.classList.add('is-open');
+      content.style.maxHeight = content.scrollHeight + 'px';
+
+      // Reinitialize Swiper if content exists
+      setTimeout(() => {
+        reinitializeSwiperInAccordion(content);
+      }, 100);
+    }
+  };
+
+  quantityOptions.forEach((option) => {
+    const radioButton = option.querySelector('input[type="radio"]');
+
+    if (radioButton) {
+      // Initialize accordion state for pre-checked radio button
+      if (radioButton.checked) {
+        const content = option.nextElementSibling;
+        if (content && content.classList.contains('quantity-selector-accordion')) {
+          content.classList.add('is-open');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      }
+
+      // Handle radio button change
+      radioButton.addEventListener('change', () => {
+        if (radioButton.checked) {
+          toggleAccordion(option);
+        }
+      });
+    }
+  });
 });

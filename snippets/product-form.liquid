@@ -32,6 +32,9 @@
       <span data-add-to-cart-text data-default-text="{{ default_text }}">
         {{ button_text }}
       </span>
+      <span class="add-to-cart-icon">
+        • <span class="atc-price">{{ current_variant.price | money_without_trailing_zeros }}</span>
+      </span>
     </button>
 
     {%- if enable_dynamic_buttons -%}

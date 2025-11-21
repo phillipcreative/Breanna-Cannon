@@ -2868,6 +2868,62 @@ lazySizesConfig.expFactor = 4;
             }
           }));
         }
+
+        // Handle rebuy products after main product is added
+        this.addRebuyProducts();
+      },
+
+      addRebuyProducts: function() {
+        // Get selected rebuy products from global object
+        if (!window.rebuySelectedProducts) {
+          return;
+        }
+
+        var selectedItems = [];
+        Object.values(window.rebuySelectedProducts).forEach(function(item) {
+          if (item.selected && item.variantId) {
+            selectedItems.push({
+              id: item.variantId,
+              quantity: 1
+            });
+          }
+        });
+
+        if (selectedItems.length === 0) {
+          return;
+        }
+
+        // Add selected rebuy products to cart
+        var addPromises = selectedItems.map(function(item) {
+          var itemData = 'id=' + encodeURIComponent(item.id) + '&quantity=' + encodeURIComponent(item.quantity);
+          return fetch(theme.routes.cartAdd, {
+            method: 'POST',
+            body: itemData,
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+          }).then(function(response) {
+            if (!response.ok) {
+              return response.json().then(function(err) {
+                return Promise.reject(err);
+              });
+            }
+            return response.json();
+          });
+        });
+
+        Promise.all(addPromises)
+          .then(function() {
+            // Trigger cart update
+            if (window.Rebuy && window.Rebuy.Cart) {
+              window.Rebuy.Cart.fetchCart();
+            }
+          })
+          .catch(function(error) {
+            console.error('Error adding rebuy items to cart:', error);
+          });
       },
 
       error: function(error) {
