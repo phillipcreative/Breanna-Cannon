@@ -135,7 +135,16 @@
                       </div>
                     {% endif %}
 
-                    <div class="custom-quantity-selector">
+                    <quantity-selector
+                      class="custom-quantity-selector"
+                      data-base-price="{{ base_price }}"
+                      data-tier-one-discount="{{ tier_one_discount }}"
+                      data-tier-two-discount="{{ tier_two_discount }}"
+                      data-tier-three-discount="{{ tier_three_discount }}"
+                      data-show-strike-total="{{ block.settings.show_strike_total }}"
+                      data-rebuy-data-source-id="{{ block.settings.rebuy_data_source_id }}"
+                      data-current-product-id="{{ product.id }}"
+                      data-rebuy-api-key="6e5aada6dd159d86183afb4ab961e8f0a794787c&format">
                       {% assign range = block.settings.quantity_range | default: 3 %}
                       {% assign base_price = product.price %}
                       {% assign tier_one_discount = block.settings.discount_tier_one_percentage | remove: '%' | plus: 0 %}
@@ -145,6 +154,7 @@
                       {% assign tier_badge_text_color = block.settings.discount_tier_badge_text_color %}
 
                       {% assign quantity_selector_badges = block.settings.quantity_selector_badges %}
+                      {% assign first_visible_found = false %}
 
                       {% for i in (1..range) %}
                         {% assign discount_percent = 0 %}
@@ -159,31 +169,38 @@
                         {% assign total_price = base_price | times: i %}
                         {% assign discount_amount = total_price | times: discount_percent | divided_by: 100 %}
                         {% assign discounted_total = total_price | minus: discount_amount %}
-                        {% assign quantity_label = block.settings.label %}
 
-                        {% if quantity_label == blank or quantity_label == '' %}
-                          {% assign quantity_label = 'Item' %}
+                        {% assign quantity_label = '' %}
+                        {% assign tier_category = '' %}
+
+                        {% if i == 1 %}
+                          {% if block.settings.tier_1_label != blank and block.settings.tier_1_label != '' %}
+                            {% assign quantity_label = block.settings.tier_1_label %}
+                          {% endif %}
+                          {% assign tier_category = block.settings.tier_1_category %}
+                        {% elsif i == 2 %}
+                          {% if block.settings.tier_2_label != blank and block.settings.tier_2_label != '' %}
+                            {% assign quantity_label = block.settings.tier_2_label %}
+                          {% endif %}
+                          {% assign tier_category = block.settings.tier_2_category %}
+                        {% elsif i == 3 %}
+                          {% if block.settings.tier_3_label != blank and block.settings.tier_3_label != '' %}
+                            {% assign quantity_label = block.settings.tier_3_label %}
+                          {% endif %}
+                          {% assign tier_category = block.settings.tier_3_category %}
                         {% endif %}
 
-                        <label class="quantity-option">
-                          <input type="radio" name="quantity_tier" value="{{ i }}" {% if forloop.first == false and i == 2 %}checked{% endif %}>
+                        {% unless quantity_label == blank or quantity_label == '' %}
+                        {% assign is_first_visible = false %}
+                        {% if first_visible_found == false %}
+                          {% assign first_visible_found = true %}
+                          {% assign is_first_visible = true %}
+                        {% endif %}
+                        <label class="quantity-option {% unless is_first_visible %}hidden{% endunless %}">
+                          <input type="radio" name="quantity_tier" value="{{ i }}" {% if is_first_visible %}checked{% endif %}>
                           <div class="quantity-option__content">
                             <div class="quantity-option__left">
-                              <span class="quantity-label">{{ i }} {{ quantity_label }}{% if i > 1 %}s{% endif %}</span>
-
-                              <div class="quantity-badges">
-                                <span class="quantity-option__discount" style="color: {{ tier_badge_text_color }}; background-color: {{ tier_badge_color }};">Save {{ discount_percent }}%</span>
-                                {% for badge in quantity_selector_badges %}
-                                  {% assign badge_attached_quantity = badge.assign_quantity_selector %}
-                                  {% assign badge_color = badge.badge_color %}
-                                  {% assign badge_label = badge.badge_label %}
-                                  {% assign badge_text_color = badge.badge_text_color %}
-                                  {% if i == badge_attached_quantity %}
-                                    <span class="quantity-option__badge" style="background-color: {{ badge_color }}; color: {{ badge_text_color }};">{{ badge_label }}</span>
-                                  {% endif %}
-                                {% endfor %}
-                              </div>
-
+                              <span class="quantity-label">{{ quantity_label }}</span>
                             </div>
 
                             <div class="quantity-option__right">
@@ -193,474 +210,40 @@
                               <span class="quantity-option__price">{{ discounted_total | money_without_trailing_zeros }}</span>
                             </div>
                           </div>
+                          <span class="quantity-option__arrow">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6 9L1 4H11L6 9Z" fill="currentColor"/>
+                            </svg>
+                          </span>
                         </label>
 
-                        <div class="quantity-selector-accordion">
-                            <div class="recommended-product-slider" data-quantity-index="{{ i }}">
+                        <div class="quantity-selector-accordion {% if is_first_visible %}is-open{% else %}hidden{% endif %}">
+                            <div class="recommended-product-slider" data-quantity-index="{{ i }}" data-category="{{ tier_category }}">
                               <div class="rebuy-recommendations-swiper swiper">
                                 <div class="swiper-wrapper"></div>
                               </div>
+                              <div class="swiper-navigation-container">
+                                <div class="swiper-button-prev">
+                                  <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.8999 5.8999H0.899902M0.899902 5.8999L5.7749 0.899902M0.899902 5.8999L5.7749 10.8999" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>
+                                </div>
+                                <div class="swiper-button-next">
+                                  <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.899902 5.8999H13.8999M13.8999 5.8999L9.0249 0.899902M13.8999 5.8999L9.0249 10.8999" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>
+                                </div>
+                              </div>
                             </div>
                         </div>
+                        {% endunless %}
                       {% endfor %}
-                    </div>
+                    </quantity-selector>
 
-
-                    <script>
-                        (function() {
-                          const currentProductId = "{{ product.id }}";
-                          const rebuy_api_key = "6e5aada6dd159d86183afb4ab961e8f0a794787c&format";
-                          const rebuy_data_source_id = "{{ block.settings.rebuy_data_source_id }}";
-                          const sliderContainers = document.querySelectorAll('.recommended-product-slider');
-
-                          // Track selected rebuy products
-                          window.rebuySelectedProducts = window.rebuySelectedProducts || {};
-
-                          const updateRebuyTotal = () => {
-                            let rebuyTotal = 0;
-                            const selectedItems = [];
-
-                            Object.values(window.rebuySelectedProducts).forEach(item => {
-                              if (item.selected) {
-                                const price = parseFloat(item.price) || 0;
-                                rebuyTotal += price;
-                                selectedItems.push({
-                                  id: item.variantId,
-                                  quantity: 1,
-                                  price: price
-                                });
-                              }
-                            });
-
-                            // Get main product price
-                            const atcPriceEl = document.querySelector('.atc-price');
-                            const originalPrice = atcPriceEl ? (atcPriceEl.dataset.originalPrice || atcPriceEl.textContent.trim()) : '{{ current_variant.price | money_without_trailing_zeros }}';
-                            const mainProductPrice = parseFloat(originalPrice.replace(/[^0-9.]/g, '')) || 0;
-
-                            // Calculate total including main product
-                            const total = mainProductPrice + rebuyTotal;
-
-                            // Update add to cart button
-                            const addToCartBtn = document.querySelector('[data-add-to-cart]');
-
-                            if (addToCartBtn && atcPriceEl) {
-                              const formattedTotal = '$' + total.toFixed(2);
-                              atcPriceEl.textContent = formattedTotal;
-                            }
-
-                            return selectedItems;
-                          };
-
-                          // Store original price
-                          document.addEventListener('DOMContentLoaded', () => {
-                            const atcPriceEl = document.querySelector('.atc-price');
-                            if (atcPriceEl && !atcPriceEl.dataset.originalPrice) {
-                              atcPriceEl.dataset.originalPrice = atcPriceEl.textContent.trim();
-                            }
-                          });
-
-                          // Shared promise to prevent loading Swiper multiple times
-                          let swiperLoadPromise = null;
-
-                          const loadSwiperAssets = () => {
-                            // If Swiper is already loaded, resolve immediately
-                            if (window.Swiper) {
-                              return Promise.resolve();
-                            }
-
-                            // If a load is already in progress, return the existing promise
-                            if (swiperLoadPromise) {
-                              return swiperLoadPromise;
-                            }
-
-                            // Create a new promise for loading Swiper
-                            swiperLoadPromise = new Promise((resolve) => {
-                              const linkEl = document.createElement('link');
-                              linkEl.rel = 'stylesheet';
-                              linkEl.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css';
-                              document.head.appendChild(linkEl);
-
-                              const script = document.createElement('script');
-                              script.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js';
-                              script.async = true;
-                              script.onload = () => resolve();
-                              script.onerror = () => resolve();
-                              document.head.appendChild(script);
-                            });
-
-                            return swiperLoadPromise;
-                          };
-
-                          const createProductCard = (product) => {
-                            const productId = product.id || product.product_id || '';
-                            const productTitle = product.title || 'Product';
-                            const productUrl = product.url || `/products/${product.handle}`;
-                            const variants = product.variants || [];
-                            const hasVariants = variants.length > 1;
-
-                            let defaultVariant = variants.find(v => v.available !== false) || variants[0] || product;
-                            const defaultImageUrl = defaultVariant.image?.src || defaultVariant.featured_image || product.image?.src || product.featured_image || 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-product.svg';
-                            const defaultPrice = defaultVariant.price || product.price || '0.00';
-                            const defaultComparePrice = defaultVariant.compare_at_price || null;
-                            const defaultVariantId = defaultVariant.id || defaultVariant.variant_id || '';
-
-                            let variantOptionsHtml = '';
-                            if (hasVariants) {
-                              variantOptionsHtml = variants.map(variant => {
-                                const variantTitle = variant.title || variant.option1 || 'Default';
-                                const variantId = variant.id || variant.variant_id || '';
-                                const isAvailable = variant.available !== false;
-                                return `<option value="${variantId}" ${variantId === defaultVariantId ? 'selected' : ''} ${!isAvailable ? 'disabled' : ''}>${variantTitle}</option>`;
-                              }).join('');
-                            }
-
-                            // Store product data for tracking
-                            const productKey = `product-${productId}-${defaultVariantId}`;
-                            window.rebuySelectedProducts[productKey] = {
-                              productId: productId,
-                              variantId: defaultVariantId,
-                              price: defaultPrice,
-                              selected: false
-                            };
-
-                            return `
-                              <div class="swiper-slide rebuy-product-card" data-product-id="${productId}" data-product-key="${productKey}">
-                                <div class="rebuy-product-card__checkbox-wrapper">
-                                  <input type="checkbox" class="rebuy-product-card__checkbox" id="rebuy-product-${productId}" data-product-id="${productId}" data-variant-id="${defaultVariantId}" data-product-key="${productKey}">
-                                  <label for="rebuy-product-${productId}" class="rebuy-product-card__checkbox-label"></label>
+                  {%- when 'text' -%}
+                    <div class="product-block" {{ block.shopify_attributes }}>
+                      {{ block.settings.text }}
                                 </div>
-                                <div class="rebuy-product-card__image">
-                                  <img src="${defaultImageUrl}" alt="${productTitle}" loading="lazy" data-default-image="${defaultImageUrl}">
-                                </div>
-                                <div class="rebuy-product-card__info">
-                                  <a href="${productUrl}" class="rebuy-product-card__link">
-                                    <h3 class="rebuy-product-card__title">${productTitle}</h3>
-                                  </a>
-                                  <div class="rebuy-product-card__price-container">
-                                    <span class="rebuy-product-card__price" data-price="${defaultPrice}">$${defaultPrice}</span>
-                                    ${defaultComparePrice ? `<span class="rebuy-product-card__compare-price" data-compare-price="${defaultComparePrice}">$${defaultComparePrice}</span>` : ''}
-                                  </div>
-                                  ${hasVariants ? `
-                                    <select class="rebuy-product-card__variant-select" data-product-id="${productId}" aria-label="Variant of ${productTitle}">
-                                      ${variantOptionsHtml}
-                                    </select>
-                                  ` : ''}
-                                </div>
-                                <div class="rebuy-product-variants-data" style="display: none;" data-variants='${JSON.stringify(variants).replace(/'/g, "&#39;")}'></div>
-                              </div>
-                            `;
-                          };
-
-                          const initializeSwiper = (container) => {
-                            const swiperEl = container.querySelector('.rebuy-recommendations-swiper');
-                            if (!swiperEl) return;
-
-                            if (swiperEl.dataset.initialized) return;
-
-                            swiperEl.dataset.initialized = 'true';
-                            const quantityIndex = parseInt(container.dataset.quantityIndex) || 1;
-                            const slidesPerView = quantityIndex;
-
-                            loadSwiperAssets().then(() => {
-                              if (!window.Swiper) {
-                                console.warn('Swiper library not loaded');
-                                return;
-                              }
-
-                              const swiperConfig = {
-                                slidesPerView: Math.min(slidesPerView, 1.2),
-                                spaceBetween: 8,
-                                touchEventsTarget: 'container',
-                                touchRatio: 1,
-                                touchAngle: 45,
-                                grabCursor: true,
-                                allowTouchMove: true,
-                                watchOverflow: true,
-                                resistance: true,
-                                resistanceRatio: 0,
-                                breakpoints: {}
-                              };
-
-                              if (quantityIndex === 1) {
-                                swiperConfig.breakpoints[640] = {
-                                  slidesPerView: 1,
-                                  spaceBetween: 8
-                                };
-                                swiperConfig.breakpoints[768] = {
-                                  slidesPerView: 1,
-                                  spaceBetween: 8
-                                };
-                                swiperConfig.breakpoints[1024] = {
-                                  slidesPerView: 1,
-                                  spaceBetween: 8
-                                };
-                              } else if (quantityIndex === 2) {
-                                swiperConfig.breakpoints[640] = {
-                                  slidesPerView: 2,
-                                  spaceBetween: 8
-                                };
-                                swiperConfig.breakpoints[768] = {
-                                  slidesPerView: 2,
-                                  spaceBetween: 8
-                                };
-                                swiperConfig.breakpoints[1024] = {
-                                  slidesPerView: 2,
-                                  spaceBetween: 8
-                                };
-                              } else if (quantityIndex >= 3) {
-                                swiperConfig.breakpoints[640] = {
-                                  slidesPerView: 2,
-                                  spaceBetween: 8
-                                };
-                                swiperConfig.breakpoints[768] = {
-                                  slidesPerView: 3,
-                                  spaceBetween: 8
-                                };
-                                swiperConfig.breakpoints[1024] = {
-                                  slidesPerView: 3,
-                                  spaceBetween: 8
-                                };
-                              }
-
-                              const swiperInstance = new window.Swiper(swiperEl, swiperConfig);
-                              swiperEl.swiperInstance = swiperInstance;
-
-                              // Fade in after initialization
-                              setTimeout(() => {
-                                container.classList.remove('fading-out');
-                                container.classList.add('fading-in');
-                              }, 50);
-                            });
-                          };
-
-                          sliderContainers.forEach((container) => {
-                            fetch(`https://rebuyengine.com/api/v1/custom/id/${rebuy_data_source_id}?key=${rebuy_api_key}=pretty&shopify_product_id=${currentProductId}`, {
-                              method: "GET",
-                              headers: {
-                                "Content-Type": "application/json"
-                              }
-                            })
-                              .then((res) => {
-                                if (!res.ok) {
-                                  throw new Error(`HTTP error! Status: ${res.status}`);
-                                }
-                                return res.json();
-                              })
-                              .then((data) => {
-                                const recommendedProducts = data.data || [];
-                                const swiperWrapper = container.querySelector('.swiper-wrapper');
-                                console.log('data.data:', data.data);
-                                if (!swiperWrapper) return;
-
-                                const groupedByCategory = recommendedProducts.reduce((acc, product) => {
-                                  const categoryName = product.category?.name || 'Uncategorized';
-                                  if (!acc[categoryName]) {
-                                    acc[categoryName] = [];
-                                  }
-                                  acc[categoryName].push(product);
-                                  return acc;
-                                }, {});
-
-                                Object.keys(groupedByCategory).forEach(categoryName => {
-                                  console.log(`Category: ${categoryName}`, groupedByCategory[categoryName]);
-                                });
-
-                                if (recommendedProducts.length === 0) {
-                                  container.classList.add('no-data-showing-recommended');
-                                  return;
-                                }
-
-                                container.classList.remove('no-data-showing-recommended');
-
-                                swiperWrapper.innerHTML = recommendedProducts.map(product => createProductCard(product)).join('');
-
-                                // Handle card clicks to toggle checkbox
-                                const productCards = swiperWrapper.querySelectorAll('.rebuy-product-card');
-                                productCards.forEach(card => {
-                                  card.addEventListener('click', (e) => {
-                                    // Don't toggle if clicking on the link or variant select
-                                    if (e.target.closest('.rebuy-product-card__link') || e.target.closest('.rebuy-product-card__variant-select')) {
-                                      return;
-                                    }
-
-                                    // Don't toggle if clicking directly on checkbox/label (they handle their own clicks)
-                                    if (e.target.closest('.rebuy-product-card__checkbox-wrapper')) {
-                                      return;
-                                    }
-
-                                    const checkbox = card.querySelector('.rebuy-product-card__checkbox');
-                                    if (checkbox) {
-                                      checkbox.checked = !checkbox.checked;
-                                      checkbox.dispatchEvent(new Event('change'));
-                                    }
-                                  });
-                                });
-
-                                // Handle checkbox clicks
-                                const checkboxes = swiperWrapper.querySelectorAll('.rebuy-product-card__checkbox');
-                                const checkboxLabels = swiperWrapper.querySelectorAll('.rebuy-product-card__checkbox-label');
-
-                                checkboxes.forEach(checkbox => {
-                                  checkbox.addEventListener('click', (e) => {
-                                    e.stopPropagation();
-                                  });
-                                });
-
-                                checkboxLabels.forEach(label => {
-                                  label.addEventListener('click', (e) => {
-                                    e.stopPropagation();
-                                    e.preventDefault();
-                                    const checkbox = label.previousElementSibling;
-                                    if (checkbox && checkbox.type === 'checkbox') {
-                                      checkbox.checked = !checkbox.checked;
-                                      checkbox.dispatchEvent(new Event('change'));
-                                    }
-                                  });
-                                });
-
-                                // Handle checkbox changes to track selections
-                                checkboxes.forEach(checkbox => {
-                                  checkbox.addEventListener('change', function() {
-                                    const productKey = this.dataset.productKey;
-                                    const variantId = this.dataset.variantId;
-                                    const card = this.closest('.rebuy-product-card');
-                                    const priceEl = card.querySelector('.rebuy-product-card__price');
-
-                                    if (productKey && window.rebuySelectedProducts[productKey]) {
-                                      window.rebuySelectedProducts[productKey].selected = this.checked;
-                                      window.rebuySelectedProducts[productKey].variantId = variantId;
-
-                                      if (priceEl) {
-                                        const price = priceEl.getAttribute('data-price') || priceEl.textContent.replace('$', '');
-                                        window.rebuySelectedProducts[productKey].price = parseFloat(price) || 0;
-                                      }
-
-                                      updateRebuyTotal();
-                                    }
-                                  });
-                                });
-
-                                // Handle variant changes
-                                const variantSelects = swiperWrapper.querySelectorAll('.rebuy-product-card__variant-select');
-                                variantSelects.forEach(select => {
-                                  select.addEventListener('change', function() {
-                                    const card = this.closest('.rebuy-product-card');
-                                    const variantId = this.value;
-                                    const variantsDataEl = card.querySelector('.rebuy-product-variants-data');
-
-                                    if (!variantsDataEl) return;
-
-                                    try {
-                                      const variants = JSON.parse(variantsDataEl.getAttribute('data-variants'));
-                                      const selectedVariant = variants.find(v => (v.id || v.variant_id) == variantId);
-
-                                      if (selectedVariant) {
-                                        // Update image
-                                        const imageEl = card.querySelector('.rebuy-product-card__image img');
-                                        if (imageEl && selectedVariant.image?.src) {
-                                          imageEl.src = selectedVariant.image.src;
-                                        }
-
-                                        // Update price
-                                        const priceEl = card.querySelector('.rebuy-product-card__price');
-                                        const comparePriceEl = card.querySelector('.rebuy-product-card__compare-price');
-
-                                        if (priceEl && selectedVariant.price) {
-                                          const newPrice = selectedVariant.price;
-                                          priceEl.textContent = '$' + newPrice;
-                                          priceEl.setAttribute('data-price', newPrice);
-                                        }
-
-                                        if (selectedVariant.compare_at_price) {
-                                          const newComparePrice = selectedVariant.compare_at_price;
-                                          if (comparePriceEl) {
-                                            comparePriceEl.textContent = '$' + newComparePrice;
-                                            comparePriceEl.setAttribute('data-compare-price', newComparePrice);
-                                            comparePriceEl.style.display = '';
-                                          } else if (priceEl) {
-                                            const priceContainer = priceEl.closest('.rebuy-product-card__price-container');
-                                            if (priceContainer) {
-                                              const newCompareEl = document.createElement('span');
-                                              newCompareEl.className = 'rebuy-product-card__compare-price';
-                                              newCompareEl.textContent = '$' + newComparePrice;
-                                              newCompareEl.setAttribute('data-compare-price', newComparePrice);
-                                              priceContainer.insertBefore(newCompareEl, priceEl);
-                                            }
-                                          }
-                                        } else if (comparePriceEl) {
-                                          comparePriceEl.style.display = 'none';
-                                        }
-
-                                        // Update checkbox data-variant-id and tracked product data
-                                        const checkbox = card.querySelector('.rebuy-product-card__checkbox');
-                                        if (checkbox) {
-                                          checkbox.setAttribute('data-variant-id', variantId);
-
-                                          const productKey = checkbox.dataset.productKey;
-                                          if (productKey && window.rebuySelectedProducts[productKey]) {
-                                            window.rebuySelectedProducts[productKey].variantId = variantId;
-                                            window.rebuySelectedProducts[productKey].price = parseFloat(newPrice) || 0;
-
-                                            if (checkbox.checked) {
-                                              updateRebuyTotal();
-                                            }
-                                          }
-                                        }
-                                      }
-                                    } catch (e) {
-                                      console.error('Error parsing variant data:', e);
-                                    }
-                                  });
-                                });
-
-                                initializeSwiper(container);
-                              })
-                              .catch((err) => {
-                                console.error("Rebuy Error:", err);
-                                container.classList.add('no-data-showing-recommended');
-                              });
-                          });
-
-                          // Listen for reinitialize events
-                          document.addEventListener('rebuy-reinitialize-swiper', (e) => {
-                            const container = e.detail.container;
-                            if (container) {
-                              initializeSwiper(container);
-                              // Ensure fade-in animation is applied
-                              setTimeout(() => {
-                                container.classList.remove('fading-out');
-                                container.classList.add('fading-in');
-                              }, 50);
-                            }
-                          });
-
-                          // Initialize ProductForm to use theme.js add to cart functionality
-                          // Wait for form to be ready and ensure variant select exists
-                          const initProductForm = function() {
-                            const productForm = document.querySelector('.product-single__form');
-                            if (!productForm || !theme.AjaxProduct) return;
-
-                            // Ensure form has variant select (required for ProductForm to work)
-                            const variantSelect = productForm.querySelector('select[name="id"]');
-                            if (!variantSelect) {
-                              // Retry after a short delay if form isn't ready
-                              setTimeout(initProductForm, 100);
-                              return;
-                            }
-
-                            // Check if ProductForm is already initialized (by Product class)
-                            // If not, initialize it with the correct button selector
-                            const addToCartBtn = productForm.querySelector('[data-add-to-cart]');
-                            if (addToCartBtn && !productForm.dataset.productFormInitialized) {
-                              new theme.AjaxProduct(productForm, '[data-add-to-cart]');
-                              productForm.dataset.productFormInitialized = 'true';
-                            }
-                          };
-
-                          // Initialize immediately, will retry if form isn't ready
-                          initProductForm();
-                        })();
-                    </script>
 
                   {%- when 'text' -%}
                     <div class="product-block" {{ block.shopify_attributes }}>

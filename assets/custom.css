@@ -546,6 +546,12 @@ Product Page Updates - Phillip Creative
   font-size: 14px;
   padding: 5px 15px;
 }
+.variant-input-wrap legend {
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
 
 .swatch .variant__label {
   margin-bottom: 5px;
@@ -616,6 +622,15 @@ Custom Quantity Selector
   max-height: 100% !important;
   height: 275px;
   margin: 10px 0px;
+  overflow: visible;
+}
+
+.quantity-selector-accordion.is-open.has-nav {
+  height: 300px;
+}
+
+.quantity-selector-accordion .swiper-navigation-container {
+  gap: 0px !important;
 }
 
 .product-block--quantity-header {
@@ -634,6 +649,12 @@ Custom Quantity Selector
   padding: 13px 20px;
   border: 1px solid rgba(0,0,0,0.0);
   transition: border-color 0.2s ease;
+}
+
+.quantity-option.hidden,
+.quantity-option.blank-label,
+.quantity-selector-accordion.hidden {
+  display: none;
 }
 
 .quantity-option:hover {
@@ -656,6 +677,27 @@ Custom Quantity Selector
   justify-content: space-between;
   gap: 16px;
   padding-left: 25px;
+}
+
+.quantity-option__arrow {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  transition: transform 0.2s ease;
+}
+
+.quantity-option__arrow svg {
+  width: 12px;
+  height: 12px;
+}
+
+.quantity-option.is-open .quantity-option__arrow {
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .quantity-option__left {
@@ -1829,9 +1871,16 @@ Rebuy Recommended Product Slider
   display: none;
 }
 
+.recommended-product-slider .swiper-button-next svg,
+.recommended-product-slider .swiper-button-prev svg {
+  width: 15px;
+  height: 12px;
+}
+
 .recommended-product-slider {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
+  position: relative;
 }
 
 .recommended-product-slider.fading-out {
@@ -1863,6 +1912,55 @@ Rebuy Recommended Product Slider
 .rebuy-recommendations-swiper .swiper-slide {
   /* height: auto; */
   display: flex;
+}
+
+.recommended-product-slider .swiper-navigation-container {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+  z-index: 10;
+}
+
+.recommended-product-slider .swiper-navigation-container.has-products {
+  display: flex;
+}
+
+.recommended-product-slider .swiper-button-prev,
+.recommended-product-slider .swiper-button-next {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  top: auto;
+  left: auto;
+  right: auto;
+}
+
+.recommended-product-slider .swiper-button-prev::after,
+.recommended-product-slider .swiper-button-next::after {
+  display: none;
+}
+
+.recommended-product-slider .swiper-button-prev:hover,
+.recommended-product-slider .swiper-button-next:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.16);
+}
+
+.recommended-product-slider .swiper-button-prev.swiper-button-disabled,
+.recommended-product-slider .swiper-button-next.swiper-button-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .rebuy-product-card {
@@ -1975,6 +2073,10 @@ Rebuy Recommended Product Slider
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-transform: capitalize !important;
+}
+
+.rebuy-product-card__title:hover {
+  text-decoration: underline;
 }
 
 .rebuy-product-card__price-container {

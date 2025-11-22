@@ -47,7 +47,7 @@
     data-index="option{{ option_index }}"
     data-handle="{{ option.name | handleize }}"
     id="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ forloop.index0 }}">
-    <legend class="hide">{{ option.name }}</legend>
+    <legend>{{ option.name }}</legend>
     {%- for value in option.values -%}
       {%- liquid
         assign product_available = true
