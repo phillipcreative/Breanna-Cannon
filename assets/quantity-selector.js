@@ -11,7 +11,7 @@ class QuantitySelector extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['data-base-price', 'data-tier-one-discount', 'data-tier-two-discount', 'data-tier-three-discount', 'data-show-strike-total'];
+    return ['data-base-price'];
   }
 
   connectedCallback() {
@@ -49,22 +49,50 @@ class QuantitySelector extends HTMLElement {
     const quantityOptions = this.querySelectorAll('.quantity-option');
 
     quantityOptions.forEach((option) => {
-      const radioButton = option.querySelector('input[type="radio"]');
-
-      if (radioButton) {
-        // Initialize accordion state for pre-checked radio button
-        if (radioButton.checked) {
+      // Initialize accordion state for active option
+      if (option.classList.contains('is-active')) {
           this.openAccordionForOption(option);
-        }
-
-        // Handle radio button change
-        radioButton.addEventListener('change', () => {
-          if (radioButton.checked) {
-            this.toggleAccordion(option);
-          }
-        });
+        // Update price on initial load
+        setTimeout(() => {
+          this.updateRebuyTotal();
+        }, 100);
       }
+
+      // Handle click on quantity option
+      option.addEventListener('click', () => {
+        this.selectQuantityOption(option);
+      });
+
+      // Handle keyboard navigation (Enter and Space)
+      option.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.selectQuantityOption(option);
+        }
+      });
     });
+  }
+
+  /**
+   * Select a quantity option and toggle accordion
+   */
+  selectQuantityOption(option) {
+    // Remove active state from all options
+    const allOptions = this.querySelectorAll('.quantity-option');
+    allOptions.forEach((otherOption) => {
+      otherOption.classList.remove('is-active');
+      otherOption.setAttribute('aria-expanded', 'false');
+    });
+
+    // Set this option as active
+    option.classList.add('is-active');
+    option.setAttribute('aria-expanded', 'true');
+
+    // Toggle accordion
+    this.toggleAccordion(option);
+
+    // Update the atc-price when quantity option changes
+    this.updateRebuyTotal();
   }
 
   /**
@@ -93,6 +121,7 @@ class QuantitySelector extends HTMLElement {
         acc.style.maxHeight = null;
       });
       option.classList.remove('is-open');
+      option.setAttribute('aria-expanded', 'false');
     } else {
       // Close all other accordions from other options
       const allOptions = this.querySelectorAll('.quantity-option');
@@ -105,6 +134,7 @@ class QuantitySelector extends HTMLElement {
             otherNextSibling = otherNextSibling.nextElementSibling;
           }
           otherOption.classList.remove('is-open');
+          otherOption.setAttribute('aria-expanded', 'false');
         }
       });
 
@@ -112,6 +142,7 @@ class QuantitySelector extends HTMLElement {
       if (accordions.length > 0) {
         this.openAccordion(accordions[0]);
         option.classList.add('is-open');
+        option.setAttribute('aria-expanded', 'true');
       }
     }
   }
@@ -130,6 +161,7 @@ class QuantitySelector extends HTMLElement {
     if (accordions.length > 0 && !accordions[0].classList.contains('hidden')) {
       this.openAccordion(accordions[0]);
       option.classList.add('is-open');
+      option.setAttribute('aria-expanded', 'true');
     }
   }
 
@@ -182,6 +214,8 @@ class QuantitySelector extends HTMLElement {
     const sliderContainers = this.querySelectorAll('.recommended-product-slider');
 
     if (!rebuyDataSourceId || !currentProductId || sliderContainers.length === 0) {
+      // Hide header and selector if no containers
+      this.toggleQuantitySelectorVisibility(false);
       return;
     }
 
@@ -200,6 +234,11 @@ class QuantitySelector extends HTMLElement {
       })
       .then((data) => {
         const allRecommendedProducts = data.data || [];
+        // If no products at all, hide immediately
+        if (!allRecommendedProducts || allRecommendedProducts.length === 0) {
+          this.toggleQuantitySelectorVisibility(false);
+          return;
+        }
         this.processRebuyData(allRecommendedProducts, sliderContainers);
       })
       .catch((err) => {
@@ -207,6 +246,8 @@ class QuantitySelector extends HTMLElement {
         sliderContainers.forEach((container) => {
           container.classList.add('no-data-showing-recommended');
         });
+        // Hide header and selector on error (no results)
+        this.toggleQuantitySelectorVisibility(false);
       });
   }
 
@@ -214,6 +255,8 @@ class QuantitySelector extends HTMLElement {
    * Process Rebuy data and populate sliders
    */
   processRebuyData(allRecommendedProducts, sliderContainers) {
+    let hasAnyProducts = false;
+
     sliderContainers.forEach((container) => {
       const tierCategory = container.dataset.category || '';
       const quantityIndex = parseInt(container.dataset.quantityIndex) || 1;
@@ -251,6 +294,9 @@ class QuantitySelector extends HTMLElement {
         }
         return;
       }
+
+      // Mark that we have products
+      hasAnyProducts = true;
 
       // Group products by normalized product_type
       const groupedByProductType = recommendedProducts.reduce((acc, product) => {
@@ -301,16 +347,69 @@ class QuantitySelector extends HTMLElement {
           }
 
           if (firstAccordion) {
-            const radioButton = firstVisibleOption.querySelector('input[type="radio"]');
-            if (radioButton) {
-              radioButton.checked = true;
-            }
+            firstVisibleOption.classList.add('is-active');
+            firstVisibleOption.setAttribute('aria-expanded', 'true');
             this.openAccordion(firstAccordion);
             firstVisibleOption.classList.add('is-open');
+            // Update price after setting first visible option
+            this.updateRebuyTotal();
           }
         }
       }, 100);
     });
+
+    // Show/hide header and selector based on whether we have any products
+    this.toggleQuantitySelectorVisibility(hasAnyProducts);
+  }
+
+  /**
+   * Toggle visibility of quantity header and selector based on results
+   */
+  toggleQuantitySelectorVisibility(hasResults) {
+    // Find the quantity header (sibling of the quantity-selector element)
+    const quantityHeader = this.previousElementSibling;
+    if (quantityHeader && quantityHeader.classList.contains('product-block--quantity-header')) {
+      if (hasResults) {
+        quantityHeader.classList.add('has-results');
+      } else {
+        quantityHeader.classList.remove('has-results');
+      }
+    }
+
+    // Find and toggle top border (before quantity header)
+    let currentSibling = this.previousElementSibling;
+    while (currentSibling) {
+      if (currentSibling.classList.contains('top-border-upsell')) {
+        if (hasResults) {
+          currentSibling.classList.add('has-results');
+        } else {
+          currentSibling.classList.remove('has-results');
+        }
+        break;
+      }
+      currentSibling = currentSibling.previousElementSibling;
+    }
+
+    // Find and toggle bottom border (after quantity selector)
+    let nextSibling = this.nextElementSibling;
+    while (nextSibling) {
+      if (nextSibling.classList.contains('bottom-border-upsell')) {
+        if (hasResults) {
+          nextSibling.classList.add('has-results');
+        } else {
+          nextSibling.classList.remove('has-results');
+        }
+        break;
+      }
+      nextSibling = nextSibling.nextElementSibling;
+    }
+
+    // Show/hide the quantity selector itself
+    if (hasResults) {
+      this.classList.add('has-results');
+    } else {
+      this.classList.remove('has-results');
+    }
   }
 
   /**
@@ -418,7 +517,15 @@ class QuantitySelector extends HTMLElement {
       productId: productId,
       variantId: defaultVariantId,
       price: defaultPrice,
-      selected: false
+      selected: false,
+      productData: {
+        id: productId,
+        title: productTitle,
+        url: productUrl,
+        image: defaultImageUrl,
+        variant: defaultVariant,
+        variants: variants
+      }
     };
 
     return `
@@ -496,7 +603,30 @@ class QuantitySelector extends HTMLElement {
             this.rebuySelectedProducts[productKey].price = parseFloat(price) || 0;
           }
 
+          // Update product data variant and image if changed
+          if (checkbox.checked && this.rebuySelectedProducts[productKey].productData) {
+            const variantsDataEl = card.querySelector('.rebuy-product-variants-data');
+            if (variantsDataEl) {
+              try {
+                const variants = JSON.parse(variantsDataEl.getAttribute('data-variants'));
+                const selectedVariant = variants.find(v => (v.id || v.variant_id) == variantId);
+                if (selectedVariant) {
+                  this.rebuySelectedProducts[productKey].productData.variant = selectedVariant;
+                  const imageEl = card.querySelector('.rebuy-product-card__image img');
+                  if (imageEl && selectedVariant.image?.src) {
+                    this.rebuySelectedProducts[productKey].productData.image = selectedVariant.image.src;
+                  } else if (imageEl) {
+                    this.rebuySelectedProducts[productKey].productData.image = imageEl.src || imageEl.dataset.src || '';
+                  }
+                }
+              } catch (e) {
+                console.error('Error parsing variant data:', e);
+              }
+            }
+          }
+
           this.updateRebuyTotal();
+          this.updateProductAddonResults();
         }
       });
     });
@@ -567,9 +697,18 @@ class QuantitySelector extends HTMLElement {
               const productKey = checkbox.dataset.productKey;
               if (productKey && this.rebuySelectedProducts[productKey]) {
                 this.rebuySelectedProducts[productKey].variantId = variantId;
-                this.rebuySelectedProducts[productKey].price = parseFloat(newPrice) || 0;
+                const priceValue = parseFloat(newPrice) || 0;
+                this.rebuySelectedProducts[productKey].price = priceValue;
+
+                // Update product data for results container
+                if (this.rebuySelectedProducts[productKey].productData) {
+                  this.rebuySelectedProducts[productKey].productData.variant = selectedVariant;
+                  this.rebuySelectedProducts[productKey].productData.image = selectedVariant.image?.src || imageEl?.src || this.rebuySelectedProducts[productKey].productData.image || '';
+                }
+
                 if (checkbox.checked) {
                   this.updateRebuyTotal();
+                  this.updateProductAddonResults();
                 }
               }
             }
@@ -600,24 +739,215 @@ class QuantitySelector extends HTMLElement {
       }
     });
 
-    // Get main product price
+    // Get main product original price (before discount)
+    const activeQuantityOption = this.querySelector('.quantity-option.is-active');
+    let originalMainProductPrice = 0;
+
+    if (activeQuantityOption) {
+      const originalPrice = activeQuantityOption.getAttribute('data-original-price');
+      if (originalPrice) {
+        // Shopify prices are in cents, convert to dollars
+        originalMainProductPrice = (parseFloat(originalPrice) || 0) / 100;
+      } else {
+        // Fallback to displayed price
+        const priceEl = activeQuantityOption.querySelector('.quantity-option__price');
+        if (priceEl) {
+          const priceText = priceEl.textContent.trim();
+          originalMainProductPrice = parseFloat(priceText.replace(/[^0-9.]/g, '')) || 0;
+        }
+      }
+    } else {
+      // Fallback to atc-price if no active quantity option
     const atcPriceEl = document.querySelector('.atc-price');
     const originalPrice = atcPriceEl ? (atcPriceEl.dataset.originalPrice || atcPriceEl.textContent.trim()) : '';
-    const mainProductPrice = parseFloat(originalPrice.replace(/[^0-9.]/g, '')) || 0;
+      originalMainProductPrice = parseFloat(originalPrice.replace(/[^0-9.]/g, '')) || 0;
+    }
 
-    // Calculate total including main product
-    const total = mainProductPrice + rebuyTotal;
+    // Calculate original total (before discount)
+    const originalTotal = originalMainProductPrice + rebuyTotal;
 
-    // Update add to cart button
+    // Count selected addons only (discounts only apply when addons are selected)
+    const selectedAddonsCount = Object.values(this.rebuySelectedProducts).filter(item => item.selected).length;
+
+    // Determine which tier they're in and get discount percentage
+    // Discounts only apply when addons are selected:
+    // 0 addons = no discount
+    // 1 addon = Tier 1
+    // 2 addons = Tier 2
+    // 3+ addons = Tier 3
+    let tierDiscountPercent = 0;
+    if (selectedAddonsCount === 0) {
+      // No discount when no addons are selected
+      tierDiscountPercent = 0;
+    } else if (selectedAddonsCount === 1) {
+      // Tier 1: 1 addon selected
+      const tier1Discount = this.getAttribute('data-tier-1-discount') || '0';
+      tierDiscountPercent = parseFloat(tier1Discount) || 0;
+    } else if (selectedAddonsCount === 2) {
+      // Tier 2: 2 addons selected
+      const tier2Discount = this.getAttribute('data-tier-2-discount') || '0';
+      tierDiscountPercent = parseFloat(tier2Discount) || 0;
+    } else if (selectedAddonsCount >= 3) {
+      // Tier 3: 3 or more addons selected
+      const tier3Discount = this.getAttribute('data-tier-3-discount') || '0';
+      tierDiscountPercent = parseFloat(tier3Discount) || 0;
+    }
+
+    // Calculate discounted total based on tier discount
+    const discountAmount = originalTotal * (tierDiscountPercent / 100);
+    const total = originalTotal - discountAmount;
+
+    // Update add to cart button price
+    const atcPriceEl = document.querySelector('.atc-price');
+    const atcPriceOriginalEl = document.querySelector('.atc-price-original');
     const addToCartBtn = document.querySelector('[data-add-to-cart]');
+    const atcDiscountBadge = document.querySelector('.atc-discount-badge');
 
     if (addToCartBtn && atcPriceEl) {
-      const formattedTotal = '$' + total.toFixed(2);
-      atcPriceEl.textContent = formattedTotal;
+      // Store original price if not already stored
+      if (!atcPriceEl.dataset.originalPrice) {
+        const currentText = atcPriceEl.textContent.trim();
+        const currentPrice = parseFloat(currentText.replace(/[^0-9.]/g, '')) || 0;
+        if (currentPrice > 0) {
+          atcPriceEl.dataset.originalPrice = currentText;
+        }
+      }
+
+      // Update prices
+      const formattedOriginalTotal = '$' + originalTotal.toFixed(2);
+      const formattedDiscountedTotal = '$' + total.toFixed(2);
+
+      // Show original price (crossed out) if there's a discount
+      if (atcPriceOriginalEl) {
+        if (total < originalTotal && tierDiscountPercent > 0) {
+          atcPriceOriginalEl.textContent = formattedOriginalTotal;
+          atcPriceOriginalEl.classList.remove('hidden');
+        } else {
+          atcPriceOriginalEl.classList.add('hidden');
+        }
+      }
+
+      // Update discounted price
+      atcPriceEl.textContent = formattedDiscountedTotal;
+
+      // Update discount badge
+      if (atcDiscountBadge) {
+        const badgeText = atcDiscountBadge.querySelector('.atc-discount-badge__text');
+        if (tierDiscountPercent > 0 && badgeText) {
+          badgeText.textContent = `${Math.round(tierDiscountPercent)}% OFF`;
+          atcDiscountBadge.classList.remove('hidden');
+        } else {
+          atcDiscountBadge.classList.add('hidden');
+        }
+      }
     }
 
     return selectedItems;
   }
+
+  /**
+   * Update product addon results container
+   */
+  updateProductAddonResults() {
+    // This function is kept for compatibility but no longer needs to do anything
+    // since we removed the results container and moved everything to the button
+  }
+
+
+  /**
+   * Create product card for results container
+   */
+  createResultsProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'rebuy-product-card rebuy-product-card--results';
+    card.setAttribute('data-product-id', product.id);
+    if (product.productKey) {
+      card.setAttribute('data-product-key', product.productKey);
+    }
+
+    const imageUrl = product.image || 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-product.svg';
+    const price = parseFloat(product.price) || 0;
+    const comparePrice = product.variant?.compare_at_price || null;
+
+    // Create image container
+    const imageContainer = document.createElement('div');
+    imageContainer.className = 'rebuy-product-card__image';
+    const img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = product.title;
+    img.loading = 'lazy';
+    imageContainer.appendChild(img);
+
+    // Create info container
+    const infoContainer = document.createElement('div');
+    infoContainer.className = 'rebuy-product-card__info';
+
+    // Create link and title
+    const link = document.createElement('a');
+    link.href = product.url;
+    link.className = 'rebuy-product-card__link';
+    const title = document.createElement('h3');
+    title.className = 'rebuy-product-card__title';
+    title.textContent = product.title;
+    link.appendChild(title);
+
+    // Create price container
+    const priceContainer = document.createElement('div');
+    priceContainer.className = 'rebuy-product-card__price-container';
+    const priceSpan = document.createElement('span');
+    priceSpan.className = 'rebuy-product-card__price';
+    priceSpan.textContent = '$' + price.toFixed(2);
+    priceContainer.appendChild(priceSpan);
+
+    if (comparePrice) {
+      const comparePriceSpan = document.createElement('span');
+      comparePriceSpan.className = 'rebuy-product-card__compare-price';
+      comparePriceSpan.textContent = '$' + parseFloat(comparePrice).toFixed(2);
+      priceContainer.appendChild(comparePriceSpan);
+    }
+
+    infoContainer.appendChild(link);
+    infoContainer.appendChild(priceContainer);
+
+    // Add remove button for addons only
+    if (!product.isMainProduct && product.productKey) {
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'rebuy-product-card__remove';
+      removeBtn.setAttribute('data-product-key', product.productKey);
+      removeBtn.setAttribute('aria-label', `Remove ${product.title}`);
+      removeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.removeAddonFromResults(product.productKey);
+      });
+      infoContainer.appendChild(removeBtn);
+    }
+
+    card.appendChild(imageContainer);
+    card.appendChild(infoContainer);
+
+    return card;
+  }
+
+  /**
+   * Remove addon from results
+   */
+  removeAddonFromResults(productKey) {
+    if (!productKey || !this.rebuySelectedProducts[productKey]) return;
+
+    // Find and uncheck the checkbox in the slider
+    const checkbox = this.querySelector(`.rebuy-product-card__checkbox[data-product-key="${productKey}"]`);
+    if (checkbox) {
+      checkbox.checked = false;
+      checkbox.dispatchEvent(new Event('change'));
+    }
+
+    // Update the selected state
+    this.rebuySelectedProducts[productKey].selected = false;
+    this.updateRebuyTotal();
+    this.updateProductAddonResults();
+  }
+
 
   /**
    * Load Swiper assets
@@ -695,15 +1025,15 @@ class QuantitySelector extends HTMLElement {
       };
 
       if (quantityIndex === 1) {
-        swiperConfig.breakpoints[640] = { slidesPerView: 1, spaceBetween: 8 };
+        swiperConfig.breakpoints[640] = { slidesPerView: 1, spaceBetween: 4 };
         swiperConfig.breakpoints[768] = { slidesPerView: 1, spaceBetween: 8 };
         swiperConfig.breakpoints[1024] = { slidesPerView: 1, spaceBetween: 8 };
       } else if (quantityIndex === 2) {
-        swiperConfig.breakpoints[640] = { slidesPerView: 2, spaceBetween: 8 };
+        swiperConfig.breakpoints[640] = { slidesPerView: 2, spaceBetween: 4 };
         swiperConfig.breakpoints[768] = { slidesPerView: 2, spaceBetween: 8 };
         swiperConfig.breakpoints[1024] = { slidesPerView: 2, spaceBetween: 8 };
       } else if (quantityIndex >= 3) {
-        swiperConfig.breakpoints[640] = { slidesPerView: 2, spaceBetween: 8 };
+        swiperConfig.breakpoints[640] = { slidesPerView: 2, spaceBetween: 4 };
         swiperConfig.breakpoints[768] = { slidesPerView: 3, spaceBetween: 8 };
         swiperConfig.breakpoints[1024] = { slidesPerView: 3, spaceBetween: 8 };
       }

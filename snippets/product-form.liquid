@@ -33,7 +33,13 @@
         {{ button_text }}
       </span>
       <span class="add-to-cart-icon">
-        • <span class="atc-price">{{ current_variant.price | money_without_trailing_zeros }}</span>
+        • <span class="atc-price-container">
+          <span class="atc-price-original hidden">{{ current_variant.price | money_without_trailing_zeros }}</span>
+          <span class="atc-price">{{ current_variant.price | money_without_trailing_zeros }}</span>
+          <span class="atc-discount-badge hidden">
+            <span class="atc-discount-badge__text"></span>
+          </span>
+        </span>
       </span>
     </button>
 

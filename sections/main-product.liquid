@@ -555,15 +555,70 @@
         "default": "266628"
       },
       {
-        "type": "text",
+        "type": "richtext",
         "id": "quantity_header",
         "label": "Quantity Header"
       },
       {
-        "type": "text",
-        "id": "label",
-        "label": "Quantity Label",
-        "info": "Default label (used if tier-specific labels are not set)"
+        "type": "select",
+        "id": "quantity_header_alignment",
+        "label": "Quantity Header Alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "top_border",
+        "label": "Show Top Border",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "bottom_border",
+        "label": "Show Bottom Border",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Quantity Tier Discounts"
+      },
+      {
+        "type": "paragraph",
+        "content": "Set discount percentages for each quantity tier"
+      },
+      {
+        "type": "number",
+        "id": "tier_1_discount",
+        "label": "Tier 1 Discount (%)",
+        "default": 0,
+        "info": "Discount percentage for quantity 1"
+      },
+      {
+        "type": "number",
+        "id": "tier_2_discount",
+        "label": "Tier 2 Discount (%)",
+        "default": 0,
+        "info": "Discount percentage for quantity 2"
+      },
+      {
+        "type": "number",
+        "id": "tier_3_discount",
+        "label": "Tier 3 Discount (%)",
+        "default": 0,
+        "info": "Discount percentage for quantity 3"
       },
       {
         "type": "header",
@@ -609,53 +664,6 @@
         "label": "Tier 3 Product Type",
         "info": "Product Type to filter products for tier 3"
       },
-      { "type": "checkbox",
-        "id": "show_strike_total",
-        "label": "Show crossed-out original total",
-        "default": true
-      },
-      {
-        "type": "range",
-        "id": "quantity_range",
-        "label": "Quantity Range",
-        "min": 1,
-        "max": 3,
-        "step": 1,
-        "default": 3
-      },
-      {
-        "type": "metaobject_list",
-        "metaobject_type": "quantity_selector_badges",
-        "id": "quantity_selector_badges",
-        "label": "Discount Tier Badges"
-      },
-      {
-        "type": "color",
-        "id": "discount_tier_badge_color",
-        "label": "Discount Tier Sale Badge Color",
-        "default": "#fbd8e6"
-      },
-      {
-        "type": "color",
-        "id": "discount_tier_badge_text_color",
-        "label": "Discount Tier Sale Badge Text Color",
-        "default": "#000000"
-      },
-      {
-        "type": "text",
-        "id": "discount_tier_one_percentage",
-        "label": "Discount Tier One Percentage"
-      },
-      {
-        "type": "text",
-        "id": "discount_tier_two_percentage",
-        "label": "Discount Tier Two Percentage"
-      },
-      {
-        "type": "text",
-        "id": "discount_tier_three_percentage",
-        "label": "Discount Tier Three Percentage"
-      }
     ]
   },
   {

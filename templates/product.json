@@ -49,22 +49,19 @@
           "type": "custom-quantity-selector",
           "settings": {
             "rebuy_data_source_id": "266628",
-            "quantity_header": "The more you shop, the more you save. Add two or more pieces from this collection to unlock your discount!",
-            "label": "Headband",
+            "quantity_header": "<p><strong>✨The more you shop, the more you save✨</strong></p><p>Add two or more pieces from this collection to unlock your discount!</p>",
+            "quantity_header_alignment": "center",
+            "top_border": true,
+            "bottom_border": false,
+            "tier_1_discount": 5,
+            "tier_2_discount": 15,
+            "tier_3_discount": 40,
             "tier_1_label": "Headbands",
             "tier_1_category": "Headband",
             "tier_2_label": "Sweatshirts",
             "tier_2_category": "Sweatshirts",
             "tier_3_label": "",
-            "tier_3_category": "",
-            "show_strike_total": true,
-            "quantity_range": 3,
-            "quantity_selector_badges": [],
-            "discount_tier_badge_color": "#fbd8e6",
-            "discount_tier_badge_text_color": "#000000",
-            "discount_tier_one_percentage": "5",
-            "discount_tier_two_percentage": "10",
-            "discount_tier_three_percentage": "15"
+            "tier_3_category": ""
           }
         },
         "linked_products_MqndzF": {
@@ -92,6 +89,7 @@
         },
         "d360d95e-91d1-4993-a2b3-225541fea599": {
           "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "disabled": true,
           "settings": {
             "enabled": true,
             "id": "112438",

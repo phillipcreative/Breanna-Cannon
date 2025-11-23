@@ -2768,16 +2768,22 @@ lazySizesConfig.expFactor = 4;
         // Loading indicator on add to cart button
         this.addToCart.classList.add('btn--loading');
 
+        // Hide discount badge when adding to cart
+        const discountBadge = document.querySelector('.atc-discount-badge');
+        if (discountBadge) {
+          discountBadge.classList.add('hidden');
+        }
+
         status.loading = true;
 
-        // Check for quantity-option radio button selection
+        // Check for quantity-option accordion tab selection
         // The quantity-option is outside the form, so search from the product section
         var productSection = this.form.closest('.product-section');
-        var quantityOption = productSection ? productSection.querySelector('.custom-quantity-selector input[name="quantity_tier"]:checked') : null;
+        var quantityOption = productSection ? productSection.querySelector('.custom-quantity-selector .quantity-option.is-active') : null;
         var selectedQuantity = null;
 
         if (quantityOption) {
-          selectedQuantity = quantityOption.value;
+          selectedQuantity = quantityOption.getAttribute('data-quantity');
           console.log('selectedQuantity', selectedQuantity);
 
           // Try to find quantity input by form ID (since it might be outside the form element)
@@ -2835,6 +2841,13 @@ lazySizesConfig.expFactor = 4;
 
           status.loading = false;
           this.addToCart.classList.remove('btn--loading');
+
+          // Restore discount badge visibility after add to cart completes
+          // Trigger updateRebuyTotal to recalculate and show badge if applicable
+          const quantitySelector = document.querySelector('quantity-selector');
+          if (quantitySelector && typeof quantitySelector.updateRebuyTotal === 'function') {
+            quantitySelector.updateRebuyTotal();
+          }
 
           // Trigger Rebuy Cart fetch
           Rebuy.Cart.fetchCart();
