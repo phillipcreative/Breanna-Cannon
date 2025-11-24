@@ -1106,7 +1106,7 @@ Custom Quantity Selector
 }
 
 .order-ships-container {
-  border-bottom: 1px solid #C4C1C1;
+  /* border-bottom: 1px solid #C4C1C1; */
   color: #999999;
   padding: 18px 20px;
   font-size: 14px;
@@ -1523,6 +1523,10 @@ Custom Quantity Selector
     padding: 0px 17px !important;
     margin-top: 50px !important;
   }
+
+  .discount-code-block {
+    flex-direction: column;
+  }
 }
 
 @media only screen and (max-width: 990px) {
@@ -1537,19 +1541,18 @@ Custom Quantity Selector
   .discount-code-block .discount-code {
     flex-direction: column;
     gap: 10px;
+    width: 100%;
   }
 
+  .discount-code-block .text-copy,
   .discount-code-block .discount-code .code-copy {
-    padding: 12px 20px;
+    padding: 10px 5px;
     width: 100%;
   }
 
   .discount-copy-btn {
     width: 100%;
-  }
-
-  .discount-code-block .text-copy {
-    padding: 10px 5px;
+    padding: 0px;
   }
 
   .seperator-block {
@@ -1660,6 +1663,10 @@ Custom Quantity Selector
 
   .tabbed-feature__tab {
     margin: auto;
+  }
+
+  .tabbed-feature__description {
+    padding: 0 0.75rem;
   }
 }
 

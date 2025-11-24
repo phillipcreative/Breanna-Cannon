@@ -769,34 +769,6 @@ class QuantitySelector extends HTMLElement {
     // Count selected addons only (discounts only apply when addons are selected)
     const selectedAddonsCount = Object.values(this.rebuySelectedProducts).filter(item => item.selected).length;
 
-    // Determine which tier they're in and get discount percentage
-    // Discounts only apply when addons are selected:
-    // 0 addons = no discount
-    // 1 addon = Tier 1
-    // 2 addons = Tier 2
-    // 3+ addons = Tier 3
-    let tierDiscountPercent = 0;
-    if (selectedAddonsCount === 0) {
-      // No discount when no addons are selected
-      tierDiscountPercent = 0;
-    } else if (selectedAddonsCount === 1) {
-      // Tier 1: 1 addon selected
-      const tier1Discount = this.getAttribute('data-tier-1-discount') || '0';
-      tierDiscountPercent = parseFloat(tier1Discount) || 0;
-    } else if (selectedAddonsCount === 2) {
-      // Tier 2: 2 addons selected
-      const tier2Discount = this.getAttribute('data-tier-2-discount') || '0';
-      tierDiscountPercent = parseFloat(tier2Discount) || 0;
-    } else if (selectedAddonsCount >= 3) {
-      // Tier 3: 3 or more addons selected
-      const tier3Discount = this.getAttribute('data-tier-3-discount') || '0';
-      tierDiscountPercent = parseFloat(tier3Discount) || 0;
-    }
-
-    // Calculate discounted total based on tier discount
-    const discountAmount = originalTotal * (tierDiscountPercent / 100);
-    const total = originalTotal - discountAmount;
-
     // Update add to cart button price
     const atcPriceEl = document.querySelector('.atc-price');
     const atcPriceOriginalEl = document.querySelector('.atc-price-original');
@@ -812,6 +784,47 @@ class QuantitySelector extends HTMLElement {
           atcPriceEl.dataset.originalPrice = currentText;
         }
       }
+
+      // Only update price if addons are selected, otherwise restore original price
+      if (selectedAddonsCount === 0) {
+        // No addons selected - restore original price
+        const originalPrice = atcPriceEl.dataset.originalPrice || atcPriceEl.textContent.trim();
+        atcPriceEl.textContent = originalPrice;
+
+        // Hide discount elements
+        if (atcPriceOriginalEl) {
+          atcPriceOriginalEl.classList.add('hidden');
+        }
+        if (atcDiscountBadge) {
+          atcDiscountBadge.classList.add('hidden');
+        }
+
+        return selectedItems;
+      }
+
+      // Determine which tier they're in and get discount percentage
+      // Discounts only apply when addons are selected:
+      // 1 addon = Tier 1
+      // 2 addons = Tier 2
+      // 3+ addons = Tier 3
+      let tierDiscountPercent = 0;
+      if (selectedAddonsCount === 1) {
+        // Tier 1: 1 addon selected
+        const tier1Discount = this.getAttribute('data-tier-1-discount') || '0';
+        tierDiscountPercent = parseFloat(tier1Discount) || 0;
+      } else if (selectedAddonsCount === 2) {
+        // Tier 2: 2 addons selected
+        const tier2Discount = this.getAttribute('data-tier-2-discount') || '0';
+        tierDiscountPercent = parseFloat(tier2Discount) || 0;
+      } else if (selectedAddonsCount >= 3) {
+        // Tier 3: 3 or more addons selected
+        const tier3Discount = this.getAttribute('data-tier-3-discount') || '0';
+        tierDiscountPercent = parseFloat(tier3Discount) || 0;
+      }
+
+      // Calculate discounted total based on tier discount
+      const discountAmount = originalTotal * (tierDiscountPercent / 100);
+      const total = originalTotal - discountAmount;
 
       // Update prices
       const formattedOriginalTotal = '$' + originalTotal.toFixed(2);
