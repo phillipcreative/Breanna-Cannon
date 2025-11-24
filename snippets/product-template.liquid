@@ -257,9 +257,9 @@
                     </div>
 
                   {%- when 'ugc_tab' -%}
-                    {% assign blank_ugc_data = false %}
                     {% assign tab_id = block.id | append: product.id %}
                     {% assign ugc_videos = block.settings.ugc_videos %}
+                    {% assign matching_video_count = 0 %}
 
                     {% capture tab_content %}
                       <div class="ugc-videos-container">
@@ -268,6 +268,7 @@
                           {% assign designated_product = video.designated_product.value %}
 
                           {% if media != blank and designated_product.id == product.id %}
+                            {% assign matching_video_count = matching_video_count | plus: 1 %}
                             <div class="ugc-video-card">
                               <div class="ugc-video-card__thumbnail">
                                 {% if media.preview_image %}
@@ -281,26 +282,27 @@
                               </div>
                               <div class="ugc-video-card__video" style="display: none;">
                                 {{ media | video_tag: controls: true, autoplay: false, muted: true, playsinline: true, loop: false }}
-                                <button class="ugc-video-card__fullscreen-btn" aria-label="Fullscreen">
-                                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 3H5C3.89543 3 3 3.89543 3 5V8M21 8V5C21 3.89543 20.1046 3 19 3H16M16 21H19C20.1046 21 21 20.1046 21 19V16M3 16V19C3 20.1046 3.89543 21 5 21H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  </svg>
-                                </button>
                               </div>
                             </div>
-                          {% else %}
-                            {% assign blank_ugc_data = true %}
                           {% endif %}
                         {% endfor %}
                       </div>
                     {% endcapture %}
+
+                    {%- liquid
+                      if matching_video_count == 0
+                        assign blank_ugc_data = true
+                      else
+                        assign blank_ugc_data = false
+                      endif
+                    -%}
 
                     <div class="product-block product-block--tab {% if blank_ugc_data %} hidden{% endif %}" {{ block.shopify_attributes }}>
                       {%- render 'tab',
                         id: tab_id,
                         title: block.settings.enable_ugc_tab_label,
                         content: tab_content,
-                        ugc_content: true
+                        force_open: true
                       -%}
                     </div>
 
