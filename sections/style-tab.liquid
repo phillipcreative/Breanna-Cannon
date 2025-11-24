@@ -8,114 +8,177 @@
   <div class="tabbed-feature__inner page-width">
     <!-- LEFT: Tabs + Content -->
     <div class="tabbed-feature__left">
-      {% if section.settings.tabs_label != blank %}
+      {%- if section.settings.tabs_label != blank -%}
         <div class="tabbed-feature__tabs-label">{{ section.settings.tabs_label }}</div>
-      {% endif %}
+      {%- endif -%}
 
       <div class="tabbed-feature__tabs" role="tablist" aria-label="{{ section.settings.tabs_aria_label | escape }}">
         {%- for block in section.blocks -%}
-          {%- assign is_active = forloop.first -%}
-          <button
-            id="tab-{{ block.id }}"
-            class="tabbed-feature__tab{% if is_active %} is-active{% endif %}"
-            role="tab"
-            aria-selected="{{ is_active }}"
-            aria-controls="panel-{{ block.id }}"
-            tabindex="{% if is_active %}0{% else %}-1{% endif %}"
-            data-tab-target="panel-{{ block.id }}"
-          >
-            <span class="tabbed-feature__tab-text">{{ block.settings.tab_label | escape }}</span>
-            <span class="tabbed-feature__tab-plus" aria-hidden="true">{% render 'plus-icon' %}</span>
-          </button>
+          {%- if block.type == 'tab_item' and block.settings.metaobject != blank -%}
+            {%- assign metaobject_item = block.settings.metaobject -%}
+            {%- assign is_active = forloop.first -%}
+            <button
+              id="tab-{{ block.id }}"
+              class="tabbed-feature__tab{% if is_active %} is-active{% endif %}"
+              role="tab"
+              aria-selected="{{ is_active }}"
+              aria-controls="panel-{{ block.id }}"
+              tabindex="{% if is_active %}0{% else %}-1{% endif %}"
+              data-tab-target="panel-{{ block.id }}"
+            >
+              <span class="tabbed-feature__tab-text">
+                {%- if metaobject_item.tab_label != blank -%}
+                  {{ metaobject_item.tab_label | escape }}
+                {%- else -%}
+                  Tab {{ forloop.index }}
+                {%- endif -%}
+              </span>
+              <span class="tabbed-feature__tab-plus" aria-hidden="true">{% render 'plus-icon' %}</span>
+            </button>
+          {%- endif -%}
         {%- endfor -%}
       </div>
 
       <div class="tabbed-feature__content">
         {%- for block in section.blocks -%}
-          {%- assign is_active = forloop.first -%}
-          <div
-            id="panel-{{ block.id }}"
-            class="tabbed-feature__panel"
-            role="tabpanel"
-            aria-labelledby="tab-{{ block.id }}"
-            {% unless is_active %}hidden{% endunless %}
-            {{ block.shopify_attributes }}
-          >
-            {% if block.settings.kicker != blank %}
-              <div class="tabbed-feature__kicker">{{ block.settings.kicker }}</div>
-            {% endif %}
-            {% if block.settings.title != blank %}
-              <h2 class="tabbed-feature__title">{{ block.settings.title }}</h2>
-            {% endif %}
-            {% if block.settings.description != blank %}
-              <div class="tabbed-feature__description rte">
-                {{ block.settings.description }}
-              </div>
-            {% endif %}
-            {% if block.settings.cta_label != blank and block.settings.cta_link != blank %}
-              <div class="tabbed-feature__cta">
-                <a class="tabbed-feature__button" href="{{ block.settings.cta_link }}">{{ block.settings.cta_label }}</a>
-              </div>
-            {% endif %}
+          {%- if block.type == 'tab_item' and block.settings.metaobject != blank -%}
+            {%- assign metaobject_item = block.settings.metaobject -%}
+            {%- assign is_active = forloop.first -%}
+            <div
+              id="panel-{{ block.id }}"
+              class="tabbed-feature__panel"
+              role="tabpanel"
+              aria-labelledby="tab-{{ block.id }}"
+              {% unless is_active %}hidden{% endunless %}
+              {{ block.shopify_attributes }}
+            >
+              {%- if metaobject_item.eye_brow_title != blank -%}
+                <div class="tabbed-feature__kicker">{{ metaobject_item.eye_brow_title }}</div>
+              {%- elsif metaobject_item.eye_brow_title.value != blank -%}
+                <div class="tabbed-feature__kicker">{{ metaobject_item.eye_brow_title.value }}</div>
+              {%- endif -%}
 
-            <div class="tab-tag-container {% if block.settings.tag_label_one == blank and block.settings.tag_label_two == blank and block.settings.tag_label_three == blank and block.settings.tag_label_four == blank %}hidden{% endif %}">
-              {% if block.settings.tag_section_label != blank %}
-                <div class="tabbed-feature__tag-section-label">{{ block.settings.tag_section_label }}</div>
-              {% endif %}
+              {%- if metaobject_item.title != blank -%}
+                <h2 class="tabbed-feature__title">{{ metaobject_item.title }}</h2>
+              {%- elsif metaobject_item.title.value != blank -%}
+                <h2 class="tabbed-feature__title">{{ metaobject_item.title.value }}</h2>
+              {%- endif -%}
 
-              <div class="tabbed-feature__tags {% if block.settings.tag_label_four == blank %}no-grid{% endif %}">
-                {% if block.settings.tag_label_one != blank %}
-                  <div class="tabbed-feature__tag">
-                    <a href="{{ block.settings.tag_link_one }}">{% render 'plus-icon' %} {{ block.settings.tag_label_one }}</a>
-                  </div>
-                {% endif %}
-                {% if block.settings.tag_label_two != blank %}
-                  <div class="tabbed-feature__tag">
-                    <a href="{{ block.settings.tag_link_two }}">{% render 'plus-icon' %} {{ block.settings.tag_label_two }}</a>
-                  </div>
-                {% endif %}
-                {% if block.settings.tag_label_three != blank %}
-                  <div class="tabbed-feature__tag">
-                    <a href="{{ block.settings.tag_link_three }}">{% render 'plus-icon' %} {{ block.settings.tag_label_three }}</a>
-                  </div>
-                {% endif %}
-                {% if block.settings.tag_label_four != blank %}
-                  <div class="tabbed-feature__tag">
-                    <a href="{{ block.settings.tag_link_four }}">{% render 'plus-icon' %} {{ block.settings.tag_label_four }}</a>
-                  </div>
-                {% endif %}
+              {%- if metaobject_item.description != blank -%}
+                <div class="tabbed-feature__description rte">
+                  {{ metaobject_item.description }}
+                </div>
+              {%- elsif metaobject_item.description.value != blank -%}
+                <div class="tabbed-feature__description rte">
+                  {{ metaobject_item.description.value }}
+                </div>
+              {%- endif -%}
+
+              <div class="tab-tag-container {% if metaobject_item.tag_link_one_url == blank and metaobject_item.tag_link_two_url == blank and metaobject_item.tag_link_three_url == blank %}hidden{% endif %}">
+                {%- if section.settings.tag_section_label != blank -%}
+                  <div class="tabbed-feature__tag-section-label">{{ section.settings.tag_section_label }}</div>
+                {%- endif -%}
+
+                <div class="tabbed-feature__tags {% if metaobject_item.tag_link_three_url == blank %}no-grid{% endif %}">
+                  {%- if metaobject_item.tag_link_one_url != blank -%}
+                    {%- if metaobject_item.tag_link_one_url.url != blank -%}
+                      <div class="tabbed-feature__tag">
+                        <a href="{{ metaobject_item.tag_link_one_url.url }}">{% render 'plus-icon' %} {{ metaobject_item.tag_link_one_url.text }}</a>
+                      </div>
+                    {%- elsif metaobject_item.tag_link_one_url.value != blank and metaobject_item.tag_link_one_url.value.url != blank -%}
+                      <div class="tabbed-feature__tag">
+                        <a href="{{ metaobject_item.tag_link_one_url.value.url }}">{% render 'plus-icon' %} {{ metaobject_item.tag_link_one_url.value.text }}</a>
+                      </div>
+                    {%- endif -%}
+                  {%- endif -%}
+                  {%- if metaobject_item.tag_link_two_url != blank -%}
+                    {%- if metaobject_item.tag_link_two_url.url != blank -%}
+                      <div class="tabbed-feature__tag">
+                        <a href="{{ metaobject_item.tag_link_two_url.url }}">{% render 'plus-icon' %} {{ metaobject_item.tag_link_two_url.text }}</a>
+                      </div>
+                    {%- elsif metaobject_item.tag_link_two_url.value != blank and metaobject_item.tag_link_two_url.value.url != blank -%}
+                      <div class="tabbed-feature__tag">
+                        <a href="{{ metaobject_item.tag_link_two_url.value.url }}">{% render 'plus-icon' %} {{ metaobject_item.tag_link_two_url.value.text }}</a>
+                      </div>
+                    {%- endif -%}
+                  {%- endif -%}
+                  {%- if metaobject_item.tag_link_three_url != blank -%}
+                    {%- if metaobject_item.tag_link_three_url.url != blank -%}
+                      <div class="tabbed-feature__tag">
+                        <a href="{{ metaobject_item.tag_link_three_url.url }}">{% render 'plus-icon' %} {{ metaobject_item.tag_link_three_url.text }}</a>
+                      </div>
+                    {%- elsif metaobject_item.tag_link_three_url.value != blank and metaobject_item.tag_link_three_url.value.url != blank -%}
+                      <div class="tabbed-feature__tag">
+                        <a href="{{ metaobject_item.tag_link_three_url.value.url }}">{% render 'plus-icon' %} {{ metaobject_item.tag_link_three_url.value.text }}</a>
+                      </div>
+                    {%- endif -%}
+                  {%- endif -%}
+                </div>
               </div>
             </div>
-          </div>
+          {%- endif -%}
         {%- endfor -%}
       </div>
     </div>
 
-    <!-- RIGHT: Images (switch per tab) -->
+    <!-- RIGHT: Images/Videos (switch per tab) -->
     <div class="tabbed-feature__right">
       {%- for block in section.blocks -%}
-        {%- assign is_active = forloop.first -%}
-        <figure
-          id="image-{{ block.id }}"
-          class="tabbed-feature__image-wrap"
-          {% unless is_active %}hidden{% endunless %}
-          {% if is_active %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %}
-        >
-          {%- if block.settings.image != blank -%}
-            {{ block.settings.image
-              | image_url: width: 1400
-              | image_tag:
-                class: 'tabbed-feature__image',
-                loading: 'lazy',
-                widths: '400,700,900,1200,1400',
-                alt: block.settings.image_alt | escape
-            }}
-          {%- else -%}
-            <div class="tabbed-feature__image--placeholder">
-              {{ 'image' | placeholder_svg_tag }}
-            </div>
-          {%- endif -%}
-        </figure>
+        {%- if block.type == 'tab_item' and block.settings.metaobject != blank -%}
+          {%- assign metaobject_item = block.settings.metaobject -%}
+          {%- assign is_active = forloop.first -%}
+          {%- liquid
+            assign has_video = false
+            assign video_media = blank
+
+            if metaobject_item.content_video != blank
+              assign has_video = true
+              if metaobject_item.content_video.value != blank
+                assign video_media = metaobject_item.content_video.value
+              else
+                assign video_media = metaobject_item.content_video
+              endif
+            endif
+          -%}
+          <figure
+            id="image-{{ block.id }}"
+            class="tabbed-feature__image-wrap{% if has_video %} tabbed-feature__image-wrap--video{% endif %}"
+            {% unless is_active %}hidden{% endunless %}
+            {% if is_active %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %}
+          >
+            {%- if has_video and video_media != blank -%}
+              <div class="tabbed-feature__video-wrapper">
+                {%- if is_active -%}
+                  {{ video_media | video_tag: controls: true, autoplay: true, muted: true, playsinline: true, loop: true, class: 'tabbed-feature__video' }}
+                {%- else -%}
+                  {{ video_media | video_tag: controls: true, autoplay: false, muted: true, playsinline: true, loop: true, class: 'tabbed-feature__video' }}
+                {%- endif -%}
+              </div>
+            {%- elsif metaobject_item.content_image != blank -%}
+              {{ metaobject_item.content_image
+                | image_url: width: 1400
+                | image_tag:
+                  class: 'tabbed-feature__image',
+                  loading: 'lazy',
+                  widths: '400,700,900,1200,1400',
+                  alt: metaobject_item.title | escape
+              }}
+            {%- elsif metaobject_item.content_image.value != blank -%}
+              {{ metaobject_item.content_image.value
+                | image_url: width: 1400
+                | image_tag:
+                  class: 'tabbed-feature__image',
+                  loading: 'lazy',
+                  widths: '400,700,900,1200,1400',
+                  alt: metaobject_item.title.value | escape
+              }}
+            {%- else -%}
+              <div class="tabbed-feature__image--placeholder">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {%- endif -%}
+          </figure>
+        {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
@@ -141,12 +204,26 @@
         panels.forEach(panel => {
           panel.hidden = panel.id !== targetId;
         });
-        // Images (use matching suffix)
+        // Images/Videos (use matching suffix)
         const suffix = targetId.replace('panel-', '');
         images.forEach(img => {
-          console.log(suffix);
-          img.hidden = img.id !== ('image-' + suffix);
-          img.setAttribute('aria-hidden', img.hidden ? 'true' : 'false');
+          const isActive = img.id === ('image-' + suffix);
+          img.hidden = !isActive;
+          img.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+
+          // Handle video playback
+          const video = img.querySelector('.tabbed-feature__video');
+          if (video) {
+            if (isActive) {
+              video.play().catch(err => {
+                // Autoplay may be blocked, but that's okay
+                console.log('Video autoplay prevented:', err);
+              });
+            } else {
+              video.pause();
+              video.currentTime = 0; // Reset to beginning
+            }
+          }
         });
       }
 
@@ -164,6 +241,18 @@
           arr[nextIdx].click();
         });
       });
+
+      // Auto-play video for initially active tab
+      const activeImage = root.querySelector('.tabbed-feature__image-wrap:not([hidden])');
+      if (activeImage) {
+        const activeVideo = activeImage.querySelector('.tabbed-feature__video');
+        if (activeVideo) {
+          activeVideo.play().catch(err => {
+            // Autoplay may be blocked, but that's okay
+            console.log('Video autoplay prevented:', err);
+          });
+        }
+      }
     })();
   </script>
 </section>
@@ -173,42 +262,27 @@
   "name": "Tabbed Feature",
   "settings": [
     { "type": "text", "id": "tabs_label", "label": "Tabs label (optional)", "default": "Topics" },
-    { "type": "text", "id": "tabs_aria_label", "label": "Tabs ARIA label", "default": "Feature tabs" }
+    { "type": "text", "id": "tabs_aria_label", "label": "Tabs ARIA label", "default": "Feature tabs" },
+    { "type": "text", "id": "tag_section_label", "label": "Tag section label", "default": "shop similar styles" }
   ],
   "blocks": [
     {
       "type": "tab_item",
-      "name": "Tab item",
+      "name": "Tab Item",
       "settings": [
-        { "type": "text", "id": "tab_label", "label": "Tab label", "default": "Styling" },
-        { "type": "text", "id": "kicker", "label": "Kicker / small heading", "default": "How to Style the Caftan" },
-        { "type": "text", "id": "title", "label": "Title", "default": "Effortless Styling, Endless Compliments" },
-        { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Pair it with gold hoops and strappy sandals for a night out, or keep it casual with sneakers and a denim jacket. Designed to move seamlessly from brunch to evening cocktails.</p>" },
-        { "type": "image_picker", "id": "image", "label": "Image" },
-        { "type": "text", "id": "image_alt", "label": "Image alt text" },
-        { "type": "text", "id": "cta_label", "label": "Optional button label" },
-        { "type": "url", "id": "cta_link", "label": "Optional button link" },
-        { "type": "text", "id": "tag_section_label", "label": "Tag section label", "default": "shop similar styles" },
-        { "type": "text", "id": "tag_label_one", "label": "Tag label one" },
-        { "type": "url", "id": "tag_link_one", "label": "Tag link one" },
-        { "type": "text", "id": "tag_label_two", "label": "Tag label two" },
-        { "type": "url", "id": "tag_link_two", "label": "Tag link two" },
-        { "type": "text", "id": "tag_label_three", "label": "Tag label three" },
-        { "type": "url", "id": "tag_link_three", "label": "Tag link three" },
-        { "type": "text", "id": "tag_label_four", "label": "Tag label four" },
-        { "type": "url", "id": "tag_link_four", "label": "Tag link four" }
+        {
+          "type": "metaobject",
+          "id": "metaobject",
+          "metaobject_type": "style_tab_content",
+          "label": "Tab Content Metaobject",
+          "info": "Select a metaobject containing: tab_label, eye_brow_title, title, description, content_video (overrides content_image), content_image, tag_link_one_url, tag_link_two_url, tag_link_three_url"
+        }
       ]
     }
   ],
-  "max_blocks": 3,
   "presets": [
     {
-      "name": "Tabbed Feature",
-      "blocks": [
-        { "type": "tab_item" },
-        { "type": "tab_item", "settings": { "tab_label": "Occasions" } },
-        { "type": "tab_item", "settings": { "tab_label": "From our Founder" } }
-      ]
+      "name": "Tabbed Feature"
     }
   ]
 }

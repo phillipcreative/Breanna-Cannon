@@ -1047,7 +1047,7 @@ Product Page Updates - Phillip Creative
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(24px, 4vw, 48px);
-  align-items: start;
+  align-items: center;
   border: 2px solid #E5E5E5;
   border-radius: 3px;
 }
@@ -1066,6 +1066,12 @@ Product Page Updates - Phillip Creative
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.tabbed-feature__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tabbed-feature__panel {
@@ -1231,6 +1237,21 @@ Product Page Updates - Phillip Creative
   margin: 0;
 }
 
+.tabbed-feature__image-wrap--video {
+  max-width: 750px;
+  max-height: 600px;
+  width: 100%;
+  aspect-ratio: 750 / 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.tabbed-feature__video-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 .tabbed-feature__image {
   border-radius: 3px;
 }
@@ -1240,6 +1261,14 @@ Product Page Updates - Phillip Creative
   display: block;
   width: 100%;
   height: auto;
+}
+
+.tabbed-feature__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
 }
 
 .tabbed-feature__image-wrap[aria-hidden="true"] {
@@ -1397,7 +1426,7 @@ Product Page Updates - Phillip Creative
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 990px) {
 
 
   /* Quantity Selector */
@@ -1438,13 +1467,13 @@ Product Page Updates - Phillip Creative
   .tabbed-feature__tabs {
     margin-bottom: 0;
     display: flex;
-    gap: 10px;                 /* space between swatches */
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
   .tabbed-feature__tab {
     flex: 0 0 auto;              /* keep natural width */
-    scroll-snap-align: start;
+    max-width: 450px;
   }
 
   .tabbed-feature__inner {
@@ -1514,6 +1543,24 @@ Product Page Updates - Phillip Creative
 
   .newsletter-footer__form {
     margin-top: 20px;
+  }
+
+  .tabbed-feature__image-wrap {
+    width: 100%;
+  }
+
+  .tabbed-feature__description {
+    padding: 0 2rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .tabbed-feature__tabs {
+    flex-direction: column;
+  }
+
+  .tabbed-feature__tab {
+    margin: auto;
   }
 }
 
@@ -1636,4 +1683,16 @@ Product Page Updates - Phillip Creative
 
 .rebuy-widget.widget-type-product-addon {
   margin-bottom: 30px;
+}
+
+.site-footer {
+  border-top: 0px !important;
+  padding-top: 0px !important;
+}
+
+@media only screen and (min-width: 769px) {
+  .footer-content {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
 }

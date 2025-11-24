@@ -5277,10 +5277,6 @@ lazySizesConfig.expFactor = 4;
         var isGridGallery = clickedButton.closest('.media-gallery__grid') !== null;
         var isSlideshowClick = clickedButton.closest('.product-slideshow') !== null;
 
-        console.log('=== Photoswipe Click Debug ===');
-        console.log('isGridGallery:', isGridGallery);
-        console.log('isSlideshowClick:', isSlideshowClick);
-
         // Determine if we're in a slideshow based on the actual click location
         // If clicking from grid gallery, we're NOT in slideshow mode
         if (isGridGallery) {
@@ -5295,8 +5291,6 @@ lazySizesConfig.expFactor = 4;
             this.inSlideshow = false;
           }
         }
-
-        console.log('this.inSlideshow (after check):', this.inSlideshow);
 
         // Get image data and ensure this.images is set correctly
         this.items = this.getImageData(isGridGallery, isSlideshowClick);
@@ -5316,19 +5310,11 @@ lazySizesConfig.expFactor = 4;
         var index;
         if (this.inSlideshow) {
           index = this.getChildIndex(image);
-          console.log('Slideshow index:', index);
         } else if (isGridGallery) {
           // For grid gallery, find the clicked image element and match it to the items array
           var clickedContainer = clickedButton.closest('.product-media-container');
           var clickedImageElement = clickedContainer ? clickedContainer.querySelector('.photoswipe__image') : null;
 
-          console.log('Clicked container:', clickedContainer);
-          console.log('Clicked image element:', clickedImageElement);
-
-          if (clickedImageElement) {
-            console.log('Clicked image src:', clickedImageElement.getAttribute('data-photoswipe-src'));
-            console.log('Clicked image data-index:', clickedImageElement.getAttribute('data-index'));
-          }
 
           if (clickedImageElement && this.items && this.items.length > 0) {
             // Find the clicked image in the items array by matching the element
@@ -5344,29 +5330,22 @@ lazySizesConfig.expFactor = 4;
             if (foundIndex >= 0) {
               index = foundIndex + 1;
             } else {
-              console.log('Not found by element reference, trying src match...');
               // If not found by element reference, try matching by src
               var clickedSrc = clickedImageElement.getAttribute('data-photoswipe-src');
               if (clickedSrc) {
                 for (var idx2 = 0; idx2 < this.items.length; idx2++) {
-                  console.log('Comparing:', clickedSrc, 'with', this.items[idx2].src);
                   if (this.items[idx2].src === clickedSrc) {
                     index = idx2 + 1;
-                    console.log('Found by src match at index:', idx2);
                     break;
                   }
                 }
               }
 
               if (!index) {
-                console.log('No match found, defaulting to index 1');
                 index = 1;
               }
             }
           } else {
-            console.log('Missing clickedImageElement or items array');
-            console.log('clickedImageElement:', clickedImageElement);
-            console.log('this.items length:', this.items ? this.items.length : 'null');
             index = 1;
           }
 
@@ -5427,6 +5406,7 @@ lazySizesConfig.expFactor = 4;
         } else if (isGridGallery) {
           // Only collect images from the grid gallery, in DOM order
           var gridGallery = this.container.querySelector('.media-gallery__grid');
+          console.log('Looking for grid gallery, found:', gridGallery);
           if (gridGallery) {
             // Get all containers in order
             var containers = gridGallery.querySelectorAll('.product-media-container');

@@ -1,0 +1,164 @@
+{%- liquid
+  assign desktop_image = block.settings.desktop_background_image
+  assign mobile_image = block.settings.mobile_background_image
+  assign overlay_opacity = block.settings.image_opacity | divided_by: 100.0
+-%}
+
+{%- style -%}
+  .newsletter-footer--{{ block.id }} {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    min-height: 695px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  {%- if desktop_image != blank -%}
+    @media screen and (min-width: 769px) {
+      .newsletter-footer--{{ block.id }} {
+        background-image: url({{ desktop_image | img_url: '1800x' }});
+      }
+    }
+  {%- endif -%}
+
+  {%- if mobile_image != blank -%}
+    @media screen and (max-width: 768px) {
+      .newsletter-footer--{{ block.id }} {
+        background-image: url({{ mobile_image | img_url: '800x' }});
+      }
+    }
+  {%- elsif desktop_image != blank -%}
+    @media screen and (max-width: 768px) {
+      .newsletter-footer--{{ block.id }} {
+        background-image: url({{ desktop_image | img_url: '800x' }});
+      }
+    }
+  {%- endif -%}
+
+  {%- if overlay_opacity > 0 -%}
+    .newsletter-footer--{{ block.id }}:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: #000;
+      opacity: {{ overlay_opacity }};
+      z-index: 1;
+    }
+  {%- endif -%}
+
+  .newsletter-footer__content--{{ block.id }} {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: {{ block.settings.text_color }};
+    padding: 60px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .newsletter-footer__heading--{{ block.id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: {{ block.settings.heading_weight }};
+    margin-bottom: {{ block.settings.heading_spacing }}px;
+    color: {{ block.settings.text_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .newsletter-footer__heading--{{ block.id }} {
+      font-size: {{ block.settings.mobile_heading_size }}px;
+    }
+  }
+
+  .newsletter-footer__subheading--{{ block.id }} {
+    font-size: {{ block.settings.subheading_size }}px;
+    margin-bottom: {{ block.settings.subheading_spacing }}px;
+    color: {{ block.settings.text_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .newsletter-footer__subheading--{{ block.id }} {
+      font-size: {{ block.settings.mobile_subheading_size }}px;
+    }
+  }
+
+  .newsletter-footer__form--{{ block.id }} {
+    margin-top: 40px;
+  }
+
+  .newsletter-footer__form--{{ block.id }} .newsletter__input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid {{ block.settings.text_color }};
+    padding-bottom: 10px;
+    max-width: 305px;
+    margin: 0 auto;
+  }
+
+  .newsletter-footer__form--{{ block.id }} .newsletter__input {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0 15px 0 0;
+    flex: 1;
+    color: {{ block.settings.text_color }};
+    font-size: 16px;
+  }
+
+  .newsletter-footer__form--{{ block.id }} .newsletter__input:focus {
+    outline: none;
+  }
+
+  .newsletter-footer__form--{{ block.id }} .input-group-btn {
+    margin-left: 0;
+  }
+
+  .newsletter-footer__form--{{ block.id }} .input-group-btn .btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: {{ block.settings.text_color }};
+  }
+
+  .newsletter-footer__form--{{ block.id }} .input-group-btn .btn:hover {
+    opacity: 0.8;
+  }
+
+  .newsletter-footer__form--{{ block.id }} .newsletter__input::-webkit-input-placeholder {
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+  }
+  .newsletter-footer__form--{{ block.id }} .newsletter__input::-moz-placeholder {
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+  }
+  .newsletter-footer__form--{{ block.id }} .newsletter__input::-ms-input-placeholder {
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+  }
+{%- endstyle -%}
+
+<div class="newsletter-footer newsletter-footer--{{ block.id }}" data-block-id="{{ block.id }}" data-block-type="newsletter-footer">
+  <div class="newsletter-footer__content newsletter-footer__content--{{ block.id }}">
+    {%- if block.settings.heading != blank -%}
+      <h2 class="newsletter-footer__heading newsletter-footer__heading--{{ block.id }}">
+        {{ block.settings.heading | escape }}
+      </h2>
+    {%- endif -%}
+
+    {%- if block.settings.subheading != blank -%}
+      <p class="newsletter-footer__subheading newsletter-footer__subheading--{{ block.id }}">
+        {{ block.settings.subheading | escape }}
+      </p>
+    {%- endif -%}
+
+    <div class="newsletter-footer__form newsletter-footer__form--{{ block.id }}">
+      {%- render 'new-newsletter-form', section_id: block.id, snippet_context: 'footer' -%}
+    </div>
+  </div>
+</div>

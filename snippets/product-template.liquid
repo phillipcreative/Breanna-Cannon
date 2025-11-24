@@ -203,9 +203,9 @@
                     </div>
 
                   {%- when 'ugc_tab' -%}
-                    {% assign blank_ugc_data = false %}
                     {% assign tab_id = block.id | append: product.id %}
                     {% assign ugc_videos = block.settings.ugc_videos %}
+                    {% assign matching_video_count = 0 %}
 
                     {% capture tab_content %}
                       <div class="ugc-videos-container">
@@ -214,6 +214,7 @@
                           {% assign designated_product = video.designated_product.value %}
 
                           {% if media != blank and designated_product.id == product.id %}
+                            {% assign matching_video_count = matching_video_count | plus: 1 %}
                             <div class="ugc-video-card">
                               <div class="ugc-video-card__thumbnail">
                                 {% if media.preview_image %}
@@ -229,18 +230,25 @@
                                 {{ media | video_tag: controls: true, autoplay: false, muted: true, playsinline: true, loop: false }}
                               </div>
                             </div>
-                          {% else %}
-                            {% assign blank_ugc_data = true %}
                           {% endif %}
                         {% endfor %}
                       </div>
                     {% endcapture %}
 
+                    {%- liquid
+                      if matching_video_count == 0
+                        assign blank_ugc_data = true
+                      else
+                        assign blank_ugc_data = false
+                      endif
+                    -%}
+
                     <div class="product-block product-block--tab {% if blank_ugc_data %} hidden{% endif %}" {{ block.shopify_attributes }}>
                       {%- render 'tab',
                         id: tab_id,
                         title: block.settings.enable_ugc_tab_label,
-                        content: tab_content
+                        content: tab_content,
+                        force_open: true
                       -%}
                     </div>
 

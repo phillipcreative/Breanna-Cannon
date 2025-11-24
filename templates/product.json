@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "main": {
       "type": "main-product",
@@ -183,84 +183,38 @@
         "product_video_style": "muted"
       }
     },
-    "style_tab_P9HwJB": {
+    "style_tab_T37dCw": {
       "type": "style-tab",
       "blocks": {
-        "tab_item_PgCEB4": {
+        "tab_item_P7pNFC": {
           "type": "tab_item",
           "settings": {
-            "tab_label": "Styling",
-            "kicker": "How to Style the Caftan",
-            "title": "Effortless Styling, Endless Compliments",
-            "description": "<p>Pair it with gold hoops and strappy sandals for a night out, or keep it casual with sneakers and a denim jacket. Designed to move seamlessly from brunch to evening cocktails.</p>",
-            "image": "shopify://shop_images/image_114.jpg",
-            "image_alt": "",
-            "cta_label": "",
-            "cta_link": "",
-            "tag_section_label": "shop similar styles",
-            "tag_label_one": "Dresses",
-            "tag_link_one": "shopify://collections/arizona-cardinals",
-            "tag_label_two": "Caftans",
-            "tag_link_two": "",
-            "tag_label_three": "Pink",
-            "tag_link_three": "",
-            "tag_label_four": "",
-            "tag_link_four": ""
+            "metaobject": "phill-tests"
           }
         },
-        "tab_item_qgrwtQ": {
+        "tab_item_DQwXWy": {
           "type": "tab_item",
           "settings": {
-            "tab_label": "Occasions",
-            "kicker": "Fall Favorites",
-            "title": "Find This Season's Classics",
-            "description": "<p>Experience the cozy tradition of Christmas pajamas with our festive and comfortable collection. Celebrate in style this holiday season.</p>",
-            "image": "shopify://shop_images/R522521.jpg",
-            "image_alt": "",
-            "cta_label": "",
-            "cta_link": "",
-            "tag_section_label": "shop similar styles",
-            "tag_label_one": "test1",
-            "tag_link_one": "",
-            "tag_label_two": "test2",
-            "tag_link_two": "",
-            "tag_label_three": "test3",
-            "tag_link_three": "",
-            "tag_label_four": "",
-            "tag_link_four": ""
+            "metaobject": "occasions"
           }
         },
-        "tab_item_drqxCb": {
+        "tab_item_QCHbjw": {
           "type": "tab_item",
           "settings": {
-            "tab_label": "From our Founder",
-            "kicker": "How to Style the Caftan",
-            "title": "Effortless Styling, Endless Compliments",
-            "description": "<p>Pair it with gold hoops and strappy sandals for a night out, or keep it casual with sneakers and a denim jacket. Designed to move seamlessly from brunch to evening cocktails.</p>",
-            "image_alt": "",
-            "cta_label": "",
-            "cta_link": "",
-            "tag_section_label": "shop similar styles",
-            "tag_label_one": "Dresses",
-            "tag_link_one": "",
-            "tag_label_two": "Apparel",
-            "tag_link_two": "",
-            "tag_label_three": "Accessories",
-            "tag_link_three": "",
-            "tag_label_four": "",
-            "tag_link_four": ""
+            "metaobject": "from-our-founder"
           }
         }
       },
       "block_order": [
-        "tab_item_PgCEB4",
-        "tab_item_qgrwtQ",
-        "tab_item_drqxCb"
+        "tab_item_P7pNFC",
+        "tab_item_DQwXWy",
+        "tab_item_QCHbjw"
       ],
       "name": "Tabbed Feature",
       "settings": {
         "tabs_label": "",
-        "tabs_aria_label": "Feature tabs"
+        "tabs_aria_label": "Feature tabs",
+        "tag_section_label": "shop similar styles"
       }
     },
     "recommendation_slider_MkgayM": {
@@ -312,6 +266,7 @@
     },
     "newsletter_footer_bGBKPK": {
       "type": "newsletter-footer",
+      "disabled": true,
       "name": "Newsletter Footer",
       "settings": {
         "desktop_background_image": "shopify://shop_images/image_136.jpg",
@@ -331,7 +286,7 @@
   },
   "order": [
     "main",
-    "style_tab_P9HwJB",
+    "style_tab_T37dCw",
     "recommendation_slider_MkgayM",
     "recommendation_slider_xrGJLY",
     "17629708078581ed17",
