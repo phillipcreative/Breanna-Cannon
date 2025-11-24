@@ -31,8 +31,11 @@
           </div>
 
           <ul class="media-gallery__grid list-unstyled small--hide medium-up--show" data-testid="media-gallery-grid">
-            {%- assign image_index = 0 -%}
+            {%- assign image_count = 0 -%}
             {%- for media in product.media -%}
+              {%- if media.media_type == 'image' -%}
+                {%- assign image_count = image_count | plus: 1 -%}
+              {%- endif -%}
               {%- liquid
                 assign media_alt_parts = media.alt | split: '|'
                 assign media_alt_text = media_alt_parts[0] | strip
@@ -48,7 +51,6 @@
                   assign media_aspect = media.aspect_ratio
                   assign media_width = media.width
                   assign media_height = media.height
-                  assign image_index = image_index | plus: 1
                 else
                   assign media_aspect = media.preview_image.aspect_ratio
                   assign media_width = media.preview_image.width
@@ -92,15 +94,13 @@
                       </noscript>
                     </div>
                   {%- else -%}
-                    {%- if product_zoom_enable and media.media_type == 'image' -%}
-                      <a
-                        href="{{ media_url }}"
-                        data-fancybox="gallery"
-                        class="product-media-container__zoom-link"
-                      >
-                    {%- endif -%}
                     <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: media_aspect }}%;">
-                      <img class="lazyload"
+                      <img class="{% if product_zoom_enable %}photoswipe__image{% endif %} lazyload"
+                        data-photoswipe-src="{{ media_url }}"
+                        data-photoswipe-width="{{ media_width }}"
+                        data-photoswipe-height="{{ media_height }}"
+                        data-index="{% if media.media_type == 'image' %}{{ image_count }}{% else %}{{ forloop.index }}{% endif %}"
+                        data-media-index="{{ forloop.index }}"
                         data-src="{{ img_url }}"
                         data-widths="[360, 540, 720, 900, 1080]"
                         data-aspectratio="{{ media_aspect }}"
@@ -113,7 +113,10 @@
                       </noscript>
                     </div>
                     {%- if product_zoom_enable and media.media_type == 'image' -%}
-                      </a>
+                      <button type="button" class="btn btn--body btn--circle js-photoswipe__zoom product__photo-zoom" data-index="{% if media.media_type == 'image' %}{{ image_count }}{% else %}{{ forloop.index }}{% endif %}" data-media-index="{{ forloop.index }}">
+                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58zM54 54L41.94 42"/></svg>
+                        <span class="icon__fallback-text">{{ 'general.accessibility.close_modal' | t }}</span>
+                      </button>
                     {%- endif -%}
                   {%- endif -%}
 

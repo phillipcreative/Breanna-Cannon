@@ -452,6 +452,36 @@
   cursor: zoom-in;
 }
 
+.media-gallery__grid .product__photo-zoom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+}
+
+@media screen and (min-width: 750px) {
+  .media-gallery__grid .product__photo-zoom {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: auto;
+    right: auto;
+    opacity: 0;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .media-gallery__grid .product__photo-zoom span,
+  .media-gallery__grid .product__photo-zoom svg {
+    display: none;
+  }
+}
+
+.media-gallery__grid .product-media-container__zoom-link {
+  display: none;
+}
+
 @media screen and (max-width: 749px) {
   .product-media-container.constrain-height {
     max-height: none;
@@ -1407,17 +1437,9 @@ Product Page Updates - Phillip Creative
 
   .tabbed-feature__tabs {
     margin-bottom: 0;
-    max-width: 320px;
     display: flex;
     gap: 10px;                 /* space between swatches */
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    overflow-y: hidden;
-    justify-content: flex-start;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 12px;
-    -webkit-overflow-scrolling: touch; /* smooth on iOS */
-    padding-bottom: 10px;
+    flex-direction: column;
   }
 
   .tabbed-feature__tab {
