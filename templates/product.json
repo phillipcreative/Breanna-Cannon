@@ -36,11 +36,22 @@
           "type": "separator",
           "settings": {}
         },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "size_chart": "",
+            "variant_labels": false,
+            "picker_type": "button",
+            "color_swatches": false
+          }
+        },
         "custom_quantity_selector_zFpjgG": {
           "type": "custom-quantity-selector",
           "settings": {
-            "quantity_header": "The more you shop, the more you save.",
-            "label": "Item",
+            "rebuy_data_source_id": "253255",
+            "quantity_header": "<p>✨The more you shop, the more you save✨</p><p>Add two or more pieces from this collection to unlock your discount!</p>",
+            "quantity_header_align": "center",
+            "label": "Addon",
             "show_strike_total": true,
             "quantity_range": 3,
             "quantity_selector_badges": [
@@ -49,28 +60,20 @@
             ],
             "discount_tier_badge_color": "#fbd8e6",
             "discount_tier_badge_text_color": "#000000",
-            "discount_tier_one_percentage": "5",
-            "discount_tier_two_percentage": "10",
-            "discount_tier_three_percentage": "15"
+            "discount_tier_one_percentage": "12",
+            "discount_tier_two_percentage": "20",
+            "discount_tier_three_percentage": "30"
           }
         },
         "linked_products_MqndzF": {
           "type": "linked-products",
+          "disabled": true,
           "settings": {
             "option_name": "COLORS",
             "swatches_size": "small",
             "swatches_aspect_ratio": "square",
             "linked_products": "{{ product.metafields.custom.linked_products.value }}",
             "margin_bottom": 20
-          }
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "size_chart": "",
-            "variant_labels": false,
-            "picker_type": "button",
-            "color_swatches": false
           }
         },
         "buy_buttons": {
@@ -156,9 +159,9 @@
         "inventory_status",
         "sales_point",
         "separator",
+        "variant_picker",
         "custom_quantity_selector_zFpjgG",
         "linked_products_MqndzF",
-        "variant_picker",
         "buy_buttons",
         "d360d95e-91d1-4993-a2b3-225541fea599",
         "ugc_tab_P33w67",

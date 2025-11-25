@@ -130,8 +130,8 @@
                     <div class="product-block seperator-block"><hr></div>
                   {%- when 'custom-quantity-selector' -%}
                     {% if block.settings.quantity_header != blank %}
-                      <div class="product-block product-block--quantity-header">
-                        {{ block.settings.quantity_header }}
+                      <div class="product-block product-block--quantity-header text-{{ block.settings.quantity_header_align | default: 'left' }}">
+                        <div class="rte">{{ block.settings.quantity_header }}</div>
                       </div>
                     {% endif %}
 
@@ -166,7 +166,7 @@
                         {% endif %}
 
                         <label class="quantity-option">
-                          <input type="radio" name="quantity_tier" value="{{ i }}" {% if forloop.first == false and i == 2 %}checked{% endif %}>
+                          <input type="radio" name="quantity_tier" value="{{ i }}" data-discount-percent="{{ discount_percent }}" data-total-price-cents="{{ total_price }}" data-discounted-price-cents="{{ discounted_total }}" {% if forloop.first == false and i == 2 %}checked{% endif %}>
                           <div class="quantity-option__content">
                             <div class="quantity-option__left">
                               <span class="quantity-label">{{ i }} {{ quantity_label }}{% if i > 1 %}s{% endif %}</span>
@@ -196,6 +196,31 @@
                         </label>
                       {% endfor %}
                     </div>
+
+                    {% if block.settings.rebuy_data_source_id != blank %}
+                      <div class="rebuy-recommendations-container"
+                           data-rebuy-data-source-id="{{ block.settings.rebuy_data_source_id }}"
+                           data-current-product-id="{{ product.id }}"
+                           data-rebuy-api-key="6e5aada6dd159d86183afb4ab961e8f0a794787c&format">
+                        <div class="recommended-product-slider">
+                          <div class="rebuy-recommendations-swiper swiper">
+                            <div class="swiper-wrapper"></div>
+                          </div>
+                          <div class="swiper-navigation-container">
+                            <div class="swiper-button-prev">
+                              <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.8999 5.8999H0.899902M0.899902 5.8999L5.7749 0.899902M0.899902 5.8999L5.7749 10.8999" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                            <div class="swiper-button-next">
+                              <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.899902 5.8999H13.8999M13.8999 5.8999L9.0249 0.899902M13.8999 5.8999L9.0249 10.8999" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
 
                   {%- when 'text' -%}
                     <div class="product-block" {{ block.shopify_attributes }}>
