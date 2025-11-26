@@ -1,4 +1,146 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Handle adding rebuy products to cart along with main product
+  const handleAddToCartWithRebuy = () => {
+    const addToCartForm = document.querySelector('.product-single__form');
+    const addToCartButton = document.querySelector('[data-add-to-cart]');
+
+    if (!addToCartForm || !addToCartButton) return;
+
+    addToCartForm.addEventListener('submit', async function(e) {
+      // Get selected rebuy/upsell products from swiper
+      const rebuyContainers = document.querySelectorAll('.rebuy-recommendations-container');
+      const selectedRebuyProducts = [];
+
+      rebuyContainers.forEach((container) => {
+        const checkedBoxes = container.querySelectorAll('.rebuy-product-card__checkbox:checked');
+        checkedBoxes.forEach((checkbox) => {
+          const productId = checkbox.getAttribute('data-product-id');
+          const variantId = checkbox.getAttribute('data-variant-id');
+          const productCard = checkbox.closest('.rebuy-product-card');
+          const productTitleEl = productCard?.querySelector('.rebuy-product-card__title');
+          const productName = productTitleEl?.textContent?.trim() || 'Product';
+
+          if (productId && variantId) {
+            selectedRebuyProducts.push({
+              id: variantId,
+              quantity: 1,
+              name: productName
+            });
+          }
+        });
+      });
+
+      // Always intercept to check for selected upsell items, add them if any are selected
+      if (selectedRebuyProducts.length > 0) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Get main product variant ID from form
+        const formData = new FormData(addToCartForm);
+        const mainVariantId = formData.get('id');
+
+        if (!mainVariantId) return;
+
+        // Get main product name
+        const mainProductTitleEl = document.querySelector('.product-single__title');
+        const mainProductName = mainProductTitleEl?.textContent?.trim() || 'Product';
+
+        // Show loading state
+        addToCartButton.classList.add('btn--loading');
+        addToCartButton.disabled = true;
+
+        try {
+          // Add main product first - always quantity of 1
+          const mainProductData = new URLSearchParams();
+          mainProductData.append('id', mainVariantId);
+          mainProductData.append('quantity', 1);
+
+          const mainResponse = await fetch(window.theme?.routes?.cartAdd || '/cart/add.js', {
+            method: 'POST',
+            body: mainProductData.toString(),
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+          });
+
+          const mainResult = await mainResponse.json();
+
+          if (mainResult.status === 422) {
+            const errorMessage = mainResult.description || 'Failed to add product to cart';
+            throw new Error(`${mainProductName}: ${errorMessage}`);
+          }
+
+          // Add rebuy products sequentially
+          for (const rebuyProduct of selectedRebuyProducts) {
+            const rebuyData = new URLSearchParams();
+            rebuyData.append('id', rebuyProduct.id);
+            rebuyData.append('quantity', rebuyProduct.quantity);
+
+            const rebuyResponse = await fetch(window.theme?.routes?.cartAdd || '/cart/add.js', {
+              method: 'POST',
+              body: rebuyData.toString(),
+              credentials: 'same-origin',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-Requested-With': 'XMLHttpRequest'
+              }
+            });
+
+            const rebuyResult = await rebuyResponse.json();
+
+            if (rebuyResult.status === 422) {
+              const errorMessage = rebuyResult.description || 'Failed to add product to cart';
+              throw new Error(`${rebuyProduct.name}: ${errorMessage}`);
+            }
+          }
+
+          // Trigger cart update events
+          // if (window.theme && window.theme.CartDrawer) {
+          //   window.theme.CartDrawer.open();
+          // }
+
+          // Trigger Rebuy cart fetch if available
+          // if (window.Rebuy && window.Rebuy.Cart) {
+          //   window.Rebuy.Cart.fetchCart();
+          // }
+
+          // Reload page if on cart page
+          // if (document.body.classList.contains('template-cart')) {
+          //   window.scrollTo(0, 0);
+          //   location.reload();
+          //   return;
+          // }
+
+          // Dispatch custom event for cart update
+          document.dispatchEvent(new CustomEvent('cart:updated'));
+
+        } catch (error) {
+          console.error('Error adding products to cart:', error);
+
+          // Remove any existing error messages
+          const existingErrors = addToCartForm.querySelector('.errors');
+          if (existingErrors) {
+            existingErrors.remove();
+          }
+
+          // Create and display error message below the buy button
+          const errorDiv = document.createElement('div');
+          errorDiv.classList.add('errors', 'text-center');
+          errorDiv.textContent = error.description || error.message || 'There was an error adding products to cart. Please try again.';
+          addToCartForm.append(errorDiv);
+        } finally {
+          addToCartButton.classList.remove('btn--loading');
+          addToCartButton.disabled = false;
+        }
+      }
+    }, true); // Use capture phase to intercept before theme handler
+  };
+
+  // Initialize add to cart with rebuy handler
+  handleAddToCartWithRebuy();
+
   // Update Add to Cart Total based on quantity selector and selected rebuy products
   const updateAddToCartTotal = () => {
     const quantitySelector = document.querySelector('.custom-quantity-selector');
@@ -338,16 +480,58 @@ document.addEventListener("DOMContentLoaded", () => {
             return priceStr.toString().replace(/\.00(\s|$|[^0-9])/g, '$1').replace(/(\d)\.(\d)0+(\s|$|[^0-9])/g, '$1.$2$3').replace(/\.00$/g, '').replace(/(\d)\.(\d)0+$/g, '$1.$2');
           };
 
+          // Check availability - Rebuy API might use available, available_for_sale, or inventory_quantity
+          const checkVariantAvailability = (variant) => {
+            // Debug: log variant structure for first variant to understand API response
+            if (variants.indexOf(variant) === 0 && variants.length > 0) {
+              console.log('Rebuy variant structure:', variant);
+            }
+
+            // Explicit false checks
+            if (variant.available === false || variant.available === 0) return false;
+            if (variant.available_for_sale === false || variant.available_for_sale === 0) return false;
+
+            // Check inventory quantity (if tracking inventory and policy doesn't allow backorders)
+            if (variant.inventory_quantity !== undefined && variant.inventory_quantity !== null) {
+              if (variant.inventory_quantity <= 0 && variant.inventory_policy !== 'continue') {
+                return false;
+              }
+            }
+
+            // Explicit true checks
+            if (variant.available === true || variant.available_for_sale === true) return true;
+
+            // Check if available property exists and is truthy
+            if (variant.available !== undefined) {
+              return variant.available === true || variant.available === 1;
+            }
+
+            // If available_for_sale exists and is truthy
+            if (variant.available_for_sale !== undefined) {
+              return variant.available_for_sale === true || variant.available_for_sale === 1;
+            }
+
+            // Default: if we can't determine, assume available (to avoid false positives)
+            return true;
+          };
+
+          // Find first available variant for initial selection
+          const availableVariants = variants.filter(checkVariantAvailability);
+          const firstAvailableVariant = availableVariants.length > 0 ? availableVariants[0] : variants[0];
+
           let variantSelect = '';
           if (variants.length > 1) {
+
             variantSelect = `
               <select class="rebuy-product-card__variant-select" data-product-id="${product.id}">
                 ${variants.map((variant) => {
                   const variantPrice = variant.price || '';
                   const variantPriceFormatted = removeTrailingZeros(variantPrice);
+                  const isAvailable = checkVariantAvailability(variant);
+                  const isSelected = variant.id === firstAvailableVariant.id;
                   return `
-                    <option value="${variant.id}" data-price="${variantPriceFormatted}">
-                      ${variant.title}
+                    <option value="${variant.id}" data-price="${variantPriceFormatted}" ${!isAvailable ? 'disabled' : ''} ${isSelected ? 'selected' : ''}>
+                      ${variant.title}${!isAvailable ? ' (Sold Out)' : ''}
                     </option>
                   `;
                 }).join('')}
@@ -368,22 +552,22 @@ document.addEventListener("DOMContentLoaded", () => {
                          id="rebuy-product-${product.id}"
                          data-product-id="${product.id}"
                          data-product-price="${price}"
-                         data-variant-id="${variants.length > 0 ? variants[0].id : ''}">
+                         data-variant-id="${variants.length > 0 ? firstAvailableVariant.id : ''}">
                   <label for="rebuy-product-${product.id}" class="rebuy-product-card__checkbox-label"></label>
                 </div>
-                <a href="${productUrl}" class="rebuy-product-card__link">
-                  <div class="rebuy-product-card__image">
-                    <img src="${imageUrl}" alt="${title}" loading="lazy">
+                <div class="rebuy-product-card__image">
+                  <img src="${imageUrl}" alt="${title}" loading="lazy">
+                </div>
+                <div class="rebuy-product-card__info">
+                  <h3 class="rebuy-product-card__title">
+                    <a href="${productUrl}" class="rebuy-product-card__link">${title}</a>
+                  </h3>
+                  <div class="rebuy-product-card__price-container">
+                    ${priceDisplay ? `<span class="rebuy-product-card__price">$${priceDisplay}</span>` : ''}
+                    ${comparePriceDisplay && comparePriceDisplay !== priceDisplay ? `<span class="rebuy-product-card__compare-price">$${comparePriceDisplay}</span>` : ''}
                   </div>
-                  <div class="rebuy-product-card__info">
-                    <h3 class="rebuy-product-card__title">${title}</h3>
-                    <div class="rebuy-product-card__price-container">
-                      ${priceDisplay ? `<span class="rebuy-product-card__price">$${priceDisplay}</span>` : ''}
-                      ${comparePriceDisplay && comparePriceDisplay !== priceDisplay ? `<span class="rebuy-product-card__compare-price">$${comparePriceDisplay}</span>` : ''}
-                    </div>
-                    ${variantSelect}
-                  </div>
-                </a>
+                  ${variantSelect}
+                </div>
               </div>
             </div>
           `;
@@ -509,9 +693,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // Handle variant selection changes
           container.querySelectorAll('.rebuy-product-card__variant-select').forEach((select) => {
-            select.addEventListener('click', function(e) {
+            // Stop propagation for all events to prevent link navigation
+            // But don't prevent default so the select can function normally
+            const stopPropagation = (e) => {
               e.stopPropagation();
-            });
+            };
+
+            select.addEventListener('click', stopPropagation);
+            select.addEventListener('mousedown', stopPropagation);
+            select.addEventListener('pointerdown', stopPropagation);
+            select.addEventListener('focus', stopPropagation);
+            select.addEventListener('focusin', stopPropagation);
 
             select.addEventListener('change', function(e) {
               e.stopPropagation();
@@ -522,13 +714,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
               if (checkbox && selectedOption) {
                 checkbox.setAttribute('data-variant-id', selectedOption.value);
-                const variantPrice = selectedOption.getAttribute('data-price');
-                if (variantPrice) {
-                  checkbox.setAttribute('data-product-price', variantPrice);
-                  // Update displayed price - remove trailing zeros
+                const variantPriceFormatted = selectedOption.getAttribute('data-price');
+                if (variantPriceFormatted) {
+                  // Store the raw price for calculations (remove $ if present)
+                  const rawPrice = variantPriceFormatted.toString().replace(/^\$/, '');
+                  checkbox.setAttribute('data-product-price', rawPrice);
+
+                  // Update displayed price - format to match initial display (with $ prefix, no trailing zeros)
+                  // The variantPriceFormatted from data-price is already formatted with removeTrailingZeros
+                  // Match the format used on initial render: $${priceDisplay}
                   if (priceEl) {
-                    const formattedPrice = variantPrice.toString().replace(/\.00(\s|$|[^0-9])/g, '$1').replace(/(\d)\.(\d)0+(\s|$|[^0-9])/g, '$1.$2$3').replace(/\.00$/g, '').replace(/(\d)\.(\d)0+$/g, '$1.$2');
-                    priceEl.textContent = formattedPrice;
+                    const displayPrice = variantPriceFormatted.toString().startsWith('$')
+                      ? variantPriceFormatted
+                      : `$${variantPriceFormatted}`;
+                    priceEl.textContent = displayPrice;
                   }
                   // Update total if checkbox is checked
                   if (checkbox.checked) {
