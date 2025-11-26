@@ -675,6 +675,22 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           });
 
+          // Handle product card image clicks - toggle checkbox
+          container.querySelectorAll('.rebuy-product-card__image').forEach((imageContainer) => {
+            imageContainer.addEventListener('click', function(e) {
+              e.stopPropagation();
+              const productCard = this.closest('.rebuy-product-card');
+              const checkbox = productCard?.querySelector('.rebuy-product-card__checkbox');
+
+              if (checkbox) {
+                // Toggle checkbox
+                checkbox.checked = !checkbox.checked;
+                // Trigger change event
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+              }
+            });
+          });
+
           // Handle product card link clicks - toggle checkbox instead of navigating
           container.querySelectorAll('.rebuy-product-card__link').forEach((link) => {
             link.addEventListener('click', function(e) {
