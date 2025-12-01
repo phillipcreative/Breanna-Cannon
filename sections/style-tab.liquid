@@ -79,7 +79,32 @@
                   <div class="tabbed-feature__tag-section-label">{{ section.settings.tag_section_label }}</div>
                 {%- endif -%}
 
-                <div class="tabbed-feature__tags {% if metaobject_item.tag_link_three_url == blank %}no-grid{% endif %}">
+                {%- liquid
+                  assign tag_count = 0
+                  if metaobject_item.tag_link_one_url != blank
+                    if metaobject_item.tag_link_one_url.url != blank
+                      assign tag_count = tag_count | plus: 1
+                    elsif metaobject_item.tag_link_one_url.value != blank and metaobject_item.tag_link_one_url.value.url != blank
+                      assign tag_count = tag_count | plus: 1
+                    endif
+                  endif
+                  if metaobject_item.tag_link_two_url != blank
+                    if metaobject_item.tag_link_two_url.url != blank
+                      assign tag_count = tag_count | plus: 1
+                    elsif metaobject_item.tag_link_two_url.value != blank and metaobject_item.tag_link_two_url.value.url != blank
+                      assign tag_count = tag_count | plus: 1
+                    endif
+                  endif
+                  if metaobject_item.tag_link_three_url != blank
+                    if metaobject_item.tag_link_three_url.url != blank
+                      assign tag_count = tag_count | plus: 1
+                    elsif metaobject_item.tag_link_three_url.value != blank and metaobject_item.tag_link_three_url.value.url != blank
+                      assign tag_count = tag_count | plus: 1
+                    endif
+                  endif
+                -%}
+
+                <div class="tabbed-feature__tags {% if metaobject_item.tag_link_three_url == blank %}no-grid{% endif %}{% if tag_count < 4 %} centered-tags{% endif %}">
                   {%- if metaobject_item.tag_link_one_url != blank -%}
                     {%- if metaobject_item.tag_link_one_url.url != blank -%}
                       <div class="tabbed-feature__tag">

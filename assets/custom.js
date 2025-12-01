@@ -436,8 +436,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((data) => {
         const products = data.data || [];
 
-        console.log(products);
-
         if (!products || products.length === 0) {
           container.style.display = 'none';
           return;
@@ -482,10 +480,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // Check availability - Rebuy API might use available, available_for_sale, or inventory_quantity
           const checkVariantAvailability = (variant) => {
-            // Debug: log variant structure for first variant to understand API response
-            if (variants.indexOf(variant) === 0 && variants.length > 0) {
-              console.log('Rebuy variant structure:', variant);
-            }
 
             // Explicit false checks
             if (variant.available === false || variant.available === 0) return false;

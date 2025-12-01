@@ -992,6 +992,8 @@ span.add-to-cart-icon {
   font-weight: 400;
   color: #000;
   text-transform: capitalize;
+  min-width: 75px;
+  display: inline-block;
 }
 
 .quantity-badge {
@@ -1441,6 +1443,15 @@ span.add-to-cart-icon {
   gap: 1rem;
 }
 
+.tabbed-feature__tags.centered-tags {
+  justify-content: center;
+}
+
+.tabbed-feature__tags.centered-tags .tabbed-feature__tag:nth-child(3) {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
 .tabbed-feature__tag {
   border: 1px solid #000;
   border-radius: 25px;
@@ -1685,8 +1696,14 @@ span.add-to-cart-icon {
     margin-bottom: 20px;
   }
 
-  .rebuy-product-card__variant-select {
+  .tabbed-feature__tags.centered-tags {
+    grid-template-columns: repeat(3, max-content);
+    gap: 0.75rem;
+  }
 
+  .tabbed-feature__tags.centered-tags .tabbed-feature__tag:nth-child(3) {
+    grid-column: unset;
+    justify-self: center;
   }
 }
 
@@ -1702,6 +1719,7 @@ span.add-to-cart-icon {
 
   .quantity-label {
     font-size: 13px;
+    min-width: 80px;
   }
 
   .quantity-option__left {
