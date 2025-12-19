@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "current": {
     "color_body_bg": "#ffffff",
     "color_body_text": "#000000",
@@ -150,24 +150,6 @@
       "footer": {
         "type": "footer",
         "blocks": {
-          "newsletter_footer_UAPyjF": {
-            "type": "newsletter_footer",
-            "settings": {
-              "desktop_background_image": "shopify://shop_images/image_136.jpg",
-              "image_opacity": 50,
-              "heading": "Your Home Base For All Things GameDay.",
-              "heading_size": 48,
-              "mobile_heading_size": 32,
-              "heading_weight": "bold",
-              "heading_spacing": 20,
-              "subheading": "This is a sentence that is cute.",
-              "subheading_size": 18,
-              "mobile_subheading_size": 16,
-              "subheading_spacing": 30,
-              "text_color": "#ffffff",
-              "container_width": 100
-            }
-          },
           "31a8531a-e108-4dc9-9be7-af43eddfeb42": {
             "type": "logo_social",
             "settings": {
@@ -203,7 +185,6 @@
           }
         },
         "block_order": [
-          "newsletter_footer_UAPyjF",
           "31a8531a-e108-4dc9-9be7-af43eddfeb42",
           "1494301487049",
           "cc10a6ba-4623-4f77-b530-e8c14b7b4c71",
@@ -247,7 +228,6 @@
         "blocks": {
           "footer-promotions-0": {
             "type": "promotion",
-            "disabled": true,
             "settings": {
               "enable_image": true,
               "image": "shopify://shop_images/26979D1E-555F-4540-94AB-F4714118FFEB.jpg",
@@ -259,7 +239,6 @@
           },
           "footer-promotions-1": {
             "type": "promotion",
-            "disabled": true,
             "settings": {
               "enable_image": true,
               "image": "shopify://shop_images/BC_NFL-243_656546e2-6eba-4b31-8e5e-13cd72fca799.jpg",
@@ -271,7 +250,6 @@
           },
           "footer-promotions-2": {
             "type": "promotion",
-            "disabled": true,
             "settings": {
               "enable_image": true,
               "image": "shopify://shop_images/3_840711ab-ff07-4af1-b100-8b3903556204.png",

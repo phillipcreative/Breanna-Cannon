@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "slideshow": {
@@ -6,17 +15,18 @@
         "image_Yax8V6": {
           "type": "image",
           "settings": {
-            "top_subheading": "COUNTING DOWN TO",
-            "title": "CHRISTMAS",
+            "top_subheading": "",
+            "title": "",
             "title_size": 80,
-            "subheading": "SHOP THE NEW COLLECTION",
-            "link": "shopify:\/\/collections\/holiday",
-            "link_text": "HOLIDAY",
+            "subheading": "",
+            "link": "shopify://collections/holiday",
+            "link_text": "SHOP NOW",
             "link_2": "",
             "link_text_2": "",
             "color_accent": "rgba(0,0,0,0)",
             "text_align": "vertical-bottom horizontal-center",
-            "image": "shopify:\/\/shop_images\/Facetune_16-10-2025-15-31-47.jpg",
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-5.png",
+            "image_mobile": "shopify://shop_images/Mobile_Website_Hero_Cover_Images_2000_x_1000_px_Instagram_Post_45.png",
             "overlay_opacity": 0,
             "focal_point": "bottom center"
           }
@@ -28,13 +38,13 @@
             "title": "It's SPOOKY SZN",
             "title_size": 80,
             "subheading": "",
-            "link": "shopify:\/\/collections\/halloween",
+            "link": "shopify://collections/halloween",
             "link_text": "Shop Now",
             "link_2": "",
             "link_text_2": "",
             "color_accent": "#ff5833",
             "text_align": "vertical-bottom horizontal-center",
-            "image": "shopify:\/\/shop_images\/HALLOWEEN.png",
+            "image": "shopify://shop_images/HALLOWEEN.png",
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
@@ -46,13 +56,13 @@
             "title": "FALL IN LOVE",
             "title_size": 100,
             "subheading": "BRIANNA CANNON FALL '25 HAS ARRIVED",
-            "link": "shopify:\/\/collections\/fall-collection",
+            "link": "shopify://collections/fall-collection",
             "link_text": "SHOP NOW",
             "link_2": "",
             "link_text_2": "",
             "color_accent": "rgba(0,0,0,0)",
             "text_align": "vertical-bottom horizontal-center",
-            "image": "shopify:\/\/shop_images\/R529983_ff822072-ffa8-4a59-bf83-f0681d206f50.jpg",
+            "image": "shopify://shop_images/R529983_ff822072-ffa8-4a59-bf83-f0681d206f50.jpg",
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
@@ -64,13 +74,13 @@
             "title": "",
             "title_size": 80,
             "subheading": "",
-            "link": "shopify:\/\/collections\/warehouse-sale-2025",
+            "link": "shopify://collections/warehouse-sale-2025",
             "link_text": "",
             "link_2": "",
             "link_text_2": "",
             "color_accent": "rgba(0,0,0,0)",
             "text_align": "vertical-center horizontal-center",
-            "image": "shopify:\/\/shop_images\/Website_cover_images_2000_x_1000_px_-28.png",
+            "image": "shopify://shop_images/Website_cover_images_2000_x_1000_px_-28.png",
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
@@ -82,14 +92,14 @@
             "title": "GAMEDAY",
             "title_size": 100,
             "subheading": "NEW TEAMS, NEW ACCESSORIES & NEW GAMEDAY DRESSES",
-            "link": "shopify:\/\/pages\/brianna-cannon-gameday",
+            "link": "shopify://pages/brianna-cannon-gameday",
             "link_text": "SHOP NOW",
             "link_2": "",
             "link_text_2": "",
             "color_accent": "#ffffff",
             "text_align": "vertical-bottom horizontal-center",
-            "image": "shopify:\/\/shop_images\/Newsletter_Banners-4.png",
-            "image_mobile": "shopify:\/\/shop_images\/Newsletter_Banners-4.png",
+            "image": "shopify://shop_images/Newsletter_Banners-4.png",
+            "image_mobile": "shopify://shop_images/Newsletter_Banners-4.png",
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
@@ -124,7 +134,7 @@
           "type": "text",
           "settings": {
             "enlarge_text": true,
-            "text": "<p>A beautifully bold lifestyle brand, designed in Texas, specializing in Fashion, Seasonal and Officially Licensed Women's Apparel, Jewelry, and Hair Accessories.<\/p><p><\/p><p><\/p><p> <\/p>"
+            "text": "<p>A beautifully bold lifestyle brand, designed in Texas, specializing in Fashion, Seasonal and Officially Licensed Women's Apparel, Jewelry, and Hair Accessories.</p><p></p><p></p><p> </p>"
           }
         }
       },
@@ -152,7 +162,7 @@
         "collection_JmwrjK": {
           "type": "collection",
           "settings": {
-            "collection": "halloween",
+            "collection": "sweatshirts-sets",
             "title": "",
             "focal_point": "center center"
           }
@@ -209,7 +219,7 @@
       "type": "apps",
       "blocks": {
         "instafeed_app_block_JUekTP": {
-          "type": "shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
           "settings": {
             "title": "",
             "title_color": "",
@@ -238,8 +248,8 @@
     "featured_collection_JEakX6": {
       "type": "featured-collection",
       "settings": {
-        "title": "SPOOKY SZN",
-        "home_featured_products": "halloween",
+        "title": "CHRISTMAS IS COMING...",
+        "home_featured_products": "holiday",
         "per_row": 4,
         "rows": 2,
         "mobile_scrollable": true,
@@ -250,13 +260,13 @@
     "text_and_image_kY7hRt": {
       "type": "text-and-image",
       "settings": {
-        "image": "shopify:\/\/shop_images\/Untitled_design-101.png",
+        "image": "shopify://shop_images/Untitled_design-101.png",
         "image_width": 390,
         "subtitle": "OFFICIALLY LICENSED",
         "title": "NFL HAIR ACCESSORIES",
-        "text": "<p>FOR ALL 32 TEAMS.<\/p>",
+        "text": "<p>FOR ALL 32 TEAMS.</p>",
         "button_label": "SHOP NFL",
-        "button_link": "shopify:\/\/pages\/nfl",
+        "button_link": "shopify://pages/nfl",
         "button_style": "primary",
         "align_text": "left",
         "layout": "left",
@@ -266,13 +276,13 @@
     "text_and_image_8XADLp": {
       "type": "text-and-image",
       "settings": {
-        "image": "shopify:\/\/shop_images\/new_gameday-3.png",
+        "image": "shopify://shop_images/new_gameday-3.png",
         "image_width": 390,
         "subtitle": "THE LEADER IN",
         "title": "OFFICIALLY LICENSED GAMEDAY FASHION",
-        "text": "<p>100'S OF PRODUCTS.<br\/>DOZENS OF TEAMS.<\/p>",
+        "text": "<p>100'S OF PRODUCTS.<br/>DOZENS OF TEAMS.</p>",
         "button_label": "SHOP NCAA",
-        "button_link": "shopify:\/\/pages\/gameday",
+        "button_link": "shopify://pages/gameday",
         "button_style": "primary",
         "align_text": "right",
         "layout": "right",
@@ -283,8 +293,8 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.featured_collection.name",
       "settings": {
-        "title": "STEALS & DEALS",
-        "home_featured_products": "warehouse-sale-2025",
+        "title": "SWEATSHIRTS & SETS",
+        "home_featured_products": "sweatshirts-sets",
         "per_row": 4,
         "rows": 2,
         "mobile_scrollable": true,
@@ -295,8 +305,8 @@
     "featured_collection_fQ7XjU": {
       "type": "featured-collection",
       "settings": {
-        "title": "MOM LIFE",
-        "home_featured_products": "mom-life",
+        "title": "COZY SEASON",
+        "home_featured_products": "cozy-season",
         "per_row": 4,
         "rows": 2,
         "mobile_scrollable": true,
@@ -320,7 +330,7 @@
       "type": "apps",
       "blocks": {
         "53f68919-ba0d-46d5-bc4a-f5885b2d08b5": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/featured_carousel\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "maxwidth": 1080
           }
@@ -344,10 +354,10 @@
             "heading": "DARLING DRESSES",
             "textarea": "",
             "cta_text1": "Shop Now",
-            "cta_link1": "shopify:\/\/collections\/dresses",
+            "cta_link1": "shopify://collections/dresses",
             "cta_text2": "",
             "cta_link2": "",
-            "image": "shopify:\/\/shop_images\/IMG_3797.jpg",
+            "image": "shopify://shop_images/R522385.jpg",
             "video_url": "",
             "width": "50",
             "height": 800,
@@ -366,10 +376,10 @@
             "heading": "SHOP GAMEDAY",
             "textarea": "",
             "cta_text1": "GO TEAM",
-            "cta_link1": "shopify:\/\/pages\/brianna-cannon-gameday",
+            "cta_link1": "shopify://pages/brianna-cannon-gameday",
             "cta_text2": "",
             "cta_link2": "",
-            "image": "shopify:\/\/shop_images\/Gameday_Stories_-4.png",
+            "image": "shopify://shop_images/Gameday_Stories_-4.png",
             "video_url": "",
             "width": "50",
             "height": 800,
@@ -396,13 +406,13 @@
     "1660957127983f73b8": {
       "type": "text-and-image",
       "settings": {
-        "image": "shopify:\/\/shop_images\/Edited_Summer_Photoshoot_Images-2.png",
+        "image": "shopify://shop_images/Edited_Summer_Photoshoot_Images-2.png",
         "image_width": 440,
         "subtitle": "sophisticated & timeless",
         "title": "BC Dresses",
         "text": "",
         "button_label": "SHOP NOW",
-        "button_link": "shopify:\/\/collections\/dresses",
+        "button_link": "shopify://collections/dresses",
         "button_style": "primary",
         "align_text": "left",
         "layout": "right",
@@ -412,13 +422,13 @@
     "text_and_image_LTnzdx": {
       "type": "text-and-image",
       "settings": {
-        "image": "shopify:\/\/shop_images\/Edited_FALL_Photoshoot_Images-2.png",
+        "image": "shopify://shop_images/Edited_FALL_Photoshoot_Images-2.png",
         "image_width": 440,
         "subtitle": "",
         "title": "COLORS OF BC",
-        "text": "<p>SHOP BY COLOR!<\/p>",
+        "text": "<p>SHOP BY COLOR!</p>",
         "button_label": "SHOP NOW",
-        "button_link": "shopify:\/\/pages\/colors-of-bc",
+        "button_link": "shopify://pages/colors-of-bc",
         "button_style": "primary",
         "align_text": "left",
         "layout": "left",
@@ -514,10 +524,10 @@
             "heading": "MOMMY & ME HEADBANDS",
             "textarea": "Our child size headbands are thoughtfully made shorter and thinner \nthan adult size headbands to comfortably fit your darling daughter.",
             "cta_text1": "Shop Mommy + ME",
-            "cta_link1": "shopify:\/\/collections\/mommy-me",
+            "cta_link1": "shopify://collections/mommy-me",
             "cta_text2": "",
             "cta_link2": "",
-            "image": "shopify:\/\/shop_images\/D86429F2-B7AA-4206-987E-68C60347203C.jpg",
+            "image": "shopify://shop_images/D86429F2-B7AA-4206-987E-68C60347203C.jpg",
             "video_url": "",
             "width": "100",
             "height": 720,
