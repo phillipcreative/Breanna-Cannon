@@ -25,6 +25,12 @@
             "inventory_transfers_enable": true
           }
         },
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
+          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+          "settings": {
+            "points_calculator_alignment": "left"
+          }
+        },
         "sales_point": {
           "type": "sales_point",
           "settings": {
@@ -88,12 +94,6 @@
             "heading": "Sezzle Widget",
             "font_size": 14,
             "font_family": "inherit"
-          }
-        },
-        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
-          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
-          "settings": {
-            "points_calculator_alignment": "left"
           }
         },
         "d360d95e-91d1-4993-a2b3-225541fea599": {
@@ -165,6 +165,7 @@
       "block_order": [
         "top_text_yLFd3P",
         "inventory_status",
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "sales_point",
         "separator",
         "variant_picker",
@@ -172,7 +173,6 @@
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt",
         "buy_buttons",
         "sezzle_widget_widget_block_7fbzT7",
-        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "d360d95e-91d1-4993-a2b3-225541fea599",
         "ugc_tab_P33w67",
         "tab_aPEtUN",
