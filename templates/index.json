@@ -31,24 +31,6 @@
             "focal_point": "bottom center"
           }
         },
-        "image_6wCceA": {
-          "type": "image",
-          "settings": {
-            "top_subheading": "Let's Go Ghouls",
-            "title": "It's SPOOKY SZN",
-            "title_size": 80,
-            "subheading": "",
-            "link": "shopify://collections/halloween",
-            "link_text": "Shop Now",
-            "link_2": "",
-            "link_text_2": "",
-            "color_accent": "#ff5833",
-            "text_align": "vertical-bottom horizontal-center",
-            "image": "shopify://shop_images/HALLOWEEN.png",
-            "overlay_opacity": 0,
-            "focal_point": "center center"
-          }
-        },
         "image_RMhGnU": {
           "type": "image",
           "settings": {
@@ -63,24 +45,6 @@
             "color_accent": "rgba(0,0,0,0)",
             "text_align": "vertical-bottom horizontal-center",
             "image": "shopify://shop_images/R529983_ff822072-ffa8-4a59-bf83-f0681d206f50.jpg",
-            "overlay_opacity": 0,
-            "focal_point": "center center"
-          }
-        },
-        "image_QEdRBM": {
-          "type": "image",
-          "settings": {
-            "top_subheading": "",
-            "title": "",
-            "title_size": 80,
-            "subheading": "",
-            "link": "shopify://collections/warehouse-sale-2025",
-            "link_text": "",
-            "link_2": "",
-            "link_text_2": "",
-            "color_accent": "rgba(0,0,0,0)",
-            "text_align": "vertical-center horizontal-center",
-            "image": "shopify://shop_images/Website_cover_images_2000_x_1000_px_-28.png",
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
@@ -103,14 +67,31 @@
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
+        },
+        "image_QEdRBM": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 80,
+            "subheading": "",
+            "link": "shopify://collections/warehouse-sale-2025",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-center horizontal-center",
+            "image": "shopify://shop_images/Website_cover_images_2000_x_1000_px_-28.png",
+            "overlay_opacity": 0,
+            "focal_point": "center center"
+          }
         }
       },
       "block_order": [
         "image_Yax8V6",
-        "image_6wCceA",
         "image_RMhGnU",
-        "image_QEdRBM",
-        "fc0f772a-f60f-460c-929a-87742b812863"
+        "fc0f772a-f60f-460c-929a-87742b812863",
+        "image_QEdRBM"
       ],
       "settings": {
         "section_height": "650px",
