@@ -45,29 +45,8 @@
             "color_swatches": false
           }
         },
-        "custom_quantity_selector_zFpjgG": {
-          "type": "custom-quantity-selector",
-          "settings": {
-            "rebuy_data_source_id": "253255",
-            "quantity_header": "<p>✨The more you shop, the more you save✨</p><p>Add two or more pieces from this collection to unlock your discount!</p>",
-            "quantity_header_align": "center",
-            "label": "Addon",
-            "show_strike_total": true,
-            "quantity_range": 3,
-            "quantity_selector_badges": [
-              "test",
-              "free-shipping"
-            ],
-            "discount_tier_badge_color": "#fbd8e6",
-            "discount_tier_badge_text_color": "#000000",
-            "discount_tier_one_percentage": "12",
-            "discount_tier_two_percentage": "20",
-            "discount_tier_three_percentage": "30"
-          }
-        },
         "linked_products_MqndzF": {
           "type": "linked-products",
-          "disabled": true,
           "settings": {
             "option_name": "COLORS",
             "swatches_size": "small",
@@ -76,16 +55,45 @@
             "margin_bottom": 20
           }
         },
+        "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt": {
+          "type": "shopify://apps/pre-order-restock-notifier/blocks/back_in_stock_notifier/1fadf77e-ebd8-4e68-90cb-f24d97d07bde",
+          "settings": {
+            "notify_btn_text": "NOTIFY ME WHEN IN STOCK",
+            "notify_btn_backColor": "#000000",
+            "notify_btn_textColor": "#FFFFFF",
+            "notify_btn_borderColor": "#000000",
+            "notify_btn_border_radius": 2,
+            "notify_btn_border_size": 1,
+            "notify_btn_position_desktop": "other",
+            "notify_btn_position_mobile": "l",
+            "hide_buy_now_btn": false,
+            "notify_btn_fullwidth": false
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": false,
-            "surface_pickup_enable": false,
-            "discount_code_copy_paste_enable": true,
+            "surface_pickup_enable": true,
+            "discount_code_copy_paste_enable": false,
             "discount_active_code": "SANTA",
             "discount_active_code_text": "Save an additional 10% on orders $60+",
-            "orders_ship_copy_enable": true,
+            "orders_ship_copy_enable": false,
             "orders_ship_copy": "Orders ship in 15 hours"
+          }
+        },
+        "sezzle_widget_widget_block_7fbzT7": {
+          "type": "shopify://apps/sezzle-widget/blocks/widget-block/f3a53793-e118-4764-a86b-a79bfedb0d5f",
+          "settings": {
+            "heading": "Sezzle Widget",
+            "font_size": 14,
+            "font_family": "inherit"
+          }
+        },
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
+          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+          "settings": {
+            "points_calculator_alignment": "left"
           }
         },
         "d360d95e-91d1-4993-a2b3-225541fea599": {
@@ -160,9 +168,11 @@
         "sales_point",
         "separator",
         "variant_picker",
-        "custom_quantity_selector_zFpjgG",
         "linked_products_MqndzF",
+        "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt",
         "buy_buttons",
+        "sezzle_widget_widget_block_7fbzT7",
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "d360d95e-91d1-4993-a2b3-225541fea599",
         "ugc_tab_P33w67",
         "tab_aPEtUN",
