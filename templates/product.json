@@ -60,14 +60,14 @@
           "settings": {
             "notify_btn_text": "NOTIFY ME WHEN IN STOCK",
             "notify_btn_backColor": "#000000",
-            "notify_btn_textColor": "#FFFFFF",
+            "notify_btn_textColor": "#ffffff",
             "notify_btn_borderColor": "#000000",
             "notify_btn_border_radius": 2,
             "notify_btn_border_size": 1,
             "notify_btn_position_desktop": "other",
             "notify_btn_position_mobile": "l",
-            "hide_buy_now_btn": false,
-            "notify_btn_fullwidth": false
+            "hide_buy_now_btn": true,
+            "notify_btn_fullwidth": true
           }
         },
         "buy_buttons": {
@@ -78,8 +78,8 @@
             "discount_code_copy_paste_enable": false,
             "discount_active_code": "SANTA",
             "discount_active_code_text": "Save an additional 10% on orders $60+",
-            "orders_ship_copy_enable": false,
-            "orders_ship_copy": "Orders ship in 15 hours"
+            "orders_ship_copy_enable": true,
+            "orders_ship_copy": "ORDERS TYPICALLY SHIP SAME OR NEXT BUSINESS DAY (EXCLUDING PRE-ORDERS)"
           }
         },
         "sezzle_widget_widget_block_7fbzT7": {
