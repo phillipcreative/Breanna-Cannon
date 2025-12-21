@@ -38,6 +38,10 @@
             "text": "Free shipping on orders $65+"
           }
         },
+        "price_f8ekmQ": {
+          "type": "price",
+          "settings": {}
+        },
         "separator": {
           "type": "separator",
           "settings": {}
@@ -189,6 +193,7 @@
         "inventory_status",
         "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "sales_point",
+        "price_f8ekmQ",
         "separator",
         "variant_picker",
         "quantity_selector_BVwW6i",
