@@ -59,8 +59,8 @@
         "custom_quantity_selector_Ka8T7F": {
           "type": "custom-quantity-selector",
           "settings": {
-            "rebuy_data_source_id": "",
-            "quantity_header": "",
+            "rebuy_data_source_id": "272942",
+            "quantity_header": "<p>The more you shop the more you save!</p>",
             "quantity_header_align": "left",
             "label": "",
             "show_strike_total": true,
