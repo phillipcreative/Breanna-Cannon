@@ -60,23 +60,6 @@
           "disabled": true,
           "settings": {}
         },
-        "custom_quantity_selector_Ka8T7F": {
-          "type": "custom-quantity-selector",
-          "settings": {
-            "rebuy_data_source_id": "272942",
-            "quantity_header": "<p>The more you shop the more you save!</p>",
-            "quantity_header_align": "left",
-            "label": "",
-            "show_strike_total": true,
-            "quantity_range": 3,
-            "quantity_selector_badges": [],
-            "discount_tier_badge_color": "#fbd8e6",
-            "discount_tier_badge_text_color": "#000000",
-            "discount_tier_one_percentage": "10",
-            "discount_tier_two_percentage": "15",
-            "discount_tier_three_percentage": "30"
-          }
-        },
         "linked_products_MqndzF": {
           "type": "linked-products",
           "settings": {
@@ -197,7 +180,6 @@
         "separator",
         "variant_picker",
         "quantity_selector_BVwW6i",
-        "custom_quantity_selector_Ka8T7F",
         "linked_products_MqndzF",
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt",
         "buy_buttons",
