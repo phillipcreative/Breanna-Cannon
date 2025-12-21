@@ -68,9 +68,9 @@
             "quantity_selector_badges": [],
             "discount_tier_badge_color": "#fbd8e6",
             "discount_tier_badge_text_color": "#000000",
-            "discount_tier_one_percentage": "",
-            "discount_tier_two_percentage": "",
-            "discount_tier_three_percentage": ""
+            "discount_tier_one_percentage": "10",
+            "discount_tier_two_percentage": "15",
+            "discount_tier_three_percentage": "30"
           }
         },
         "linked_products_MqndzF": {
