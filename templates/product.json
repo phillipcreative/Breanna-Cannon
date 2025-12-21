@@ -51,6 +51,10 @@
             "color_swatches": false
           }
         },
+        "quantity_selector_BVwW6i": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
         "linked_products_MqndzF": {
           "type": "linked-products",
           "settings": {
@@ -169,6 +173,7 @@
         "sales_point",
         "separator",
         "variant_picker",
+        "quantity_selector_BVwW6i",
         "linked_products_MqndzF",
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt",
         "buy_buttons",
