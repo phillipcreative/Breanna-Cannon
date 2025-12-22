@@ -1,0 +1,319 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "top_text_yLFd3P": {
+          "type": "top-text",
+          "settings": {
+            "text": "{{ product.metafields.custom.top_text_snippet_copy.value }}"
+          }
+        },
+        "inventory_status": {
+          "type": "inventory_status",
+          "settings": {
+            "inventory_threshold": 4,
+            "inventory_transfers_enable": true
+          }
+        },
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
+          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+          "settings": {
+            "points_calculator_alignment": "left"
+          }
+        },
+        "sales_point": {
+          "type": "sales_point",
+          "settings": {
+            "icon": "custom-truck",
+            "text": "Free shipping on orders $65+"
+          }
+        },
+        "price_f8ekmQ": {
+          "type": "price",
+          "settings": {}
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "size_chart": "",
+            "variant_labels": false,
+            "picker_type": "button",
+            "color_swatches": false
+          }
+        },
+        "quantity_selector_BVwW6i": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "linked_products_MqndzF": {
+          "type": "linked-products",
+          "settings": {
+            "option_name": "COLORS",
+            "swatches_size": "small",
+            "swatches_aspect_ratio": "square",
+            "linked_products": "{{ product.metafields.custom.linked_products.value }}",
+            "margin_bottom": 20
+          }
+        },
+        "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt": {
+          "type": "shopify://apps/pre-order-restock-notifier/blocks/back_in_stock_notifier/1fadf77e-ebd8-4e68-90cb-f24d97d07bde",
+          "settings": {
+            "notify_btn_text": "NOTIFY ME WHEN IN STOCK",
+            "notify_btn_backColor": "#000000",
+            "notify_btn_textColor": "#ffffff",
+            "notify_btn_borderColor": "#000000",
+            "notify_btn_border_radius": 2,
+            "notify_btn_border_size": 1,
+            "notify_btn_position_desktop": "other",
+            "notify_btn_position_mobile": "l",
+            "hide_buy_now_btn": true,
+            "notify_btn_fullwidth": true
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "surface_pickup_enable": true,
+            "discount_code_copy_paste_enable": false,
+            "discount_active_code": "SANTA",
+            "discount_active_code_text": "Save an additional 10% on orders $60+",
+            "orders_ship_copy_enable": true,
+            "orders_ship_copy": "ORDERS TYPICALLY SHIP SAME OR NEXT BUSINESS DAY (EXCLUDING PRE-ORDERS)"
+          }
+        },
+        "sezzle_widget_widget_block_7fbzT7": {
+          "type": "shopify://apps/sezzle-widget/blocks/widget-block/f3a53793-e118-4764-a86b-a79bfedb0d5f",
+          "settings": {
+            "heading": "Sezzle Widget",
+            "font_size": 14,
+            "font_family": "inherit"
+          }
+        },
+        "d360d95e-91d1-4993-a2b3-225541fea599": {
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "112438",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        },
+        "ugc_tab_P33w67": {
+          "type": "ugc_tab",
+          "settings": {
+            "enable_ugc_tab_label": "Customer reviews",
+            "ugc_videos": [
+              "ugc-video-phzu1fnh",
+              "ugc-video-jnx1a6up",
+              "ugc-video-dc2rwxkm",
+              "phills-awesome-video"
+            ]
+          }
+        },
+        "tab_aPEtUN": {
+          "type": "tab",
+          "settings": {
+            "title": "Description",
+            "content": "{{ product.description }}",
+            "page": ""
+          }
+        },
+        "tab": {
+          "type": "tab",
+          "settings": {
+            "title": "Shipping information",
+            "content": "<p>We ship most orders within 1-3 business days after the order is placed unless the item is a Pre-Order, Custom Product, or Made-to-Order. </p><p>We ship from Plano, TX - transit times will vary depending on distance from our shipping location.</p><p>Orders $65+ qualify for free USPS First Class Shipping.<br/><br/>Upgraded shipping options are available at checkout for faster transit times (FedEx Ground, 2nd Day, or Overnight). </p><p></p><p>**PLEASE NOTE, expediting shipping does not expedite processing or production time.</p>",
+            "page": ""
+          }
+        },
+        "54907725-29c1-4a43-84d2-db6a65572797": {
+          "type": "tab",
+          "settings": {
+            "title": "Return Policy",
+            "content": "<p><strong>Dresses/Apparel: </strong></p><p>We accept returns or exchanges for approved dresses or apparel items within 14 days of when your item delivered. You may request a return or exchange by emailing customerservice@briannacannon.com, and a return label will be issued to you once the return or exchange is approved. The item must be in new and unworn condition with all tags attached. If the item shows signs of wear (excessive wrinkles, stains, snags, perfume smell, etc.) then the item will not be eligible for return or exchange.</p><p><strong>Accessories/Jewelry/Headbands: </strong></p><p>We do not accept returns for accessories. We may approve exchanges if the items are still in stock, however the customer will be responsible for shipping charges. Please contact customerservice@briannacannon.com if you have concerns about your order or wish to request an exchange and we will do our best to find a reasonable resolution. </p>",
+            "page": ""
+          }
+        },
+        "contact": {
+          "type": "contact",
+          "settings": {
+            "title": "Ask a question",
+            "phone": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {}
+        },
+        "345e430c-e2f8-4108-bd02-5a843f169b8e": {
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "44468",
+            "product_id_enabled": true,
+            "collection_id_enabled": true
+          }
+        }
+      },
+      "block_order": [
+        "top_text_yLFd3P",
+        "inventory_status",
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
+        "sales_point",
+        "price_f8ekmQ",
+        "separator",
+        "variant_picker",
+        "quantity_selector_BVwW6i",
+        "linked_products_MqndzF",
+        "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt",
+        "buy_buttons",
+        "sezzle_widget_widget_block_7fbzT7",
+        "d360d95e-91d1-4993-a2b3-225541fea599",
+        "ugc_tab_P33w67",
+        "tab_aPEtUN",
+        "tab",
+        "54907725-29c1-4a43-84d2-db6a65572797",
+        "contact",
+        "share",
+        "345e430c-e2f8-4108-bd02-5a843f169b8e"
+      ],
+      "settings": {
+        "show_product_ratings": true,
+        "sku_enable": false,
+        "enable_gallery_grid_view": true,
+        "image_position": "left",
+        "image_size": "medium",
+        "product_zoom_enable": true,
+        "thumbnail_position": "beside",
+        "thumbnail_arrows": false,
+        "mobile_layout": "partial",
+        "enable_video_looping": true,
+        "product_video_style": "muted"
+      }
+    },
+    "style_tab_T37dCw": {
+      "type": "style-tab",
+      "blocks": {
+        "tab_item_P7pNFC": {
+          "type": "tab_item",
+          "settings": {
+            "metaobject": "phill-tests"
+          }
+        },
+        "tab_item_DQwXWy": {
+          "type": "tab_item",
+          "settings": {
+            "metaobject": "occasions"
+          }
+        },
+        "tab_item_QCHbjw": {
+          "type": "tab_item",
+          "settings": {
+            "metaobject": "from-our-founder"
+          }
+        }
+      },
+      "block_order": [
+        "tab_item_P7pNFC",
+        "tab_item_DQwXWy",
+        "tab_item_QCHbjw"
+      ],
+      "name": "Tabbed Feature",
+      "settings": {
+        "tabs_label": "",
+        "tabs_aria_label": "Feature tabs",
+        "tag_section_label": "shop similar styles"
+      }
+    },
+    "recommendation_slider_MkgayM": {
+      "type": "recommendation-slider",
+      "name": "Recommendation Carousel",
+      "settings": {
+        "show_product_recommendations": true,
+        "product_recommendations_heading": "Also Buy With",
+        "product_source": "collection",
+        "featured_collection": "boots",
+        "related_count": 8,
+        "section_url": "",
+        "section_button_label": ""
+      }
+    },
+    "recommendation_slider_xrGJLY": {
+      "type": "recommendation-slider",
+      "name": "Recommendation Carousel",
+      "settings": {
+        "show_product_recommendations": true,
+        "product_recommendations_heading": "Trending Products",
+        "product_source": "recommended",
+        "featured_collection": "",
+        "related_count": 8,
+        "section_url": "shopify://collections/category",
+        "section_button_label": "Shop All"
+      }
+    },
+    "17629708078581ed17": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_4MKgUt": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_4MKgUt"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
+    "newsletter_footer_bGBKPK": {
+      "type": "newsletter-footer",
+      "disabled": true,
+      "name": "Newsletter Footer",
+      "settings": {
+        "desktop_background_image": "shopify://shop_images/image_136.jpg",
+        "image_opacity": 70,
+        "heading": "Your Home Base For All Things GameDay.",
+        "heading_size": 48,
+        "mobile_heading_size": 32,
+        "heading_weight": "normal",
+        "heading_spacing": 20,
+        "subheading": "This is a sentence that is cute.",
+        "subheading_size": 18,
+        "mobile_subheading_size": 16,
+        "subheading_spacing": 30,
+        "text_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "style_tab_T37dCw",
+    "recommendation_slider_MkgayM",
+    "recommendation_slider_xrGJLY",
+    "17629708078581ed17",
+    "newsletter_footer_bGBKPK"
+  ]
+}
