@@ -24,6 +24,14 @@
   endcase
 
   assign product_img_structure = product.featured_media | img_url: '1x1' | replace: '_1x1.', '_{width}x.'
+
+  assign has_custom_quantity_selector = false
+  for block in blocks
+    if block.type == 'custom-quantity-selector'
+      assign has_custom_quantity_selector = true
+      break
+    endif
+  endfor
 -%}
 
 <div id="ProductSection-{{ section_id }}-{{ product.id }}"
@@ -622,6 +630,11 @@
 </div>
   </div>
 </div>
+
+{%- if has_custom_quantity_selector -%}
+  <script src="{{ 'custom-quantity-selector.js' | asset_url }}" defer="defer"></script>
+  <script>console.log('using custom quantity selector');</script>
+{%- endif -%}
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {

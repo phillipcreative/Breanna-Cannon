@@ -141,92 +141,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize add to cart with rebuy handler
   handleAddToCartWithRebuy();
 
-  // Update Add to Cart Total based on quantity selector and selected rebuy products
-  const updateAddToCartTotal = () => {
+  // Hide price elements if custom quantity selector is not present
+  const initPriceDisplay = () => {
     const quantitySelector = document.querySelector('.custom-quantity-selector');
-    if (!quantitySelector) return;
+    const addToCartButton = document.querySelector('.btn.add-to-cart');
 
-    const selectedQuantityInput = quantitySelector.querySelector('input[name="quantity_tier"]:checked');
-    const atcTotal = document.querySelector('.atc-total');
+    // If custom quantity selector doesn't exist, hide price elements to show only "Add To Cart" text
+    if (!quantitySelector && addToCartButton) {
+      const discountedPriceLabel = addToCartButton.querySelector('.discounted-price-label');
+      const atcTotal = addToCartButton.querySelector('.atc-total');
 
-    if (!selectedQuantityInput || !atcTotal) return;
-
-    // Access data attributes for main product
-    const discountedPriceCents = selectedQuantityInput.getAttribute('data-discounted-price-cents');
-    const totalPriceCents = selectedQuantityInput.getAttribute('data-total-price-cents');
-
-    if (!discountedPriceCents) return;
-
-    let discountedPrice = parseInt(discountedPriceCents) || 0;
-    let totalPrice = parseInt(totalPriceCents) || 0;
-
-    // Add selected rebuy product prices
-    const rebuyContainers = document.querySelectorAll('.rebuy-recommendations-container');
-    rebuyContainers.forEach((container) => {
-      const checkedBoxes = container.querySelectorAll('.rebuy-product-card__checkbox:checked');
-      checkedBoxes.forEach((checkbox) => {
-        const productPrice = checkbox.getAttribute('data-product-price');
-        if (productPrice) {
-          // Parse price - Rebuy might return formatted price like "$45.00" or just "45.00"
-          const priceStr = productPrice.toString().replace(/[^0-9.]/g, '');
-          const priceValue = parseFloat(priceStr) || 0;
-          // Convert to cents if it's a dollar amount (less than 1000)
-          const priceInCents = priceValue < 1000 ? Math.round(priceValue * 100) : Math.round(priceValue);
-          discountedPrice += priceInCents;
-          totalPrice += priceInCents;
-        }
-      });
-    });
-
-    // Format price function - keep trailing zeros for add to cart button
-    const formatPrice = (cents) => {
-      if (window.theme && window.theme.Currency && window.theme.Currency.formatMoney) {
-        const moneyFormat = window.theme.settings?.moneyFormat || '${{amount}}';
-        return window.theme.Currency.formatMoney(cents, moneyFormat);
+      if (discountedPriceLabel) {
+        discountedPriceLabel.style.display = 'none';
       }
-      // Fallback formatting with trailing zeros
-      const price = cents / 100;
-      return '$' + price.toFixed(2);
-    };
-
-    const currentPriceEl = atcTotal.querySelector('.current-price');
-    const discountedPriceEl = atcTotal.querySelector('.discounted-price');
-
-    // Show original price with strikethrough if there's a discount
-    if (currentPriceEl) {
-      const baseDiscountedPrice = parseInt(discountedPriceCents) || 0;
-      const baseTotalPrice = parseInt(totalPriceCents) || 0;
-      if (baseTotalPrice > baseDiscountedPrice && baseDiscountedPrice > 0) {
-        currentPriceEl.textContent = formatPrice(totalPrice);
-        currentPriceEl.style.display = '';
-        currentPriceEl.style.textDecoration = 'line-through';
-      } else {
-        currentPriceEl.style.display = 'none';
+      if (atcTotal) {
+        atcTotal.style.display = 'none';
       }
-    }
-
-    // Always show discounted price
-    if (discountedPriceEl) {
-      discountedPriceEl.textContent = formatPrice(discountedPrice);
-      discountedPriceEl.style.display = '';
     }
   };
 
-  // Initialize after a short delay to ensure DOM and theme are ready
-  const initAddToCartTotal = () => {
-    updateAddToCartTotal();
-
-    // Also listen for quantity selector changes
-    const quantitySelector = document.querySelector('.custom-quantity-selector');
-    if (quantitySelector) {
-      quantitySelector.querySelectorAll('input[name="quantity_tier"]').forEach((radio) => {
-        radio.addEventListener('change', updateAddToCartTotal);
-      });
-    }
-  };
-
-  // Wait a bit for theme to load, then initialize
-  setTimeout(initAddToCartTotal, 100);
+  // Wait a bit for DOM to be ready
+  setTimeout(initPriceDisplay, 100);
 
   const teamsMegaMenu = document.querySelector('.megamenu--teams');
 
@@ -656,8 +591,10 @@ document.addEventListener("DOMContentLoaded", () => {
           container.querySelectorAll('.rebuy-product-card__checkbox').forEach((checkbox) => {
             checkbox.addEventListener('change', function(e) {
               e.stopPropagation();
-              // Update total when checkbox changes
-              updateAddToCartTotal();
+              // Update total when checkbox changes (if custom quantity selector is present)
+              if (window.updateAddToCartTotal) {
+                window.updateAddToCartTotal();
+              }
             });
 
             // Prevent label click from navigating
@@ -739,9 +676,9 @@ document.addEventListener("DOMContentLoaded", () => {
                       : `$${variantPriceFormatted}`;
                     priceEl.textContent = displayPrice;
                   }
-                  // Update total if checkbox is checked
-                  if (checkbox.checked) {
-                    updateAddToCartTotal();
+                  // Update total if checkbox is checked (if custom quantity selector is present)
+                  if (checkbox.checked && window.updateAddToCartTotal) {
+                    window.updateAddToCartTotal();
                   }
                 }
               }
