@@ -126,6 +126,10 @@
             ]
           }
         },
+        "separator_KjyPmQ": {
+          "type": "separator",
+          "settings": {}
+        },
         "tab_aPEtUN": {
           "type": "tab",
           "settings": {
@@ -186,6 +190,7 @@
         "sezzle_widget_widget_block_7fbzT7",
         "d360d95e-91d1-4993-a2b3-225541fea599",
         "ugc_tab_P33w67",
+        "separator_KjyPmQ",
         "tab_aPEtUN",
         "tab",
         "54907725-29c1-4a43-84d2-db6a65572797",
