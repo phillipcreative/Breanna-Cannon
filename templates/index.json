@@ -24,7 +24,7 @@
             "link_2": "shopify://collections/winter-2025",
             "link_text_2": "",
             "color_accent": "rgba(0,0,0,0)",
-            "text_align": "vertical-center horizontal-center",
+            "text_align": "vertical-bottom horizontal-center",
             "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-7_copy.jpg",
             "overlay_opacity": 0,
             "focal_point": "center center"
