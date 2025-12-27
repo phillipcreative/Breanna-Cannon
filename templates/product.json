@@ -25,12 +25,6 @@
             "inventory_transfers_enable": true
           }
         },
-        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
-          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
-          "settings": {
-            "points_calculator_alignment": "left"
-          }
-        },
         "sales_point": {
           "type": "sales_point",
           "settings": {
@@ -41,6 +35,12 @@
         "price_f8ekmQ": {
           "type": "price",
           "settings": {}
+        },
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
+          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+          "settings": {
+            "points_calculator_alignment": "left"
+          }
         },
         "separator": {
           "type": "separator",
@@ -178,9 +178,9 @@
       "block_order": [
         "top_text_yLFd3P",
         "inventory_status",
-        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "sales_point",
         "price_f8ekmQ",
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "separator",
         "variant_picker",
         "quantity_selector_BVwW6i",
