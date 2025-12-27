@@ -248,8 +248,8 @@
     "featured_collection_JEakX6": {
       "type": "featured-collection",
       "settings": {
-        "title": "CHRISTMAS IS COMING...",
-        "home_featured_products": "holiday",
+        "title": "winter wonderland",
+        "home_featured_products": "winter-2025",
         "per_row": 4,
         "rows": 2,
         "mobile_scrollable": true,
