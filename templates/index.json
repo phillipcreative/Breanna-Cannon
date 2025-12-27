@@ -151,10 +151,10 @@
     "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
       "type": "featured-collections",
       "blocks": {
-        "collection_EaW6ad": {
+        "collection_hJf48i": {
           "type": "collection",
           "settings": {
-            "collection": "holiday",
+            "collection": "winter-2025",
             "title": "",
             "focal_point": "center center"
           }
@@ -163,6 +163,14 @@
           "type": "collection",
           "settings": {
             "collection": "sweatshirts-sets",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_EaW6ad": {
+          "type": "collection",
+          "settings": {
+            "collection": "holiday",
             "title": "",
             "focal_point": "center center"
           }
@@ -201,8 +209,9 @@
         }
       },
       "block_order": [
-        "collection_EaW6ad",
+        "collection_hJf48i",
         "collection_JmwrjK",
+        "collection_EaW6ad",
         "collection_h7889P",
         "collection_EcYTKY",
         "collection_36XNyj",
