@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-product",
@@ -207,40 +207,6 @@
         "product_video_style": "muted"
       }
     },
-    "style_tab_T37dCw": {
-      "type": "style-tab",
-      "blocks": {
-        "tab_item_P7pNFC": {
-          "type": "tab_item",
-          "settings": {
-            "metaobject": "phill-tests"
-          }
-        },
-        "tab_item_DQwXWy": {
-          "type": "tab_item",
-          "settings": {
-            "metaobject": "occasions"
-          }
-        },
-        "tab_item_QCHbjw": {
-          "type": "tab_item",
-          "settings": {
-            "metaobject": "from-our-founder"
-          }
-        }
-      },
-      "block_order": [
-        "tab_item_P7pNFC",
-        "tab_item_DQwXWy",
-        "tab_item_QCHbjw"
-      ],
-      "name": "Tabbed Feature",
-      "settings": {
-        "tabs_label": "",
-        "tabs_aria_label": "Feature tabs",
-        "tag_section_label": "shop similar styles"
-      }
-    },
     "recommendation_slider_MkgayM": {
       "type": "recommendation-slider",
       "name": "Recommendation Carousel",
@@ -310,7 +276,6 @@
   },
   "order": [
     "main",
-    "style_tab_T37dCw",
     "recommendation_slider_MkgayM",
     "recommendation_slider_xrGJLY",
     "17629708078581ed17",
