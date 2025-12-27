@@ -67,7 +67,7 @@
         "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
           "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
           "settings": {
-            "points_calculator_alignment": "center"
+            "points_calculator_alignment": "left"
           }
         },
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt": {
@@ -198,6 +198,27 @@
         "product_video_style": "muted"
       }
     },
+    "17629708078581ed17": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_4MKgUt": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "hide_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_4MKgUt"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
     "1766801579925ce76e": {
       "type": "apps",
       "blocks": {
@@ -230,27 +251,6 @@
         "related_count": 8,
         "section_url": "shopify://collections/category",
         "section_button_label": "Shop All"
-      }
-    },
-    "17629708078581ed17": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_4MKgUt": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "real_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "hide_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_4MKgUt"
-      ],
-      "settings": {
-        "full_width": false,
-        "space_around": true
       }
     },
     "judgeme_carousel_section_iJzRx9": {
