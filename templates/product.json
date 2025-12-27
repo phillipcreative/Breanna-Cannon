@@ -80,7 +80,7 @@
             "notify_btn_border_radius": 2,
             "notify_btn_border_size": 1,
             "notify_btn_position_desktop": "other",
-            "notify_btn_position_mobile": "l",
+            "notify_btn_position_mobile": "other",
             "hide_buy_now_btn": true,
             "notify_btn_fullwidth": true
           }
