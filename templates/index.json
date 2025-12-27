@@ -12,6 +12,24 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "image_ABxj3g": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "WINTER 2026",
+            "title": "Baby It's \nCold Outside",
+            "title_size": 80,
+            "subheading": "",
+            "link": "",
+            "link_text": "SHOP WINTER",
+            "link_2": "shopify://collections/winter-2025",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-center horizontal-center",
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-7_copy.jpg",
+            "overlay_opacity": 0,
+            "focal_point": "center center"
+          }
+        },
         "image_Yax8V6": {
           "type": "image",
           "settings": {
@@ -88,6 +106,7 @@
         }
       },
       "block_order": [
+        "image_ABxj3g",
         "image_Yax8V6",
         "image_RMhGnU",
         "fc0f772a-f60f-460c-929a-87742b812863",
