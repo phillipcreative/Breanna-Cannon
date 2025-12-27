@@ -91,12 +91,6 @@
             "orders_ship_copy": "ORDERS TYPICALLY SHIP SAME OR NEXT BUSINESS DAY (EXCLUDING PRE-ORDERS)"
           }
         },
-        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
-          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
-          "settings": {
-            "points_calculator_alignment": "left"
-          }
-        },
         "d360d95e-91d1-4993-a2b3-225541fea599": {
           "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
           "settings": {
@@ -149,6 +143,12 @@
             "phone": false
           }
         },
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
+          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+          "settings": {
+            "points_calculator_alignment": "center"
+          }
+        },
         "share": {
           "type": "share",
           "settings": {}
@@ -174,13 +174,13 @@
         "linked_products_MqndzF",
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt",
         "buy_buttons",
-        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "d360d95e-91d1-4993-a2b3-225541fea599",
         "ugc_tab_P33w67",
         "tab_aPEtUN",
         "tab",
         "54907725-29c1-4a43-84d2-db6a65572797",
         "contact",
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "share",
         "345e430c-e2f8-4108-bd02-5a843f169b8e"
       ],
