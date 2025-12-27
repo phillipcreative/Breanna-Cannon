@@ -212,19 +212,6 @@
         "product_video_style": "muted"
       }
     },
-    "recommendation_slider_MkgayM": {
-      "type": "recommendation-slider",
-      "name": "Recommendation Carousel",
-      "settings": {
-        "show_product_recommendations": true,
-        "product_recommendations_heading": "Also Buy With",
-        "product_source": "collection",
-        "featured_collection": "boots",
-        "related_count": 8,
-        "section_url": "",
-        "section_button_label": ""
-      }
-    },
     "recommendation_slider_xrGJLY": {
       "type": "recommendation-slider",
       "name": "Recommendation Carousel",
@@ -247,7 +234,7 @@
             "review_data": "real_data",
             "max_width": 1200,
             "show_shop_reviews": false,
-            "empty_state": "empty_widget"
+            "empty_state": "hide_widget"
           }
         }
       },
@@ -257,6 +244,13 @@
       "settings": {
         "full_width": false,
         "space_around": true
+      }
+    },
+    "judgeme_carousel_section_iJzRx9": {
+      "type": "judgeme_carousel_section",
+      "name": "Featured Review Carousel",
+      "settings": {
+        "maxwidth": 1080
       }
     },
     "newsletter_footer_bGBKPK": {
@@ -281,9 +275,9 @@
   },
   "order": [
     "main",
-    "recommendation_slider_MkgayM",
     "recommendation_slider_xrGJLY",
     "17629708078581ed17",
+    "judgeme_carousel_section_iJzRx9",
     "newsletter_footer_bGBKPK"
   ]
 }
