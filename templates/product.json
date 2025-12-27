@@ -18,6 +18,10 @@
             "text": "{{ product.metafields.custom.top_text_snippet_copy.value }}"
           }
         },
+        "price_f8ekmQ": {
+          "type": "price",
+          "settings": {}
+        },
         "inventory_status": {
           "type": "inventory_status",
           "settings": {
@@ -30,16 +34,6 @@
           "settings": {
             "icon": "custom-truck",
             "text": "Free shipping on orders $65+"
-          }
-        },
-        "price_f8ekmQ": {
-          "type": "price",
-          "settings": {}
-        },
-        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
-          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
-          "settings": {
-            "points_calculator_alignment": "left"
           }
         },
         "separator": {
@@ -70,6 +64,12 @@
             "margin_bottom": 20
           }
         },
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
+          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+          "settings": {
+            "points_calculator_alignment": "center"
+          }
+        },
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt": {
           "type": "shopify://apps/pre-order-restock-notifier/blocks/back_in_stock_notifier/1fadf77e-ebd8-4e68-90cb-f24d97d07bde",
           "settings": {
@@ -95,14 +95,6 @@
             "discount_active_code_text": "Save an additional 10% on orders $60+",
             "orders_ship_copy_enable": true,
             "orders_ship_copy": "ORDERS TYPICALLY SHIP SAME OR NEXT BUSINESS DAY (EXCLUDING PRE-ORDERS)"
-          }
-        },
-        "sezzle_widget_widget_block_7fbzT7": {
-          "type": "shopify://apps/sezzle-widget/blocks/widget-block/f3a53793-e118-4764-a86b-a79bfedb0d5f",
-          "settings": {
-            "heading": "Sezzle Widget",
-            "font_size": 14,
-            "font_family": "inherit"
           }
         },
         "d360d95e-91d1-4993-a2b3-225541fea599": {
@@ -177,17 +169,16 @@
       },
       "block_order": [
         "top_text_yLFd3P",
+        "price_f8ekmQ",
         "inventory_status",
         "sales_point",
-        "price_f8ekmQ",
-        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "separator",
         "variant_picker",
         "quantity_selector_BVwW6i",
         "linked_products_MqndzF",
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt",
         "buy_buttons",
-        "sezzle_widget_widget_block_7fbzT7",
         "d360d95e-91d1-4993-a2b3-225541fea599",
         "ugc_tab_P33w67",
         "separator_KjyPmQ",
@@ -223,6 +214,27 @@
         "related_count": 8,
         "section_url": "shopify://collections/category",
         "section_button_label": "Shop All"
+      }
+    },
+    "17668004967d6c322f": {
+      "type": "apps",
+      "blocks": {
+        "rebuy_personalization_engine_rebuy_widget_KAafq9": {
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "45955",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        }
+      },
+      "block_order": [
+        "rebuy_personalization_engine_rebuy_widget_KAafq9"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
       }
     },
     "17629708078581ed17": {
@@ -276,6 +288,7 @@
   "order": [
     "main",
     "recommendation_slider_xrGJLY",
+    "17668004967d6c322f",
     "17629708078581ed17",
     "judgeme_carousel_section_iJzRx9",
     "newsletter_footer_bGBKPK"
