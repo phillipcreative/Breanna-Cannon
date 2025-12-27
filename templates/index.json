@@ -191,14 +191,6 @@
             "focal_point": "center center"
           }
         },
-        "collection_36XNyj": {
-          "type": "collection",
-          "settings": {
-            "collection": "bc-mens",
-            "title": "BC MENS",
-            "focal_point": "center center"
-          }
-        },
         "30fc79a2-3f30-42de-bddb-6bfc9c26f92a": {
           "type": "collection",
           "settings": {
@@ -214,7 +206,6 @@
         "collection_EaW6ad",
         "collection_h7889P",
         "collection_EcYTKY",
-        "collection_36XNyj",
         "30fc79a2-3f30-42de-bddb-6bfc9c26f92a"
       ],
       "settings": {
