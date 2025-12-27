@@ -64,12 +64,6 @@
             "margin_bottom": 20
           }
         },
-        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
-          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
-          "settings": {
-            "points_calculator_alignment": "left"
-          }
-        },
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt": {
           "type": "shopify://apps/pre-order-restock-notifier/blocks/back_in_stock_notifier/1fadf77e-ebd8-4e68-90cb-f24d97d07bde",
           "settings": {
@@ -95,6 +89,12 @@
             "discount_active_code_text": "Save an additional 10% on orders $60+",
             "orders_ship_copy_enable": true,
             "orders_ship_copy": "ORDERS TYPICALLY SHIP SAME OR NEXT BUSINESS DAY (EXCLUDING PRE-ORDERS)"
+          }
+        },
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU": {
+          "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-block/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+          "settings": {
+            "points_calculator_alignment": "left"
           }
         },
         "d360d95e-91d1-4993-a2b3-225541fea599": {
@@ -172,9 +172,9 @@
         "variant_picker",
         "quantity_selector_BVwW6i",
         "linked_products_MqndzF",
-        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt",
         "buy_buttons",
+        "joy_loyalty_program_joy_points_calculator_block_8yDDUU",
         "d360d95e-91d1-4993-a2b3-225541fea599",
         "ugc_tab_P33w67",
         "tab_aPEtUN",
