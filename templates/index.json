@@ -93,13 +93,14 @@
             "title": "",
             "title_size": 80,
             "subheading": "",
-            "link": "shopify://collections/warehouse-sale-2025",
+            "link": "shopify://collections/new-years-sale",
             "link_text": "",
-            "link_2": "",
+            "link_2": "shopify://collections/new-years-sale",
             "link_text_2": "",
-            "color_accent": "rgba(0,0,0,0)",
+            "color_accent": "#000000",
             "text_align": "vertical-center horizontal-center",
-            "image": "shopify://shop_images/Website_cover_images_2000_x_1000_px_-28.png",
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-2_175b9914-d0b6-4c1c-80c4-78c124cdb486.png",
+            "image_mobile": "shopify://shop_images/Website_COLLECTION_covers_-_Mobile-4.png",
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
