@@ -3414,12 +3414,37 @@ lazySizesConfig.expFactor = 4;
           return;
         }
 
+        var scroller = this.args.childNavScroller;
+        if (!scroller) {
+          return;
+        }
+
         if (this.args.childVertical) {
-          var elTop = el.offsetTop;
-          this.args.childNavScroller.scrollTop = elTop - 100;
+          var elRect = el.getBoundingClientRect();
+          var scrollerRect = scroller.getBoundingClientRect();
+          var elTop = elRect.top - scrollerRect.top + scroller.scrollTop;
+          var scrollerHeight = scroller.clientHeight;
+          var elHeight = el.offsetHeight;
+          var scrollTop = elTop - (scrollerHeight / 2) + (elHeight / 2);
+          var maxScroll = scroller.scrollHeight - scrollerHeight;
+          scrollTop = Math.max(0, Math.min(scrollTop, maxScroll));
+          scroller.scrollTo({
+            top: scrollTop,
+            behavior: 'smooth'
+          });
         } else {
-          var elLeft = el.offsetLeft;
-          this.args.childNavScroller.scrollLeft = elLeft - 100;
+          var elRect = el.getBoundingClientRect();
+          var scrollerRect = scroller.getBoundingClientRect();
+          var elLeft = elRect.left - scrollerRect.left + scroller.scrollLeft;
+          var scrollerWidth = scroller.clientWidth;
+          var elWidth = el.offsetWidth;
+          var scrollLeft = elLeft - (scrollerWidth / 2) + (elWidth / 2);
+          var maxScroll = scroller.scrollWidth - scrollerWidth;
+          scrollLeft = Math.max(0, Math.min(scrollLeft, maxScroll));
+          scroller.scrollTo({
+            left: scrollLeft,
+            behavior: 'smooth'
+          });
         }
       },
 
