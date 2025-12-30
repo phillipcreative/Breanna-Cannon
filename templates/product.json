@@ -194,6 +194,7 @@
         "thumbnail_position": "beside",
         "thumbnail_arrows": false,
         "mobile_layout": "partial",
+        "mobile_pagination_style": "thumbnails",
         "enable_video_looping": true,
         "product_video_style": "muted"
       }
