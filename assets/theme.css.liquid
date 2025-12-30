@@ -10533,9 +10533,9 @@ html[dir=rtl] .product-single__meta .rte{
 
 @media only screen and (max-width:768px){
 
-.product__main-photos{
-    margin-bottom:30px;
-    margin-left:-17px;
+  .product__main-photos{
+    margin-bottom:0px;
+    margin-left:0px;
     margin-right:-17px
 }
 
@@ -10572,6 +10572,7 @@ html[dir=rtl] .product-single__meta .rte{
 
 .product__thumbs{
   position:relative;
+  padding: 4px;
 }
 
 @media only screen and (max-width:768px){
@@ -10582,7 +10583,7 @@ html[dir=rtl] .product-single__meta .rte{
 }
 
 .product__thumbs--below{
-  margin-top:8.5px
+  margin-top:0px;
 }
 
 @media only screen and (min-width:769px){
@@ -10640,24 +10641,43 @@ html[dir=rtl] .product-single__meta .rte{
 }
 
 .product__thumb-item{
-  border:2px solid transparent
+  border:1px solid transparent;
+  width:70px;
+  height:100px;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.3s ease-in-out;
+}
+
+.product__thumb-item .image-wrap{
+  height:100% !important;
+  padding-bottom:0 !important;
+}
+
+.product__thumb-item .product__thumb{
+  width:100%;
+  height:100%;
+  border:1.5px solid transparent;
+  transition:all 0.3s ease-in-out;
+}
+
+.product__thumb-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .product__thumb-item a.is-active,.product__thumb-item a:focus{
     outline:none
   }
 
+.product__thumb-item a.is-active,.product__thumb-item a:focus{
+      border:1.5px solid {{ settings.color_body_text | default:"#1c1d1d" }};
+      border:1.5px solid var(--colorTextBody);
+    }
+
 .product__thumb-item a.is-active:before,.product__thumb-item a:focus:before{
-      content:"";
-      display:block;
-      position:absolute;
-      top:0;
-      left:0;
-      right:0;
-      bottom:0;
-      box-shadow:inset 0 0 0 2px {{ settings.color_body_text | default:"#1c1d1d" }};
-      box-shadow:inset 0 0 0 2px var(--colorTextBody);
-      z-index:1;
+      content:none;
     }
 
 .product__thumb-item a:active:before{
@@ -10682,9 +10702,8 @@ html[dir=rtl] .product-single__meta .rte{
 .product__thumbs--below .product__thumb-item{
     display:inline-block;
     vertical-align:middle;
-    margin-right:8.5px;
-    max-width:80px
-}
+    margin-right:5px;
+  }
 
 @media only screen and (min-width:769px){
 
