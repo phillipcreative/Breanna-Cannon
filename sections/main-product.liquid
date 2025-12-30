@@ -20,7 +20,8 @@
   mobile_layout: section.settings.mobile_layout,
   video_looping: section.settings.enable_video_looping,
   video_style: section.settings.product_video_style,
-  enable_gallery_grid_view: section.settings.enable_gallery_grid_view
+  enable_gallery_grid_view: section.settings.enable_gallery_grid_view,
+  mobile_pagination_style: section.settings.mobile_pagination_style
 -%}
 
 {% schema %}
@@ -130,6 +131,23 @@
           "label": "t:sections.main-product.settings.mobile_layout.options.full.label"
         }
       ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_pagination_style",
+      "label": "Mobile Product Swiper Navigation",
+      "default": "dots",
+      "options": [
+        {
+          "value": "dots",
+          "label": "Navigation Dots"
+        },
+        {
+          "value": "thumbnails",
+          "label": "Photo Thumbnails"
+        }
+      ],
+      "info": "Choose between dots or photo thumbnails for mobile product image navigation"
     },
     {
       "type": "checkbox",

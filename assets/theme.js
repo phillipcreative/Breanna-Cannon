@@ -6614,6 +6614,7 @@ lazySizesConfig.expFactor = 4;
         closeMedia: '.product-single__close-media',
         photoThumbs: '[data-product-thumb]',
         thumbSlider: '[data-product-thumbs]',
+        mobilePaginationStyle: '[data-mobile-pagination-style]',
         thumbScroller: '.product__thumbs--scroller',
         mainSlider: '[data-product-photos]',
         imageContainer: '[data-product-images]',
@@ -6656,6 +6657,9 @@ lazySizesConfig.expFactor = 4;
         this.settings.imageSetName = dataSetEl.dataset.setName;
       }
 
+      // Cache mobile pagination style from container
+      this.settings.mobilePaginationStyle = this.container.getAttribute('data-mobile-pagination-style') || 'dots';
+
       this.init();
     }
 
@@ -6678,11 +6682,13 @@ lazySizesConfig.expFactor = 4;
       },
 
       cacheElements: function() {
+        var mobileThumbs = this.container.querySelector('.product__thumbs.small--show');
+
         this.cache = {
           form: this.container.querySelector(this.selectors.form),
           mainSlider: this.container.querySelector(this.selectors.mainSlider),
-          thumbSlider: this.container.querySelector(this.selectors.thumbSlider),
-          thumbScroller: this.container.querySelector(this.selectors.thumbScroller),
+          thumbSlider: mobileThumbs || this.container.querySelector(this.selectors.thumbSlider),
+          thumbScroller: mobileThumbs ? mobileThumbs.querySelector('.product__thumbs--scroller') : this.container.querySelector(this.selectors.thumbScroller),
           productImageMain: this.container.querySelector(this.selectors.productImageMain),
 
           // Price-related
@@ -7300,6 +7306,7 @@ lazySizesConfig.expFactor = 4;
       },
 
       initProductSlider: function(variant) {
+        var mobileSliderSettings = this.container.dataset.mobilePaginationStyle;
         // Stop if only a single image, but add active class to first slide
         if (this.cache.mainSlider.querySelectorAll(selectors.slide).length <= 1) {
           var slide = this.cache.mainSlider.querySelector(selectors.slide);
@@ -7322,6 +7329,12 @@ lazySizesConfig.expFactor = 4;
           this.settings.currentSlideIndex = this._slideIndex(activeSlide);
         }
 
+        if (mobileSliderSettings === 'dots') {
+          var usePageDots = true;
+        } else {
+          var usePageDots = false;
+        }
+
         var mainSliderArgs = {
           adaptiveHeight: true,
           avoidReflow: true,
@@ -7329,7 +7342,7 @@ lazySizesConfig.expFactor = 4;
           childNav: this.cache.thumbSlider,
           childNavScroller: this.cache.thumbScroller,
           childVertical: this.cache.thumbSlider && this.cache.thumbSlider.dataset.position === 'beside',
-          pageDots: true, // mobile only with CSS
+          pageDots: usePageDots,
           wrapAround: true,
           callbacks: {
             onInit: this.onSliderInit.bind(this),
