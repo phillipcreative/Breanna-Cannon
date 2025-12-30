@@ -10510,6 +10510,12 @@ html[dir=rtl] .product-single__meta .rte{
     margin:0 auto;
     max-width:100%;
     width:100%;
+    opacity:0;
+    transition:opacity 0.4s ease;
+  }
+
+.product__photos img.lazyloaded{
+    opacity:1;
   }
 
 .product__main-photos{
@@ -10566,6 +10572,13 @@ html[dir=rtl] .product-single__meta .rte{
 
 .product__thumbs{
   position:relative;
+}
+
+@media only screen and (max-width:768px){
+  .product__thumbs.small--show .product__thumb img.lazyload,
+  .product__thumbs.small--show .product__thumb img.lazyloaded {
+    opacity: 1 !important;
+  }
 }
 
 .product__thumbs--below{

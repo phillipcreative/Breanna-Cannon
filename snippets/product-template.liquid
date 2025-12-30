@@ -39,6 +39,7 @@
   data-section-id="{{ section_id }}"
   data-product-id="{{ product.id }}"
   data-section-type="product"
+  data-mobile-pagination-style="{{ mobile_pagination_style }}"
   data-product-handle="{{ product.handle }}"
   data-product-title="{{ product.title | escape }}"
   data-product-url="{{ product.url | within: collection }}"
@@ -70,8 +71,72 @@
               thumbnail_position: thumbnail_position,
               video_looping: video_looping,
               video_style: video_style,
-              enable_gallery_grid_view: enable_gallery_grid_view
+              enable_gallery_grid_view: enable_gallery_grid_view,
+              mobile_pagination_style: mobile_pagination_style
             -%}
+          </div>
+        {%- endif -%}
+
+        {%- if mobile_pagination_style == 'thumbnails' and product.media.size > 1 -%}
+          <div
+            data-product-thumbs
+            class="product__thumbs product__thumbs--below small--show medium-up--hide grid__item"
+            data-position="below">
+            <div class="product__thumbs--scroller">
+              {%- for media in product.media -%}
+                {%- liquid
+                  assign image_set = false
+                  assign image_set_group = ''
+                  if media.alt contains '#'
+                    assign image_set_full = media.alt | split: '#' | last
+                    if image_set_full contains '_'
+                      assign image_set = true
+                      assign image_set_group = image_set_full | split: '_' | first
+                    endif
+                  endif
+                -%}
+                <div class="product__thumb-item"
+                  data-index="{{ forloop.index0 }}"
+                  {% if image_set %}
+                    data-set-name="{{image_set_group}}"
+                    data-group="{{image_set_full}}"
+                  {% endif %}>
+                  <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: media.preview_image.aspect_ratio }}%;">
+                    <a
+                      href="{{ media.preview_image | img_url: product_zoom_size }}"
+                      data-product-thumb
+                      class="product__thumb"
+                      data-index="{{ forloop.index0 }}"
+                      data-id="{{ media.id }}">
+                      {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+                        <span class="product__thumb-icon">
+                          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-play" viewBox="18.24 17.35 24.52 28.3"><path fill="#323232" d="M22.1 19.151v25.5l20.4-13.489-20.4-12.011z"/></svg>
+                        </span>
+                      {%- endif -%}
+                      {%- if media.media_type == 'model' -%}
+                        <span class="product__thumb-icon">
+                          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-3d" viewBox="18.24 17.35 24.52 28.3"><path fill="#3A3A3A" d="M30.5 17.35l-12.26 7.07v14.16l12.26 7.07 12.26-7.08V24.42L30.5 17.35zM20.24 37.42V25.58l10.26-5.93 10.13 5.85-10.13 5.88v12l-10.26-5.96z"/></svg>
+                        </span>
+                      {%- endif -%}
+
+                      {%- assign img_url = media.preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                      <img class="animation-delay-{{ forloop.index | times: 3 }} lazyload"
+                          data-src="{{ img_url }}"
+                          data-widths="[120, 360, 540, 720]"
+                          data-aspectratio="{{ media.preview_image.aspect_ratio }}"
+                          data-sizes="auto"
+                          alt="{{ media.alt | escape | split: '#' | first }}">
+
+                      <noscript>
+                        <img class="lazyloaded"
+                          src="{{ media | img_url: '400x' }}"
+                          alt="{{ media.alt | escape }}">
+                      </noscript>
+                    </a>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
           </div>
         {%- endif -%}
 
@@ -622,14 +687,18 @@
               thumbnail_arrows: thumbnail_arrows,
               thumbnail_position: thumbnail_position,
               video_looping: video_looping,
-              video_style: video_style
+              video_style: video_style,
+              mobile_pagination_style: mobile_pagination_style
             -%}
           </div>
         {%- endunless -%}
       </div>
+
 </div>
   </div>
 </div>
+
+
 
 {%- if has_custom_quantity_selector -%}
   <script src="{{ 'custom-quantity-selector.js' | asset_url }}" defer="defer"></script>
