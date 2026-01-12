@@ -12,6 +12,24 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "image_KrwJwk": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "you're gonna",
+            "title": "love this",
+            "title_size": 100,
+            "subheading": "",
+            "link": "shopify://collections/valentines-2023",
+            "link_text": "Shop Valentine's",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-bottom horizontal-center",
+            "image": "shopify://shop_images/Facetune_09-01-2026-11-21-20.jpg",
+            "overlay_opacity": 0,
+            "focal_point": "top center"
+          }
+        },
         "image_ABxj3g": {
           "type": "image",
           "settings": {
@@ -70,6 +88,7 @@
         }
       },
       "block_order": [
+        "image_KrwJwk",
         "image_ABxj3g",
         "image_QEdRBM",
         "fc0f772a-f60f-460c-929a-87742b812863"
@@ -113,6 +132,14 @@
     "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
       "type": "featured-collections",
       "blocks": {
+        "collection_jpdRmN": {
+          "type": "collection",
+          "settings": {
+            "collection": "valentines-2023",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
         "collection_hJf48i": {
           "type": "collection",
           "settings": {
@@ -145,14 +172,6 @@
             "focal_point": "center center"
           }
         },
-        "collection_EcYTKY": {
-          "type": "collection",
-          "settings": {
-            "collection": "bc-mens",
-            "title": "",
-            "focal_point": "center center"
-          }
-        },
         "30fc79a2-3f30-42de-bddb-6bfc9c26f92a": {
           "type": "collection",
           "settings": {
@@ -163,11 +182,11 @@
         }
       },
       "block_order": [
+        "collection_jpdRmN",
         "collection_hJf48i",
         "collection_JmwrjK",
         "collection_EaW6ad",
         "collection_h7889P",
-        "collection_EcYTKY",
         "30fc79a2-3f30-42de-bddb-6bfc9c26f92a"
       ],
       "settings": {
