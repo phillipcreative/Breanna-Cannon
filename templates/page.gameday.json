@@ -276,7 +276,7 @@
           "type": "collection",
           "settings": {
             "collection": "penn-state",
-            "title": "",
+            "title": "Penn State University",
             "focal_point": "center center"
           }
         },
@@ -380,7 +380,7 @@
           "type": "collection",
           "settings": {
             "collection": "virginia-tech",
-            "title": "",
+            "title": "Virginia Tech University",
             "focal_point": "center center"
           }
         },
