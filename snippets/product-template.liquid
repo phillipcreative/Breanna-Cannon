@@ -245,7 +245,7 @@
                               <span class="quantity-label">{{ i }} {{ quantity_label }}{% if i > 1 %}s{% endif %}</span>
 
                               <div class="quantity-badges">
-                                <span class="quantity-option__discount" style="color: {{ tier_badge_text_color }}; background-color: {{ tier_badge_color }};">Save {{ discount_percent }}%</span>
+                                <span class="quantity-option__discount {% if discount_percent == 0 %}hide{% endif %}" style="color: {{ tier_badge_text_color }}; background-color: {{ tier_badge_color }};">Save {{ discount_percent }}%</span>
                                 {% for badge in quantity_selector_badges %}
                                   {% assign badge_attached_quantity = badge.assign_quantity_selector %}
                                   {% assign badge_color = badge.badge_color %}
@@ -260,7 +260,7 @@
                             </div>
 
                             <div class="quantity-option__right">
-                              {% if block.settings.show_strike_total %}
+                              {% if block.settings.show_strike_total and discount_percent != 0 %}
                                 <span class="quantity-option__compare">{{ total_price | money_without_trailing_zeros }}</span>
                               {% endif %}
                               <span class="quantity-option__price">{{ discounted_total | money_without_trailing_zeros }}</span>
