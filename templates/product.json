@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-product",
@@ -53,7 +53,7 @@
           "type": "custom-quantity-selector",
           "settings": {
             "rebuy_data_source_id": "277097",
-            "quantity_header": "<p><strong>Buy More Save More - Buy 2 or more products from the store, and save up to 10% Off your whole order!</strong></p>",
+            "quantity_header": "<p><strong>Pick Your Deal:</strong> <br/> Buy 2 or more products from any collection and save up to 10% off your entire order! </p><p></p><p></p><p><strong>Pick Your Deal:</strong></p>",
             "quantity_header_align": "left",
             "label": "Product",
             "show_strike_total": true,
