@@ -34,8 +34,8 @@
       </span>
       <span class="discounted-price-label">•</span>
       <span class="atc-total">
-        <span class="discounted-price">{{ discounted_total | money_with_currency }}</span>
-        <span class="current-price">{{ current_variant.price | money_with_currency }}</span>
+        <span class="discounted-price">{{ discounted_total | money_without_currency }}</span>
+        <span class="current-price">${{ current_variant.price | money_without_currency }}</span>
       </span>
     </button>
 

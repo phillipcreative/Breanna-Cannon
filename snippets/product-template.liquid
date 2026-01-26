@@ -229,9 +229,8 @@
                           {% assign discount_percent = tier_three_discount %}
                         {% endif %}
 
-                        {% assign total_price = base_price | times: i %}
-                        {% assign discount_amount = total_price | times: discount_percent | divided_by: 100 %}
-                        {% assign discounted_total = total_price | minus: discount_amount %}
+                        {% assign discount_amount = product.price | times: discount_percent | divided_by: 100 %}
+                        {% assign discounted_total = product.price | minus: discount_amount %}
                         {% assign quantity_label = block.settings.label %}
 
                         {% if quantity_label == blank or quantity_label == '' %}
@@ -239,7 +238,7 @@
                         {% endif %}
 
                         <label class="quantity-option">
-                          <input type="radio" name="quantity_tier" value="{{ i }}" data-discount-percent="{{ discount_percent }}" data-total-price-cents="{{ total_price }}" data-discounted-price-cents="{{ discounted_total }}" {% if forloop.first == false and i == 2 %}checked{% endif %}>
+                          <input type="radio" name="quantity_tier" value="{{ i }}" data-discount-percent="{{ discount_percent }}" data-total-price-cents="{{ product.price }}" data-discounted-price-cents="{{ discounted_total }}" {% if forloop.first %}checked{% endif %}>
                           <div class="quantity-option__content">
                             <div class="quantity-option__left">
                               <span class="quantity-label">{{ i }} {{ quantity_label }}{% if i > 1 %}s{% endif %}</span>
@@ -553,7 +552,8 @@
                             form_id: form_id,
                             product: product,
                             show_dynamic_checkout: block.settings.show_dynamic_checkout,
-                            current_variant: current_variant
+                            current_variant: current_variant,
+                            show_custom_quantity_addon: block.settings.show_custom_quantity_addon
                           -%}
                         </div>
                       {%- endunless -%}
@@ -702,7 +702,6 @@
 
 {%- if has_custom_quantity_selector -%}
   <script src="{{ 'custom-quantity-selector.js' | asset_url }}" defer="defer"></script>
-  <script>console.log('using custom quantity selector');</script>
 {%- endif -%}
 
 <script>

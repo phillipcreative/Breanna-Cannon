@@ -642,9 +642,9 @@ Product Page Updates - Phillip Creative
   gap: 4px;
 }
 
-.atc-total .current-price {
+/* .atc-total .current-price {
   text-decoration: line-through;
-}
+} */
 
 /* Custom Quantity Selector */
 .product-block--quantity-header {
@@ -1018,9 +1018,13 @@ span.add-to-cart-icon {
 }
 
 .quantity-option__right {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 8px;
+}
+
+.quantity-option:has(input[type="radio"]:checked) .quantity-option__right {
+  display: flex;
 }
 
 .quantity-option__compare {
