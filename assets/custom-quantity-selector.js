@@ -66,17 +66,18 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Format price function without trailing zeros for quantity options
+    // Only removes .00, keeps .50, .60, etc. Always shows 2 decimal places unless .00
     const formatPriceWithoutTrailingZeros = (cents) => {
-      if (window.theme && window.theme.Currency && window.theme.Currency.formatMoney) {
-        const moneyFormat = window.theme.settings?.moneyFormat || '${{amount}}';
-        const formatted = window.theme.Currency.formatMoney(cents, moneyFormat);
-        // Remove trailing zeros
-        return formatted.replace(/\.00(\s|$|[^0-9])/g, '$1').replace(/(\d)\.(\d)0+(\s|$|[^0-9])/g, '$1.$2$3').replace(/\.00$/g, '').replace(/(\d)\.(\d)0+$/g, '$1.$2');
-      }
-      // Fallback formatting without trailing zeros
       const price = cents / 100;
       const formatted = price.toFixed(2);
-      return '$' + formatted.replace(/\.00$/, '').replace(/(\d)\.(\d)0+$/, '$1.$2');
+
+      // Only remove .00, keep other trailing zeros like .50
+      if (formatted.endsWith('.00')) {
+        return '$' + formatted.replace(/\.00$/, '');
+      }
+
+      // Ensure we always have 2 decimal places (e.g., 180.5 becomes 180.50)
+      return '$' + formatted;
     };
 
     const currentPriceEl = atcTotal.querySelector('.current-price');
