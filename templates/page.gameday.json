@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -76,6 +85,14 @@
           "settings": {
             "collection": "university-of-colorado-1",
             "title": "UNIVERSITY OF COLORADO",
+            "focal_point": "center center"
+          }
+        },
+        "collection_imGTck": {
+          "type": "collection",
+          "settings": {
+            "collection": "duke-university",
+            "title": "",
             "focal_point": "center center"
           }
         },
@@ -259,7 +276,7 @@
           "type": "collection",
           "settings": {
             "collection": "penn-state",
-            "title": "",
+            "title": "Penn State University",
             "focal_point": "center center"
           }
         },
@@ -359,6 +376,14 @@
             "focal_point": "center center"
           }
         },
+        "collection_MagMEq": {
+          "type": "collection",
+          "settings": {
+            "collection": "virginia-tech",
+            "title": "Virginia Tech University",
+            "focal_point": "center center"
+          }
+        },
         "collection_8ArPAa": {
           "type": "collection",
           "settings": {
@@ -386,6 +411,7 @@
         "collection_6Q8bwY",
         "33d0ce3f-5fac-4540-96a3-271f3d241307",
         "collection_8VkXWc",
+        "collection_imGTck",
         "collection_Vmk9Wd",
         "771fe1d7-4f4f-4a59-a2d4-644060fcb50e",
         "b3ee2f2d-7e97-4d32-8731-af78d8bbd8a8",
@@ -421,6 +447,7 @@
         "collection_Pzm6rK",
         "collection_CLfyP7",
         "collection_rM48Da",
+        "collection_MagMEq",
         "collection_8ArPAa",
         "collection_MiCGhB"
       ],
