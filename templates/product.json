@@ -49,11 +49,22 @@
             "color_swatches": false
           }
         },
+        "linked_products_MqndzF": {
+          "type": "linked-products",
+          "settings": {
+            "option_name": "COLORS",
+            "swatches_size": "small",
+            "swatches_aspect_ratio": "square",
+            "linked_products": "{{ product.metafields.custom.linked_products.value }}",
+            "margin_bottom": 20
+          }
+        },
         "custom_quantity_selector_jpHrgJ": {
           "type": "custom-quantity-selector",
           "settings": {
             "rebuy_data_source_id": "277097",
-            "quantity_header": "<p><strong>Pick Your Deal:</strong> <br/> Buy 2 or more products from any collection and save up to 10% off your entire order! </p><p></p><p></p><p><strong>Pick Your Deal:</strong></p>",
+            "rebuy_section_title": "<p><strong>You May Also Like:</strong></p>",
+            "quantity_header": "<p><strong>Pick Your Deal:</strong> <br/> Buy 2 or more products from any collection and save up to 10% off your entire order! <br/><br/><strong>Pick Your Deal:</strong></p>",
             "quantity_header_align": "left",
             "label": "Product",
             "show_strike_total": true,
@@ -70,16 +81,6 @@
           "type": "quantity_selector",
           "disabled": true,
           "settings": {}
-        },
-        "linked_products_MqndzF": {
-          "type": "linked-products",
-          "settings": {
-            "option_name": "COLORS",
-            "swatches_size": "small",
-            "swatches_aspect_ratio": "square",
-            "linked_products": "{{ product.metafields.custom.linked_products.value }}",
-            "margin_bottom": 20
-          }
         },
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt": {
           "type": "shopify://apps/pre-order-restock-notifier/blocks/back_in_stock_notifier/1fadf77e-ebd8-4e68-90cb-f24d97d07bde",
@@ -186,9 +187,9 @@
         "sales_point",
         "separator",
         "variant_picker",
+        "linked_products_MqndzF",
         "custom_quantity_selector_jpHrgJ",
         "quantity_selector_BVwW6i",
-        "linked_products_MqndzF",
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt",
         "buy_buttons",
         "d360d95e-91d1-4993-a2b3-225541fea599",
