@@ -49,6 +49,23 @@
             "color_swatches": false
           }
         },
+        "custom_quantity_selector_jpHrgJ": {
+          "type": "custom-quantity-selector",
+          "settings": {
+            "rebuy_data_source_id": "277097",
+            "quantity_header": "<p><strong>Pick Your Deal:</strong> <br/> Buy 2 or more products from any collection and save up to 10% off your entire order! </p><p></p><p></p><p><strong>Pick Your Deal:</strong></p>",
+            "quantity_header_align": "left",
+            "label": "Product",
+            "show_strike_total": true,
+            "quantity_range": 3,
+            "quantity_selector_badges": [],
+            "discount_tier_badge_color": "#fbd8e6",
+            "discount_tier_badge_text_color": "#000000",
+            "discount_tier_one_percentage": "",
+            "discount_tier_two_percentage": "5",
+            "discount_tier_three_percentage": "10"
+          }
+        },
         "quantity_selector_BVwW6i": {
           "type": "quantity_selector",
           "disabled": true,
@@ -85,7 +102,7 @@
             "show_dynamic_checkout": false,
             "surface_pickup_enable": true,
             "discount_code_copy_paste_enable": false,
-            "discount_active_code": "SANTA",
+            "discount_active_code": "TESTTT",
             "discount_active_code_text": "Save an additional 10% on orders $60+",
             "orders_ship_copy_enable": true,
             "orders_ship_copy": "ORDERS TYPICALLY SHIP SAME OR NEXT BUSINESS DAY (EXCLUDING PRE-ORDERS)"
@@ -103,12 +120,11 @@
         "ugc_tab_P33w67": {
           "type": "ugc_tab",
           "settings": {
-            "enable_ugc_tab_label": "Customer reviews",
+            "enable_ugc_tab_label": "Customer reviews test",
             "ugc_videos": [
               "ugc-video-phzu1fnh",
               "ugc-video-jnx1a6up",
-              "ugc-video-dc2rwxkm",
-              "phills-awesome-video"
+              "ugc-video-dc2rwxkm"
             ]
           }
         },
@@ -170,6 +186,7 @@
         "sales_point",
         "separator",
         "variant_picker",
+        "custom_quantity_selector_jpHrgJ",
         "quantity_selector_BVwW6i",
         "linked_products_MqndzF",
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt",
