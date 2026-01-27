@@ -1,136 +1,82 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Update Add to Cart Total based on quantity selector and selected rebuy products
+  // Update Add to Cart Total based on quantity selector (base product only, no rebuy)
   window.updateAddToCartTotal = () => {
     const quantitySelector = document.querySelector('.custom-quantity-selector');
     if (!quantitySelector) return;
 
     const selectedQuantityInput = quantitySelector.querySelector('input[name="quantity_tier"]:checked');
-    const atcTotal = document.querySelector('.atc-total');
+    if (!selectedQuantityInput) return;
 
-    if (!selectedQuantityInput || !atcTotal) return;
+    // Prices are static and already calculated in the liquid template
+    // No additional updates needed since atc-total element was removed
+  };
 
-    // Access data attributes for main product
-    const discountedBasPriceCents = selectedQuantityInput.getAttribute('data-discounted-price-cents');
-    const totalPriceCents = selectedQuantityInput.getAttribute('data-total-price-cents');
-    const discountPercent = parseFloat(selectedQuantityInput.getAttribute('data-discount-percent')) || 0;
+  // Update all tier prices when variant changes
+  const updateTierPrices = (variant) => {
+    const quantitySelector = document.querySelector('.custom-quantity-selector');
+    if (!quantitySelector || !variant) return;
 
-    if (!discountedBasPriceCents) return;
+    const variantPriceCents = variant.price || 0;
+    const tierInputs = quantitySelector.querySelectorAll('input[name="quantity_tier"]');
 
-    // Get base product price (quantity 1)
-    const baseQuantityInput = quantitySelector.querySelector('input[name="quantity_tier"][value="1"]');
-    const baseProductPriceCents = baseQuantityInput ? parseInt(baseQuantityInput.getAttribute('data-discounted-price-cents')) || 0 : 0;
-    const selectedQuantity = parseInt(selectedQuantityInput.value) || 1;
+    tierInputs.forEach((input) => {
+      const quantity = parseInt(input.value) || 1;
+      const discountPercent = parseFloat(input.getAttribute('data-discount-percent')) || 0;
 
-    // Start with the selected tier's price (base product for selected quantity with discounts)
-    let discountedPrice = parseInt(discountedBasPriceCents) || 0;
-    let totalPrice = parseInt(totalPriceCents) || 0;
+      // Calculate total price for this quantity
+      const totalPriceCents = variantPriceCents * quantity;
+      const discountAmountCents = Math.round(totalPriceCents * discountPercent / 100);
+      const discountedPriceCents = totalPriceCents - discountAmountCents;
 
-    // Add selected rebuy product prices with tier discount applied
-    let rebuyTotal = 0;
-    let rebuyTotalOriginal = 0;
-    const rebuyContainers = document.querySelectorAll('.rebuy-recommendations-container');
-    rebuyContainers.forEach((container) => {
-      const checkedBoxes = container.querySelectorAll('.rebuy-product-card__checkbox:checked');
-      checkedBoxes.forEach((checkbox) => {
-        const productPrice = checkbox.getAttribute('data-product-price');
-        if (productPrice) {
-          // Price is now always stored in cents in data-product-price
-          const priceInCents = parseInt(productPrice.toString().replace(/[^0-9]/g, '')) || 0;
-          if (priceInCents > 0) {
-            // Apply tier discount to rebuy product
-            const discountAmount = Math.round(priceInCents * discountPercent / 100);
-            const rebuyDiscountedPrice = priceInCents - discountAmount;
-            rebuyTotal += rebuyDiscountedPrice;
-            rebuyTotalOriginal += priceInCents;
+      // Update data attributes
+      input.setAttribute('data-total-price-cents', totalPriceCents);
+      input.setAttribute('data-discounted-price-cents', discountedPriceCents);
+
+      // Update displayed prices
+      const option = input.closest('.quantity-option');
+      if (option) {
+        const priceEl = option.querySelector('.quantity-option__price');
+        const compareEl = option.querySelector('.quantity-option__compare');
+
+        // Format price function without trailing zeros
+        const formatPrice = (cents) => {
+          if (window.theme && window.theme.Currency && window.theme.Currency.formatMoney) {
+            const moneyFormat = window.theme.settings?.moneyFormat || '${{amount}}';
+            return window.theme.Currency.formatMoney(cents, moneyFormat);
+          }
+          const price = cents / 100;
+          const formatted = price.toFixed(2);
+          if (formatted.endsWith('.00')) {
+            return '$' + formatted.replace(/\.00$/, '');
+          }
+          return '$' + formatted;
+        };
+
+        if (priceEl) {
+          priceEl.textContent = formatPrice(discountedPriceCents);
+        }
+
+        if (compareEl) {
+          if (discountPercent > 0 && totalPriceCents > discountedPriceCents) {
+            compareEl.textContent = formatPrice(totalPriceCents);
+            compareEl.style.display = '';
+          } else {
+            compareEl.style.display = 'none';
           }
         }
-      });
+      }
     });
 
-    discountedPrice += rebuyTotal;
-    totalPrice += rebuyTotalOriginal;
-
-    console.log('Discount Price: ', discountedPrice);
-    console.log('rebuyTotal: ', rebuyTotal);
-    console.log('Total Price = ', totalPrice);
-
-    // Format price function - keep trailing zeros for add to cart button
-    const formatPrice = (cents) => {
-      if (window.theme && window.theme.Currency && window.theme.Currency.formatMoney) {
-        const moneyFormat = window.theme.settings?.moneyFormat || '${{amount}}';
-        return window.theme.Currency.formatMoney(cents, moneyFormat);
-      }
-      // Fallback formatting with trailing zeros
-      const price = cents / 100;
-      return '$' + price.toFixed(2);
-    };
-
-    // Format price function without trailing zeros for quantity options
-    // Only removes .00, keeps .50, .60, etc. Always shows 2 decimal places unless .00
-    const formatPriceWithoutTrailingZeros = (cents) => {
-      const price = cents / 100;
-      const formatted = price.toFixed(2);
-
-      // Only remove .00, keep other trailing zeros like .50
-      if (formatted.endsWith('.00')) {
-        return '$' + formatted.replace(/\.00$/, '');
-      }
-
-      // Ensure we always have 2 decimal places (e.g., 180.5 becomes 180.50)
-      return '$' + formatted;
-    };
-
-    const currentPriceEl = atcTotal.querySelector('.current-price');
-    const discountedPriceEl = atcTotal.querySelector('.discounted-price');
-
-    // Show original price with strikethrough if there's a discount
-    if (currentPriceEl) {
-      const baseDiscountedPrice = parseInt(discountedBasPriceCents) || 0;
-      const baseTotalPrice = parseInt(totalPriceCents) || 0;
-      if (baseTotalPrice > baseDiscountedPrice && baseDiscountedPrice > 0) {
-        currentPriceEl.textContent = formatPrice(totalPrice);
-        currentPriceEl.style.display = '';
-        currentPriceEl.style.textDecoration = 'line-through';
-      } else {
-        currentPriceEl.style.display = 'none';
-      }
-    }
-
-    // Always show discounted price
-    if (discountedPriceEl) {
-      discountedPriceEl.textContent = formatPrice(discountedPrice);
-      discountedPriceEl.style.display = '';
-    }
-
-    // Update quantity-option__right prices to match add to cart total
-    const selectedOption = selectedQuantityInput.closest('.quantity-option');
-    if (selectedOption) {
-      const optionPriceEl = selectedOption.querySelector('.quantity-option__price');
-      const optionCompareEl = selectedOption.querySelector('.quantity-option__compare');
-
-      if (optionPriceEl) {
-        optionPriceEl.textContent = formatPriceWithoutTrailingZeros(discountedPrice);
-      }
-
-      if (optionCompareEl) {
-        const baseDiscountedPrice = parseInt(discountedBasPriceCents) || 0;
-        const baseTotalPrice = parseInt(totalPriceCents) || 0;
-        if (totalPrice > discountedPrice && discountedPrice > 0) {
-          optionCompareEl.textContent = formatPriceWithoutTrailingZeros(totalPrice);
-          optionCompareEl.style.display = '';
-        } else {
-          optionCompareEl.style.display = 'none';
-        }
-      }
+    // Update add to cart total
+    if (window.updateAddToCartTotal) {
+      window.updateAddToCartTotal();
     }
   };
 
   // Initialize after a short delay to ensure DOM and theme are ready
   const initAddToCartTotal = () => {
     const quantitySelector = document.querySelector('.custom-quantity-selector');
-    const atcTotal = document.querySelector('.atc-total');
-
-    if (!quantitySelector || !atcTotal) return;
+    if (!quantitySelector) return;
 
     // Hide product-block--price when custom quantity selector is active
     const priceBlock = document.querySelector('.product-block--price');
@@ -138,11 +84,36 @@ document.addEventListener("DOMContentLoaded", () => {
       priceBlock.style.display = 'none';
     }
 
+    // Get current variant and update all tier prices
+    const variantJsonEl = document.querySelector('[data-variant-json]');
+    if (variantJsonEl) {
+      try {
+        const variants = JSON.parse(variantJsonEl.textContent);
+        const currentVariantSelect = document.querySelector('[data-product-select]');
+        if (currentVariantSelect && variants) {
+          const selectedVariantId = currentVariantSelect.value;
+          const currentVariant = variants.find(v => v.id.toString() === selectedVariantId.toString());
+          if (currentVariant) {
+            updateTierPrices(currentVariant);
+          }
+        }
+      } catch (e) {
+        console.warn('Could not parse variant JSON:', e);
+      }
+    }
+
     window.updateAddToCartTotal();
 
     // Also listen for quantity selector changes
     quantitySelector.querySelectorAll('input[name="quantity_tier"]').forEach((radio) => {
       radio.addEventListener('change', window.updateAddToCartTotal);
+    });
+
+    // Listen for variant changes to update all tier prices
+    document.addEventListener('variant:change', (e) => {
+      if (e.detail && e.detail.variant) {
+        updateTierPrices(e.detail.variant);
+      }
     });
   };
 
@@ -180,8 +151,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
-      // Always intercept to check for selected upsell items, add them if any are selected
-      if (selectedRebuyProducts.length > 0) {
+      // Get selected quantity from quantity tier selector
+      const quantitySelector = document.querySelector('.custom-quantity-selector');
+      const selectedQuantityInput = quantitySelector?.querySelector('input[name="quantity_tier"]:checked');
+      const selectedQuantity = selectedQuantityInput ? parseInt(selectedQuantityInput.value) || 1 : 1;
+
+      // Intercept if rebuy products are selected OR if quantity is not 1
+      if (selectedRebuyProducts.length > 0 || selectedQuantity !== 1) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -190,11 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const mainVariantId = formData.get('id');
 
         if (!mainVariantId) return;
-
-        // Get selected quantity from quantity tier selector
-        const quantitySelector = document.querySelector('.custom-quantity-selector');
-        const selectedQuantityInput = quantitySelector?.querySelector('input[name="quantity_tier"]:checked');
-        const selectedQuantity = selectedQuantityInput ? parseInt(selectedQuantityInput.value) || 1 : 1;
 
         // Get main product name
         const mainProductTitleEl = document.querySelector('.product-single__title');
@@ -205,10 +176,10 @@ document.addEventListener("DOMContentLoaded", () => {
         addToCartButton.disabled = true;
 
         try {
-          // Add main product first - always quantity of 1
+          // Add main product with selected quantity
           const mainProductData = new URLSearchParams();
           mainProductData.append('id', mainVariantId);
-          mainProductData.append('quantity', 1);
+          mainProductData.append('quantity', selectedQuantity);
 
           const mainResponse = await fetch(window.theme?.routes?.cartAdd || '/cart/add.js', {
             method: 'POST',
@@ -283,6 +254,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const rebuyContainers = document.querySelectorAll('.rebuy-recommendations-container');
 
   rebuyContainers.forEach((container) => {
+    // Hide container by default
+    container.style.display = 'none';
+
     const rebuyDataSourceId = container.dataset.rebuyDataSourceId;
     const currentProductId = container.dataset.currentProductId;
     const rebuyApiKey = container.dataset.rebuyApiKey || "6e5aada6dd159d86183afb4ab961e8f0a794787c&format";
@@ -315,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Fetch Rebuy data
-    fetch(`https://rebuyengine.com/api/v1/custom/id/${rebuyDataSourceId}?key=${rebuyApiKey}&pretty&shopify_product_ids=${currentProductId}&limit=100`, {
+    fetch(`https://rebuyengine.com/api/v1/custom/id/${rebuyDataSourceId}?key=${rebuyApiKey}&pretty&shopify_product_ids=${currentProductId}&limit=20`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -331,9 +305,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const products = data.data || [];
 
         if (!products || products.length === 0) {
-          container.style.display = 'none';
+          // Keep container hidden if no products
           return;
         }
+
+        // Show container when products are available
+        container.style.display = '';
+        container.classList.remove('hide');
+        container.classList.add('show');
 
         // Render products
         swiperWrapper.innerHTML = products.map((product) => {
@@ -508,94 +487,10 @@ document.addEventListener("DOMContentLoaded", () => {
           swiper.on('slideChange', updateNavStates);
           updateNavStates();
 
-          // Find quantity selector - it's a sibling or nearby element
-          const quantitySelector = container.previousElementSibling?.classList.contains('custom-quantity-selector')
-            ? container.previousElementSibling
-            : container.parentElement?.querySelector('.custom-quantity-selector')
-            || document.querySelector('.custom-quantity-selector');
-
-          // Flag to prevent circular updates
-          let isUpdatingFromQuantityTier = false;
-          let isUpdatingFromRebuy = false;
-
-          // Function to update rebuy checkboxes based on selected quantity
-          const updateRebuyCheckboxes = () => {
-            if (isUpdatingFromRebuy) return;
-
-            const selectedQuantityInput = quantitySelector?.querySelector('input[name="quantity_tier"]:checked');
-
-            if (!selectedQuantityInput) return;
-
-            const selectedQuantity = parseInt(selectedQuantityInput.value) || 0;
-            const checkboxes = Array.from(container.querySelectorAll('.rebuy-product-card__checkbox'));
-
-            isUpdatingFromQuantityTier = true;
-            checkboxes.forEach((checkbox, index) => {
-              // Tier 1: 0 rebuy products, Tier 2: 1 rebuy product, Tier 3: 2 rebuy products
-              if (selectedQuantity > 1 && index < selectedQuantity - 1) {
-                checkbox.checked = true;
-              } else {
-                checkbox.checked = false;
-              }
-            });
-            isUpdatingFromQuantityTier = false;
-
-            // Update tier option prices and total after checkbox changes
-            // updateTierOptionPrices();
-            if (window.updateAddToCartTotal) {
-              window.updateAddToCartTotal();
-            }
-          };
-
-          // Function to update quantity tier based on rebuy checkbox selections
-          const updateQuantityTierFromRebuy = () => {
-            if (isUpdatingFromQuantityTier || !quantitySelector) return;
-
-            const checkedBoxes = container.querySelectorAll('.rebuy-product-card__checkbox:checked');
-            const checkedCount = checkedBoxes.length;
-
-            let targetTier = 1;
-            if (checkedCount >= 2) {
-              targetTier = 3;
-            } else if (checkedCount >= 1) {
-              targetTier = 2;
-            } else {
-              targetTier = 1;
-            }
-
-            const targetRadio = quantitySelector.querySelector(`input[name="quantity_tier"][value="${targetTier}"]`);
-            const currentRadio = quantitySelector.querySelector('input[name="quantity_tier"]:checked');
-
-            if (targetRadio && (!currentRadio || currentRadio.value !== targetTier.toString())) {
-              isUpdatingFromRebuy = true;
-              targetRadio.checked = true;
-              targetRadio.dispatchEvent(new Event('change', { bubbles: true }));
-              isUpdatingFromRebuy = false;
-            }
-
-            // Update tier option prices and total
-            // updateTierOptionPrices();
-            if (window.updateAddToCartTotal) {
-              window.updateAddToCartTotal();
-            }
-          };
-
-          // Store original prices on initial load
-          // storeOriginalTierPrices();
-
-          // Listen for quantity selector changes
-          if (quantitySelector) {
-            quantitySelector.querySelectorAll('input[name="quantity_tier"]').forEach((radio) => {
-              radio.addEventListener('change', updateRebuyCheckboxes);
-            });
-          }
-
-          // Handle checkbox clicks
+          // Handle checkbox clicks (no integration with quantity selector)
           container.querySelectorAll('.rebuy-product-card__checkbox').forEach((checkbox) => {
             checkbox.addEventListener('change', function(e) {
               e.stopPropagation();
-              // Update quantity tier based on rebuy selections
-              updateQuantityTierFromRebuy();
             });
 
             // Prevent label click from navigating
@@ -676,10 +571,6 @@ document.addEventListener("DOMContentLoaded", () => {
                       ? variantPriceFormatted
                       : `$${variantPriceFormatted}`;
                     priceEl.textContent = displayPrice;
-                  }
-                  // Update total if checkbox is checked (if custom quantity selector is present)
-                  if (checkbox.checked && window.updateAddToCartTotal) {
-                    window.updateAddToCartTotal();
                   }
                 }
               }

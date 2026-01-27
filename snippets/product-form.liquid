@@ -32,11 +32,6 @@
       <span data-add-to-cart-text data-default-text="{{ default_text }}">
         {{ button_text }}
       </span>
-      <span class="discounted-price-label">•</span>
-      <span class="atc-total">
-        <span class="discounted-price">{{ discounted_total | money_without_currency }}</span>
-        <span class="current-price">${{ current_variant.price | money_without_currency }}</span>
-      </span>
     </button>
 
     {%- if enable_dynamic_buttons -%}

@@ -229,16 +229,19 @@
                           {% assign discount_percent = tier_three_discount %}
                         {% endif %}
 
-                        {% assign discount_amount = product.price | times: discount_percent | divided_by: 100 %}
-                        {% assign discounted_total = product.price | minus: discount_amount %}
+                        {% assign total_price_cents = product.price | times: i %}
+                        {% assign discount_amount_cents = total_price_cents | times: discount_percent | divided_by: 100 %}
+                        {% assign discounted_total_cents = total_price_cents | minus: discount_amount_cents %}
                         {% assign quantity_label = block.settings.label %}
+
+                        <script>console.log('discounted_total_cents', {{ discounted_total_cents }});</script>
 
                         {% if quantity_label == blank or quantity_label == '' %}
                           {% assign quantity_label = 'Item' %}
                         {% endif %}
 
                         <label class="quantity-option">
-                          <input type="radio" name="quantity_tier" value="{{ i }}" data-discount-percent="{{ discount_percent }}" data-total-price-cents="{{ product.price }}" data-discounted-price-cents="{{ discounted_total }}" {% if forloop.first %}checked{% endif %}>
+                          <input type="radio" name="quantity_tier" value="{{ i }}" data-discount-percent="{{ discount_percent }}" data-total-price-cents="{{ total_price_cents }}" data-discounted-price-cents="{{ discounted_total_cents }}" {% if forloop.first %}checked{% endif %}>
                           <div class="quantity-option__content">
                             <div class="quantity-option__left">
                               <span class="quantity-label">{{ i }} {{ quantity_label }}{% if i > 1 %}s{% endif %}</span>
@@ -260,9 +263,9 @@
 
                             <div class="quantity-option__right">
                               {% if block.settings.show_strike_total and discount_percent != 0 %}
-                                <span class="quantity-option__compare">{{ total_price | money_without_trailing_zeros }}</span>
+                                <span class="quantity-option__compare">{{ total_price_cents | money_without_trailing_zeros }}</span>
                               {% endif %}
-                              <span class="quantity-option__price">{{ discounted_total | money_without_trailing_zeros }}</span>
+                              <span class="quantity-option__price">{{ discounted_total_cents | money_without_trailing_zeros }}</span>
                             </div>
                           </div>
                         </label>
@@ -270,25 +273,28 @@
                     </div>
 
                     {% if block.settings.rebuy_data_source_id != blank %}
-                      <div class="rebuy-recommendations-container"
+                      <div class="rebuy-recommendations-container hide"
                            data-rebuy-data-source-id="{{ block.settings.rebuy_data_source_id }}"
                            data-current-product-id="{{ product.id }}"
                            data-rebuy-api-key="6e5aada6dd159d86183afb4ab961e8f0a794787c&format">
+                           <div class="rebuy-recommended-title">
+                             {{ block.settings.rebuy_section_title }}
+                             <div class="swiper-navigation-container">
+                               <div class="swiper-button-prev">
+                                 <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                   <path d="M13.8999 5.8999H0.899902M0.899902 5.8999L5.7749 0.899902M0.899902 5.8999L5.7749 10.8999" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                 </svg>
+                               </div>
+                               <div class="swiper-button-next">
+                                 <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                   <path d="M0.899902 5.8999H13.8999M13.8999 5.8999L9.0249 0.899902M13.8999 5.8999L9.0249 10.8999" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                 </svg>
+                               </div>
+                             </div>
+                           </div>
                         <div class="recommended-product-slider">
                           <div class="rebuy-recommendations-swiper swiper">
                             <div class="swiper-wrapper"></div>
-                          </div>
-                          <div class="swiper-navigation-container">
-                            <div class="swiper-button-prev">
-                              <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13.8999 5.8999H0.899902M0.899902 5.8999L5.7749 0.899902M0.899902 5.8999L5.7749 10.8999" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
-                            </div>
-                            <div class="swiper-button-next">
-                              <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.899902 5.8999H13.8999M13.8999 5.8999L9.0249 0.899902M13.8999 5.8999L9.0249 10.8999" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
-                            </div>
                           </div>
                         </div>
                       </div>
