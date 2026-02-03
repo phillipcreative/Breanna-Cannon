@@ -48,25 +48,6 @@
             "focal_point": "center center"
           }
         },
-        "image_QEdRBM": {
-          "type": "image",
-          "settings": {
-            "top_subheading": "",
-            "title": "",
-            "title_size": 80,
-            "subheading": "",
-            "link": "shopify://collections/new-years-sale",
-            "link_text": "",
-            "link_2": "shopify://collections/new-years-sale",
-            "link_text_2": "",
-            "color_accent": "#000000",
-            "text_align": "vertical-center horizontal-center",
-            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-2_175b9914-d0b6-4c1c-80c4-78c124cdb486.png",
-            "image_mobile": "shopify://shop_images/Website_COLLECTION_covers_-_Mobile-4.png",
-            "overlay_opacity": 0,
-            "focal_point": "center center"
-          }
-        },
         "fc0f772a-f60f-460c-929a-87742b812863": {
           "type": "image",
           "settings": {
@@ -90,7 +71,6 @@
       "block_order": [
         "image_KrwJwk",
         "image_ABxj3g",
-        "image_QEdRBM",
         "fc0f772a-f60f-460c-929a-87742b812863"
       ],
       "settings": {
