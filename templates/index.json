@@ -287,6 +287,19 @@
         "divider": false
       }
     },
+    "featured_collection_3hPMLr": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.featured_collection.name",
+      "settings": {
+        "title": "Dress to Impress",
+        "home_featured_products": "dresses",
+        "per_row": 4,
+        "rows": 2,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
     "1651084254753291af": {
       "type": "apps",
       "blocks": {
@@ -523,6 +536,7 @@
     "featured_collection_Wi3GKr",
     "featured_collection_fQ7XjU",
     "featured_collection_CgLEJz",
+    "featured_collection_3hPMLr",
     "1651084254753291af",
     "promo-grid",
     "1660957127983f73b8",
