@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-product",
@@ -59,6 +59,7 @@
           "type": "custom-quantity-selector",
           "settings": {
             "rebuy_data_source_id": "272942",
+            "rebuy_section_title": "<p><strong>You May Also Like:</strong></p>",
             "quantity_header": "<p><strong>The more you shop, the more you save. Add two or more pieces from this collection to unlock your discount.</strong></p>",
             "quantity_header_align": "left",
             "label": "",
@@ -215,6 +216,7 @@
         "thumbnail_position": "beside",
         "thumbnail_arrows": false,
         "mobile_layout": "partial",
+        "mobile_pagination_style": "dots",
         "enable_video_looping": true,
         "product_video_style": "muted"
       }
@@ -246,6 +248,7 @@
         "tab_item_DQwXWy",
         "tab_item_QCHbjw"
       ],
+      "disabled": true,
       "name": "Tabbed Feature",
       "settings": {
         "tabs_label": "",

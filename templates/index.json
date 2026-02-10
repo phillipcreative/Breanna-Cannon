@@ -136,6 +136,14 @@
             "focal_point": "center center"
           }
         },
+        "30fc79a2-3f30-42de-bddb-6bfc9c26f92a": {
+          "type": "collection",
+          "settings": {
+            "collection": "dresses",
+            "title": "DRESSES",
+            "focal_point": "center center"
+          }
+        },
         "collection_EaW6ad": {
           "type": "collection",
           "settings": {
@@ -151,23 +159,15 @@
             "title": "",
             "focal_point": "center center"
           }
-        },
-        "30fc79a2-3f30-42de-bddb-6bfc9c26f92a": {
-          "type": "collection",
-          "settings": {
-            "collection": "dresses",
-            "title": "DRESSES",
-            "focal_point": "center center"
-          }
         }
       },
       "block_order": [
         "collection_jpdRmN",
         "collection_hJf48i",
         "collection_JmwrjK",
+        "30fc79a2-3f30-42de-bddb-6bfc9c26f92a",
         "collection_EaW6ad",
-        "collection_h7889P",
-        "30fc79a2-3f30-42de-bddb-6bfc9c26f92a"
+        "collection_h7889P"
       ],
       "settings": {
         "title": "HOT COLLECTIONS",
