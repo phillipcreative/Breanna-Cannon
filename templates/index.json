@@ -26,6 +26,7 @@
             "color_accent": "rgba(0,0,0,0)",
             "text_align": "vertical-center horizontal-center",
             "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_24ee118c-bf9d-41f9-954e-ce82a4b77fae.png",
+            "image_mobile": "shopify://shop_images/gameday_gear.jpg",
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
