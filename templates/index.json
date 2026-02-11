@@ -12,22 +12,22 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
-        "image_KrwJwk": {
+        "image_aiN4q3": {
           "type": "image",
           "settings": {
-            "top_subheading": "you're gonna",
-            "title": "love this",
-            "title_size": 100,
+            "top_subheading": "",
+            "title": "",
+            "title_size": 80,
             "subheading": "",
-            "link": "shopify://collections/valentines-2023",
-            "link_text": "Shop Valentine's",
+            "link": "https://briannacannon.com/collections/valentines-day-sale",
+            "link_text": "",
             "link_2": "",
             "link_text_2": "",
             "color_accent": "rgba(0,0,0,0)",
-            "text_align": "vertical-bottom horizontal-center",
-            "image": "shopify://shop_images/cute_valentines_day_sweatshirts_with_hearts.jpg",
+            "text_align": "vertical-center horizontal-center",
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_24ee118c-bf9d-41f9-954e-ce82a4b77fae.png",
             "overlay_opacity": 0,
-            "focal_point": "top center"
+            "focal_point": "center center"
           }
         },
         "image_ABxj3g": {
@@ -66,12 +66,31 @@
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
+        },
+        "image_KrwJwk": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "you're gonna",
+            "title": "love this",
+            "title_size": 100,
+            "subheading": "",
+            "link": "shopify://collections/valentines-2023",
+            "link_text": "Shop Valentine's",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-bottom horizontal-center",
+            "image": "shopify://shop_images/cute_valentines_day_sweatshirts_with_hearts.jpg",
+            "overlay_opacity": 0,
+            "focal_point": "top center"
+          }
         }
       },
       "block_order": [
-        "image_KrwJwk",
+        "image_aiN4q3",
         "image_ABxj3g",
-        "fc0f772a-f60f-460c-929a-87742b812863"
+        "fc0f772a-f60f-460c-929a-87742b812863",
+        "image_KrwJwk"
       ],
       "settings": {
         "section_height": "650px",
