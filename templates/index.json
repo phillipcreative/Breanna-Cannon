@@ -102,33 +102,6 @@
         "autoplay_speed": 6
       }
     },
-    "rich-text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "title": "Brianna Cannon"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "enlarge_text": true,
-            "text": "<p>A beautifully bold lifestyle brand, designed in Texas, specializing in Fashion, Seasonal and Officially Licensed Women's Apparel, Jewelry, and Hair Accessories.</p><p></p><p></p><p> </p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
-      "settings": {
-        "align_text": "center",
-        "narrow_column": true,
-        "divider": false
-      }
-    },
     "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
       "type": "featured-collections",
       "blocks": {
@@ -194,6 +167,33 @@
         "divider": false,
         "per_row": 3,
         "enable_gutter": true
+      }
+    },
+    "rich-text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "Brianna Cannon"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>A beautifully bold lifestyle brand, designed in Texas, specializing in Fashion, Seasonal and Officially Licensed Women's Apparel, Jewelry, and Hair Accessories.</p><p></p><p></p><p> </p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
       }
     },
     "1669620656f5ef9fcd": {
@@ -547,8 +547,8 @@
   },
   "order": [
     "slideshow",
-    "rich-text",
     "dc614b3d-93ca-4ccf-a040-51892f06ebec",
+    "rich-text",
     "1669620656f5ef9fcd",
     "featured_collection_JEakX6",
     "text_and_image_kY7hRt",
