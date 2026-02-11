@@ -25,10 +25,10 @@
             "link_text_2": "",
             "color_accent": "rgba(0,0,0,0)",
             "text_align": "vertical-center horizontal-center",
-            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_24ee118c-bf9d-41f9-954e-ce82a4b77fae.png",
-            "image_mobile": "shopify://shop_images/valentines_day_sale.jpg",
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-12.png",
+            "image_mobile": "shopify://shop_images/Mobile_Website_Hero_Cover_Images_2000_x_1000_px_Instagram_Post_45_-2_0cf9788c-7518-4809-8dc9-b96ceddcc7c1.png",
             "overlay_opacity": 0,
-            "focal_point": "center center"
+            "focal_point": "20% 50%"
           }
         },
         "image_ABxj3g": {
