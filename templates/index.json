@@ -12,6 +12,24 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "image_nNLEa9": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 80,
+            "subheading": "",
+            "link": "shopify://collections/spring-2026",
+            "link_text": "SHOP SPRING",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-center horizontal-left",
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-15.png",
+            "overlay_opacity": 0,
+            "focal_point": "center center"
+          }
+        },
         "image_aiN4q3": {
           "type": "image",
           "disabled": true,
@@ -89,6 +107,7 @@
         }
       },
       "block_order": [
+        "image_nNLEa9",
         "image_aiN4q3",
         "image_ABxj3g",
         "fc0f772a-f60f-460c-929a-87742b812863",
