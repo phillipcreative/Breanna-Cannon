@@ -312,8 +312,8 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.featured_collection.name",
       "settings": {
-        "title": "Dress to Impress",
-        "home_featured_products": "dresses",
+        "title": "ROAD TO OMAHA - NCAA BASEBALL",
+        "home_featured_products": "road-to-omaha-2026",
         "per_row": 4,
         "rows": 2,
         "mobile_scrollable": true,
