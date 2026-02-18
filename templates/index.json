@@ -126,11 +126,11 @@
     "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
       "type": "featured-collections",
       "blocks": {
-        "collection_jpdRmN": {
+        "collection_jKfgaB": {
           "type": "collection",
           "settings": {
-            "collection": "valentines-2023",
-            "title": "",
+            "collection": "spring-2026",
+            "title": "SPRING 2026",
             "focal_point": "center center"
           }
         },
@@ -176,7 +176,7 @@
         }
       },
       "block_order": [
-        "collection_jpdRmN",
+        "collection_jKfgaB",
         "collection_hJf48i",
         "collection_JmwrjK",
         "30fc79a2-3f30-42de-bddb-6bfc9c26f92a",
@@ -250,8 +250,8 @@
     "featured_collection_JEakX6": {
       "type": "featured-collection",
       "settings": {
-        "title": "winter wonderland",
-        "home_featured_products": "winter-2025",
+        "title": "Spring Style",
+        "home_featured_products": "spring-2026",
         "per_row": 4,
         "rows": 2,
         "mobile_scrollable": true,
