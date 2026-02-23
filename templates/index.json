@@ -12,6 +12,25 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "image_VD6miz": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "HEY BATTER BATTER",
+            "title": "BASEBALL SZN",
+            "title_size": 80,
+            "subheading": "",
+            "link": "shopify://collections/baseball-softball-copy",
+            "link_text": "BALLPARK DRIP",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-bottom horizontal-center",
+            "image": "shopify://shop_images/1_014c5670-9770-442d-955a-209dab0e4c94.png",
+            "image_mobile": "shopify://shop_images/Mobile_Website_Hero_Cover_Images_2000_x_1000_px_Instagram_Post_45_-5.png",
+            "overlay_opacity": 0,
+            "focal_point": "top center"
+          }
+        },
         "image_nNLEa9": {
           "type": "image",
           "settings": {
@@ -86,33 +105,14 @@
             "overlay_opacity": 0,
             "focal_point": "20% 50%"
           }
-        },
-        "image_VD6miz": {
-          "type": "image",
-          "settings": {
-            "top_subheading": "HEY BATTER BATTER",
-            "title": "BASEBALL SZN",
-            "title_size": 80,
-            "subheading": "",
-            "link": "shopify://collections/baseball-softball-copy",
-            "link_text": "BALLPARK DRIP",
-            "link_2": "",
-            "link_text_2": "",
-            "color_accent": "rgba(0,0,0,0)",
-            "text_align": "vertical-bottom horizontal-center",
-            "image": "shopify://shop_images/1_014c5670-9770-442d-955a-209dab0e4c94.png",
-            "image_mobile": "shopify://shop_images/Mobile_Website_Hero_Cover_Images_2000_x_1000_px_Instagram_Post_45_-5.png",
-            "overlay_opacity": 0,
-            "focal_point": "top center"
-          }
         }
       },
       "block_order": [
+        "image_VD6miz",
         "image_nNLEa9",
         "image_ABxj3g",
         "fc0f772a-f60f-460c-929a-87742b812863",
-        "image_aiN4q3",
-        "image_VD6miz"
+        "image_aiN4q3"
       ],
       "settings": {
         "section_height": "650px",
