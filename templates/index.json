@@ -126,6 +126,14 @@
     "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
       "type": "featured-collections",
       "blocks": {
+        "collection_yyp3MR": {
+          "type": "collection",
+          "settings": {
+            "collection": "baseball-softball-copy",
+            "title": "BASEBALL SZN",
+            "focal_point": "center center"
+          }
+        },
         "collection_fi4tPy": {
           "type": "collection",
           "settings": {
@@ -173,15 +181,25 @@
             "title": "",
             "focal_point": "center center"
           }
+        },
+        "collection_JjJfPW": {
+          "type": "collection",
+          "settings": {
+            "collection": "golf",
+            "title": "",
+            "focal_point": "center center"
+          }
         }
       },
       "block_order": [
+        "collection_yyp3MR",
         "collection_fi4tPy",
         "collection_hJf48i",
         "collection_JmwrjK",
         "30fc79a2-3f30-42de-bddb-6bfc9c26f92a",
         "collection_EaW6ad",
-        "collection_h7889P"
+        "collection_h7889P",
+        "collection_JjJfPW"
       ],
       "settings": {
         "title": "HOT COLLECTIONS",
