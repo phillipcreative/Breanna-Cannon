@@ -94,16 +94,16 @@
             "title": "",
             "title_size": 80,
             "subheading": "",
-            "link": "https://briannacannon.com/collections/valentines-day-sale",
+            "link": "shopify://collections/golf-collection-2026",
             "link_text": "",
             "link_2": "",
             "link_text_2": "",
             "color_accent": "rgba(0,0,0,0)",
             "text_align": "vertical-center horizontal-center",
-            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-12.png",
-            "image_mobile": "shopify://shop_images/Mobile_Website_Hero_Cover_Images_2000_x_1000_px_Instagram_Post_45_-2_0cf9788c-7518-4809-8dc9-b96ceddcc7c1.png",
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-16.png",
+            "image_mobile": "shopify://shop_images/Mobile_Website_Hero_Cover_Images_2000_x_1000_px_Instagram_Post_45_-6.png",
             "overlay_opacity": 0,
-            "focal_point": "20% 50%"
+            "focal_point": "center center"
           }
         }
       },
