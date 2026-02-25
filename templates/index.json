@@ -28,7 +28,7 @@
             "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-16.png",
             "image_mobile": "shopify://shop_images/Mobile_Website_Hero_Cover_Images_2000_x_1000_px_Instagram_Post_45_-6.png",
             "overlay_opacity": 0,
-            "focal_point": "center center"
+            "focal_point": "bottom center"
           }
         },
         "image_VD6miz": {
