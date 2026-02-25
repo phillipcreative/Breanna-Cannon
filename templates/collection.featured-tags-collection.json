@@ -17,6 +17,56 @@
         "parallax": true
       }
     },
+    "featured_collections_3VBMFB": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_BM7Jwc": {
+          "type": "collection",
+          "settings": {
+            "collection": "spring-easter-2026-copy-1",
+            "title": "Blazers",
+            "focal_point": "center center"
+          }
+        },
+        "collection_dnbwne": {
+          "type": "collection",
+          "settings": {
+            "collection": "spring-easter-2026-copy",
+            "title": "Dresses",
+            "focal_point": "center center"
+          }
+        },
+        "collection_JqfRw9": {
+          "type": "collection",
+          "settings": {
+            "collection": "spring-easter-2026-jewelry",
+            "title": "Jewelry",
+            "focal_point": "center center"
+          }
+        },
+        "collection_6Pe8qd": {
+          "type": "collection",
+          "settings": {
+            "collection": "spring-easter-2026-copy-2",
+            "title": "Hair Accessories",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_BM7Jwc",
+        "collection_dnbwne",
+        "collection_JqfRw9",
+        "collection_6Pe8qd"
+      ],
+      "name": "t:sections.featured-collections.presets.collection_list.name",
+      "settings": {
+        "title": "Collection list",
+        "divider": false,
+        "per_row": 4,
+        "enable_gutter": true
+      }
+    },
     "main-collection": {
       "type": "main-collection",
       "blocks": {
@@ -56,6 +106,7 @@
   },
   "order": [
     "collection-header",
+    "featured_collections_3VBMFB",
     "main-collection"
   ]
 }
