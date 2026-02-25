@@ -126,6 +126,14 @@
     "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
       "type": "featured-collections",
       "blocks": {
+        "collection_JjJfPW": {
+          "type": "collection",
+          "settings": {
+            "collection": "golf-collection-2026",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
         "collection_yyp3MR": {
           "type": "collection",
           "settings": {
@@ -182,16 +190,17 @@
             "focal_point": "center center"
           }
         },
-        "collection_JjJfPW": {
+        "collection_QUwFC6": {
           "type": "collection",
           "settings": {
-            "collection": "golf",
+            "collection": "bridal",
             "title": "",
             "focal_point": "center center"
           }
         }
       },
       "block_order": [
+        "collection_JjJfPW",
         "collection_yyp3MR",
         "collection_fi4tPy",
         "collection_hJf48i",
@@ -199,7 +208,7 @@
         "30fc79a2-3f30-42de-bddb-6bfc9c26f92a",
         "collection_EaW6ad",
         "collection_h7889P",
-        "collection_JjJfPW"
+        "collection_QUwFC6"
       ],
       "settings": {
         "title": "HOT COLLECTIONS",
