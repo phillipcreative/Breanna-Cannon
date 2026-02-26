@@ -17,55 +17,49 @@
         "parallax": true
       }
     },
-    "featured_collections_3VBMFB": {
-      "type": "featured-collections",
+    "17721286357d2d90e0": {
+      "type": "_blocks",
       "blocks": {
-        "collection_BM7Jwc": {
-          "type": "collection",
+        "ai_gen_block_4b279a8_FDWcNz": {
+          "type": "ai_gen_block_4b279a8",
           "settings": {
-            "collection": "spring-easter-blazers-2026",
-            "title": "Blazers",
-            "focal_point": "center center"
-          }
-        },
-        "collection_dnbwne": {
-          "type": "collection",
-          "settings": {
-            "collection": "spring-easter-dresses-2026",
-            "title": "Dresses",
-            "focal_point": "center center"
-          }
-        },
-        "collection_JqfRw9": {
-          "type": "collection",
-          "settings": {
-            "collection": "spring-easter-2026-jewelry",
-            "title": "Jewelry",
-            "focal_point": "center center"
-          }
-        },
-        "collection_6Pe8qd": {
-          "type": "collection",
-          "settings": {
-            "collection": "spring-easter-hair-accessories-2026",
-            "title": "Hair Accessories",
-            "focal_point": "center center"
-          }
+            "heading": "",
+            "subheading": "",
+            "heading_size": 16,
+            "subheading_size": 12,
+            "heading_color": "#000000",
+            "subheading_color": "#666666",
+            "collection_1": "arizona-cardinals",
+            "collection_2": "auburn-university",
+            "collection_3": "atlanta-falcons",
+            "collection_4": "",
+            "collection_5": "",
+            "collection_6": "",
+            "slides_per_view": 4,
+            "slide_gap": 20,
+            "desktop_width_percent": 100,
+            "section_padding": 40,
+            "show_overlay": false,
+            "overlay_opacity": 15,
+            "title_size": 20,
+            "title_color": "#000000",
+            "nav_button_color": "#ffffff",
+            "nav_button_hover_color": "#f4f4f4",
+            "nav_icon_color": "#000000",
+            "show_dots": true,
+            "dot_color": "#cccccc",
+            "dot_active_color": "#000000",
+            "autoplay": true,
+            "autoplay_speed": 4,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "collection_BM7Jwc",
-        "collection_dnbwne",
-        "collection_JqfRw9",
-        "collection_6Pe8qd"
+        "ai_gen_block_4b279a8_FDWcNz"
       ],
-      "name": "t:sections.featured-collections.presets.collection_list.name",
-      "settings": {
-        "title": "",
-        "divider": false,
-        "per_row": 4,
-        "enable_gutter": true
-      }
+      "settings": {}
     },
     "main-collection": {
       "type": "main-collection",
@@ -106,7 +100,7 @@
   },
   "order": [
     "collection-header",
-    "featured_collections_3VBMFB",
+    "17721286357d2d90e0",
     "main-collection"
   ]
 }
