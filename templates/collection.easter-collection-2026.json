@@ -1,0 +1,106 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection-header": {
+      "type": "collection-header",
+      "settings": {
+        "enable": true,
+        "collection_image_enable": true,
+        "parallax": true
+      }
+    },
+    "17721286357d2d90e0": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4b279a8_FDWcNz": {
+          "type": "ai_gen_block_4b279a8",
+          "settings": {
+            "heading": "",
+            "subheading": "",
+            "heading_size": 16,
+            "subheading_size": 12,
+            "heading_color": "#000000",
+            "subheading_color": "#666666",
+            "collection_1": "arizona-cardinals",
+            "collection_2": "auburn-university",
+            "collection_3": "atlanta-falcons",
+            "collection_4": "",
+            "collection_5": "",
+            "collection_6": "",
+            "slides_per_view": 4,
+            "slide_gap": 20,
+            "desktop_width_percent": 100,
+            "section_padding": 40,
+            "show_overlay": false,
+            "overlay_opacity": 15,
+            "title_size": 20,
+            "title_color": "#000000",
+            "nav_button_color": "#ffffff",
+            "nav_button_hover_color": "#f4f4f4",
+            "nav_icon_color": "#000000",
+            "show_dots": true,
+            "dot_color": "#cccccc",
+            "dot_active_color": "#000000",
+            "autoplay": true,
+            "autoplay_speed": 4,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4b279a8_FDWcNz"
+      ],
+      "settings": {}
+    },
+    "main-collection": {
+      "type": "main-collection",
+      "blocks": {
+        "collection_description": {
+          "type": "collection_description",
+          "settings": {}
+        },
+        "subcollections": {
+          "type": "subcollections",
+          "settings": {
+            "subcollections_per_row": 5
+          }
+        },
+        "product_grid": {
+          "type": "product_grid",
+          "settings": {
+            "enable_collection_count": true,
+            "per_row": 4,
+            "rows_per_page": 16,
+            "mobile_flush_grid": true
+          }
+        }
+      },
+      "block_order": [
+        "collection_description",
+        "subcollections",
+        "product_grid"
+      ],
+      "settings": {
+        "enable_sidebar": true,
+        "collapsed": false,
+        "filter_style": "drawer",
+        "enable_color_swatches": false,
+        "enable_sort": true
+      }
+    }
+  },
+  "order": [
+    "collection-header",
+    "17721286357d2d90e0",
+    "main-collection"
+  ]
+}
