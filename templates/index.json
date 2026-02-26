@@ -556,6 +556,19 @@
         "enable_gutter": true
       }
     },
+    "featured_collection_HJaqR4": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.featured_collection.name",
+      "settings": {
+        "title": "Dressed To Win",
+        "home_featured_products": "game-day-best-sellers",
+        "per_row": 5,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
     "promo-grid2": {
       "type": "promo-grid",
       "blocks": {
@@ -611,6 +624,7 @@
     "text_and_image_LTnzdx",
     "featured_collection_D8CmtX",
     "featured-collections",
+    "featured_collection_HJaqR4",
     "promo-grid2"
   ]
 }
