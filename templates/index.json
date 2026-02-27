@@ -69,24 +69,6 @@
             "focal_point": "center center"
           }
         },
-        "image_ABxj3g": {
-          "type": "image",
-          "settings": {
-            "top_subheading": "FINAL CALL:",
-            "title": "Last Chance To Shop \nWinter Favorites",
-            "title_size": 60,
-            "subheading": "",
-            "link": "shopify://collections/winter-2025",
-            "link_text": "SHOP WINTER",
-            "link_2": "",
-            "link_text_2": "",
-            "color_accent": "rgba(0,0,0,0)",
-            "text_align": "vertical-bottom horizontal-center",
-            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-7_copy.jpg",
-            "overlay_opacity": 0,
-            "focal_point": "center center"
-          }
-        },
         "fc0f772a-f60f-460c-929a-87742b812863": {
           "type": "image",
           "settings": {
@@ -105,14 +87,32 @@
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
+        },
+        "image_VgtWVA": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 80,
+            "subheading": "",
+            "link": "shopify://collections/texas-collection",
+            "link_text": "yee haw",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-bottom horizontal-center",
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-17.png",
+            "overlay_opacity": 0,
+            "focal_point": "top center"
+          }
         }
       },
       "block_order": [
         "image_aiN4q3",
         "image_VD6miz",
         "image_nNLEa9",
-        "image_ABxj3g",
-        "fc0f772a-f60f-460c-929a-87742b812863"
+        "fc0f772a-f60f-460c-929a-87742b812863",
+        "image_VgtWVA"
       ],
       "settings": {
         "section_height": "650px",
