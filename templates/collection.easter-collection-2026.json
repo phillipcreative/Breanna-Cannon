@@ -17,48 +17,58 @@
         "parallax": true
       }
     },
-    "17721286357d2d90e0": {
-      "type": "_blocks",
+    "featured_collections_Cgeype": {
+      "type": "featured-collections",
       "blocks": {
-        "ai_gen_block_4b279a8_FDWcNz": {
-          "type": "ai_gen_block_4b279a8",
+        "collection_n78LWw": {
+          "type": "collection",
           "settings": {
-            "heading": "",
-            "subheading": "",
-            "heading_size": 16,
-            "subheading_size": 12,
-            "heading_color": "#000000",
-            "subheading_color": "#666666",
-            "collection_1": "arizona-cardinals",
-            "collection_2": "auburn-university",
-            "collection_3": "atlanta-falcons",
-            "collection_4": "",
-            "collection_5": "",
-            "collection_6": "",
-            "slides_per_view": 4,
-            "slide_gap": 20,
-            "desktop_width_percent": 100,
-            "section_padding": 40,
-            "show_overlay": false,
-            "overlay_opacity": 15,
-            "title_size": 20,
-            "title_color": "#000000",
-            "nav_button_color": "#ffffff",
-            "nav_button_hover_color": "#f4f4f4",
-            "nav_icon_color": "#000000",
-            "show_dots": true,
-            "dot_color": "#cccccc",
-            "dot_active_color": "#000000",
-            "autoplay": true,
-            "autoplay_speed": 4,
-            "background_color": "#ffffff"
-          },
-          "blocks": {}
+            "collection": "easter-blazers-2026",
+            "title": "Blazers",
+            "focal_point": "center center"
+          }
+        },
+        "collection_zX6gNA": {
+          "type": "collection",
+          "settings": {
+            "collection": "easter-bottoms-2026",
+            "title": "Skirts & Shorts",
+            "focal_point": "center center"
+          }
+        },
+        "collection_Y46kGk": {
+          "type": "collection",
+          "settings": {
+            "collection": "easter-dresses-2026",
+            "title": "Dresses",
+            "focal_point": "center center"
+          }
+        },
+        "collection_mHja9d": {
+          "type": "collection",
+          "settings": {
+            "collection": "easter-jewelry-2026",
+            "title": "Jewelry",
+            "focal_point": "center center"
+          }
         }
       },
       "block_order": [
-        "ai_gen_block_4b279a8_FDWcNz"
+        "collection_n78LWw",
+        "collection_zX6gNA",
+        "collection_Y46kGk",
+        "collection_mHja9d"
       ],
+      "name": "t:sections.featured-collections.presets.collection_list.name",
+      "settings": {
+        "title": "",
+        "divider": false,
+        "per_row": 4,
+        "enable_gutter": true
+      }
+    },
+    "17721286357d2d90e0": {
+      "type": "_blocks",
       "settings": {}
     },
     "main-collection": {
@@ -100,6 +110,7 @@
   },
   "order": [
     "collection-header",
+    "featured_collections_Cgeype",
     "17721286357d2d90e0",
     "main-collection"
   ]
