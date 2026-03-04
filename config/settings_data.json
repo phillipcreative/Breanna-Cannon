@@ -367,6 +367,13 @@
         "type": "shopify://apps/back-in-stock-restock-alerts/blocks/main/4bb73be2-b7c2-4870-949f-c528145452a3",
         "disabled": false,
         "settings": {}
+      },
+      "2404642586922909084": {
+        "type": "shopify://apps/youraiseo/blocks/ghost-filter/019cb68a-fdfc-737a-95bd-6e63f82634e7",
+        "disabled": false,
+        "settings": {
+          "enable_ghost_filter": true
+        }
       }
     }
   },
