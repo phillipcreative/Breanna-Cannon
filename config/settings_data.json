@@ -370,7 +370,7 @@
       },
       "2404642586922909084": {
         "type": "shopify://apps/youraiseo/blocks/ghost-filter/019cb68a-fdfc-737a-95bd-6e63f82634e7",
-        "disabled": true,
+        "disabled": false,
         "settings": {
           "enable_ghost_filter": true
         }
