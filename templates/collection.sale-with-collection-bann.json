@@ -30,7 +30,7 @@
         "image": "shopify://shop_images/Easter_Sale.png",
         "focal_point": "top",
         "layout": "left",
-        "height": 450,
+        "height": 550,
         "framed": false,
         "parallax": false
       }
