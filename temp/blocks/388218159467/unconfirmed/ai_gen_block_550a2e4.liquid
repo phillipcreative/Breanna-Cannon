@@ -1,6 +1,153 @@
+{% doc %}
+  @prompt
+    Create a full-width, edge-to-edge banner section.
+    
+    Desktop:
+    - Display this image full screen width (100vw), no margins or padding:
+    https://cdn.shopify.com/s/files/1/0027/0394/9860/files/Easter_Sale.png?v=1774990277
+    - The image should scale proportionally and cover the full width
+    - No cropping important content
+    - Height should adjust automatically based on image ratio
+    
+    Mobile:
+    - Replace the desktop image with this mobile-optimized image:
+    https://cdn.shopify.com/s/files/1/0027/0394/9860/files/Easter_Sale_1.png?v=1774990849
+    - Ensure it fills 100% width on mobile
+    - Maintain proper aspect ratio
+    
+    General:
+    - Remove all padding, margins, and container constraints
+    - Make the banner span full viewport width (100vw)
+    - No text overlay
+    - No buttons
+    - No spacing above or below
+    - Responsive behavior must switch images at 768px breakpoint
+    
+    Optional:
+    - Add link functionality so the entire banner is clickable (leave href empty for now)
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-full-width-banner-{{ ai_gen_id }} {
+    display: block;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .ai-full-width-banner__link-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    line-height: 0;
+  }
+
+  .ai-full-width-banner__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ai-full-width-banner__image-desktop-{{ ai_gen_id }} {
+    display: block;
+  }
+
+  .ai-full-width-banner__image-mobile-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-full-width-banner__image-desktop-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-full-width-banner__image-mobile-{{ ai_gen_id }} {
+      display: block;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-full-width-banner-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.banner_link != blank %}
+    <a href="{{ block.settings.banner_link }}" class="ai-full-width-banner__link-{{ ai_gen_id }}">
+      <img
+        src="{{ block.settings.desktop_image | image_url: width: 2400 }}"
+        alt="{{ block.settings.desktop_image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.desktop_image.width }}"
+        height="{{ block.settings.desktop_image.height }}"
+        class="ai-full-width-banner__image-{{ ai_gen_id }} ai-full-width-banner__image-desktop-{{ ai_gen_id }}"
+      >
+      <img
+        src="{{ block.settings.mobile_image | image_url: width: 1200 }}"
+        alt="{{ block.settings.mobile_image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.mobile_image.width }}"
+        height="{{ block.settings.mobile_image.height }}"
+        class="ai-full-width-banner__image-{{ ai_gen_id }} ai-full-width-banner__image-mobile-{{ ai_gen_id }}"
+      >
+    </a>
+  {% else %}
+    <img
+      src="{{ block.settings.desktop_image | image_url: width: 2400 }}"
+      alt="{{ block.settings.desktop_image.alt | escape }}"
+      loading="lazy"
+      width="{{ block.settings.desktop_image.width }}"
+      height="{{ block.settings.desktop_image.height }}"
+      class="ai-full-width-banner__image-{{ ai_gen_id }} ai-full-width-banner__image-desktop-{{ ai_gen_id }}"
+    >
+    <img
+      src="{{ block.settings.mobile_image | image_url: width: 1200 }}"
+      alt="{{ block.settings.mobile_image.alt | escape }}"
+      loading="lazy"
+      width="{{ block.settings.mobile_image.width }}"
+      height="{{ block.settings.mobile_image.height }}"
+      class="ai-full-width-banner__image-{{ ai_gen_id }} ai-full-width-banner__image-mobile-{{ ai_gen_id }}"
+    >
+  {% endif %}
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Full width banner",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "url",
+      "id": "banner_link",
+      "label": "Banner link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Full width banner"
+    }
+  ]
+}
 {% endschema %}
