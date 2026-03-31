@@ -9,6 +9,24 @@
  */
 {
   "sections": {
+    "1774991087df59238d": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_550a2e4_qagnQU": {
+          "type": "ai_gen_block_550a2e4",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Easter_Sale.png",
+            "mobile_image": "shopify://shop_images/Easter_Sale_1.png",
+            "banner_link": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_550a2e4_qagnQU"
+      ],
+      "settings": {}
+    },
     "collection-header": {
       "type": "collection-header",
       "disabled": true,
@@ -20,6 +38,7 @@
     },
     "background_image_text_r3KaDk": {
       "type": "background-image-text",
+      "disabled": true,
       "name": "t:sections.background-image-text.presets.large_image_with_text_box.name",
       "settings": {
         "subtitle": "",
@@ -74,6 +93,7 @@
     }
   },
   "order": [
+    "1774991087df59238d",
     "collection-header",
     "background_image_text_r3KaDk",
     "main-collection"
