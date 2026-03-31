@@ -11,10 +11,28 @@
   "sections": {
     "collection-header": {
       "type": "collection-header",
+      "disabled": true,
       "settings": {
         "enable": true,
         "collection_image_enable": true,
         "parallax": true
+      }
+    },
+    "background_image_text_r3KaDk": {
+      "type": "background-image-text",
+      "name": "t:sections.background-image-text.presets.large_image_with_text_box.name",
+      "settings": {
+        "subtitle": "",
+        "title": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "image": "shopify://shop_images/Easter_Sale.png",
+        "focal_point": "top",
+        "layout": "left",
+        "height": 450,
+        "framed": false,
+        "parallax": false
       }
     },
     "main-collection": {
@@ -22,6 +40,7 @@
       "blocks": {
         "collection_description": {
           "type": "collection_description",
+          "disabled": true,
           "settings": {}
         },
         "subcollections": {
@@ -56,6 +75,7 @@
   },
   "order": [
     "collection-header",
+    "background_image_text_r3KaDk",
     "main-collection"
   ]
 }
