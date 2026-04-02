@@ -638,10 +638,44 @@
         "label": "Discount Tier Sale Badge Text Color",
         "default": "#000000"
       },
+      { "type": "checkbox",
+        "id": "enable_tier_one_normal_price",
+        "label": "Enable if you want to show the normal product price for tier one",
+        "default": true
+      },
+      { "type": "checkbox",
+        "id": "enable_compare_badge",
+        "label": "Enable if you want to show 'on sale' badge",
+        "default": true,
+        "visible_if": "{{ block.settings.enable_tier_one_normal_price == true }}"
+      },
+      {
+        "type": "text",
+        "id": "compare_badge_label",
+        "label": "Quantity Label",
+        "default": "Sale",
+        "visible_if": "{{ block.settings.enable_tier_one_normal_price == true }}"
+      },
+      {
+        "type": "color",
+        "id": "discount_tier_one_badge_color",
+        "label": "Tier One Sale Badge Color To Show When Normal Product Is On Sale",
+        "default": "#fbd8e6",
+        "visible_if": "{{ block.settings.enable_tier_one_normal_price == true }}"
+      },
+      {
+        "type": "color",
+        "id": "discount_tier_one_badge_text_color",
+        "label": "Tier One Sale Badge Text Color To Show When Normal Product Is On Sale",
+        "default": "#ffffff",
+        "visible_if": "{{ block.settings.enable_tier_one_normal_price == true }}"
+      },
       {
         "type": "text",
         "id": "discount_tier_one_percentage",
-        "label": "Discount Tier One Percentage"
+        "label": "Discount Tier One Percentage",
+        "info": "If you want to show the normal product price for tier one, leave this blank.",
+        "visible_if": "{{ block.settings.enable_tier_one_normal_price == false }}"
       },
       {
         "type": "text",

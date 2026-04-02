@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "main": {
       "type": "main-product",
@@ -53,6 +53,7 @@
           "type": "custom-quantity-selector",
           "settings": {
             "rebuy_data_source_id": "277097",
+            "rebuy_section_title": "<p><strong>You May Also Like:</strong></p>",
             "quantity_header": "<p><strong>Pick Your Deal:</strong> <br/> Buy 2 or more products from any collection and save up to 10% off your entire order! </p><p></p><p></p><p><strong>Pick Your Deal:</strong></p>",
             "quantity_header_align": "left",
             "label": "Product",
@@ -61,6 +62,11 @@
             "quantity_selector_badges": [],
             "discount_tier_badge_color": "#fbd8e6",
             "discount_tier_badge_text_color": "#000000",
+            "enable_tier_one_normal_price": true,
+            "enable_compare_badge": true,
+            "compare_badge_label": "On Sale!",
+            "discount_tier_one_badge_color": "#ff4f33",
+            "discount_tier_one_badge_text_color": "#ffffff",
             "discount_tier_one_percentage": "",
             "discount_tier_two_percentage": "5",
             "discount_tier_three_percentage": "10"
