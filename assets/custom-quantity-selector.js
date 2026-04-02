@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (option) {
         const priceEl = option.querySelector('.quantity-option__price');
         const compareEl = option.querySelector('.quantity-option__compare');
-
+        const normalCompareEl = option.querySelector('.quantity-option__compare.normal-compare-price');
+        console.log(normalCompareEl);
         // Format price function without trailing zeros
         const formatPrice = (cents) => {
           if (window.theme && window.theme.Currency && window.theme.Currency.formatMoney) {
@@ -57,10 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (compareEl) {
-          if (discountPercent > 0 && totalPriceCents > discountedPriceCents) {
+        if (discountPercent > 0 && totalPriceCents > discountedPriceCents) {
             compareEl.textContent = formatPrice(totalPriceCents);
             compareEl.style.display = '';
-          } else {
+          }
+          else if (normalCompareEl) {
+            normalCompareEl.style.display = '';
+          }
+          else {
             compareEl.style.display = 'none';
           }
         }

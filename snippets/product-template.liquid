@@ -234,11 +234,12 @@
                         {% assign discounted_total_cents = total_price_cents | minus: discount_amount_cents %}
                         {% assign quantity_label = block.settings.label %}
 
-                        <script>console.log('discounted_total_cents', {{ discounted_total_cents }});</script>
-
                         {% if quantity_label == blank or quantity_label == '' %}
                           {% assign quantity_label = 'Item' %}
                         {% endif %}
+
+                        {% assign tier_one_badge_color = block.settings.discount_tier_one_badge_color %}
+                        {% assign tier_one_badge_text_color = block.settings.discount_tier_one_badge_text_color %}
 
                         <label class="quantity-option">
                           <input type="radio" name="quantity_tier" value="{{ i }}" data-discount-percent="{{ discount_percent }}" data-total-price-cents="{{ total_price_cents }}" data-discounted-price-cents="{{ discounted_total_cents }}" {% if forloop.first %}checked{% endif %}>
@@ -247,12 +248,16 @@
                               <span class="quantity-label">{{ i }} {{ quantity_label }}{% if i > 1 %}s{% endif %}</span>
 
                               <div class="quantity-badges">
+                                {% if block.settings.enable_tier_one_normal_price and i == 1 and product.compare_at_price > product.price and block.settings.enable_compare_badge %}
+                                  <span class="quantity-option__badge" style="background-color: {{ block.settings.discount_tier_one_badge_color }}; color: {{ block.settings.discount_tier_one_badge_text_color }};">{{ block.settings.compare_badge_label }}</span>
+                                {% endif %}
                                 <span class="quantity-option__discount {% if discount_percent == 0 %}hide{% endif %}" style="color: {{ tier_badge_text_color }}; background-color: {{ tier_badge_color }};">Save {{ discount_percent }}%</span>
                                 {% for badge in quantity_selector_badges %}
                                   {% assign badge_attached_quantity = badge.assign_quantity_selector %}
                                   {% assign badge_color = badge.badge_color %}
                                   {% assign badge_label = badge.badge_label %}
                                   {% assign badge_text_color = badge.badge_text_color %}
+
                                   {% if i == badge_attached_quantity %}
                                     <span class="quantity-option__badge" style="background-color: {{ badge_color }}; color: {{ badge_text_color }};">{{ badge_label }}</span>
                                   {% endif %}
@@ -264,6 +269,9 @@
                             <div class="quantity-option__right">
                               {% if block.settings.show_strike_total and discount_percent != 0 %}
                                 <span class="quantity-option__compare">{{ total_price_cents | money_without_trailing_zeros }}</span>
+                              {% endif %}
+                              {% if block.settings.enable_tier_one_normal_price and i == 1 and product.compare_at_price > product.price %}
+                                <span class="quantity-option__compare normal-compare-price" data-normal-compare-price>${{ product.compare_at_price | money_without_currency }}</span>
                               {% endif %}
                               <span class="quantity-option__price">{{ discounted_total_cents | money_without_trailing_zeros }}</span>
                             </div>
