@@ -23,9 +23,10 @@
             "link_text": "And they're off",
             "link_2": "",
             "link_text_2": "",
-            "color_accent": "#000000",
-            "text_align": "vertical-center horizontal-left",
+            "color_accent": "#ffffff",
+            "text_align": "vertical-bottom horizontal-center",
             "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-18.png",
+            "image_mobile": "shopify://shop_images/Mobile_Website_Hero_Cover_Images_2000_x_1000_px_Instagram_Post_45_-8.png",
             "overlay_opacity": 0,
             "focal_point": "20% 50%"
           }
