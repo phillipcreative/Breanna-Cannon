@@ -366,7 +366,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "STEALS & DEALS",
-        "home_featured_products": "new-years-sale",
+        "home_featured_products": "sale",
         "per_row": 4,
         "rows": 2,
         "mobile_scrollable": true,
