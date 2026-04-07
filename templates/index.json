@@ -127,6 +127,14 @@
     "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
       "type": "featured-collections",
       "blocks": {
+        "collection_gFAr7A": {
+          "type": "collection",
+          "settings": {
+            "collection": "kentucky-derby",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
         "collection_JjJfPW": {
           "type": "collection",
           "settings": {
@@ -167,14 +175,6 @@
             "focal_point": "center center"
           }
         },
-        "collection_JmwrjK": {
-          "type": "collection",
-          "settings": {
-            "collection": "sweatshirts-sets",
-            "title": "",
-            "focal_point": "center center"
-          }
-        },
         "30fc79a2-3f30-42de-bddb-6bfc9c26f92a": {
           "type": "collection",
           "settings": {
@@ -191,14 +191,6 @@
             "focal_point": "center center"
           }
         },
-        "collection_h7889P": {
-          "type": "collection",
-          "settings": {
-            "collection": "child-size",
-            "title": "",
-            "focal_point": "center center"
-          }
-        },
         "collection_QUwFC6": {
           "type": "collection",
           "settings": {
@@ -209,15 +201,14 @@
         }
       },
       "block_order": [
+        "collection_gFAr7A",
         "collection_JjJfPW",
         "collection_yyp3MR",
         "collection_fi4tPy",
         "collection_WL6Xgq",
         "collection_hJf48i",
-        "collection_JmwrjK",
         "30fc79a2-3f30-42de-bddb-6bfc9c26f92a",
         "collection_EaW6ad",
-        "collection_h7889P",
         "collection_QUwFC6"
       ],
       "settings": {
