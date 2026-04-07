@@ -128,6 +128,8 @@
       "type": "text-and-image",
       "name": "t:sections.text-and-image.presets.image_with_text.name",
       "settings": {
+        "image": "shopify://shop_images/B99I6158_04df89c7-331c-4dec-abe6-6bd4e80b3b03.jpg",
+        "image2": "shopify://shop_images/B99I6025_d8f0ba00-010a-4f34-8adc-25e53f85450a.jpg",
         "image_width": 700,
         "subtitle": "",
         "title": "SHOP NATIONAL CHAMPS",
