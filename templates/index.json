@@ -323,8 +323,8 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.featured_collection.name",
       "settings": {
-        "title": "HE IS RISEN",
-        "home_featured_products": "easter-2026",
+        "title": "OFFICIALLY LICENSED KENTUCKY DERBY",
+        "home_featured_products": "kentucky-derby",
         "per_row": 4,
         "rows": 2,
         "mobile_scrollable": true,
