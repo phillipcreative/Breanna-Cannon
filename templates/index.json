@@ -124,6 +124,22 @@
         "autoplay_speed": 6
       }
     },
+    "text_and_image_hbjVqw": {
+      "type": "text-and-image",
+      "name": "t:sections.text-and-image.presets.image_with_text.name",
+      "settings": {
+        "image_width": 700,
+        "subtitle": "",
+        "title": "SHOP NATIONAL CHAMPS",
+        "text": "<p>CONGRATS TO NCAA MEN'S BASKETBALL NATIONAL CHAMPS, UNIVERSITY OF MICHIGAN</p>",
+        "button_label": "GO BLUE",
+        "button_link": "shopify://collections/university-of-michigan-1",
+        "button_style": "primary",
+        "align_text": "left",
+        "layout": "right",
+        "divider": false
+      }
+    },
     "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
       "type": "featured-collections",
       "blocks": {
@@ -609,6 +625,7 @@
   },
   "order": [
     "slideshow",
+    "text_and_image_hbjVqw",
     "dc614b3d-93ca-4ccf-a040-51892f06ebec",
     "rich-text",
     "1669620656f5ef9fcd",
