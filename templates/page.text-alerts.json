@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -10,7 +19,7 @@
         "template--16467571671274__f957646e-7e31-4f29-9cac-34ace3271181-liquid-1": {
           "type": "liquid",
           "settings": {
-            "code": "<div id=\"omnisend-embedded-v2-650847bc67e695d2927d3868\"><\/div>",
+            "code": "<div id=\"omnisend-embedded-v2-650847bc67e695d2927d3868\"></div>",
             "width": "100%",
             "alignment": "top-middle"
           }
@@ -26,13 +35,14 @@
     },
     "68c9183e-cb59-424c-98da-765617ae55f9": {
       "type": "map",
+      "disabled": true,
       "settings": {
         "map_title": "VISIT OUR FLAGSHIP STORE",
-        "address": "<p><strong>Brianna Cannon<\/strong><br\/>1900 Preston Road<br\/>Suite 155<br\/>Plano, TX 75093<\/p><p>469-847-8877<\/p><p>Mon - Sat 10:00am-6:00pm<br\/>Sunday CLOSED<\/p>",
+        "address": "<p><strong>Brianna Cannon</strong><br/>1900 Preston Road<br/>Suite 155<br/>Plano, TX 75093</p><p>469-847-8877</p><p>Mon - Sat 10:00am-6:00pm<br/>Sunday CLOSED</p>",
         "map_address": "1900 Preston Road, Suite 155, Plano, TX 75093",
         "api_key": "",
         "show_button": true,
-        "background_image": "shopify:\/\/shop_images\/536556D5-AAA7-4430-893D-7BDA414D2E88.jpg",
+        "background_image": "shopify://shop_images/536556D5-AAA7-4430-893D-7BDA414D2E88.jpg",
         "background_image_position": "center center"
       }
     },
