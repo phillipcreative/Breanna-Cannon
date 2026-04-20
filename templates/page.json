@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -6,13 +15,14 @@
     },
     "68c9183e-cb59-424c-98da-765617ae55f9": {
       "type": "map",
+      "disabled": true,
       "settings": {
         "map_title": "VISIT OUR FLAGSHIP STORE",
-        "address": "<p><strong>Brianna Cannon<\/strong><br\/>1900 Preston Road<br\/>Suite 155<br\/>Plano, TX 75093<\/p><p>469-847-8877<\/p><p>Mon - Sat 10:00am-6:00pm<br\/>Sunday CLOSED<\/p>",
+        "address": "<p><strong>Brianna Cannon</strong><br/>1900 Preston Road<br/>Suite 155<br/>Plano, TX 75093</p><p>469-847-8877</p><p>Mon - Sat 10:00am-6:00pm<br/>Sunday CLOSED</p>",
         "map_address": "1900 Preston Road, Suite 155, Plano, TX 75093",
         "api_key": "",
         "show_button": true,
-        "background_image": "shopify:\/\/shop_images\/709A1173-Enhanced-NRcopyFINAL-4_jpg_074bca65-07c1-4786-b379-011f1c76f94f.webp",
+        "background_image": "shopify://shop_images/709A1173-Enhanced-NRcopyFINAL-4_jpg_074bca65-07c1-4786-b379-011f1c76f94f.webp",
         "background_image_position": "center right"
       }
     },
@@ -20,7 +30,7 @@
       "type": "apps",
       "blocks": {
         "rebuy_personalization_engine_rebuy_widget_VPaCiY": {
-          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
           "settings": {
             "enabled": true,
             "id": "193167",
@@ -29,7 +39,7 @@
           }
         },
         "rebuy_personalization_engine_rebuy_widget_adticp": {
-          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
           "settings": {
             "enabled": true,
             "id": "",
@@ -51,7 +61,7 @@
       "type": "apps",
       "blocks": {
         "rebuy_personalization_engine_rebuy_widget_dWmjz3": {
-          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
           "settings": {
             "enabled": true,
             "id": "193168",
