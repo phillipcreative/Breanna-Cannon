@@ -1,6 +1,742 @@
+{% doc %}
+  @prompt
+    Layout & Structure
+    Full-width responsive hero section
+    Support two images:
+    Desktop hero image (16:9 or wider)
+    Mobile hero image (4:5 or 9:16 optimized crop)
+    Left-aligned content container (max-width ~600px, vertically centered)
+    Overlay Control
+    Add a customizable overlay layer on top of the hero image
+    Settings:
+    Overlay color (default: black #000000)
+    Overlay opacity (default: 40–60%)
+    Ensure text remains highly legible over image
+    Content Hierarchy (Top → Bottom)
+    1. Subheading (Eyebrow)
+    Text: NEW COLLECTION – DROP 01
+    Small caps or uppercase
+    Letter spacing increased
+    Color: white or accent color
+    Positioned above headline
+    2. Main Headline (H1)
+    Text: GAMEDAY,
+    H1 tag required
+    Serif font (high contrast, editorial style)
+    Bold, large size
+    Color: white
+    3. Secondary Headline (Styled H1 variant)
+    Text: Redefined.
+    Serif font
+    Italic style
+    Slight color contrast (gold/yellow accent preferred)
+    Positioned directly under main headline
+    Slight overlap or tight spacing for premium feel
+    4. Body Text
+    One sentence description under headlines
+    Max width ~400–500px
+    Light font weight
+    Color: soft white (#eaeaea or similar)
+    
+    Example placeholder:
+    “Bold, embellished gameday apparel for the boys and men in your life.”
+    
+    CTA Buttons
+    Two buttons side by side:
+    SHOP MEN
+    SHOP BOYS
+    Style:
+    Button 1: Solid (primary color, e.g. red)
+    Button 2: Outline or light background
+    Include arrow icon or subtle hover animation
+    Stack vertically on mobile
+    Value Props Row (Bottom of Hero)
+    
+    Add a horizontal row of 3 value props beneath CTAs:
+    
+    FREE US SHIPPING $100+
+    HANDCRAFTED EMBELLISHMENTS
+    10,000+ 5-STAR REVIEWS
+    
+    Style:
+    
+    Small text
+    Evenly spaced
+    Optional icons or dot separators
+    Slight opacity to feel secondary
+    Mobile Behavior
+    Swap to mobile hero image
+    Center or slightly left-align text
+    Reduce font sizes proportionally
+    Stack buttons vertically
+    Keep value props readable but compact
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-hero-gameday-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .ai-hero-gameday-image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-hero-gameday-image-desktop-{{ ai_gen_id }} {
+    display: block;
+  }
+
+  .ai-hero-gameday-image-mobile-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-hero-gameday-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.overlay_color }};
+    opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+  }
+
+  .ai-hero-gameday-content-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  .ai-hero-gameday-content-{{ ai_gen_id }} {
+    max-width: 600px;
+  }
+
+  .ai-hero-gameday-eyebrow-{{ ai_gen_id }} {
+    font-size: {{ block.settings.eyebrow_size }}px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: {{ block.settings.eyebrow_color }};
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .ai-hero-gameday-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.headline_color }};
+    margin: 0;
+    line-height: 1;
+    font-family: {{ block.settings.headline_font.family }}, {{ block.settings.headline_font.fallback_families }};
+    font-weight: {{ block.settings.headline_font.weight }};
+    font-style: {{ block.settings.headline_font.style }};
+  }
+
+  .ai-hero-gameday-headline-secondary-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_secondary_size }}px;
+    font-style: italic;
+    color: {{ block.settings.headline_secondary_color }};
+    margin: 0;
+    line-height: 1;
+    margin-top: -8px;
+    font-family: {{ block.settings.headline_font.family }}, {{ block.settings.headline_font.fallback_families }};
+    font-weight: {{ block.settings.headline_font.weight }};
+  }
+
+  .ai-hero-gameday-body-{{ ai_gen_id }} {
+    font-size: {{ block.settings.body_size }}px;
+    color: {{ block.settings.body_color }};
+    margin-top: 24px;
+    max-width: 500px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .ai-hero-gameday-buttons-{{ ai_gen_id }} {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .ai-hero-gameday-button-{{ ai_gen_id }} {
+    padding: 14px 32px;
+    font-size: {{ block.settings.button_size }}px;
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ai-hero-gameday-button-primary-{{ ai_gen_id }} {
+    background-color: {{ block.settings.button_primary_bg }};
+    color: {{ block.settings.button_primary_text_color }};
+    border: 2px solid {{ block.settings.button_primary_bg }};
+  }
+
+  .ai-hero-gameday-button-primary-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_primary_hover_bg }};
+    border-color: {{ block.settings.button_primary_hover_bg }};
+  }
+
+  .ai-hero-gameday-button-secondary-{{ ai_gen_id }} {
+    background-color: transparent;
+    color: {{ block.settings.button_secondary_text_color }};
+    border: 2px solid {{ block.settings.button_secondary_border }};
+  }
+
+  .ai-hero-gameday-button-secondary-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_secondary_hover_bg }};
+    color: {{ block.settings.button_secondary_hover_text }};
+  }
+
+  .ai-hero-gameday-button-arrow-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ai-hero-gameday-value-props-{{ ai_gen_id }} {
+    display: flex;
+    gap: 32px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .ai-hero-gameday-value-prop-{{ ai_gen_id }} {
+    font-size: {{ block.settings.value_prop_size }}px;
+    color: {{ block.settings.value_prop_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.9;
+    font-weight: 500;
+  }
+
+  .ai-hero-gameday-placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-hero-gameday-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 400px;
+    opacity: 0.3;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-hero-gameday-{{ ai_gen_id }} {
+      min-height: 600px;
+    }
+
+    .ai-hero-gameday-image-desktop-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-hero-gameday-image-mobile-{{ ai_gen_id }} {
+      display: block;
+    }
+
+    .ai-hero-gameday-content-wrapper-{{ ai_gen_id }} {
+      padding: 40px 20px;
+    }
+
+    .ai-hero-gameday-content-{{ ai_gen_id }} {
+      text-align: left;
+    }
+
+    .ai-hero-gameday-eyebrow-{{ ai_gen_id }} {
+      font-size: {{ block.settings.eyebrow_size | times: 0.8 }}px;
+    }
+
+    .ai-hero-gameday-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size | times: 0.6 }}px;
+    }
+
+    .ai-hero-gameday-headline-secondary-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_secondary_size | times: 0.6 }}px;
+    }
+
+    .ai-hero-gameday-body-{{ ai_gen_id }} {
+      font-size: {{ block.settings.body_size | times: 0.9 }}px;
+    }
+
+    .ai-hero-gameday-buttons-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ai-hero-gameday-button-{{ ai_gen_id }} {
+      width: 100%;
+      justify-content: center;
+      font-size: {{ block.settings.button_size | times: 0.9 }}px;
+    }
+
+    .ai-hero-gameday-value-props-{{ ai_gen_id }} {
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .ai-hero-gameday-value-prop-{{ ai_gen_id }} {
+      font-size: {{ block.settings.value_prop_size | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-hero-gameday-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.desktop_image %}
+    <img
+      src="{{ block.settings.desktop_image | image_url: width: 2000 }}"
+      alt="{{ block.settings.desktop_image.alt | escape }}"
+      loading="eager"
+      width="{{ block.settings.desktop_image.width }}"
+      height="{{ block.settings.desktop_image.height }}"
+      class="ai-hero-gameday-image-{{ ai_gen_id }} ai-hero-gameday-image-desktop-{{ ai_gen_id }}"
+    >
+  {% else %}
+    <div class="ai-hero-gameday-placeholder-{{ ai_gen_id }}">
+      {{ 'hero-apparel-1' | placeholder_svg_tag }}
+    </div>
+  {% endif %}
+
+  {% if block.settings.mobile_image %}
+    <img
+      src="{{ block.settings.mobile_image | image_url: width: 1000 }}"
+      alt="{{ block.settings.mobile_image.alt | escape }}"
+      loading="eager"
+      width="{{ block.settings.mobile_image.width }}"
+      height="{{ block.settings.mobile_image.height }}"
+      class="ai-hero-gameday-image-{{ ai_gen_id }} ai-hero-gameday-image-mobile-{{ ai_gen_id }}"
+    >
+  {% endif %}
+
+  <div class="ai-hero-gameday-overlay-{{ ai_gen_id }}"></div>
+
+  <div class="ai-hero-gameday-content-wrapper-{{ ai_gen_id }}">
+    <div class="ai-hero-gameday-content-{{ ai_gen_id }}">
+      {% if block.settings.eyebrow_text != blank %}
+        <div class="ai-hero-gameday-eyebrow-{{ ai_gen_id }}">
+          {{ block.settings.eyebrow_text }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.headline_text != blank %}
+        <h1 class="ai-hero-gameday-headline-{{ ai_gen_id }}">
+          {{ block.settings.headline_text }}
+        </h1>
+      {% endif %}
+
+      {% if block.settings.headline_secondary_text != blank %}
+        <h1 class="ai-hero-gameday-headline-secondary-{{ ai_gen_id }}">
+          {{ block.settings.headline_secondary_text }}
+        </h1>
+      {% endif %}
+
+      {% if block.settings.body_text != blank %}
+        <div class="ai-hero-gameday-body-{{ ai_gen_id }}">
+          {{ block.settings.body_text }}
+        </div>
+      {% endif %}
+
+      <div class="ai-hero-gameday-buttons-{{ ai_gen_id }}">
+        {% if block.settings.button_primary_label != blank %}
+          <a
+            href="{{ block.settings.button_primary_link }}"
+            class="ai-hero-gameday-button-{{ ai_gen_id }} ai-hero-gameday-button-primary-{{ ai_gen_id }}"
+          >
+            {{ block.settings.button_primary_label }}
+            {% if block.settings.show_button_arrows %}
+              <svg
+                class="ai-hero-gameday-button-arrow-{{ ai_gen_id }}"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            {% endif %}
+          </a>
+        {% endif %}
+
+        {% if block.settings.button_secondary_label != blank %}
+          <a
+            href="{{ block.settings.button_secondary_link }}"
+            class="ai-hero-gameday-button-{{ ai_gen_id }} ai-hero-gameday-button-secondary-{{ ai_gen_id }}"
+          >
+            {{ block.settings.button_secondary_label }}
+            {% if block.settings.show_button_arrows %}
+              <svg
+                class="ai-hero-gameday-button-arrow-{{ ai_gen_id }}"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            {% endif %}
+          </a>
+        {% endif %}
+      </div>
+
+      {% if block.settings.show_value_props %}
+        <div class="ai-hero-gameday-value-props-{{ ai_gen_id }}">
+          {% if block.settings.value_prop_1 != blank %}
+            <div class="ai-hero-gameday-value-prop-{{ ai_gen_id }}">
+              {{ block.settings.value_prop_1 }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.value_prop_2 != blank %}
+            <div class="ai-hero-gameday-value-prop-{{ ai_gen_id }}">
+              {{ block.settings.value_prop_2 }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.value_prop_3 != blank %}
+            <div class="ai-hero-gameday-value-prop-{{ ai_gen_id }}">
+              {{ block.settings.value_prop_3 }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Gameday hero",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Text",
+      "default": "NEW COLLECTION – DROP 01"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Main headline"
+    },
+    {
+      "type": "text",
+      "id": "headline_text",
+      "label": "Text",
+      "default": "GAMEDAY,"
+    },
+    {
+      "type": "font_picker",
+      "id": "headline_font",
+      "label": "Font",
+      "default": "serif"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Font size",
+      "min": 30,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Secondary headline"
+    },
+    {
+      "type": "text",
+      "id": "headline_secondary_text",
+      "label": "Text",
+      "default": "Redefined."
+    },
+    {
+      "type": "range",
+      "id": "headline_secondary_size",
+      "label": "Font size",
+      "min": 30,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "color",
+      "id": "headline_secondary_color",
+      "label": "Color",
+      "default": "#FFD700"
+    },
+    {
+      "type": "header",
+      "content": "Body text"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Text",
+      "default": "Bold, embellished gameday apparel for the boys and men in your life."
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Color",
+      "default": "#eaeaea"
+    },
+    {
+      "type": "header",
+      "content": "Primary button"
+    },
+    {
+      "type": "text",
+      "id": "button_primary_label",
+      "label": "Label",
+      "default": "SHOP MEN"
+    },
+    {
+      "type": "url",
+      "id": "button_primary_link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "button_primary_bg",
+      "label": "Background",
+      "default": "#C20000"
+    },
+    {
+      "type": "color",
+      "id": "button_primary_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_primary_hover_bg",
+      "label": "Hover background",
+      "default": "#A00000"
+    },
+    {
+      "type": "header",
+      "content": "Secondary button"
+    },
+    {
+      "type": "text",
+      "id": "button_secondary_label",
+      "label": "Label",
+      "default": "SHOP BOYS"
+    },
+    {
+      "type": "url",
+      "id": "button_secondary_link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_border",
+      "label": "Border color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_hover_bg",
+      "label": "Hover background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_hover_text",
+      "label": "Hover text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button_arrows",
+      "label": "Show arrow icons",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Value props"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_value_props",
+      "label": "Show value props",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "value_prop_1",
+      "label": "Value prop 1",
+      "default": "FREE US SHIPPING $100+"
+    },
+    {
+      "type": "text",
+      "id": "value_prop_2",
+      "label": "Value prop 2",
+      "default": "HANDCRAFTED EMBELLISHMENTS"
+    },
+    {
+      "type": "text",
+      "id": "value_prop_3",
+      "label": "Value prop 3",
+      "default": "10,000+ 5-STAR REVIEWS"
+    },
+    {
+      "type": "range",
+      "id": "value_prop_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "value_prop_color",
+      "label": "Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gameday hero"
+    }
+  ]
+}
 {% endschema %}
