@@ -146,13 +146,9 @@
         "divider": false
       }
     },
-    "main": {
-      "type": "main-page-full-width",
-      "name": "Champ Cannon Page",
-      "settings": {}
-    },
     "judgeme_carousel_section_rQybWM": {
       "type": "judgeme_carousel_section",
+      "disabled": true,
       "name": "Featured Review Carousel",
       "settings": {
         "maxwidth": 1080
@@ -223,62 +219,6 @@
         "color_text": "#0f172a"
       }
     },
-    "testimonials_iY7P6m": {
-      "type": "testimonials",
-      "blocks": {
-        "testimonial_RnThVQ": {
-          "type": "testimonial",
-          "settings": {
-            "icon": "5-stars",
-            "testimonial": "<p>My husband loves it! The quality is exceptional and it arrived perfectly packaged. This is definitely a keeper.</p>",
-            "author": "Sarah Mitchell",
-            "author_info": "Los Angeles, CA"
-          }
-        },
-        "testimonial_qnBWXb": {
-          "type": "testimonial",
-          "settings": {
-            "icon": "5-stars",
-            "testimonial": "<p>Best purchase I've made in years. The attention to detail is incredible and the customer service was outstanding. Highly recommend!</p>",
-            "author": "Jessica Chen",
-            "author_info": "New York, NY"
-          }
-        },
-        "testimonial_AWm4gN": {
-          "type": "testimonial",
-          "settings": {
-            "icon": "5-stars",
-            "testimonial": "<p>Absolutely stunning. Worth every penny. I've already recommended this to all my friends and they're ordering too.</p>",
-            "author": "Amanda Rodriguez",
-            "author_info": "Miami, FL"
-          }
-        },
-        "testimonial_iFYMAM": {
-          "type": "testimonial",
-          "settings": {
-            "icon": "5-stars",
-            "testimonial": "<p>Premium quality that speaks for itself. The craftsmanship is evident in every detail. This is a luxury item that delivers.</p>",
-            "author": "Michelle Thompson",
-            "author_info": "Chicago, IL"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_RnThVQ",
-        "testimonial_qnBWXb",
-        "testimonial_AWm4gN",
-        "testimonial_iFYMAM"
-      ],
-      "custom_css": [],
-      "name": "t:sections.testimonials.presets.testimonials.name",
-      "settings": {
-        "title": "Loved by Real Champs",
-        "align_text": "left",
-        "round_images": false,
-        "color_background": "#f5ebe1",
-        "color_text": "#0f172a"
-      }
-    },
     "17769571897d3932cc": {
       "type": "_blocks",
       "blocks": {
@@ -322,16 +262,20 @@
         "ai_gen_block_a9ad604_NknUk7"
       ],
       "settings": {}
+    },
+    "main": {
+      "type": "main-page-full-width",
+      "name": "Champ Cannon Page",
+      "settings": {}
     }
   },
   "order": [
     "17769546695a0278b4",
     "promo_grid_NLJPkM",
     "featured_collection_GbTBxa",
-    "main",
     "judgeme_carousel_section_rQybWM",
     "testimonials_jEiFdJ",
-    "testimonials_iY7P6m",
-    "17769571897d3932cc"
+    "17769571897d3932cc",
+    "main"
   ]
 }
