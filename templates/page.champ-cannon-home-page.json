@@ -9,6 +9,77 @@
  */
 {
   "sections": {
+    "promo_grid_NLJPkM": {
+      "type": "promo-grid",
+      "blocks": {
+        "banner_hptJAn": {
+          "type": "banner",
+          "settings": {
+            "heading": "Built for Champions, Big & Small",
+            "text": "shop the collection",
+            "link": "",
+            "label": "",
+            "color_tint": "#000000",
+            "color_tint_opacity": 8,
+            "framed": false
+          }
+        },
+        "advanced_d7BxVd": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "42 Styles",
+            "heading": "For Him",
+            "textarea": "The Modern Gameday Man",
+            "cta_text1": "Shop Now",
+            "cta_link1": "",
+            "cta_text2": "Shop All",
+            "cta_link2": "",
+            "video_url": "",
+            "width": "50",
+            "height": 500,
+            "text_size": 100,
+            "text_align": "vertical-center horizontal-center",
+            "focal_point": "center",
+            "color_accent": "rgba(0,0,0,0)",
+            "boxed": false,
+            "framed": false
+          }
+        },
+        "advanced_3YQYxG": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "24 styles",
+            "heading": "For Boys",
+            "textarea": "Little Champs in the Making",
+            "cta_text1": "Shop Now",
+            "cta_link1": "",
+            "cta_text2": "",
+            "cta_link2": "",
+            "video_url": "",
+            "width": "50",
+            "height": 500,
+            "text_size": 100,
+            "text_align": "vertical-center horizontal-center",
+            "focal_point": "center",
+            "color_accent": "rgba(0,0,0,0)",
+            "boxed": false,
+            "framed": false
+          }
+        }
+      },
+      "block_order": [
+        "banner_hptJAn",
+        "advanced_d7BxVd",
+        "advanced_3YQYxG"
+      ],
+      "name": "t:sections.promo-grid.presets.promotional_grid.name",
+      "settings": {
+        "full_width": false,
+        "gutter_size": 20,
+        "space_above": true,
+        "space_below": true
+      }
+    },
     "d8e93656-e6da-45a7-805d-7b06545c8450": {
       "type": "featured-collections",
       "blocks": {
@@ -74,6 +145,7 @@
     }
   },
   "order": [
+    "promo_grid_NLJPkM",
     "d8e93656-e6da-45a7-805d-7b06545c8450",
     "main"
   ]
