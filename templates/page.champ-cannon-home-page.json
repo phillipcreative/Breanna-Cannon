@@ -73,8 +73,7 @@
         "advanced_3YQYxG"
       ],
       "custom_css": [
-        ":root {--cream-bg: #F5EBE1;}",
-        "/* Section background */section {background-color: var(--cream-bg) !important;}"
+        "& {background-color: #F5EBE1 !important;}"
       ],
       "name": "t:sections.promo-grid.presets.promotional_grid.name",
       "settings": {
