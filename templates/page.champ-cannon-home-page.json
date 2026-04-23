@@ -32,7 +32,7 @@
             "textarea": "The Modern Gameday Man",
             "cta_text1": "Shop Now",
             "cta_link1": "",
-            "cta_text2": "Shop All",
+            "cta_text2": "",
             "cta_link2": "",
             "video_url": "",
             "width": "50",
@@ -72,9 +72,13 @@
         "advanced_d7BxVd",
         "advanced_3YQYxG"
       ],
+      "custom_css": [
+        ":root {--cream-bg: #F5EBE1;}",
+        "/* Section background */section {background-color: var(--cream-bg) !important;}"
+      ],
       "name": "t:sections.promo-grid.presets.promotional_grid.name",
       "settings": {
-        "full_width": false,
+        "full_width": true,
         "gutter_size": 20,
         "space_above": true,
         "space_below": true
