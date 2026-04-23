@@ -9,39 +9,55 @@
  */
 {
   "sections": {
-    "slideshow_zwEVTR": {
-      "type": "slideshow",
+    "17769546695a0278b4": {
+      "type": "_blocks",
       "blocks": {
-        "image_GLYt8y": {
-          "type": "image",
+        "ai_gen_block_635fbf0_ALVicy": {
+          "type": "ai_gen_block_635fbf0",
           "settings": {
-            "top_subheading": "",
-            "title": "GAMEDAY\nRedefined.",
-            "title_size": 80,
-            "subheading": "Bring your brand to life",
-            "link": "",
-            "link_text": "Optional button",
-            "link_2": "",
-            "link_text_2": "",
-            "color_accent": "rgba(0,0,0,0)",
-            "text_align": "vertical-center horizontal-center",
-            "overlay_opacity": 0,
-            "focal_point": "center center"
-          }
+            "overlay_color": "#000000",
+            "overlay_opacity": 50,
+            "eyebrow_text": "NEW COLLECTION – DROP 01",
+            "eyebrow_size": 14,
+            "eyebrow_color": "#ffffff",
+            "headline_text": "champcannon",
+            "headline_font": "serif",
+            "headline_size": 80,
+            "headline_color": "#ffffff",
+            "headline_secondary_text": "Gameday Redefined.",
+            "headline_secondary_size": 80,
+            "headline_secondary_color": "#FFD700",
+            "body_text": "Bold, embellished gameday apparel for the boys and men in your life.",
+            "body_size": 16,
+            "body_color": "#eaeaea",
+            "button_primary_label": "SHOP MEN",
+            "button_primary_link": "",
+            "button_primary_bg": "#C20000",
+            "button_primary_text_color": "#ffffff",
+            "button_primary_hover_bg": "#A00000",
+            "button_secondary_label": "SHOP BOYS",
+            "button_secondary_link": "",
+            "button_secondary_text_color": "#ffffff",
+            "button_secondary_border": "#ffffff",
+            "button_secondary_hover_bg": "#ffffff",
+            "button_secondary_hover_text": "#000000",
+            "button_size": 14,
+            "button_border_radius": 0,
+            "show_button_arrows": true,
+            "show_value_props": true,
+            "value_prop_1": "FREE US SHIPPING $100+",
+            "value_prop_2": "HANDCRAFTED EMBELLISHMENTS",
+            "value_prop_3": "10,000+ 5-STAR REVIEWS",
+            "value_prop_size": 12,
+            "value_prop_color": "#ffffff"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "image_GLYt8y"
+        "ai_gen_block_635fbf0_ALVicy"
       ],
-      "name": "t:sections.slideshow.presets.hero_optional_slideshow.name",
-      "settings": {
-        "section_height": "650px",
-        "mobile_height": "auto",
-        "parallax": true,
-        "style": "bars",
-        "autoplay": true,
-        "autoplay_speed": 5
-      }
+      "settings": {}
     },
     "promo_grid_NLJPkM": {
       "type": "promo-grid",
@@ -180,7 +196,7 @@
     }
   },
   "order": [
-    "slideshow_zwEVTR",
+    "17769546695a0278b4",
     "promo_grid_NLJPkM",
     "d8e93656-e6da-45a7-805d-7b06545c8450",
     "main"
