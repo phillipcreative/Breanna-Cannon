@@ -77,7 +77,7 @@
     "social_tiktok_link": "https://www.tiktok.com/@briannacannonofficial",
     "share_twitter": false,
     "favicon": "shopify://shop_images/Brianna_Cannon_logo.jpg",
-    "show_breadcrumbs": true,
+    "show_breadcrumbs": false,
     "checkout_logo_image": "shopify://shop_images/Brianna_Cannon_Logo_with_Emblem_and_whitespace_f5f34a5b-921b-4081-a6f4-24b37e523b3d.png",
     "checkout_logo_position": "left",
     "checkout_logo_size": "medium",

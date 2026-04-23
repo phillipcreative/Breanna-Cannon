@@ -129,78 +129,209 @@
       "settings": {
         "full_width": true,
         "gutter_size": 20,
-        "space_above": true,
-        "space_below": true
+        "space_above": false,
+        "space_below": false
       }
     },
-    "d8e93656-e6da-45a7-805d-7b06545c8450": {
-      "type": "featured-collections",
-      "blocks": {
-        "586deee9-56fd-4e72-b4f6-ec99655f8a15": {
-          "type": "collection",
-          "settings": {
-            "collection": "legacy-christian-academy",
-            "title": "",
-            "focal_point": "center center"
-          }
-        },
-        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-3": {
-          "type": "collection",
-          "settings": {
-            "collection": "prestonwood-christian-academy",
-            "title": "",
-            "focal_point": "center center"
-          }
-        },
-        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-4": {
-          "type": "collection",
-          "settings": {
-            "collection": "prince-of-peace-christian-school",
-            "title": "",
-            "focal_point": "center center"
-          }
-        },
-        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-1": {
-          "type": "collection",
-          "settings": {
-            "collection": "southlake-carroll-dragons",
-            "title": "",
-            "focal_point": "center center"
-          }
-        },
-        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-2": {
-          "type": "collection",
-          "settings": {
-            "collection": "trinity-christian-academy",
-            "title": "",
-            "focal_point": "center center"
-          }
-        }
-      },
-      "block_order": [
-        "586deee9-56fd-4e72-b4f6-ec99655f8a15",
-        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-3",
-        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-4",
-        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-1",
-        "template--16467571638506__d8e93656-e6da-45a7-805d-7b06545c8450-collection-2"
-      ],
+    "featured_collection_GbTBxa": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.featured_collection.name",
       "settings": {
-        "title": "HIGH SCHOOLS",
-        "divider": false,
-        "per_row": 5,
-        "enable_gutter": true
+        "title": "Shop the Drop",
+        "home_featured_products": "bc-mens",
+        "per_row": 4,
+        "rows": 3,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
       }
     },
     "main": {
       "type": "main-page-full-width",
       "name": "Champ Cannon Page",
       "settings": {}
+    },
+    "judgeme_carousel_section_rQybWM": {
+      "type": "judgeme_carousel_section",
+      "name": "Featured Review Carousel",
+      "settings": {
+        "maxwidth": 1080
+      }
+    },
+    "testimonials_jEiFdJ": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_RLfYmB": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>The quality is absolutely incredible. Every detail is perfect, and it arrived beautifully packaged. I've recommended Brianna Cannon to all my friends!</p>",
+            "author": "Sarah Mitchell",
+            "author_info": "New York, NY"
+          }
+        },
+        "testimonial_aytefb": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>I'm obsessed with my purchase! The craftsmanship is exceptional and the fit is perfect. This is luxury at its finest. Worth every penny.</p>",
+            "author": "Jessica Chen",
+            "author_info": "Los Angeles, CA"
+          }
+        },
+        "testimonial_8xAQzW": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>Outstanding customer service and premium quality. The attention to detail is remarkable. I'll definitely be ordering again!</p>",
+            "author": "Amanda Rodriguez",
+            "author_info": "Miami, FL"
+          }
+        },
+        "testimonial_KEn84r": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>This is exactly what I was looking for. The elegance and sophistication of the design is unmatched. Highly recommend to anyone seeking premium quality.</p>",
+            "author": "Victoria Thompson",
+            "author_info": "Chicago, IL"
+          }
+        },
+        "testimonial_gaWXAp": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>",
+            "author": "Author's name",
+            "author_info": "Los Angeles, CA"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_RLfYmB",
+        "testimonial_aytefb",
+        "testimonial_8xAQzW",
+        "testimonial_KEn84r",
+        "testimonial_gaWXAp"
+      ],
+      "name": "t:sections.testimonials.presets.testimonials.name",
+      "settings": {
+        "title": "Loved by Real Champs",
+        "align_text": "center",
+        "round_images": false,
+        "color_background": "#f5ebe1",
+        "color_text": "#0f172a"
+      }
+    },
+    "testimonials_iY7P6m": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_RnThVQ": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>My husband loves it! The quality is exceptional and it arrived perfectly packaged. This is definitely a keeper.</p>",
+            "author": "Sarah Mitchell",
+            "author_info": "Los Angeles, CA"
+          }
+        },
+        "testimonial_qnBWXb": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>Best purchase I've made in years. The attention to detail is incredible and the customer service was outstanding. Highly recommend!</p>",
+            "author": "Jessica Chen",
+            "author_info": "New York, NY"
+          }
+        },
+        "testimonial_AWm4gN": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>Absolutely stunning. Worth every penny. I've already recommended this to all my friends and they're ordering too.</p>",
+            "author": "Amanda Rodriguez",
+            "author_info": "Miami, FL"
+          }
+        },
+        "testimonial_iFYMAM": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>Premium quality that speaks for itself. The craftsmanship is evident in every detail. This is a luxury item that delivers.</p>",
+            "author": "Michelle Thompson",
+            "author_info": "Chicago, IL"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_RnThVQ",
+        "testimonial_qnBWXb",
+        "testimonial_AWm4gN",
+        "testimonial_iFYMAM"
+      ],
+      "custom_css": [],
+      "name": "t:sections.testimonials.presets.testimonials.name",
+      "settings": {
+        "title": "Loved by Real Champs",
+        "align_text": "left",
+        "round_images": false,
+        "color_background": "#f5ebe1",
+        "color_text": "#0f172a"
+      }
+    },
+    "17769571897d3932cc": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_a9ad604_NknUk7": {
+          "type": "ai_gen_block_a9ad604",
+          "settings": {
+            "show_header": true,
+            "title": "Follow us on Instagram",
+            "title_size": 32,
+            "title_color": "#000000",
+            "instagram_handle": "briannacannonofficial",
+            "handle_size": 16,
+            "handle_color": "#000000",
+            "images_to_show": 6,
+            "columns_desktop": 6,
+            "columns_mobile": "3",
+            "grid_gap": 8,
+            "section_padding": 40,
+            "desktop_width_percent": 100,
+            "image_border_radius": 0,
+            "show_overlay": true,
+            "overlay_opacity": 0.3,
+            "placeholder_bg": "#f4f4f4",
+            "link_1": "",
+            "link_2": "",
+            "link_3": "",
+            "link_4": "",
+            "link_5": "",
+            "link_6": "",
+            "link_7": "",
+            "link_8": "",
+            "link_9": "",
+            "link_10": "",
+            "link_11": "",
+            "link_12": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_a9ad604_NknUk7"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "17769546695a0278b4",
     "promo_grid_NLJPkM",
-    "d8e93656-e6da-45a7-805d-7b06545c8450",
-    "main"
+    "featured_collection_GbTBxa",
+    "main",
+    "judgeme_carousel_section_rQybWM",
+    "testimonials_jEiFdJ",
+    "testimonials_iY7P6m",
+    "17769571897d3932cc"
   ]
 }
