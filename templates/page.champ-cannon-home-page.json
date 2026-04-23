@@ -72,9 +72,7 @@
         "advanced_d7BxVd",
         "advanced_3YQYxG"
       ],
-      "custom_css": [
-        "& {background-color: #F5EBE1 !important;}"
-      ],
+      "custom_css": [],
       "name": "t:sections.promo-grid.presets.promotional_grid.name",
       "settings": {
         "full_width": true,
