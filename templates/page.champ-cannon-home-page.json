@@ -9,6 +9,40 @@
  */
 {
   "sections": {
+    "slideshow_zwEVTR": {
+      "type": "slideshow",
+      "blocks": {
+        "image_GLYt8y": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "",
+            "title": "GAMEDAY\nRedefined.",
+            "title_size": 80,
+            "subheading": "Bring your brand to life",
+            "link": "",
+            "link_text": "Optional button",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-center horizontal-center",
+            "overlay_opacity": 0,
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "image_GLYt8y"
+      ],
+      "name": "t:sections.slideshow.presets.hero_optional_slideshow.name",
+      "settings": {
+        "section_height": "650px",
+        "mobile_height": "auto",
+        "parallax": true,
+        "style": "bars",
+        "autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
     "promo_grid_NLJPkM": {
       "type": "promo-grid",
       "blocks": {
@@ -146,6 +180,7 @@
     }
   },
   "order": [
+    "slideshow_zwEVTR",
     "promo_grid_NLJPkM",
     "d8e93656-e6da-45a7-805d-7b06545c8450",
     "main"
