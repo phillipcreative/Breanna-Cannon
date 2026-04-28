@@ -66,6 +66,7 @@
         },
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt": {
           "type": "shopify://apps/pre-order-restock-notifier/blocks/back_in_stock_notifier/1fadf77e-ebd8-4e68-90cb-f24d97d07bde",
+          "disabled": true,
           "settings": {
             "notify_btn_text": "NOTIFY ME WHEN IN STOCK",
             "notify_btn_backColor": "#000000",
