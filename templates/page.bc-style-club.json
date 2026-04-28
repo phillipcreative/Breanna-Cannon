@@ -14,6 +14,34 @@
       "disabled": true,
       "settings": {}
     },
+    "177739661686913eed": {
+      "type": "apps",
+      "blocks": {
+        "cowlendar_booking_app_section_8HJ6PX": {
+          "type": "shopify://apps/cowlendar-booking/blocks/app-section/6d8b8f6a-9b3c-42b8-b2e6-a758c38d45bf",
+          "settings": {
+            "section_title": "My services list",
+            "section_number": "services-list-1"
+          }
+        },
+        "cowlendar_booking_event_calendar_NJtafA": {
+          "type": "shopify://apps/cowlendar-booking/blocks/event-calendar/6d8b8f6a-9b3c-42b8-b2e6-a758c38d45bf",
+          "disabled": true,
+          "settings": {
+            "section_title": "My event calendar",
+            "section_number": "event-calendar-1"
+          }
+        }
+      },
+      "block_order": [
+        "cowlendar_booking_app_section_8HJ6PX",
+        "cowlendar_booking_event_calendar_NJtafA"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
     "rich-text": {
       "type": "rich-text",
       "blocks": {
@@ -25,6 +53,7 @@
         },
         "text": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "enlarge_text": false,
             "text": "<p>Do your friends look to you for fashion and styling advice? </p><p>Do you have a growing audience on social media who align strongly with our brand aesthetic and values? </p><p>Do you absolutely love our products and already own several pieces? </p><p>If you answered YES to all of these questions then you should apply for our brand ambassador program! </p><p></p>"
@@ -35,25 +64,93 @@
         "heading",
         "text"
       ],
+      "disabled": true,
       "settings": {
         "align_text": "center",
         "narrow_column": true,
         "divider": false
       }
     },
-    "form": {
-      "type": "contact-form",
-      "settings": {
-        "title": "Contact us",
-        "text": "",
-        "show_phone": false,
-        "narrow_column": true
-      }
+    "17773966836afbb72c": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_56b450f_VVKmxq": {
+          "type": "ai_gen_block_56b450f",
+          "settings": {
+            "hero_height": 600,
+            "hero_bg_color": "#000000",
+            "hero_overlay_color": "#000000",
+            "hero_overlay_opacity": 40,
+            "hero_title": "Welcome to BC Style Club",
+            "hero_subtitle": "Get styled by our expert team or founder Brianna Cannon herself",
+            "hero_text_color": "#ffffff",
+            "hero_title_size": 56,
+            "hero_subtitle_size": 20,
+            "cta_text": "Book Your Styling Session",
+            "cta_link": "",
+            "cta_bg_color": "#111111",
+            "cta_text_color": "#ffffff",
+            "cta_hover_bg_color": "#000000",
+            "cta_hover_text_color": "#ffffff",
+            "cta_font_size": 16,
+            "cta_border_radius": 0,
+            "how_it_works_title": "How It Works",
+            "section_bg_color": "#ffffff",
+            "section_text_color": "#000000",
+            "section_padding": 80,
+            "section_title_size": 42,
+            "step_1_title": "Pick a Date",
+            "step_1_description": "<p>Choose a date and time that works best for your styling session</p>",
+            "step_2_title": "Pick a Stylist",
+            "step_2_description": "<p>Select from our expert stylists or book with founder Brianna Cannon</p>",
+            "step_3_title": "Shop & Get Styled",
+            "step_3_description": "<p>Come in and discover your perfect look with personalized styling</p>",
+            "step_number_size": 70,
+            "step_number_font_size": 32,
+            "step_number_bg_color": "#111111",
+            "step_number_text_color": "#ffffff",
+            "step_title_size": 24,
+            "step_description_size": 16,
+            "show_stylists": true,
+            "stylists_title": "Meet Your Stylists",
+            "stylists_bg_color": "#f9f9f9",
+            "stylists_text_color": "#000000",
+            "stylist_card_bg_color": "#ffffff",
+            "stylist_card_radius": 8,
+            "stylist_name_size": 22,
+            "stylist_title_size": 16,
+            "stylist_bio_size": 14,
+            "show_founder": true,
+            "founder_name": "Brianna Cannon",
+            "founder_title": "Founder & Creative Director",
+            "founder_bio": "<p>With years of experience in fashion, Brianna brings her unique vision to every styling session.</p>",
+            "show_stylist_1": true,
+            "stylist_1_name": "Sarah Martinez",
+            "stylist_1_title": "Senior Stylist",
+            "stylist_1_bio": "<p>Specializing in bold, statement pieces and helping clients find their signature style.</p>",
+            "show_stylist_2": true,
+            "stylist_2_name": "Jessica Lee",
+            "stylist_2_title": "Fashion Stylist",
+            "stylist_2_bio": "<p>Expert in seasonal trends and creating versatile looks for any occasion.</p>",
+            "show_stylist_3": true,
+            "stylist_3_name": "Amanda Chen",
+            "stylist_3_title": "Personal Stylist",
+            "stylist_3_bio": "<p>Passionate about accessories and helping clients complete their perfect look.</p>",
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_56b450f_VVKmxq"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "main",
+    "177739661686913eed",
     "rich-text",
-    "form"
+    "17773966836afbb72c"
   ]
 }
