@@ -124,9 +124,44 @@
         "autoplay_speed": 6
       }
     },
+    "rich-text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "Brianna Cannon"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>A beautifully bold lifestyle brand, designed in Texas, specializing in Fashion, Seasonal and Officially Licensed Women's Apparel, Jewelry, and Hair Accessories.</p><p></p><p></p><p> </p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
     "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
       "type": "featured-collections",
       "blocks": {
+        "collection_CMrfmw": {
+          "type": "collection",
+          "settings": {
+            "collection": "fourth-of-july",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
         "collection_gFAr7A": {
           "type": "collection",
           "settings": {
@@ -201,6 +236,7 @@
         }
       },
       "block_order": [
+        "collection_CMrfmw",
         "collection_gFAr7A",
         "collection_JjJfPW",
         "collection_yyp3MR",
@@ -216,33 +252,6 @@
         "divider": false,
         "per_row": 3,
         "enable_gutter": true
-      }
-    },
-    "rich-text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "title": "Brianna Cannon"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "enlarge_text": true,
-            "text": "<p>A beautifully bold lifestyle brand, designed in Texas, specializing in Fashion, Seasonal and Officially Licensed Women's Apparel, Jewelry, and Hair Accessories.</p><p></p><p></p><p> </p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
-      "settings": {
-        "align_text": "center",
-        "narrow_column": true,
-        "divider": false
       }
     },
     "1669620656f5ef9fcd": {
