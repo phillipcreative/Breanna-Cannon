@@ -1,6 +1,918 @@
+{% doc %}
+  @prompt
+    🔥 SHOPIFY AI PROMPT
+    
+    Create a high-end, editorial-style landing page inspired by Vogue magazine and luxury fashion brands.
+    
+    The page should feel minimal, elegant, and premium with a strong focus on typography, spacing, and visual storytelling.
+    
+    STRUCTURE:
+    
+    HERO SECTION:
+    Full screen height
+    Large serif headline (editorial fashion style)
+    Short subheadline (clean, modern)
+    One primary CTA button
+    Background: minimal, soft neutral or lifestyle image
+    Add subtle fade or parallax scroll effect
+    SCROLLING STORY SECTIONS:
+    Create 5–7 sections that alternate between:
+    Large statement text (1–2 lines, bold, emotional, aspirational)
+    Clean product or lifestyle image
+    Split layouts (text left, image right, alternating)
+    Maintain large whitespace and breathing room
+    VISUAL STYLE:
+    Color palette: black, white, cream, soft neutrals
+    Fonts:
+    Headlines: elegant serif (luxury magazine feel)
+    Body: clean sans-serif
+    Layout: grid-based, very minimal, no clutter
+    Add subtle motion or fade-in animations on scroll
+    PRODUCT / OFFER SECTION:
+    Showcase product or concept in a refined way
+    Focus on transformation, not features
+    Include 3–4 short benefit statements (1 line each)
+    No icons or clutter — keep it editorial
+    SOCIAL PROOF / AUTHORITY:
+    Add a simple section with logos or short testimonials
+    Keep it minimal and clean
+    FINAL CTA SECTION:
+    Strong closing headline
+    Short supporting line
+    One clear CTA button
+    Centered layout
+    
+    STYLE DIRECTION:
+    
+    Inspired by Vogue, Apple, and luxury brand landing pages
+    Prioritize beauty, simplicity, and emotional impact over information density
+    Make the page feel premium, modern, and aspirational
+    
+    MOBILE:
+    
+    Fully responsive
+    Maintain large typography and spacing
+    Stack sections cleanly
+    
+    GOAL:
+    Create a visually striking, high-converting landing page that feels like a luxury editorial experience rather than a typical e-commerce page.
+    
+    If you want it to hit even harder (advanced version)
+    
+    After it generates, follow up with:
+    
+    “Reduce text by 30%. Increase font sizes. Add more whitespace. Make it feel more like a luxury magazine spread than a website.”
+    
+    That one line alone will upgrade the output dramatically.
+    
+    Strategic note (this matters)
+    
+    Most people will copy the design.
+    
+    You shouldn’t.
+    
+    You should:
+    
+    Keep the structure
+    Swap in your narrative
+    Push identity + belief (your strength)
+    
+    That’s how this becomes a revenue page, not just a pretty one.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-editorial-landing-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-editorial-hero-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .ai-editorial-hero-bg-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .ai-editorial-hero-bg-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-editorial-hero-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.hero_overlay_color }};
+    opacity: {{ block.settings.hero_overlay_opacity | divided_by: 100.0 }};
+    z-index: 2;
+  }
+
+  .ai-editorial-hero-content-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 60px 30px;
+    max-width: 900px;
+  }
+
+  .ai-editorial-hero-headline-{{ ai_gen_id }} {
+    font-family: {{ block.settings.headline_font.family }}, serif;
+    font-weight: {{ block.settings.headline_font.weight }};
+    font-size: {{ block.settings.headline_size }}px;
+    line-height: 1.1;
+    margin: 0 0 30px;
+    letter-spacing: -0.02em;
+  }
+
+  .ai-editorial-hero-subheadline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subheadline_size }}px;
+    line-height: 1.5;
+    margin: 0 0 50px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+
+  .ai-editorial-hero-cta-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 18px 50px;
+    background-color: {{ block.settings.cta_bg_color }};
+    color: {{ block.settings.cta_text_color }};
+    text-decoration: none;
+    font-size: {{ block.settings.cta_font_size }}px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: 1px solid {{ block.settings.cta_bg_color }};
+  }
+
+  .ai-editorial-hero-cta-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.cta_hover_bg_color }};
+    color: {{ block.settings.cta_hover_text_color }};
+    border-color: {{ block.settings.cta_hover_bg_color }};
+  }
+
+  .ai-editorial-story-section-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding }}px 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .ai-editorial-story-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: {{ block.settings.section_spacing }}px;
+  }
+
+  .ai-editorial-story-grid-{{ ai_gen_id }}.reverse {
+    direction: rtl;
+  }
+
+  .ai-editorial-story-grid-{{ ai_gen_id }}.reverse > * {
+    direction: ltr;
+  }
+
+  .ai-editorial-story-text-{{ ai_gen_id }} {
+    padding: 40px;
+  }
+
+  .ai-editorial-story-headline-{{ ai_gen_id }} {
+    font-family: {{ block.settings.headline_font.family }}, serif;
+    font-weight: {{ block.settings.headline_font.weight }};
+    font-size: {{ block.settings.story_headline_size }}px;
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .ai-editorial-story-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+  }
+
+  .ai-editorial-story-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-editorial-benefits-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding }}px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .ai-editorial-benefits-headline-{{ ai_gen_id }} {
+    font-family: {{ block.settings.headline_font.family }}, serif;
+    font-weight: {{ block.settings.headline_font.weight }};
+    font-size: {{ block.settings.benefits_headline_size }}px;
+    line-height: 1.2;
+    margin: 0 0 80px;
+    letter-spacing: -0.01em;
+  }
+
+  .ai-editorial-benefits-list-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 60px;
+  }
+
+  .ai-editorial-benefit-{{ ai_gen_id }} {
+    font-size: {{ block.settings.benefit_text_size }}px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .ai-editorial-social-proof-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding }}px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .ai-editorial-testimonial-{{ ai_gen_id }} {
+    font-family: {{ block.settings.headline_font.family }}, serif;
+    font-size: {{ block.settings.testimonial_size }}px;
+    line-height: 1.5;
+    margin: 0 0 30px;
+    font-style: italic;
+  }
+
+  .ai-editorial-testimonial-author-{{ ai_gen_id }} {
+    font-size: {{ block.settings.author_size }}px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  .ai-editorial-final-cta-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding }}px 30px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .ai-editorial-final-headline-{{ ai_gen_id }} {
+    font-family: {{ block.settings.headline_font.family }}, serif;
+    font-weight: {{ block.settings.headline_font.weight }};
+    font-size: {{ block.settings.final_headline_size }}px;
+    line-height: 1.2;
+    margin: 0 0 30px;
+    letter-spacing: -0.01em;
+  }
+
+  .ai-editorial-final-subtext-{{ ai_gen_id }} {
+    font-size: {{ block.settings.final_subtext_size }}px;
+    line-height: 1.6;
+    margin: 0 0 50px;
+    font-weight: 300;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-editorial-hero-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size | times: 0.6 }}px;
+    }
+
+    .ai-editorial-hero-subheadline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subheadline_size | times: 0.8 }}px;
+    }
+
+    .ai-editorial-story-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .ai-editorial-story-grid-{{ ai_gen_id }}.reverse {
+      direction: ltr;
+    }
+
+    .ai-editorial-story-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.story_headline_size | times: 0.7 }}px;
+    }
+
+    .ai-editorial-story-text-{{ ai_gen_id }} {
+      padding: 20px;
+    }
+
+    .ai-editorial-story-image-{{ ai_gen_id }} {
+      height: 400px;
+    }
+
+    .ai-editorial-benefits-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.benefits_headline_size | times: 0.7 }}px;
+      margin-bottom: 50px;
+    }
+
+    .ai-editorial-benefits-list-{{ ai_gen_id }} {
+      gap: 40px;
+    }
+
+    .ai-editorial-testimonial-{{ ai_gen_id }} {
+      font-size: {{ block.settings.testimonial_size | times: 0.8 }}px;
+    }
+
+    .ai-editorial-final-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.final_headline_size | times: 0.7 }}px;
+    }
+  }
+{% endstyle %}
+
+<editorial-landing-{{ ai_gen_id }} class="ai-editorial-landing-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <section class="ai-editorial-hero-{{ ai_gen_id }}">
+    <div class="ai-editorial-hero-bg-{{ ai_gen_id }}">
+      {% if block.settings.hero_image %}
+        <img
+          src="{{ block.settings.hero_image | image_url: width: 2400 }}"
+          alt="{{ block.settings.hero_image.alt | escape }}"
+          loading="eager"
+          width="{{ block.settings.hero_image.width }}"
+          height="{{ block.settings.hero_image.height }}"
+        >
+      {% else %}
+        <div style="width: 100%; height: 100%; background: #f5f5f0;"></div>
+      {% endif %}
+    </div>
+    <div class="ai-editorial-hero-overlay-{{ ai_gen_id }}"></div>
+    <div class="ai-editorial-hero-content-{{ ai_gen_id }}">
+      {% if block.settings.hero_headline != blank %}
+        <h1 class="ai-editorial-hero-headline-{{ ai_gen_id }}">{{ block.settings.hero_headline }}</h1>
+      {% endif %}
+      {% if block.settings.hero_subheadline != blank %}
+        <p class="ai-editorial-hero-subheadline-{{ ai_gen_id }}">{{ block.settings.hero_subheadline }}</p>
+      {% endif %}
+      {% if block.settings.hero_cta_text != blank %}
+        <a href="{{ block.settings.hero_cta_link }}" class="ai-editorial-hero-cta-{{ ai_gen_id }}">
+          {{ block.settings.hero_cta_text }}
+        </a>
+      {% endif %}
+    </div>
+  </section>
+
+  {% for i in (1..5) %}
+    {% liquid
+      assign story_headline_key = 'story_' | append: i | append: '_headline'
+      assign story_image_key = 'story_' | append: i | append: '_image'
+      assign story_enabled_key = 'story_' | append: i | append: '_enabled'
+
+      assign story_headline = block.settings[story_headline_key]
+      assign story_image = block.settings[story_image_key]
+      assign story_enabled = block.settings[story_enabled_key]
+    %}
+
+    {% if story_enabled and story_headline != blank %}
+      <section class="ai-editorial-story-section-{{ ai_gen_id }}">
+        <div class="ai-editorial-story-grid-{{ ai_gen_id }} {% if i == 2 or i == 4 %}reverse{% endif %}">
+          <div class="ai-editorial-story-text-{{ ai_gen_id }}">
+            <h2 class="ai-editorial-story-headline-{{ ai_gen_id }}">{{ story_headline }}</h2>
+          </div>
+          <div class="ai-editorial-story-image-{{ ai_gen_id }}">
+            {% if story_image %}
+              <img
+                src="{{ story_image | image_url: width: 1200 }}"
+                alt="{{ story_image.alt | escape }}"
+                loading="lazy"
+                width="{{ story_image.width }}"
+                height="{{ story_image.height }}"
+              >
+            {% else %}
+              <div style="width: 100%; height: 100%; background: #f5f5f0;"></div>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  {% endfor %}
+
+  {% if block.settings.benefits_enabled %}
+    <section class="ai-editorial-benefits-{{ ai_gen_id }}">
+      {% if block.settings.benefits_headline != blank %}
+        <h2 class="ai-editorial-benefits-headline-{{ ai_gen_id }}">{{ block.settings.benefits_headline }}</h2>
+      {% endif %}
+      <div class="ai-editorial-benefits-list-{{ ai_gen_id }}">
+        {% if block.settings.benefit_1 != blank %}
+          <div class="ai-editorial-benefit-{{ ai_gen_id }}">{{ block.settings.benefit_1 }}</div>
+        {% endif %}
+        {% if block.settings.benefit_2 != blank %}
+          <div class="ai-editorial-benefit-{{ ai_gen_id }}">{{ block.settings.benefit_2 }}</div>
+        {% endif %}
+        {% if block.settings.benefit_3 != blank %}
+          <div class="ai-editorial-benefit-{{ ai_gen_id }}">{{ block.settings.benefit_3 }}</div>
+        {% endif %}
+        {% if block.settings.benefit_4 != blank %}
+          <div class="ai-editorial-benefit-{{ ai_gen_id }}">{{ block.settings.benefit_4 }}</div>
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if block.settings.social_proof_enabled %}
+    <section class="ai-editorial-social-proof-{{ ai_gen_id }}">
+      {% if block.settings.testimonial != blank %}
+        <p class="ai-editorial-testimonial-{{ ai_gen_id }}">"{{ block.settings.testimonial }}"</p>
+      {% endif %}
+      {% if block.settings.testimonial_author != blank %}
+        <p class="ai-editorial-testimonial-author-{{ ai_gen_id }}">{{ block.settings.testimonial_author }}</p>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  <section class="ai-editorial-final-cta-{{ ai_gen_id }}">
+    {% if block.settings.final_headline != blank %}
+      <h2 class="ai-editorial-final-headline-{{ ai_gen_id }}">{{ block.settings.final_headline }}</h2>
+    {% endif %}
+    {% if block.settings.final_subtext != blank %}
+      <p class="ai-editorial-final-subtext-{{ ai_gen_id }}">{{ block.settings.final_subtext }}</p>
+    {% endif %}
+    {% if block.settings.final_cta_text != blank %}
+      <a href="{{ block.settings.final_cta_link }}" class="ai-editorial-hero-cta-{{ ai_gen_id }}">
+        {{ block.settings.final_cta_text }}
+      </a>
+    {% endif %}
+  </section>
+</editorial-landing-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class EditorialLanding{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.setupScrollEffects();
+      }
+
+      setupScrollEffects() {
+        const hero = this.querySelector('.ai-editorial-hero-{{ ai_gen_id }}');
+        const heroContent = this.querySelector('.ai-editorial-hero-content-{{ ai_gen_id }}');
+
+        if (!hero || !heroContent) return;
+
+        const handleScroll = () => {
+          const scrolled = window.pageYOffset;
+          const heroHeight = hero.offsetHeight;
+
+          if (scrolled < heroHeight) {
+            const opacity = 1 - (scrolled / heroHeight) * 0.5;
+            const translateY = scrolled * 0.3;
+            heroContent.style.opacity = opacity;
+            heroContent.style.transform = `translateY(${translateY}px)`;
+          }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+      }
+    }
+
+    customElements.define('editorial-landing-{{ ai_gen_id }}', EditorialLanding{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Editorial landing",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero section"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "hero_headline",
+      "label": "Headline",
+      "default": "Redefine Your Style"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subheadline",
+      "label": "Subheadline",
+      "default": "Where elegance meets confidence"
+    },
+    {
+      "type": "text",
+      "id": "hero_cta_text",
+      "label": "Button text",
+      "default": "Discover Now"
+    },
+    {
+      "type": "url",
+      "id": "hero_cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "hero_overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "hero_overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Story section 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "story_1_enabled",
+      "label": "Enable section",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "story_1_headline",
+      "label": "Headline",
+      "default": "Crafted for the bold. Designed for the fearless."
+    },
+    {
+      "type": "image_picker",
+      "id": "story_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Story section 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "story_2_enabled",
+      "label": "Enable section",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "story_2_headline",
+      "label": "Headline",
+      "default": "Every detail tells your story"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Story section 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "story_3_enabled",
+      "label": "Enable section",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "story_3_headline",
+      "label": "Headline",
+      "default": "Timeless pieces that transcend trends"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Story section 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "story_4_enabled",
+      "label": "Enable section",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "story_4_headline",
+      "label": "Headline",
+      "default": "Wear your confidence"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Story section 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "story_5_enabled",
+      "label": "Enable section",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "story_5_headline",
+      "label": "Headline",
+      "default": "Step into your power"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Benefits section"
+    },
+    {
+      "type": "checkbox",
+      "id": "benefits_enabled",
+      "label": "Enable section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefits_headline",
+      "label": "Headline",
+      "default": "The Experience"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefit 1",
+      "default": "Uncompromising quality in every stitch"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefit 2",
+      "default": "Designed to elevate your everyday"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefit 3",
+      "default": "Pieces that grow with your journey"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4",
+      "label": "Benefit 4",
+      "default": "Sustainably crafted, beautifully made"
+    },
+    {
+      "type": "header",
+      "content": "Social proof"
+    },
+    {
+      "type": "checkbox",
+      "id": "social_proof_enabled",
+      "label": "Enable section",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial",
+      "label": "Testimonial",
+      "default": "These pieces have completely transformed how I show up in the world"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_author",
+      "label": "Author name"
+    },
+    {
+      "type": "header",
+      "content": "Final call to action"
+    },
+    {
+      "type": "text",
+      "id": "final_headline",
+      "label": "Headline",
+      "default": "Begin Your Journey"
+    },
+    {
+      "type": "textarea",
+      "id": "final_subtext",
+      "label": "Subtext",
+      "default": "Join those who choose to stand out"
+    },
+    {
+      "type": "text",
+      "id": "final_cta_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "final_cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "Button background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_bg_color",
+      "label": "Button hover background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_text_color",
+      "label": "Button hover text",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "headline_font",
+      "label": "Headline font",
+      "default": "serif"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "min": 40,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Hero headline size",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "subheadline_size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Hero subheadline size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "story_headline_size",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Story headline size",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "benefits_headline_size",
+      "min": 30,
+      "max": 70,
+      "step": 5,
+      "unit": "px",
+      "label": "Benefits headline size",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "benefit_text_size",
+      "min": 14,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Benefit text size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "testimonial_size",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Testimonial size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "author_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Author size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "final_headline_size",
+      "min": 30,
+      "max": 70,
+      "step": 5,
+      "unit": "px",
+      "label": "Final headline size",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "final_subtext_size",
+      "min": 14,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Final subtext size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "cta_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button font size",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "section_spacing",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Section spacing",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial landing"
+    }
+  ]
+}
 {% endschema %}
