@@ -228,6 +228,7 @@
         "blocks": {
           "footer-promotions-0": {
             "type": "promotion",
+            "disabled": true,
             "settings": {
               "enable_image": true,
               "image": "shopify://shop_images/26979D1E-555F-4540-94AB-F4714118FFEB.jpg",
@@ -239,6 +240,7 @@
           },
           "footer-promotions-1": {
             "type": "promotion",
+            "disabled": true,
             "settings": {
               "enable_image": true,
               "image": "shopify://shop_images/BC_NFL-243_656546e2-6eba-4b31-8e5e-13cd72fca799.jpg",
@@ -250,6 +252,7 @@
           },
           "footer-promotions-2": {
             "type": "promotion",
+            "disabled": true,
             "settings": {
               "enable_image": true,
               "image": "shopify://shop_images/3_840711ab-ff07-4af1-b100-8b3903556204.png",
