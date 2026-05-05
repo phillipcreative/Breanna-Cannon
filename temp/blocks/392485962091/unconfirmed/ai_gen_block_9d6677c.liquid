@@ -1,6 +1,744 @@
+{% doc %}
+  @prompt
+    make a cute instagram feed looking grid of photos ugc reviews from customers. 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-ugc-grid-{{ ai_gen_id }} {
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    display: block;
+  }
+
+  .ai-ugc-grid__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.grid_gap }}px;
+  }
+
+  .ai-ugc-grid__item-{{ ai_gen_id }} {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+    background-color: {{ block.settings.placeholder_bg_color }};
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-ugc-grid__item-{{ ai_gen_id }}:hover {
+    transform: scale(1.02);
+  }
+
+  .ai-ugc-grid__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-ugc-grid__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ block.settings.placeholder_bg_color }};
+  }
+
+  .ai-ugc-grid__placeholder-{{ ai_gen_id }} svg {
+    width: 50%;
+    height: 50%;
+    opacity: 0.3;
+  }
+
+  .ai-ugc-grid__overlay-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    padding: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-ugc-grid__item-{{ ai_gen_id }}:hover .ai-ugc-grid__overlay-{{ ai_gen_id }} {
+    opacity: 1;
+  }
+
+  .ai-ugc-grid__customer-name-{{ ai_gen_id }} {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+  }
+
+  .ai-ugc-grid__stars-{{ ai_gen_id }} {
+    display: flex;
+    gap: 2px;
+  }
+
+  .ai-ugc-grid__star-{{ ai_gen_id }} {
+    color: {{ block.settings.star_color }};
+    font-size: 14px;
+  }
+
+  .ai-ugc-grid__modal-{{ ai_gen_id }} {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .ai-ugc-grid__modal-{{ ai_gen_id }}.active {
+    display: flex;
+  }
+
+  .ai-ugc-grid__modal-content-{{ ai_gen_id }} {
+    background-color: {{ block.settings.modal_bg_color }};
+    border-radius: {{ block.settings.modal_border_radius }}px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .ai-ugc-grid__modal-image-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: {{ block.settings.modal_border_radius }}px {{ block.settings.modal_border_radius }}px 0 0;
+  }
+
+  .ai-ugc-grid__modal-body-{{ ai_gen_id }} {
+    padding: 24px;
+  }
+
+  .ai-ugc-grid__modal-header-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .ai-ugc-grid__modal-customer-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-ugc-grid__modal-name-{{ ai_gen_id }} {
+    font-size: 18px;
+    font-weight: 600;
+    color: {{ block.settings.modal_text_color }};
+    margin: 0 0 8px 0;
+  }
+
+  .ai-ugc-grid__modal-stars-{{ ai_gen_id }} {
+    display: flex;
+    gap: 4px;
+  }
+
+  .ai-ugc-grid__modal-star-{{ ai_gen_id }} {
+    color: {{ block.settings.star_color }};
+    font-size: 16px;
+  }
+
+  .ai-ugc-grid__modal-close-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: {{ block.settings.modal_text_color }};
+    opacity: 0.7;
+  }
+
+  .ai-ugc-grid__modal-close-{{ ai_gen_id }}:hover {
+    opacity: 1;
+  }
+
+  .ai-ugc-grid__modal-review-{{ ai_gen_id }} {
+    color: {{ block.settings.modal_text_color }};
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-ugc-grid__container-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+      gap: {{ block.settings.grid_gap | times: 0.75 }}px;
+    }
+
+    .ai-ugc-grid__modal-content-{{ ai_gen_id }} {
+      max-width: 100%;
+    }
+
+    .ai-ugc-grid__modal-body-{{ ai_gen_id }} {
+      padding: 16px;
+    }
+  }
+{% endstyle %}
+
+<ugc-review-grid-{{ ai_gen_id }} class="ai-ugc-grid-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-ugc-grid__container-{{ ai_gen_id }}">
+    {% for i in (1..9) %}
+      {% liquid
+        assign image_key = 'review_' | append: i | append: '_image'
+        assign name_key = 'review_' | append: i | append: '_name'
+        assign rating_key = 'review_' | append: i | append: '_rating'
+        assign text_key = 'review_' | append: i | append: '_text'
+
+        assign review_image = block.settings[image_key]
+        assign review_name = block.settings[name_key]
+        assign review_rating = block.settings[rating_key]
+        assign review_text = block.settings[text_key]
+      %}
+
+      <div class="ai-ugc-grid__item-{{ ai_gen_id }}" data-review-index="{{ i }}">
+        {% if review_image %}
+          <img
+            src="{{ review_image | image_url: width: 600 }}"
+            alt="{{ review_name | escape }}"
+            loading="lazy"
+            width="600"
+            height="600"
+            class="ai-ugc-grid__image-{{ ai_gen_id }}"
+          >
+        {% else %}
+          <div class="ai-ugc-grid__placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+
+        {% if review_name != blank or review_rating > 0 %}
+          <div class="ai-ugc-grid__overlay-{{ ai_gen_id }}">
+            {% if review_name != blank %}
+              <p class="ai-ugc-grid__customer-name-{{ ai_gen_id }}">{{ review_name }}</p>
+            {% endif %}
+            {% if review_rating > 0 %}
+              <div class="ai-ugc-grid__stars-{{ ai_gen_id }}">
+                {% for star in (1..5) %}
+                  <span class="ai-ugc-grid__star-{{ ai_gen_id }}">
+                    {% if star <= review_rating %}★{% else %}☆{% endif %}
+                  </span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="ai-ugc-grid__modal-{{ ai_gen_id }}" data-modal>
+    <div class="ai-ugc-grid__modal-content-{{ ai_gen_id }}">
+      <img
+        src=""
+        alt=""
+        class="ai-ugc-grid__modal-image-{{ ai_gen_id }}"
+        data-modal-image
+      >
+      <div class="ai-ugc-grid__modal-body-{{ ai_gen_id }}">
+        <div class="ai-ugc-grid__modal-header-{{ ai_gen_id }}">
+          <div class="ai-ugc-grid__modal-customer-{{ ai_gen_id }}">
+            <h3 class="ai-ugc-grid__modal-name-{{ ai_gen_id }}" data-modal-name></h3>
+            <div class="ai-ugc-grid__modal-stars-{{ ai_gen_id }}" data-modal-stars></div>
+          </div>
+          <button class="ai-ugc-grid__modal-close-{{ ai_gen_id }}" aria-label="Close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <p class="ai-ugc-grid__modal-review-{{ ai_gen_id }}" data-modal-review></p>
+      </div>
+    </div>
+  </div>
+</ugc-review-grid-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class UgcReviewGrid{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.reviews = [
+          {% for i in (1..9) %}
+            {% liquid
+              assign image_key = 'review_' | append: i | append: '_image'
+              assign name_key = 'review_' | append: i | append: '_name'
+              assign rating_key = 'review_' | append: i | append: '_rating'
+              assign text_key = 'review_' | append: i | append: '_text'
+
+              assign review_image = block.settings[image_key]
+              assign review_name = block.settings[name_key]
+              assign review_rating = block.settings[rating_key]
+              assign review_text = block.settings[text_key]
+            %}
+            {
+              image: {{ review_image | image_url: width: 1200 | json }},
+              name: {{ review_name | json }},
+              rating: {{ review_rating }},
+              text: {{ review_text | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ];
+      }
+
+      connectedCallback() {
+        this.items = this.querySelectorAll('.ai-ugc-grid__item-{{ ai_gen_id }}');
+        this.modal = this.querySelector('[data-modal]');
+        this.modalImage = this.querySelector('[data-modal-image]');
+        this.modalName = this.querySelector('[data-modal-name]');
+        this.modalStars = this.querySelector('[data-modal-stars]');
+        this.modalReview = this.querySelector('[data-modal-review]');
+        this.closeButton = this.querySelector('.ai-ugc-grid__modal-close-{{ ai_gen_id }}');
+
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.items.forEach((item) => {
+          item.addEventListener('click', () => {
+            const index = parseInt(item.dataset.reviewIndex) - 1;
+            this.openModal(index);
+          });
+        });
+
+        this.closeButton.addEventListener('click', () => {
+          this.closeModal();
+        });
+
+        this.modal.addEventListener('click', (e) => {
+          if (e.target === this.modal) {
+            this.closeModal();
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+            this.closeModal();
+          }
+        });
+      }
+
+      openModal(index) {
+        const review = this.reviews[index];
+        
+        if (review.image) {
+          this.modalImage.src = review.image;
+          this.modalImage.alt = review.name || '';
+        }
+
+        this.modalName.textContent = review.name || '';
+        
+        this.modalStars.innerHTML = '';
+        for (let i = 1; i <= 5; i++) {
+          const star = document.createElement('span');
+          star.className = 'ai-ugc-grid__modal-star-{{ ai_gen_id }}';
+          star.textContent = i <= review.rating ? '★' : '☆';
+          this.modalStars.appendChild(star);
+        }
+
+        this.modalReview.textContent = review.text || '';
+
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      closeModal() {
+        this.modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    customElements.define('ugc-review-grid-{{ ai_gen_id }}', UgcReviewGrid{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "UGC review grid",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid gap",
+      "min": 4,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "placeholder_bg_color",
+      "label": "Placeholder background",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#FFD700"
+    },
+    {
+      "type": "header",
+      "content": "Modal"
+    },
+    {
+      "type": "range",
+      "id": "modal_border_radius",
+      "label": "Modal border radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "modal_bg_color",
+      "label": "Modal background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "modal_text_color",
+      "label": "Modal text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Review 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "review_1_name",
+      "label": "Customer name",
+      "default": "Sarah M."
+    },
+    {
+      "type": "range",
+      "id": "review_1_rating",
+      "label": "Rating",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "textarea",
+      "id": "review_1_text",
+      "label": "Review text",
+      "default": "Absolutely love this! The quality is amazing and it looks even better in person. Highly recommend!"
+    },
+    {
+      "type": "header",
+      "content": "Review 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "review_2_name",
+      "label": "Customer name",
+      "default": "Jessica L."
+    },
+    {
+      "type": "range",
+      "id": "review_2_rating",
+      "label": "Rating",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "textarea",
+      "id": "review_2_text",
+      "label": "Review text",
+      "default": "Perfect fit and so comfortable! I get compliments every time I wear it."
+    },
+    {
+      "type": "header",
+      "content": "Review 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "review_3_name",
+      "label": "Customer name",
+      "default": "Emily R."
+    },
+    {
+      "type": "range",
+      "id": "review_3_rating",
+      "label": "Rating",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "textarea",
+      "id": "review_3_text",
+      "label": "Review text",
+      "default": "Best purchase I've made this year! The colors are vibrant and it's so well made."
+    },
+    {
+      "type": "header",
+      "content": "Review 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "review_4_name",
+      "label": "Customer name",
+      "default": "Amanda K."
+    },
+    {
+      "type": "range",
+      "id": "review_4_rating",
+      "label": "Rating",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "textarea",
+      "id": "review_4_text",
+      "label": "Review text",
+      "default": "Obsessed! This is exactly what I was looking for. Fast shipping too!"
+    },
+    {
+      "type": "header",
+      "content": "Review 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "review_5_name",
+      "label": "Customer name",
+      "default": "Rachel T."
+    },
+    {
+      "type": "range",
+      "id": "review_5_rating",
+      "label": "Rating",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "textarea",
+      "id": "review_5_text",
+      "label": "Review text",
+      "default": "So happy with this purchase! It's become my new favorite. Will definitely order again!"
+    },
+    {
+      "type": "header",
+      "content": "Review 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_6_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "review_6_name",
+      "label": "Customer name",
+      "default": "Lauren B."
+    },
+    {
+      "type": "range",
+      "id": "review_6_rating",
+      "label": "Rating",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "textarea",
+      "id": "review_6_text",
+      "label": "Review text",
+      "default": "Amazing quality and style! Worth every penny. Can't wait to order more!"
+    },
+    {
+      "type": "header",
+      "content": "Review 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_7_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "review_7_name",
+      "label": "Customer name",
+      "default": "Megan S."
+    },
+    {
+      "type": "range",
+      "id": "review_7_rating",
+      "label": "Rating",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "textarea",
+      "id": "review_7_text",
+      "label": "Review text",
+      "default": "Exceeded my expectations! The attention to detail is incredible. Love it!"
+    },
+    {
+      "type": "header",
+      "content": "Review 8"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_8_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "review_8_name",
+      "label": "Customer name",
+      "default": "Katie W."
+    },
+    {
+      "type": "range",
+      "id": "review_8_rating",
+      "label": "Rating",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "textarea",
+      "id": "review_8_text",
+      "label": "Review text",
+      "default": "This is gorgeous! Fits perfectly and the material is top quality. So impressed!"
+    },
+    {
+      "type": "header",
+      "content": "Review 9"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_9_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "review_9_name",
+      "label": "Customer name",
+      "default": "Nicole P."
+    },
+    {
+      "type": "range",
+      "id": "review_9_rating",
+      "label": "Rating",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "textarea",
+      "id": "review_9_text",
+      "label": "Review text",
+      "default": "10/10 would recommend! This is everything I hoped for and more. Already planning my next order!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "UGC review grid"
+    }
+  ]
+}
 {% endschema %}
