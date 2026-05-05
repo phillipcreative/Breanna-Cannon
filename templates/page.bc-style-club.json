@@ -150,35 +150,57 @@
       "type": "_blocks",
       "settings": {}
     },
-    "1778003039a1745f17": {
-      "type": "apps",
+    "177800330222bf0bca": {
+      "type": "_blocks",
       "blocks": {
-        "instafeed_app_block_HMyTAr": {
-          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+        "ai_gen_block_9d6677c_TgBgfQ": {
+          "type": "ai_gen_block_9d6677c",
           "settings": {
-            "title": "",
-            "title_color": "",
-            "title_size_v2": 0,
-            "alignment": "center",
-            "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 0,
-            "instafeed_margin_sides": 0,
-            "show_instagram_link": false,
-            "link_alignment": "left",
-            "link_color": "#000000",
-            "background_color": "",
-            "feed_id": "",
-            "html_area": ""
-          }
+            "columns_desktop": 3,
+            "columns_mobile": "2",
+            "grid_gap": 12,
+            "desktop_width_percent": 100,
+            "border_radius": 8,
+            "placeholder_bg_color": "#f4f4f4",
+            "star_color": "#FFD700",
+            "modal_border_radius": 12,
+            "modal_bg_color": "#ffffff",
+            "modal_text_color": "#000000",
+            "review_1_name": "Sarah M.",
+            "review_1_rating": 5,
+            "review_1_text": "Absolutely love this! The quality is amazing and it looks even better in person. Highly recommend!",
+            "review_2_name": "Jessica L.",
+            "review_2_rating": 5,
+            "review_2_text": "Perfect fit and so comfortable! I get compliments every time I wear it.",
+            "review_3_name": "Emily R.",
+            "review_3_rating": 5,
+            "review_3_text": "Best purchase I've made this year! The colors are vibrant and it's so well made.",
+            "review_4_name": "Amanda K.",
+            "review_4_rating": 5,
+            "review_4_text": "Obsessed! This is exactly what I was looking for. Fast shipping too!",
+            "review_5_name": "Rachel T.",
+            "review_5_rating": 5,
+            "review_5_text": "So happy with this purchase! It's become my new favorite. Will definitely order again!",
+            "review_6_name": "Lauren B.",
+            "review_6_rating": 5,
+            "review_6_text": "Amazing quality and style! Worth every penny. Can't wait to order more!",
+            "review_7_name": "Megan S.",
+            "review_7_rating": 5,
+            "review_7_text": "Exceeded my expectations! The attention to detail is incredible. Love it!",
+            "review_8_name": "Katie W.",
+            "review_8_rating": 5,
+            "review_8_text": "This is gorgeous! Fits perfectly and the material is top quality. So impressed!",
+            "review_9_name": "Nicole P.",
+            "review_9_rating": 5,
+            "review_9_text": "10/10 would recommend! This is everything I hoped for and more. Already planning my next order!"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "instafeed_app_block_HMyTAr"
+        "ai_gen_block_9d6677c_TgBgfQ"
       ],
-      "settings": {
-        "full_width": false,
-        "space_around": true
-      }
+      "settings": {}
     }
   },
   "order": [
@@ -187,6 +209,6 @@
     "177739661686913eed",
     "rich-text",
     "1777398934c0ec7bb1",
-    "1778003039a1745f17"
+    "177800330222bf0bca"
   ]
 }
