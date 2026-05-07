@@ -152,10 +152,9 @@
         },
         "tab_rziqfB": {
           "type": "tab",
-          "disabled": true,
           "settings": {
             "title": "Size Chart",
-            "content": "",
+            "content": "<p>{{ product.metafields.custom.size_chart.value }}</p>",
             "page": ""
           }
         },
