@@ -154,7 +154,7 @@
           "type": "tab",
           "settings": {
             "title": "Size Chart",
-            "content": "<p>{{ product.metafields.custom.size_chart.value }}</p>",
+            "content": "{{ block.settings.page.metafields.custom.custom_size_chart | metafield_tag }}",
             "page": ""
           }
         },
