@@ -515,11 +515,31 @@
         "per_row": 5,
         "enable_gutter": true
       }
+    },
+    "blocks_mmYBPU": {
+      "type": "_blocks",
+      "name": "Full width banner",
+      "settings": {}
+    },
+    "featured_collection_Rt7wjA": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.featured_collection.name",
+      "settings": {
+        "title": "Trending Products",
+        "home_featured_products": "gameday-beset-sellers",
+        "per_row": 5,
+        "rows": 2,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
     }
   },
   "order": [
     "main",
+    "featured_collection_Rt7wjA",
     "16538807039c724845",
-    "d8e93656-e6da-45a7-805d-7b06545c8450"
+    "d8e93656-e6da-45a7-805d-7b06545c8450",
+    "blocks_mmYBPU"
   ]
 }
