@@ -13,6 +13,19 @@
       "type": "main-page-full-width",
       "settings": {}
     },
+    "featured_collection_Rt7wjA": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.featured_collection.name",
+      "settings": {
+        "title": "Trending Products",
+        "home_featured_products": "gameday-beset-sellers",
+        "per_row": 5,
+        "rows": 2,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
     "16538807039c724845": {
       "type": "featured-collections",
       "blocks": {
@@ -452,7 +465,7 @@
         "collection_MiCGhB"
       ],
       "settings": {
-        "title": "",
+        "title": "Shop Your School",
         "divider": false,
         "per_row": 5,
         "enable_gutter": true
@@ -520,19 +533,6 @@
       "type": "_blocks",
       "name": "Full width banner",
       "settings": {}
-    },
-    "featured_collection_Rt7wjA": {
-      "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.featured_collection.name",
-      "settings": {
-        "title": "Trending Products",
-        "home_featured_products": "gameday-beset-sellers",
-        "per_row": 5,
-        "rows": 2,
-        "mobile_scrollable": true,
-        "view_all": true,
-        "divider": false
-      }
     }
   },
   "order": [
