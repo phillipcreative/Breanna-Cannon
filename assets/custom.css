@@ -1366,6 +1366,12 @@ span.add-to-cart-icon {
   top: 15px;
 }
 
+.product-meta-items-container--static {
+  position: static;
+  top: auto;
+  padding-top: 0;
+}
+
 /* Accordion */
 
 .product-block .collapsible-trigger-btn {

@@ -32,6 +32,12 @@
       break
     endif
   endfor
+
+  unless sticky_buy_box == false
+    if sticky_buy_box != true
+      assign sticky_buy_box = true
+    endif
+  endunless
 -%}
 
 <div id="ProductSection-{{ section_id }}-{{ product.id }}"
@@ -140,7 +146,7 @@
           </div>
         {%- endif -%}
 
-        <div class="grid__item {{ product_description_width }} product-meta-items-container">
+        <div class="grid__item {{ product_description_width }} product-meta-items-container{% unless sticky_buy_box %} product-meta-items-container--static{% endunless %}">
 
           <div class="product-single__meta">
             <div class="product-block product-block--header">
