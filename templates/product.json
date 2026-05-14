@@ -247,6 +247,7 @@
       "settings": {
         "show_product_ratings": true,
         "sku_enable": false,
+        "sticky_buy_box": false,
         "enable_gallery_grid_view": true,
         "image_position": "left",
         "image_size": "medium",
