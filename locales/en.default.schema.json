@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "advanced-content": {
@@ -3252,7 +3261,7 @@
         "preorder": "Pre-order",
         "include_taxes": "Tax included.",
         "shipping_policy_html": "<a href='{{ link }}'>Shipping<\/a> calculated at checkout.",
-        "will_not_ship_until": "Ready to ship {{ date }}",
+        "will_not_ship_until": "Backorder. Order today, ships {{ date }}",
         "will_be_in_stock_after": "Back in stock {{ date }}",
         "waiting_for_stock": "Inventory on the way",
         "view_in_space": "View in your space",
