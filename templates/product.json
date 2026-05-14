@@ -131,6 +131,24 @@
             "collection_id_enabled": false
           }
         },
+        "instafeed_app_block_Q9UqDh": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "Customer Showcase",
+            "title_color": "",
+            "title_size_v2": 16,
+            "alignment": "center",
+            "instafeed_margin_top": 5,
+            "instafeed_margin_bottom": 5,
+            "instafeed_margin_sides": 5,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "25173",
+            "html_area": ""
+          }
+        },
         "ugc_tab_P33w67": {
           "type": "ugc_tab",
           "settings": {
@@ -215,6 +233,7 @@
         "pre_order_restock_notifier_back_in_stock_notifier_8Vcdxt",
         "buy_buttons",
         "d360d95e-91d1-4993-a2b3-225541fea599",
+        "instafeed_app_block_Q9UqDh",
         "ugc_tab_P33w67",
         "tab_aPEtUN",
         "tab_rziqfB",
