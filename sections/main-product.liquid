@@ -21,7 +21,8 @@
   video_looping: section.settings.enable_video_looping,
   video_style: section.settings.product_video_style,
   enable_gallery_grid_view: section.settings.enable_gallery_grid_view,
-  mobile_pagination_style: section.settings.mobile_pagination_style
+  mobile_pagination_style: section.settings.mobile_pagination_style,
+  sticky_buy_box: section.settings.sticky_buy_box
 -%}
 
 {% schema %}
@@ -39,6 +40,13 @@
       "type": "checkbox",
       "id": "sku_enable",
       "label": "t:sections.main-product.settings.sku_enable.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_buy_box",
+      "label": "Sticky product details column",
+      "info": "When enabled, the product info column stays visible while scrolling on large screens. When disabled, it scrolls with the page.",
+      "default": true
     },
     {
       "type": "header",
