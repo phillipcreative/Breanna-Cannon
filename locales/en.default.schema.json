@@ -3261,7 +3261,7 @@
         "preorder": "Pre-order",
         "include_taxes": "Tax included.",
         "shipping_policy_html": "<a href='{{ link }}'>Shipping<\/a> calculated at checkout.",
-        "will_not_ship_until": "Backorder. Order today, ships {{ date }}",
+        "will_not_ship_until": "Ready to ship {{ date }}",
         "will_be_in_stock_after": "Back in stock {{ date }}",
         "waiting_for_stock": "Inventory on the way",
         "view_in_space": "View in your space",
