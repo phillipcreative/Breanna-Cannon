@@ -339,6 +339,48 @@
         "subheading_spacing": 30,
         "text_color": "#ffffff"
       }
+    },
+    "style_tab_43MR8p": {
+      "type": "style-tab",
+      "blocks": {
+        "tab_item_XDkVky": {
+          "type": "tab_item",
+          "settings": {
+            "metaobject": "from-our-founder"
+          }
+        },
+        "tab_item_A3waC4": {
+          "type": "tab_item",
+          "settings": {
+            "metaobject": "occasions"
+          }
+        },
+        "tab_item_ehd98p": {
+          "type": "tab_item",
+          "settings": {
+            "metaobject": "phill-tests"
+          }
+        },
+        "tab_item_E9kwG9": {
+          "type": "tab_item",
+          "settings": {
+            "metaobject": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_item_XDkVky",
+        "tab_item_A3waC4",
+        "tab_item_ehd98p",
+        "tab_item_E9kwG9"
+      ],
+      "disabled": true,
+      "name": "Tabbed Feature",
+      "settings": {
+        "tabs_label": "Topics",
+        "tabs_aria_label": "Feature tabs",
+        "tag_section_label": "shop similar styles"
+      }
     }
   },
   "order": [
@@ -347,6 +389,7 @@
     "1766801579925ce76e",
     "recommendation_slider_xrGJLY",
     "judgeme_carousel_section_iJzRx9",
-    "newsletter_footer_bGBKPK"
+    "newsletter_footer_bGBKPK",
+    "style_tab_43MR8p"
   ]
 }
