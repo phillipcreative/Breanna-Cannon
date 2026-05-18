@@ -359,6 +359,14 @@
             "focal_point": "center center"
           }
         },
+        "collection_L9cqti": {
+          "type": "collection",
+          "settings": {
+            "collection": "nebraska",
+            "title": "University of Nebraska",
+            "focal_point": "center center"
+          }
+        },
         "collection_r6wwHe": {
           "type": "collection",
           "settings": {
@@ -563,6 +571,7 @@
         "collection_rHpUMF",
         "collection_mx4WFq",
         "collection_zD7hyg",
+        "collection_L9cqti",
         "collection_r6wwHe",
         "collection_4q4nKB",
         "collection_KtyBE8",
