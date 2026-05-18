@@ -4,7 +4,6 @@
   - Clicking a tab updates the left content (title/description) and the right image.
 {% endcomment %}
 
-{% if product.metafields.custom.style_headline != blank or product.metafields.custom.style_body != blank or product.metafields.custom.occasions_headline != blank or product.metafields.custom.occasions_body != blank or product.metafields.custom.from_our_founder_headline != blank or product.metafields.custom.from_our_founder_body != blank %}
 <section id="tabbed-feature-{{ section.id }}" class="tabbed-feature">
   <div class="tabbed-feature__inner page-width">
     <!-- LEFT: Tabs + Content -->
@@ -283,7 +282,7 @@
     })();
   </script>
 </section>
-{% endif %}
+
 {% schema %}
 {
   "name": "Tabbed Feature",
