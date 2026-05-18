@@ -159,6 +159,14 @@
             "focal_point": "center center"
           }
         },
+        "collection_kGjEfV": {
+          "type": "collection",
+          "settings": {
+            "collection": "appalachian-state-university",
+            "title": "Appalachian State University",
+            "focal_point": "center center"
+          }
+        },
         "e7c437fa-9c1a-49cb-97bc-9c714920c3a6": {
           "type": "collection",
           "settings": {
@@ -546,6 +554,7 @@
       },
       "block_order": [
         "16538807036ab84dc1-0",
+        "collection_kGjEfV",
         "e7c437fa-9c1a-49cb-97bc-9c714920c3a6",
         "collection_Awrq4q",
         "0df49594-0aef-49b3-a6aa-5eb841750624",
