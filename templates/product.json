@@ -302,6 +302,11 @@
         "space_around": true
       }
     },
+    "bryants_tab_section_fEtaDK": {
+      "type": "bryants-tab-section",
+      "name": "Product Metafield Tabs",
+      "settings": {}
+    },
     "recommendation_slider_xrGJLY": {
       "type": "recommendation-slider",
       "name": "Recommendation Carousel",
@@ -382,21 +387,16 @@
         "tabs_aria_label": "Feature tabs",
         "tag_section_label": "shop similar styles"
       }
-    },
-    "bryants_tab_section_fEtaDK": {
-      "type": "bryants-tab-section",
-      "name": "Product Metafield Tabs",
-      "settings": {}
     }
   },
   "order": [
     "main",
     "17629708078581ed17",
     "1766801579925ce76e",
+    "bryants_tab_section_fEtaDK",
     "recommendation_slider_xrGJLY",
     "judgeme_carousel_section_iJzRx9",
     "newsletter_footer_bGBKPK",
-    "style_tab_43MR8p",
-    "bryants_tab_section_fEtaDK"
+    "style_tab_43MR8p"
   ]
 }
