@@ -1,0 +1,318 @@
+{% assign has_style = false %}
+{% assign has_occasions = false %}
+{% assign has_founder = false %}
+
+{% if product.metafields.custom.style_headline != blank
+  or product.metafields.custom.style_body != blank
+  or product.metafields.custom.style_media != blank %}
+  {% assign has_style = true %}
+{% endif %}
+
+{% if product.metafields.custom.occasions_headline != blank
+  or product.metafields.custom.occasions_body != blank
+  or product.metafields.custom.occasions_media != blank %}
+  {% assign has_occasions = true %}
+{% endif %}
+
+{% if product.metafields.custom.from_our_founder_headline != blank
+  or product.metafields.custom.from_our_founder_body != blank
+  or product.metafields.custom.from_our_founder_media != blank %}
+  {% assign has_founder = true %}
+{% endif %}
+
+{% if has_style or has_occasions or has_founder %}
+
+<section class="product-tabs-section page-width">
+
+  <div class="product-tabs-wrapper">
+
+    <div class="product-tabs-nav">
+
+      {% if has_style %}
+        <button
+          class="product-tab-button active"
+          type="button"
+          data-tab="style-tab"
+        >
+          Styling
+        </button>
+      {% endif %}
+
+      {% if has_occasions %}
+        <button
+          class="product-tab-button {% unless has_style %}active{% endunless %}"
+          type="button"
+          data-tab="occasions-tab"
+        >
+          Occasions
+        </button>
+      {% endif %}
+
+      {% if has_founder %}
+        <button
+          class="product-tab-button {% unless has_style or has_occasions %}active{% endunless %}"
+          type="button"
+          data-tab="founder-tab"
+        >
+          From Our Founder
+        </button>
+      {% endif %}
+
+    </div>
+
+    <div class="product-tabs-content">
+
+      {% if has_style %}
+        <div class="product-tab-panel active" id="style-tab">
+
+          <div class="product-tab-grid">
+
+            <div class="product-tab-text">
+
+              {% if product.metafields.custom.style_headline != blank %}
+                <h2 class="product-tab-heading">
+                  {{ product.metafields.custom.style_headline }}
+                </h2>
+              {% endif %}
+
+              {% if product.metafields.custom.style_body != blank %}
+                <div class="product-tab-body">
+                  {{ product.metafields.custom.style_body | metafield_tag }}
+                </div>
+              {% endif %}
+
+            </div>
+
+            {% if product.metafields.custom.style_media != blank %}
+              <div class="product-tab-media">
+                {{
+                  product.metafields.custom.style_media
+                  | image_url: width: 1600
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'product-tab-image'
+                }}
+              </div>
+            {% endif %}
+
+          </div>
+
+        </div>
+      {% endif %}
+
+      {% if has_occasions %}
+        <div class="product-tab-panel {% unless has_style %}active{% endunless %}" id="occasions-tab">
+
+          <div class="product-tab-grid">
+
+            <div class="product-tab-text">
+
+              {% if product.metafields.custom.occasions_headline != blank %}
+                <h2 class="product-tab-heading">
+                  {{ product.metafields.custom.occasions_headline }}
+                </h2>
+              {% endif %}
+
+              {% if product.metafields.custom.occasions_body != blank %}
+                <div class="product-tab-body">
+                  {{ product.metafields.custom.occasions_body | metafield_tag }}
+                </div>
+              {% endif %}
+
+            </div>
+
+            {% if product.metafields.custom.occasions_media != blank %}
+              <div class="product-tab-media">
+                {{
+                  product.metafields.custom.occasions_media
+                  | image_url: width: 1600
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'product-tab-image'
+                }}
+              </div>
+            {% endif %}
+
+          </div>
+
+        </div>
+      {% endif %}
+
+      {% if has_founder %}
+        <div class="product-tab-panel {% unless has_style or has_occasions %}active{% endunless %}" id="founder-tab">
+
+          <div class="product-tab-grid">
+
+            <div class="product-tab-text">
+
+              {% if product.metafields.custom.from_our_founder_headline != blank %}
+                <h2 class="product-tab-heading">
+                  {{ product.metafields.custom.from_our_founder_headline }}
+                </h2>
+              {% endif %}
+
+              {% if product.metafields.custom.from_our_founder_body != blank %}
+                <div class="product-tab-body">
+                  {{ product.metafields.custom.from_our_founder_body | metafield_tag }}
+                </div>
+              {% endif %}
+
+            </div>
+
+            {% if product.metafields.custom.from_our_founder_media != blank %}
+              <div class="product-tab-media">
+                {{
+                  product.metafields.custom.from_our_founder_media
+                  | image_url: width: 1600
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'product-tab-image'
+                }}
+              </div>
+            {% endif %}
+
+          </div>
+
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+.product-tabs-section {
+  margin: 60px auto;
+}
+
+.product-tabs-nav {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.product-tab-button {
+  background: transparent;
+  border: 1px solid #d9d9d9;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: .04em;
+  transition: all .2s ease;
+}
+
+.product-tab-button.active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.product-tab-panel {
+  display: none;
+  animation: fadeTabs .25s ease;
+}
+
+.product-tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeTabs {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-tab-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.product-tab-heading {
+  margin-bottom: 18px;
+}
+
+.product-tab-body {
+  line-height: 1.7;
+}
+
+.product-tab-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .product-tab-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .product-tabs-nav {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+}
+
+</style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  const buttons = document.querySelectorAll('.product-tab-button');
+  const panels = document.querySelectorAll('.product-tab-panel');
+
+  buttons.forEach(button => {
+
+    button.addEventListener('click', function () {
+
+      const target = this.dataset.tab;
+
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      panels.forEach(panel => {
+        panel.classList.remove('active');
+      });
+
+      this.classList.add('active');
+
+      document.getElementById(target).classList.add('active');
+
+    });
+
+  });
+
+});
+
+</script>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Metafield Tabs",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product Metafield Tabs"
+    }
+  ]
+}
+{% endschema %}
