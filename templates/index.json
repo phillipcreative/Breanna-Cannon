@@ -254,6 +254,30 @@
         "enable_gutter": true
       }
     },
+    "featured_collection_JEakX6": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "SPRING & Summer",
+        "home_featured_products": "spring-2026",
+        "per_row": 4,
+        "rows": 2,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured_collection_fQ7XjU": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "DRESSES",
+        "home_featured_products": "dresses",
+        "per_row": 4,
+        "rows": 2,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
     "1669620656f5ef9fcd": {
       "type": "apps",
       "blocks": {
@@ -282,18 +306,6 @@
       "settings": {
         "full_width": false,
         "space_around": true
-      }
-    },
-    "featured_collection_JEakX6": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "SPRING HAS SPRUNG",
-        "home_featured_products": "spring-2026",
-        "per_row": 4,
-        "rows": 2,
-        "mobile_scrollable": true,
-        "view_all": true,
-        "divider": false
       }
     },
     "text_and_image_kY7hRt": {
@@ -334,18 +346,6 @@
       "settings": {
         "title": "OFFICIALLY LICENSED KENTUCKY DERBY®",
         "home_featured_products": "kentucky-derby",
-        "per_row": 4,
-        "rows": 2,
-        "mobile_scrollable": true,
-        "view_all": true,
-        "divider": false
-      }
-    },
-    "featured_collection_fQ7XjU": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "DRESSES",
-        "home_featured_products": "dresses",
         "per_row": 4,
         "rows": 2,
         "mobile_scrollable": true,
@@ -620,12 +620,12 @@
     "slideshow",
     "rich-text",
     "dc614b3d-93ca-4ccf-a040-51892f06ebec",
-    "1669620656f5ef9fcd",
     "featured_collection_JEakX6",
+    "featured_collection_fQ7XjU",
+    "1669620656f5ef9fcd",
     "text_and_image_kY7hRt",
     "text_and_image_8XADLp",
     "featured_collection_Wi3GKr",
-    "featured_collection_fQ7XjU",
     "featured_collection_CgLEJz",
     "featured_collection_3hPMLr",
     "1651084254753291af",
