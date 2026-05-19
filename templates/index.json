@@ -254,11 +254,11 @@
         "enable_gutter": true
       }
     },
-    "featured_collection_JEakX6": {
+    "featured_collection_fQ7XjU": {
       "type": "featured-collection",
       "settings": {
-        "title": "SPRING & Summer",
-        "home_featured_products": "spring-2026",
+        "title": "DRESSES",
+        "home_featured_products": "dresses",
         "per_row": 4,
         "rows": 2,
         "mobile_scrollable": true,
@@ -266,11 +266,11 @@
         "divider": false
       }
     },
-    "featured_collection_fQ7XjU": {
+    "featured_collection_JEakX6": {
       "type": "featured-collection",
       "settings": {
-        "title": "DRESSES",
-        "home_featured_products": "dresses",
+        "title": "SPRING & Summer",
+        "home_featured_products": "spring-2026",
         "per_row": 4,
         "rows": 2,
         "mobile_scrollable": true,
@@ -620,8 +620,8 @@
     "slideshow",
     "rich-text",
     "dc614b3d-93ca-4ccf-a040-51892f06ebec",
-    "featured_collection_JEakX6",
     "featured_collection_fQ7XjU",
+    "featured_collection_JEakX6",
     "1669620656f5ef9fcd",
     "text_and_image_kY7hRt",
     "text_and_image_8XADLp",
