@@ -382,6 +382,11 @@
         "tabs_aria_label": "Feature tabs",
         "tag_section_label": "shop similar styles"
       }
+    },
+    "bryants_tab_section_fEtaDK": {
+      "type": "bryants-tab-section",
+      "name": "Product Metafield Tabs",
+      "settings": {}
     }
   },
   "order": [
@@ -391,6 +396,7 @@
     "recommendation_slider_xrGJLY",
     "judgeme_carousel_section_iJzRx9",
     "newsletter_footer_bGBKPK",
-    "style_tab_43MR8p"
+    "style_tab_43MR8p",
+    "bryants_tab_section_fEtaDK"
   ]
 }
