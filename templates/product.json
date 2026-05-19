@@ -304,6 +304,7 @@
     },
     "bryants_tab_section_fEtaDK": {
       "type": "bryants-tab-section",
+      "disabled": true,
       "name": "Product Metafield Tabs",
       "settings": {}
     },
