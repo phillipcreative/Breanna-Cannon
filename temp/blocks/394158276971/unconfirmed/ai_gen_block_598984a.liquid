@@ -1,6 +1,1096 @@
+{% doc %}
+  @prompt
+    Create a premium, editorial-style Shopify product page section with dynamic metafield-powered tab content.
+    
+    SECTION GOAL
+    This section should feel elevated, clean, modern, fashion-forward, and conversion-focused. The layout should resemble a luxury fashion PDP experience with strong typography hierarchy, generous whitespace, and responsive behavior.
+    
+    The section must be fully responsive across desktop, tablet, and mobile.
+    
+    SECTION STRUCTURE
+    Create a two-column layout:
+    
+    LEFT COLUMN
+    - Tab navigation at the top
+    - Content area beneath tabs
+    - Vertically centered alignment
+    - Elegant spacing and typography hierarchy
+    
+    RIGHT COLUMN
+    - Large responsive media display
+    - Media should scale proportionally
+    - Rounded corners optional but subtle
+    - Maintain luxury editorial aesthetic
+    
+    TAB BEHAVIOR
+    There are 3 tabs:
+    1. Styling
+    2. Occasions
+    3. From the Founder
+    
+    When a tab is clicked:
+    - Show that tab’s content
+    - Hide the other tab content
+    - No page reload
+    - Smooth transition/fade between tabs
+    
+    DEFAULT TAB LOGIC
+    - Automatically open the first available tab on page load
+    - If a tab has no content, hide that tab entirely
+    - If all tabs are empty, hide the entire section
+    
+    DO NOT SHOW:
+    - product recommendations
+    - “shop similar styles”
+    - tags
+    - pills
+    - buttons beneath content
+    
+    CONTENT SOURCE
+    All content must dynamically pull from Shopify product metafields.
+    
+    TAB 1 — STYLING
+    Headline:
+    product.metafields.custom.style_headline
+    
+    Body:
+    product.metafields.custom.style_body
+    
+    Media:
+    product.metafields.custom.style_media
+    
+    Tab label:
+    Styling
+    
+    TAB 2 — OCCASIONS
+    Headline:
+    product.metafields.custom.occasions_headline
+    
+    Body:
+    product.metafields.custom.occasions_body
+    
+    Media:
+    product.metafields.custom.occasions_media
+    
+    Tab label:
+    Occasions
+    
+    TAB 3 — FROM THE FOUNDER
+    Headline:
+    product.metafields.custom.from_our_founder_headline
+    
+    Body:
+    product.metafields.custom.from_our_founder_body
+    
+    Media:
+    product.metafields.custom.from_our_founder_media
+    
+    Tab label:
+    From our Founder
+    
+    CONDITIONAL LOGIC
+    For each tab:
+    - If all metafields are blank, hide the tab completely
+    - If media is blank, hide media container gracefully
+    - If headline or body is blank, collapse spacing naturally
+    
+    If ALL tabs are empty:
+    - Hide the entire section completely
+    
+    DESIGN STYLE
+    The design should feel:
+    - luxury fashion editorial
+    - minimal
+    - elegant
+    - clean
+    - sophisticated
+    - modern
+    - soft neutral aesthetic
+    
+    Typography:
+    - refined sans-serif
+    - strong heading hierarchy
+    - balanced line lengths
+    - subtle body text color contrast
+    
+    Spacing:
+    - generous whitespace
+    - high-end layout rhythm
+    - premium breathing room
+    
+    INTERACTIONS
+    - Smooth tab switching
+    - Subtle hover states on tabs
+    - Active tab should feel refined and intentional
+    - Avoid flashy animations
+    
+    RESPONSIVE BEHAVIOR
+    Desktop:
+    - Two-column layout
+    - Content left / media right
+    
+    Tablet:
+    - Slightly condensed spacing
+    - Maintain two-column if possible
+    
+    Mobile:
+    - Stack vertically
+    - Tabs remain easy to tap
+    - Media becomes full-width
+    - Typography scales elegantly
+    
+    TECHNICAL REQUIREMENTS
+    - Use semantic Shopify Liquid
+    - Use metafield conditional rendering
+    - Use lightweight JavaScript for tab switching
+    - Avoid unnecessary dependencies
+    - Optimize for Shopify theme performance
+    - Make section customizable in theme editor where appropriate
+    
+    IMPORTANT
+    This section should feel like a premium fashion brand PDP experience, not a generic Shopify block.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% liquid
+  assign styling_headline = product.metafields.custom.style_headline
+  assign styling_body = product.metafields.custom.style_body
+  assign styling_media = product.metafields.custom.style_media
+
+  assign occasions_headline = product.metafields.custom.occasions_headline
+  assign occasions_body = product.metafields.custom.occasions_body
+  assign occasions_media = product.metafields.custom.occasions_media
+
+  assign founder_headline = product.metafields.custom.from_our_founder_headline
+  assign founder_body = product.metafields.custom.from_our_founder_body
+  assign founder_media = product.metafields.custom.from_our_founder_media
+
+  assign styling_has_content = false
+  if styling_headline != blank or styling_body != blank or styling_media != blank
+    assign styling_has_content = true
+  endif
+
+  assign occasions_has_content = false
+  if occasions_headline != blank or occasions_body != blank or occasions_media != blank
+    assign occasions_has_content = true
+  endif
+
+  assign founder_has_content = false
+  if founder_headline != blank or founder_body != blank or founder_media != blank
+    assign founder_has_content = true
+  endif
+
+  assign any_tab_has_content = false
+  if styling_has_content or occasions_has_content or founder_has_content
+    assign any_tab_has_content = true
+  endif
+%}
+
+{% if any_tab_has_content %}
+  {% style %}
+    .ai-editorial-tabs-{{ ai_gen_id }} {
+      display: block;
+      width: 100%;
+      background-color: {{ block.settings.section_background }};
+      padding: {{ block.settings.section_padding_desktop }}px 0;
+    }
+
+    .ai-editorial-tabs__container-{{ ai_gen_id }} {
+      max-width: {{ block.settings.max_width }}px;
+      margin: 0 auto;
+      padding: 0 {{ block.settings.horizontal_padding }}px;
+    }
+
+    .ai-editorial-tabs__grid-{{ ai_gen_id }} {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: {{ block.settings.column_gap }}px;
+      align-items: center;
+    }
+
+    .ai-editorial-tabs__content-column-{{ ai_gen_id }} {
+      display: flex;
+      flex-direction: column;
+      gap: {{ block.settings.content_spacing }}px;
+    }
+
+    .ai-editorial-tabs__nav-{{ ai_gen_id }} {
+      display: flex;
+      gap: {{ block.settings.tab_spacing }}px;
+      border-bottom: 1px solid {{ block.settings.tab_border_color }};
+      padding-bottom: 2px;
+    }
+
+    .ai-editorial-tabs__tab-button-{{ ai_gen_id }} {
+      background: none;
+      border: none;
+      padding: {{ block.settings.tab_padding_vertical }}px {{ block.settings.tab_padding_horizontal }}px;
+      font-family: {{ block.settings.tab_font.family }}, {{ block.settings.tab_font.fallback_families }};
+      font-weight: {{ block.settings.tab_font.weight }};
+      font-size: {{ block.settings.tab_font_size }}px;
+      letter-spacing: {{ block.settings.tab_letter_spacing | divided_by: 100.0 }}em;
+      text-transform: {% if block.settings.tab_uppercase %}uppercase{% else %}none{% endif %};
+      color: {{ block.settings.tab_color_inactive }};
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s ease;
+      border-bottom: 2px solid transparent;
+    }
+
+    .ai-editorial-tabs__tab-button-{{ ai_gen_id }}:hover {
+      color: {{ block.settings.tab_color_hover }};
+    }
+
+    .ai-editorial-tabs__tab-button-{{ ai_gen_id }}.active {
+      color: {{ block.settings.tab_color_active }};
+      border-bottom-color: {{ block.settings.tab_active_underline }};
+    }
+
+    .ai-editorial-tabs__content-area-{{ ai_gen_id }} {
+      padding-top: {{ block.settings.content_top_padding }}px;
+    }
+
+    .ai-editorial-tabs__tab-content-{{ ai_gen_id }} {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .ai-editorial-tabs__tab-content-{{ ai_gen_id }}.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .ai-editorial-tabs__headline-{{ ai_gen_id }} {
+      font-family: {{ block.settings.headline_font.family }}, {{ block.settings.headline_font.fallback_families }};
+      font-weight: {{ block.settings.headline_font.weight }};
+      font-size: {{ block.settings.headline_size }}px;
+      line-height: {{ block.settings.headline_line_height }};
+      letter-spacing: {{ block.settings.headline_letter_spacing | divided_by: 100.0 }}em;
+      color: {{ block.settings.headline_color }};
+      margin: 0 0 {{ block.settings.headline_margin_bottom }}px 0;
+      text-transform: {% if block.settings.headline_uppercase %}uppercase{% else %}none{% endif %};
+    }
+
+    .ai-editorial-tabs__body-{{ ai_gen_id }} {
+      font-family: {{ block.settings.body_font.family }}, {{ block.settings.body_font.fallback_families }};
+      font-weight: {{ block.settings.body_font.weight }};
+      font-size: {{ block.settings.body_size }}px;
+      line-height: {{ block.settings.body_line_height }};
+      letter-spacing: {{ block.settings.body_letter_spacing | divided_by: 100.0 }}em;
+      color: {{ block.settings.body_color }};
+      max-width: {{ block.settings.body_max_width }}ch;
+    }
+
+    .ai-editorial-tabs__body-{{ ai_gen_id }} p {
+      margin: 0 0 {{ block.settings.paragraph_spacing }}px 0;
+    }
+
+    .ai-editorial-tabs__body-{{ ai_gen_id }} p:last-child {
+      margin-bottom: 0;
+    }
+
+    .ai-editorial-tabs__media-column-{{ ai_gen_id }} {
+      position: relative;
+      width: 100%;
+    }
+
+    .ai-editorial-tabs__media-wrapper-{{ ai_gen_id }} {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: {{ block.settings.media_border_radius }}px;
+      background-color: {{ block.settings.media_background }};
+    }
+
+    .ai-editorial-tabs__media-{{ ai_gen_id }} {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .ai-editorial-tabs__media-{{ ai_gen_id }} img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .ai-editorial-tabs__media-{{ ai_gen_id }} video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media screen and (max-width: 989px) {
+      .ai-editorial-tabs-{{ ai_gen_id }} {
+        padding: {{ block.settings.section_padding_tablet }}px 0;
+      }
+
+      .ai-editorial-tabs__grid-{{ ai_gen_id }} {
+        gap: {{ block.settings.column_gap_tablet }}px;
+      }
+
+      .ai-editorial-tabs__headline-{{ ai_gen_id }} {
+        font-size: {{ block.settings.headline_size | times: 0.85 }}px;
+      }
+
+      .ai-editorial-tabs__body-{{ ai_gen_id }} {
+        font-size: {{ block.settings.body_size | times: 0.95 }}px;
+      }
+    }
+
+    @media screen and (max-width: 749px) {
+      .ai-editorial-tabs-{{ ai_gen_id }} {
+        padding: {{ block.settings.section_padding_mobile }}px 0;
+      }
+
+      .ai-editorial-tabs__container-{{ ai_gen_id }} {
+        padding: 0 {{ block.settings.horizontal_padding_mobile }}px;
+      }
+
+      .ai-editorial-tabs__grid-{{ ai_gen_id }} {
+        grid-template-columns: 1fr;
+        gap: {{ block.settings.column_gap_mobile }}px;
+      }
+
+      .ai-editorial-tabs__content-column-{{ ai_gen_id }} {
+        order: 2;
+      }
+
+      .ai-editorial-tabs__media-column-{{ ai_gen_id }} {
+        order: 1;
+      }
+
+      .ai-editorial-tabs__nav-{{ ai_gen_id }} {
+        gap: {{ block.settings.tab_spacing_mobile }}px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .ai-editorial-tabs__tab-button-{{ ai_gen_id }} {
+        font-size: {{ block.settings.tab_font_size_mobile }}px;
+        padding: {{ block.settings.tab_padding_vertical_mobile }}px {{ block.settings.tab_padding_horizontal_mobile }}px;
+        white-space: nowrap;
+      }
+
+      .ai-editorial-tabs__headline-{{ ai_gen_id }} {
+        font-size: {{ block.settings.headline_size_mobile }}px;
+        margin-bottom: {{ block.settings.headline_margin_bottom_mobile }}px;
+      }
+
+      .ai-editorial-tabs__body-{{ ai_gen_id }} {
+        font-size: {{ block.settings.body_size_mobile }}px;
+      }
+
+      .ai-editorial-tabs__content-area-{{ ai_gen_id }} {
+        padding-top: {{ block.settings.content_top_padding_mobile }}px;
+      }
+    }
+  {% endstyle %}
+
+  <editorial-tabs-{{ ai_gen_id }} class="ai-editorial-tabs-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+    <div class="ai-editorial-tabs__container-{{ ai_gen_id }}">
+      <div class="ai-editorial-tabs__grid-{{ ai_gen_id }}">
+        <div class="ai-editorial-tabs__content-column-{{ ai_gen_id }}">
+          <nav class="ai-editorial-tabs__nav-{{ ai_gen_id }}" role="tablist">
+            {% if styling_has_content %}
+              <button
+                class="ai-editorial-tabs__tab-button-{{ ai_gen_id }}"
+                data-tab="styling"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-content-styling-{{ ai_gen_id }}"
+              >
+                Styling
+              </button>
+            {% endif %}
+
+            {% if occasions_has_content %}
+              <button
+                class="ai-editorial-tabs__tab-button-{{ ai_gen_id }}"
+                data-tab="occasions"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-content-occasions-{{ ai_gen_id }}"
+              >
+                Occasions
+              </button>
+            {% endif %}
+
+            {% if founder_has_content %}
+              <button
+                class="ai-editorial-tabs__tab-button-{{ ai_gen_id }}"
+                data-tab="founder"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-content-founder-{{ ai_gen_id }}"
+              >
+                From our Founder
+              </button>
+            {% endif %}
+          </nav>
+
+          <div class="ai-editorial-tabs__content-area-{{ ai_gen_id }}">
+            {% if styling_has_content %}
+              <div
+                class="ai-editorial-tabs__tab-content-{{ ai_gen_id }}"
+                data-tab-content="styling"
+                id="tab-content-styling-{{ ai_gen_id }}"
+                role="tabpanel"
+              >
+                {% if styling_headline != blank %}
+                  <h2 class="ai-editorial-tabs__headline-{{ ai_gen_id }}">
+                    {{ styling_headline }}
+                  </h2>
+                {% endif %}
+
+                {% if styling_body != blank %}
+                  <div class="ai-editorial-tabs__body-{{ ai_gen_id }}">
+                    {{ styling_body }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if occasions_has_content %}
+              <div
+                class="ai-editorial-tabs__tab-content-{{ ai_gen_id }}"
+                data-tab-content="occasions"
+                id="tab-content-occasions-{{ ai_gen_id }}"
+                role="tabpanel"
+              >
+                {% if occasions_headline != blank %}
+                  <h2 class="ai-editorial-tabs__headline-{{ ai_gen_id }}">
+                    {{ occasions_headline }}
+                  </h2>
+                {% endif %}
+
+                {% if occasions_body != blank %}
+                  <div class="ai-editorial-tabs__body-{{ ai_gen_id }}">
+                    {{ occasions_body }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if founder_has_content %}
+              <div
+                class="ai-editorial-tabs__tab-content-{{ ai_gen_id }}"
+                data-tab-content="founder"
+                id="tab-content-founder-{{ ai_gen_id }}"
+                role="tabpanel"
+              >
+                {% if founder_headline != blank %}
+                  <h2 class="ai-editorial-tabs__headline-{{ ai_gen_id }}">
+                    {{ founder_headline }}
+                  </h2>
+                {% endif %}
+
+                {% if founder_body != blank %}
+                  <div class="ai-editorial-tabs__body-{{ ai_gen_id }}">
+                    {{ founder_body }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="ai-editorial-tabs__media-column-{{ ai_gen_id }}">
+          {% if styling_has_content and styling_media != blank %}
+            <div
+              class="ai-editorial-tabs__media-wrapper-{{ ai_gen_id }}"
+              data-media="styling"
+            >
+              {% if styling_media.media_type == 'image' %}
+                <div class="ai-editorial-tabs__media-{{ ai_gen_id }}">
+                  <img
+                    src="{{ styling_media | image_url: width: 1200 }}"
+                    alt="{{ styling_media.alt | escape }}"
+                    loading="lazy"
+                    width="{{ styling_media.width }}"
+                    height="{{ styling_media.height }}"
+                  >
+                </div>
+              {% elsif styling_media.media_type == 'video' or styling_media.media_type == 'external_video' %}
+                <div class="ai-editorial-tabs__media-{{ ai_gen_id }}">
+                  {{ styling_media | media_tag: image_size: '1200x', autoplay: true, loop: true, muted: true }}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if occasions_has_content and occasions_media != blank %}
+            <div
+              class="ai-editorial-tabs__media-wrapper-{{ ai_gen_id }}"
+              data-media="occasions"
+              style="display: none;"
+            >
+              {% if occasions_media.media_type == 'image' %}
+                <div class="ai-editorial-tabs__media-{{ ai_gen_id }}">
+                  <img
+                    src="{{ occasions_media | image_url: width: 1200 }}"
+                    alt="{{ occasions_media.alt | escape }}"
+                    loading="lazy"
+                    width="{{ occasions_media.width }}"
+                    height="{{ occasions_media.height }}"
+                  >
+                </div>
+              {% elsif occasions_media.media_type == 'video' or occasions_media.media_type == 'external_video' %}
+                <div class="ai-editorial-tabs__media-{{ ai_gen_id }}">
+                  {{ occasions_media | media_tag: image_size: '1200x', autoplay: true, loop: true, muted: true }}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if founder_has_content and founder_media != blank %}
+            <div
+              class="ai-editorial-tabs__media-wrapper-{{ ai_gen_id }}"
+              data-media="founder"
+              style="display: none;"
+            >
+              {% if founder_media.media_type == 'image' %}
+                <div class="ai-editorial-tabs__media-{{ ai_gen_id }}">
+                  <img
+                    src="{{ founder_media | image_url: width: 1200 }}"
+                    alt="{{ founder_media.alt | escape }}"
+                    loading="lazy"
+                    width="{{ founder_media.width }}"
+                    height="{{ founder_media.height }}"
+                  >
+                </div>
+              {% elsif founder_media.media_type == 'video' or founder_media.media_type == 'external_video' %}
+                <div class="ai-editorial-tabs__media-{{ ai_gen_id }}">
+                  {{ founder_media | media_tag: image_size: '1200x', autoplay: true, loop: true, muted: true }}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </editorial-tabs-{{ ai_gen_id }}>
+
+  <script>
+    (function() {
+      class EditorialTabs{{ ai_gen_id }} extends HTMLElement {
+        constructor() {
+          super();
+          this.tabs = this.querySelectorAll('.ai-editorial-tabs__tab-button-{{ ai_gen_id }}');
+          this.contents = this.querySelectorAll('.ai-editorial-tabs__tab-content-{{ ai_gen_id }}');
+          this.mediaWrappers = this.querySelectorAll('.ai-editorial-tabs__media-wrapper-{{ ai_gen_id }}');
+        }
+
+        connectedCallback() {
+          this.setupTabs();
+          this.activateFirstTab();
+        }
+
+        setupTabs() {
+          this.tabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+              const tabName = tab.getAttribute('data-tab');
+              this.switchTab(tabName);
+            });
+          });
+        }
+
+        activateFirstTab() {
+          if (this.tabs.length > 0) {
+            const firstTabName = this.tabs[0].getAttribute('data-tab');
+            this.switchTab(firstTabName);
+          }
+        }
+
+        switchTab(tabName) {
+          this.tabs.forEach((tab) => {
+            if (tab.getAttribute('data-tab') === tabName) {
+              tab.classList.add('active');
+              tab.setAttribute('aria-selected', 'true');
+            } else {
+              tab.classList.remove('active');
+              tab.setAttribute('aria-selected', 'false');
+            }
+          });
+
+          this.contents.forEach((content) => {
+            if (content.getAttribute('data-tab-content') === tabName) {
+              content.classList.add('active');
+            } else {
+              content.classList.remove('active');
+            }
+          });
+
+          this.mediaWrappers.forEach((wrapper) => {
+            if (wrapper.getAttribute('data-media') === tabName) {
+              wrapper.style.display = 'block';
+            } else {
+              wrapper.style.display = 'none';
+            }
+          });
+        }
+      }
+
+      customElements.define('editorial-tabs-{{ ai_gen_id }}', EditorialTabs{{ ai_gen_id }});
+    })();
+  </script>
+{% endif %}
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Editorial product tabs",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 1000,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "section_padding_desktop",
+      "label": "Section padding (desktop)",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_tablet",
+      "label": "Section padding (tablet)",
+      "min": 30,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_mobile",
+      "label": "Section padding (mobile)",
+      "min": 20,
+      "max": 80,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal padding (desktop)",
+      "min": 20,
+      "max": 80,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_mobile",
+      "label": "Horizontal padding (mobile)",
+      "min": 15,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap (desktop)",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "column_gap_tablet",
+      "label": "Column gap (tablet)",
+      "min": 30,
+      "max": 80,
+      "step": 10,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "column_gap_mobile",
+      "label": "Column gap (mobile)",
+      "min": 20,
+      "max": 60,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Tab navigation"
+    },
+    {
+      "type": "font_picker",
+      "id": "tab_font",
+      "label": "Font",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "label": "Font size (desktop)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size_mobile",
+      "label": "Font size (mobile)",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "tab_letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "tab_uppercase",
+      "label": "Uppercase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "tab_spacing",
+      "label": "Tab spacing (desktop)",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "tab_spacing_mobile",
+      "label": "Tab spacing (mobile)",
+      "min": 15,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_vertical",
+      "label": "Vertical padding (desktop)",
+      "min": 8,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_horizontal",
+      "label": "Horizontal padding (desktop)",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_vertical_mobile",
+      "label": "Vertical padding (mobile)",
+      "min": 6,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_horizontal_mobile",
+      "label": "Horizontal padding (mobile)",
+      "min": 0,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "tab_color_inactive",
+      "label": "Inactive color",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "tab_color_hover",
+      "label": "Hover color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_color_active",
+      "label": "Active color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_underline",
+      "label": "Active underline",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Border color",
+      "default": "#e8e8e1"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "range",
+      "id": "content_spacing",
+      "label": "Content spacing",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "content_top_padding",
+      "label": "Top padding (desktop)",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "content_top_padding_mobile",
+      "label": "Top padding (mobile)",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Headline"
+    },
+    {
+      "type": "font_picker",
+      "id": "headline_font",
+      "label": "Font",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Size (desktop)",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "headline_size_mobile",
+      "label": "Size (mobile)",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "headline_line_height",
+      "label": "Line height",
+      "min": 1,
+      "max": 1.6,
+      "step": 0.1,
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "headline_letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "headline_uppercase",
+      "label": "Uppercase",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "headline_margin_bottom",
+      "label": "Bottom margin (desktop)",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "headline_margin_bottom_mobile",
+      "label": "Bottom margin (mobile)",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Body text"
+    },
+    {
+      "type": "font_picker",
+      "id": "body_font",
+      "label": "Font",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Size (desktop)",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "body_size_mobile",
+      "label": "Size (mobile)",
+      "min": 13,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "body_line_height",
+      "label": "Line height",
+      "min": 1.3,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.6
+    },
+    {
+      "type": "range",
+      "id": "body_letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "body_max_width",
+      "label": "Maximum width",
+      "min": 40,
+      "max": 80,
+      "step": 5,
+      "unit": "ch",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "paragraph_spacing",
+      "label": "Paragraph spacing",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "range",
+      "id": "media_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "media_background",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial product tabs"
+    }
+  ]
+}
 {% endschema %}
