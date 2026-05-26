@@ -49,6 +49,12 @@
             "color_swatches": false
           }
         },
+        "custom_HwJUTT": {
+          "type": "custom",
+          "settings": {
+            "code": "<a href=\"/pages/size-chart\" style=\"font-size: 0.875rem; text-decoration: underline; display: inline-block; color: #E91E8C; text-transform: uppercase;\">👗 Brianna Cannon Size Guide</a>"
+          }
+        },
         "custom_quantity_selector_jpHrgJ": {
           "type": "custom-quantity-selector",
           "settings": {
@@ -218,6 +224,7 @@
         "sales_point",
         "separator",
         "variant_picker",
+        "custom_HwJUTT",
         "custom_quantity_selector_jpHrgJ",
         "quantity_selector_BVwW6i",
         "linked_products_MqndzF",
@@ -378,6 +385,39 @@
         "tabs_aria_label": "Feature tabs",
         "tag_section_label": "shop similar styles"
       }
+    },
+    "177983620344ab2724": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_38c50fe_JJKtKD": {
+          "type": "ai_gen_block_38c50fe",
+          "settings": {
+            "size_chart_page": "",
+            "link_text": "Size Chart",
+            "show_icon": true,
+            "icon_size": 18,
+            "desktop_width_percent": 100,
+            "font_size": 14,
+            "font_weight": "500",
+            "padding_vertical": 10,
+            "padding_horizontal": 16,
+            "border_radius": 4,
+            "text_color": "#000000",
+            "background_color": "#ffffff",
+            "hover_text_color": "#000000",
+            "hover_background_color": "#f4f4f4",
+            "show_border": true,
+            "border_width": 1,
+            "border_color": "#e0e0e0",
+            "hover_border_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_38c50fe_JJKtKD"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -388,6 +428,7 @@
     "recommendation_slider_xrGJLY",
     "judgeme_carousel_section_iJzRx9",
     "newsletter_footer_bGBKPK",
-    "style_tab_43MR8p"
+    "style_tab_43MR8p",
+    "177983620344ab2724"
   ]
 }
