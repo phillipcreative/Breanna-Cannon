@@ -1,6 +1,237 @@
+{% doc %}
+  @prompt
+    On the product page, change the availability label so that when a product variant has 0 available inventory but the inventory policy is set to "Continue selling when out of stock" (pre-order), the label displays "Pre-Order" instead of "In Stock". When inventory is available, it should still show "In Stock". When inventory is 0 and the policy is set to stop selling, it should show "Out of Stock" as normal.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-availability-label-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: {{ block.settings.border_radius }}px;
+    font-size: {{ block.settings.font_size }}px;
+    font-weight: 600;
+    text-align: center;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-availability-label-{{ ai_gen_id }}--in-stock {
+    background-color: {{ block.settings.in_stock_bg_color }};
+    color: {{ block.settings.in_stock_text_color }};
+  }
+
+  .ai-availability-label-{{ ai_gen_id }}--pre-order {
+    background-color: {{ block.settings.pre_order_bg_color }};
+    color: {{ block.settings.pre_order_text_color }};
+  }
+
+  .ai-availability-label-{{ ai_gen_id }}--out-of-stock {
+    background-color: {{ block.settings.out_of_stock_bg_color }};
+    color: {{ block.settings.out_of_stock_text_color }};
+  }
+{% endstyle %}
+
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign inventory_quantity = current_variant.inventory_quantity
+  assign inventory_policy = current_variant.inventory_policy
+  assign available = current_variant.available
+
+  if available and inventory_quantity > 0
+    assign status = 'in-stock'
+    assign label_text = block.settings.in_stock_text
+  elsif available and inventory_quantity <= 0 and inventory_policy == 'continue'
+    assign status = 'pre-order'
+    assign label_text = block.settings.pre_order_text
+  else
+    assign status = 'out-of-stock'
+    assign label_text = block.settings.out_of_stock_text
+  endif
+%}
+
+<product-availability-{{ ai_gen_id }}
+  class="ai-availability-label-{{ ai_gen_id }} ai-availability-label-{{ ai_gen_id }}--{{ status }}"
+  data-product-id="{{ product.id }}"
+  {{ block.shopify_attributes }}
+>
+  {{ label_text }}
+</product-availability-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ProductAvailability{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.productId = this.dataset.productId;
+      }
+
+      connectedCallback() {
+        this.setupVariantListener();
+      }
+
+      setupVariantListener() {
+        const productForm = document.querySelector(`form[data-product-id="${this.productId}"]`);
+        
+        if (!productForm) return;
+
+        const variantIdInput = productForm.querySelector('input[name="id"]');
+        
+        if (!variantIdInput) return;
+
+        const observer = new MutationObserver(() => {
+          this.updateAvailability(variantIdInput.value);
+        });
+
+        observer.observe(variantIdInput, {
+          attributes: true,
+          attributeFilter: ['value']
+        });
+
+        variantIdInput.addEventListener('change', () => {
+          this.updateAvailability(variantIdInput.value);
+        });
+      }
+
+      updateAvailability(variantId) {
+        if (!variantId) return;
+
+        fetch(`${window.location.pathname}?variant=${variantId}&section_id=${this.closest('.shopify-section').dataset.sectionId}`)
+          .then(response => response.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const newLabel = doc.querySelector('product-availability-{{ ai_gen_id }}');
+            
+            if (newLabel) {
+              this.className = newLabel.className;
+              this.textContent = newLabel.textContent.trim();
+            }
+          })
+          .catch(error => {
+            console.error('Error updating availability:', error);
+          });
+      }
+    }
+
+    customElements.define('product-availability-{{ ai_gen_id }}', ProductAvailability{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Product availability",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Label text"
+    },
+    {
+      "type": "text",
+      "id": "in_stock_text",
+      "label": "In stock text",
+      "default": "In Stock"
+    },
+    {
+      "type": "text",
+      "id": "pre_order_text",
+      "label": "Pre-order text",
+      "default": "Pre-Order"
+    },
+    {
+      "type": "text",
+      "id": "out_of_stock_text",
+      "label": "Out of stock text",
+      "default": "Out of Stock"
+    },
+    {
+      "type": "header",
+      "content": "In stock style"
+    },
+    {
+      "type": "color",
+      "id": "in_stock_bg_color",
+      "label": "Background color",
+      "default": "#008060"
+    },
+    {
+      "type": "color",
+      "id": "in_stock_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Pre-order style"
+    },
+    {
+      "type": "color",
+      "id": "pre_order_bg_color",
+      "label": "Background color",
+      "default": "#FFA500"
+    },
+    {
+      "type": "color",
+      "id": "pre_order_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Out of stock style"
+    },
+    {
+      "type": "color",
+      "id": "out_of_stock_bg_color",
+      "label": "Background color",
+      "default": "#D82C0D"
+    },
+    {
+      "type": "color",
+      "id": "out_of_stock_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "General style"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product availability"
+    }
+  ]
+}
 {% endschema %}
