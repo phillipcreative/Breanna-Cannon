@@ -43,7 +43,7 @@
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "size_chart": "",
+            "size_chart": "size-chart",
             "variant_labels": false,
             "picker_type": "button",
             "color_swatches": false
