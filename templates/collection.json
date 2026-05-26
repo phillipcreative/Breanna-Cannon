@@ -67,6 +67,7 @@
         },
         "liquid_4grHW8": {
           "type": "liquid",
+          "disabled": true,
           "settings": {
             "code": "<style>\n  .custom-collection-header {\n    position: relative;\n    padding: 60px 20px;\n    background-size: cover;\n    background-position: center;\n    text-align: center;\n    color: white;\n  }\n\n  .custom-collection-header::before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(0, 0, 0, 0.4);\n    z-index: 1;\n  }\n\n  .custom-collection-header-content {\n    position: relative;\n    z-index: 2;\n    max-width: 800px;\n    margin: 0 auto;\n  }\n\n  .custom-collection-header h1 {\n    font-size: 48px;\n    margin: 0 0 20px 0;\n    font-weight: bold;\n  }\n\n  .custom-collection-header p {\n    font-size: 18px;\n    margin: 0;\n    line-height: 1.6;\n  }\n\n  @media (max-width: 768px) {\n    .custom-collection-header h1 {\n      font-size: 32px;\n    }\n\n    .custom-collection-header p {\n      font-size: 16px;\n    }\n\n    .custom-collection-header {\n      padding: 40px 20px;\n    }\n  }\n\n  .hide-on-desktop {\n    display: none !important;\n  }\n\n  @media (min-width: 769px) {\n    .hide-on-mobile {\n      display: none !important;\n    }\n  }\n\n  @media (max-width: 768px) {\n    .hide-on-mobile {\n      display: block !important;\n    }\n\n    .hide-on-desktop {\n      display: none !important;\n    }\n  }\n</style>\n\n<div class=\"custom-collection-header\" style=\"background-image: url('{{ collection.featured_image | image_url: width: 1500 }}');\">\n  <div class=\"custom-collection-header-content\">\n    <h1>{{ collection.title }}</h1>\n    {% if collection.description %}\n      <p>{{ collection.description }}</p>\n    {% endif %}\n  </div>\n</div>",
             "width": "100%",
@@ -78,6 +79,7 @@
         "image_cj94Pd",
         "liquid_4grHW8"
       ],
+      "disabled": true,
       "name": "t:sections.advanced-content.presets.custom_content.name",
       "settings": {
         "full_width": true,
