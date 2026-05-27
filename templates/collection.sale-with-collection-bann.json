@@ -11,20 +11,6 @@
   "sections": {
     "1774991087df59238d": {
       "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_550a2e4_qagnQU": {
-          "type": "ai_gen_block_550a2e4",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-6.png",
-            "mobile_image": "shopify://shop_images/Website_mobile_cover_images_eaf7e820-90e3-4599-890c-4f1ef9ce5773.png",
-            "banner_link": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_550a2e4_qagnQU"
-      ],
       "settings": {}
     },
     "collection-header": {
