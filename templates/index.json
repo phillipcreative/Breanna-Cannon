@@ -12,6 +12,24 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "image_zbWVjh": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "",
+            "title": "SUMMER 2026",
+            "title_size": 100,
+            "subheading": "",
+            "link": "",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-center horizontal-center",
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-7_16fd138d-2a0a-4354-9b25-ae19b7a0ba3a.png",
+            "overlay_opacity": 0,
+            "focal_point": "center center"
+          }
+        },
         "image_aiN4q3": {
           "type": "image",
           "settings": {
@@ -29,25 +47,6 @@
             "image_mobile": "shopify://shop_images/Website_mobile_cover_images-8.png",
             "overlay_opacity": 0,
             "focal_point": "top center"
-          }
-        },
-        "image_rKhfpz": {
-          "type": "image",
-          "settings": {
-            "top_subheading": "",
-            "title": "",
-            "title_size": 43,
-            "subheading": "",
-            "link": "shopify://collections/kentucky-derby",
-            "link_text": "And they're off",
-            "link_2": "",
-            "link_text_2": "",
-            "color_accent": "#ffffff",
-            "text_align": "vertical-bottom horizontal-center",
-            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-18.png",
-            "image_mobile": "shopify://shop_images/Mobile_Website_Hero_Cover_Images_2000_x_1000_px_Instagram_Post_45_-8.png",
-            "overlay_opacity": 0,
-            "focal_point": "20% 50%"
           }
         },
         "image_VD6miz": {
@@ -109,8 +108,8 @@
         }
       },
       "block_order": [
+        "image_zbWVjh",
         "image_aiN4q3",
-        "image_rKhfpz",
         "image_VD6miz",
         "image_nNLEa9",
         "fc0f772a-f60f-460c-929a-87742b812863"
@@ -154,6 +153,14 @@
     "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
       "type": "featured-collections",
       "blocks": {
+        "collection_rWenUm": {
+          "type": "collection",
+          "settings": {
+            "collection": "summer-2026",
+            "title": "SUMMER 26",
+            "focal_point": "center center"
+          }
+        },
         "collection_CMrfmw": {
           "type": "collection",
           "settings": {
@@ -236,6 +243,7 @@
         }
       },
       "block_order": [
+        "collection_rWenUm",
         "collection_CMrfmw",
         "collection_gFAr7A",
         "collection_JjJfPW",
