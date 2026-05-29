@@ -26,6 +26,7 @@
             "color_accent": "rgba(0,0,0,0)",
             "text_align": "vertical-center horizontal-center",
             "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-7_16fd138d-2a0a-4354-9b25-ae19b7a0ba3a.png",
+            "image_mobile": "shopify://shop_images/Website_mobile_cover_images-3.png",
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
