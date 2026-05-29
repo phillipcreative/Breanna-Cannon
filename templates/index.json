@@ -154,14 +154,6 @@
     "dc614b3d-93ca-4ccf-a040-51892f06ebec": {
       "type": "featured-collections",
       "blocks": {
-        "collection_rWenUm": {
-          "type": "collection",
-          "settings": {
-            "collection": "summer-2026",
-            "title": "",
-            "focal_point": "center center"
-          }
-        },
         "collection_CMrfmw": {
           "type": "collection",
           "settings": {
@@ -244,7 +236,6 @@
         }
       },
       "block_order": [
-        "collection_rWenUm",
         "collection_CMrfmw",
         "collection_gFAr7A",
         "collection_JjJfPW",
