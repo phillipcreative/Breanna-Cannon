@@ -225,22 +225,6 @@
     "featured_collections_PErijJ": {
       "type": "featured-collections",
       "blocks": {
-        "collection_WDfeYR": {
-          "type": "collection",
-          "settings": {
-            "collection": "bc-mens",
-            "title": "",
-            "focal_point": "center center"
-          }
-        },
-        "collection_9nXUaL": {
-          "type": "collection",
-          "settings": {
-            "collection": "hats",
-            "title": "",
-            "focal_point": "center center"
-          }
-        },
         "collection_rRCLUx": {
           "type": "collection",
           "settings": {
@@ -264,14 +248,30 @@
             "title": "BOYS SHORTS",
             "focal_point": "center center"
           }
+        },
+        "collection_WDfeYR": {
+          "type": "collection",
+          "settings": {
+            "collection": "bc-mens",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_9nXUaL": {
+          "type": "collection",
+          "settings": {
+            "collection": "hats",
+            "title": "",
+            "focal_point": "center center"
+          }
         }
       },
       "block_order": [
-        "collection_WDfeYR",
-        "collection_9nXUaL",
         "collection_rRCLUx",
         "collection_khBX4j",
-        "collection_YGqmXg"
+        "collection_YGqmXg",
+        "collection_WDfeYR",
+        "collection_9nXUaL"
       ],
       "name": "t:sections.featured-collections.presets.collection_list.name",
       "settings": {
