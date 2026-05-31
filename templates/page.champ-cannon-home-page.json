@@ -16,7 +16,7 @@
           "type": "ai_gen_block_635fbf0",
           "settings": {
             "desktop_image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-21.png",
-            "mobile_image": "shopify://shop_images/9877413b-8580-4ef6-aa69-2fbdb72d1cd0.png",
+            "mobile_image": "shopify://shop_images/Facetune_31-05-2026-15-33-42.jpg",
             "overlay_color": "#000000",
             "overlay_opacity": 20,
             "eyebrow_text": "NEW COLLECTION – DROP 01",
@@ -163,35 +163,10 @@
         "price_WdyEbi": {
           "type": "price",
           "settings": {}
-        },
-        "description_nVcnNK": {
-          "type": "description",
-          "settings": {
-            "is_tab": false
-          }
-        },
-        "variant_picker_LTYV8K": {
-          "type": "variant_picker",
-          "settings": {
-            "size_chart": "",
-            "variant_labels": true,
-            "picker_type": "button",
-            "color_swatches": false
-          }
-        },
-        "buy_buttons_ajdc79": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "surface_pickup_enable": true
-          }
         }
       },
       "block_order": [
-        "price_WdyEbi",
-        "description_nVcnNK",
-        "variant_picker_LTYV8K",
-        "buy_buttons_ajdc79"
+        "price_WdyEbi"
       ],
       "name": "t:sections.featured-product.presets.featured_product.name",
       "settings": {
