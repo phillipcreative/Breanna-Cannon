@@ -137,46 +137,6 @@
     },
     "17769571897d3932cc": {
       "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_a9ad604_NknUk7": {
-          "type": "ai_gen_block_a9ad604",
-          "settings": {
-            "show_header": true,
-            "title": "Follow us on Instagram",
-            "title_size": 32,
-            "title_color": "#000000",
-            "instagram_handle": "champ_bybc",
-            "handle_size": 16,
-            "handle_color": "#000000",
-            "images_to_show": 6,
-            "columns_desktop": 6,
-            "columns_mobile": "3",
-            "grid_gap": 8,
-            "section_padding": 40,
-            "desktop_width_percent": 100,
-            "image_border_radius": 0,
-            "show_overlay": true,
-            "overlay_opacity": 0.3,
-            "placeholder_bg": "#f4f4f4",
-            "link_1": "",
-            "link_2": "",
-            "link_3": "",
-            "link_4": "",
-            "link_5": "",
-            "link_6": "",
-            "link_7": "",
-            "link_8": "",
-            "link_9": "",
-            "link_10": "",
-            "link_11": "",
-            "link_12": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_a9ad604_NknUk7"
-      ],
       "settings": {}
     },
     "main": {
