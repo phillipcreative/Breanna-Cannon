@@ -207,6 +207,19 @@
         "enable_video_looping": true,
         "product_video_style": "muted"
       }
+    },
+    "featured_collection_DRPxHL": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.featured_collection.name",
+      "settings": {
+        "title": "COTTON CANDY",
+        "home_featured_products": "shine-bright-copy",
+        "per_row": 4,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": false,
+        "divider": false
+      }
     }
   },
   "order": [
@@ -215,6 +228,7 @@
     "17769571897d3932cc",
     "main",
     "featured_collection_iFpyk4",
-    "featured_product_rFAiWy"
+    "featured_product_rFAiWy",
+    "featured_collection_DRPxHL"
   ]
 }
