@@ -9,6 +9,28 @@
  */
 {
   "sections": {
+    "advanced_content_QWreHF": {
+      "type": "advanced-content",
+      "blocks": {
+        "image_86xjkt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-22.png",
+            "link": "",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "image_86xjkt"
+      ],
+      "name": "t:sections.advanced-content.presets.custom_content.name",
+      "settings": {
+        "full_width": true,
+        "space_around": false
+      }
+    },
     "17769546695a0278b4": {
       "type": "_blocks",
       "blocks": {
@@ -283,6 +305,7 @@
     }
   },
   "order": [
+    "advanced_content_QWreHF",
     "17769546695a0278b4",
     "promo_grid_NLJPkM",
     "17769571897d3932cc",
