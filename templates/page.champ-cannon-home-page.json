@@ -67,8 +67,8 @@
         "banner_hptJAn": {
           "type": "banner",
           "settings": {
-            "heading": "Built for Champions, Big & Small",
-            "text": "shop the collection",
+            "heading": "CHAMP by BC",
+            "text": "A collection for boys and men, designed by Brianna's firstborn son, Champ, and husband, Eric. Who says ladies get to have all the fun?!",
             "link": "",
             "label": "",
             "color_tint": "#c20000",
@@ -79,17 +79,17 @@
         "advanced_d7BxVd": {
           "type": "advanced",
           "settings": {
-            "subheading": "42 Styles",
-            "heading": "For Him",
-            "textarea": "The Modern Gameday Man",
+            "subheading": "",
+            "heading": "BC MEN",
+            "textarea": "",
             "cta_text1": "Shop Now",
-            "cta_link1": "",
+            "cta_link1": "shopify://collections/bc-mens",
             "cta_text2": "",
             "cta_link2": "",
-            "image": "shopify://shop_images/B99I2134.jpg",
+            "image": "shopify://shop_images/B99I2178.jpg",
             "video_url": "",
             "width": "50",
-            "height": 500,
+            "height": 580,
             "text_size": 100,
             "text_align": "vertical-center horizontal-center",
             "focal_point": "center",
@@ -101,17 +101,17 @@
         "advanced_3YQYxG": {
           "type": "advanced",
           "settings": {
-            "subheading": "24 styles",
-            "heading": "For Boys",
-            "textarea": "Little Champs in the Making",
+            "subheading": "",
+            "heading": "CHAMP by BC",
+            "textarea": "BOYS COLLECTION",
             "cta_text1": "Shop Now",
-            "cta_link1": "",
+            "cta_link1": "shopify://collections/champ-by-bc",
             "cta_text2": "",
             "cta_link2": "",
-            "image": "shopify://shop_images/eb7288c8-1e73-4ae3-a8ba-722ddda944b9.png",
+            "image": "shopify://shop_images/9_db12089d-81de-4194-a9e9-4db174e6d2ee.png",
             "video_url": "",
             "width": "50",
-            "height": 500,
+            "height": 580,
             "text_size": 100,
             "text_align": "vertical-center horizontal-center",
             "focal_point": "center",
@@ -135,92 +135,6 @@
         "space_below": true
       }
     },
-    "featured_collection_GbTBxa": {
-      "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.featured_collection.name",
-      "settings": {
-        "title": "Shop the Drop",
-        "home_featured_products": "bc-mens",
-        "per_row": 4,
-        "rows": 3,
-        "mobile_scrollable": true,
-        "view_all": true,
-        "divider": false
-      }
-    },
-    "judgeme_carousel_section_rQybWM": {
-      "type": "judgeme_carousel_section",
-      "disabled": true,
-      "name": "Featured Review Carousel",
-      "settings": {
-        "maxwidth": 1080
-      }
-    },
-    "testimonials_jEiFdJ": {
-      "type": "testimonials",
-      "blocks": {
-        "testimonial_RLfYmB": {
-          "type": "testimonial",
-          "settings": {
-            "icon": "5-stars",
-            "testimonial": "<p>The quality is absolutely incredible. Every detail is perfect, and it arrived beautifully packaged. I've recommended Brianna Cannon to all my friends!</p>",
-            "author": "Sarah Mitchell",
-            "author_info": "New York, NY"
-          }
-        },
-        "testimonial_aytefb": {
-          "type": "testimonial",
-          "settings": {
-            "icon": "5-stars",
-            "testimonial": "<p>I'm obsessed with my purchase! The craftsmanship is exceptional and the fit is perfect. This is luxury at its finest. Worth every penny.</p>",
-            "author": "Jessica Chen",
-            "author_info": "Los Angeles, CA"
-          }
-        },
-        "testimonial_8xAQzW": {
-          "type": "testimonial",
-          "settings": {
-            "icon": "5-stars",
-            "testimonial": "<p>Outstanding customer service and premium quality. The attention to detail is remarkable. I'll definitely be ordering again!</p>",
-            "author": "Amanda Rodriguez",
-            "author_info": "Miami, FL"
-          }
-        },
-        "testimonial_KEn84r": {
-          "type": "testimonial",
-          "settings": {
-            "icon": "5-stars",
-            "testimonial": "<p>This is exactly what I was looking for. The elegance and sophistication of the design is unmatched. Highly recommend to anyone seeking premium quality.</p>",
-            "author": "Victoria Thompson",
-            "author_info": "Chicago, IL"
-          }
-        },
-        "testimonial_gaWXAp": {
-          "type": "testimonial",
-          "settings": {
-            "icon": "5-stars",
-            "testimonial": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>",
-            "author": "Author's name",
-            "author_info": "Los Angeles, CA"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_RLfYmB",
-        "testimonial_aytefb",
-        "testimonial_8xAQzW",
-        "testimonial_KEn84r",
-        "testimonial_gaWXAp"
-      ],
-      "name": "t:sections.testimonials.presets.testimonials.name",
-      "settings": {
-        "title": "Loved by Real Champs",
-        "align_text": "center",
-        "round_images": false,
-        "color_background": "#f5ebe1",
-        "color_text": "#0f172a"
-      }
-    },
     "17769571897d3932cc": {
       "type": "_blocks",
       "blocks": {
@@ -231,7 +145,7 @@
             "title": "Follow us on Instagram",
             "title_size": 32,
             "title_color": "#000000",
-            "instagram_handle": "briannacannonofficial",
+            "instagram_handle": "champ_bybc",
             "handle_size": 16,
             "handle_color": "#000000",
             "images_to_show": 6,
@@ -274,9 +188,6 @@
   "order": [
     "17769546695a0278b4",
     "promo_grid_NLJPkM",
-    "featured_collection_GbTBxa",
-    "judgeme_carousel_section_rQybWM",
-    "testimonials_jEiFdJ",
     "17769571897d3932cc",
     "main"
   ]
