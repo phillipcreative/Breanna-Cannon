@@ -31,6 +31,25 @@
             "focal_point": "center center"
           }
         },
+        "image_KNC6fQ": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "",
+            "title": "CHAMP by BC",
+            "title_size": 100,
+            "subheading": "OUR FIRST EVER BOYS COLLECTION IS HERE",
+            "link": "shopify://collections/champ-by-bc",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-bottom horizontal-left",
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-21.png",
+            "image_mobile": "shopify://shop_images/Facetune_31-05-2026-15-33-42.jpg",
+            "overlay_opacity": 0,
+            "focal_point": "bottom center"
+          }
+        },
         "image_aiN4q3": {
           "type": "image",
           "settings": {
@@ -87,33 +106,14 @@
             "overlay_opacity": 0,
             "focal_point": "center center"
           }
-        },
-        "image_KNC6fQ": {
-          "type": "image",
-          "settings": {
-            "top_subheading": "",
-            "title": "CHAMP by BC",
-            "title_size": 100,
-            "subheading": "OUR FIRST EVER BOYS COLLECTION IS HERE",
-            "link": "shopify://collections/champ-by-bc",
-            "link_text": "",
-            "link_2": "",
-            "link_text_2": "",
-            "color_accent": "rgba(0,0,0,0)",
-            "text_align": "vertical-bottom horizontal-left",
-            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-21.png",
-            "image_mobile": "shopify://shop_images/Facetune_31-05-2026-15-33-42.jpg",
-            "overlay_opacity": 0,
-            "focal_point": "bottom center"
-          }
         }
       },
       "block_order": [
         "image_zbWVjh",
+        "image_KNC6fQ",
         "image_aiN4q3",
         "image_VD6miz",
-        "fc0f772a-f60f-460c-929a-87742b812863",
-        "image_KNC6fQ"
+        "fc0f772a-f60f-460c-929a-87742b812863"
       ],
       "settings": {
         "section_height": "650px",
