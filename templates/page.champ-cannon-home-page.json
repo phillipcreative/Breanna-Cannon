@@ -276,7 +276,7 @@
       "settings": {
         "title": "BUT WAIT...THERE'S MORE",
         "divider": false,
-        "per_row": 4,
+        "per_row": 3,
         "enable_gutter": true
       }
     }
