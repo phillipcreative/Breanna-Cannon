@@ -153,7 +153,7 @@
         "per_row": 4,
         "rows": 1,
         "mobile_scrollable": true,
-        "view_all": true,
+        "view_all": false,
         "divider": false
       }
     },
@@ -220,6 +220,65 @@
         "view_all": false,
         "divider": false
       }
+    },
+    "featured_collections_PErijJ": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_WDfeYR": {
+          "type": "collection",
+          "settings": {
+            "collection": "bc-mens",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_9nXUaL": {
+          "type": "collection",
+          "settings": {
+            "collection": "hats",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_rRCLUx": {
+          "type": "collection",
+          "settings": {
+            "collection": "boys-hoodies",
+            "title": "HOODIES",
+            "focal_point": "center center"
+          }
+        },
+        "collection_khBX4j": {
+          "type": "collection",
+          "settings": {
+            "collection": "boys-t-shirts",
+            "title": "BOYS T-SHIRT",
+            "focal_point": "center center"
+          }
+        },
+        "collection_YGqmXg": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_WDfeYR",
+        "collection_9nXUaL",
+        "collection_rRCLUx",
+        "collection_khBX4j",
+        "collection_YGqmXg"
+      ],
+      "name": "t:sections.featured-collections.presets.collection_list.name",
+      "settings": {
+        "title": "BUT WAIT...THERE'S MORE",
+        "divider": false,
+        "per_row": 4,
+        "enable_gutter": true
+      }
     }
   },
   "order": [
@@ -229,6 +288,7 @@
     "main",
     "featured_collection_iFpyk4",
     "featured_product_rFAiWy",
-    "featured_collection_DRPxHL"
+    "featured_collection_DRPxHL",
+    "featured_collections_PErijJ"
   ]
 }
