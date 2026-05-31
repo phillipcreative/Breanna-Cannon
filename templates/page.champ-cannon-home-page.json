@@ -143,12 +143,26 @@
       "type": "main-page-full-width",
       "name": "Champ Cannon Page",
       "settings": {}
+    },
+    "featured_collection_iFpyk4": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.featured_collection.name",
+      "settings": {
+        "title": "KINGDOM DRIP",
+        "home_featured_products": "kingdom-drip",
+        "per_row": 4,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
     }
   },
   "order": [
     "17769546695a0278b4",
     "promo_grid_NLJPkM",
     "17769571897d3932cc",
-    "main"
+    "main",
+    "featured_collection_iFpyk4"
   ]
 }
