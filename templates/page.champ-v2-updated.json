@@ -1,0 +1,318 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "advanced_content_QWreHF": {
+      "type": "advanced-content",
+      "blocks": {
+        "image_86xjkt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-22.png",
+            "link": "",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "image_86xjkt"
+      ],
+      "name": "t:sections.advanced-content.presets.custom_content.name",
+      "settings": {
+        "full_width": true,
+        "space_around": false
+      }
+    },
+    "17769546695a0278b4": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_635fbf0_ALVicy": {
+          "type": "ai_gen_block_635fbf0",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Website_Hero_Cover_Images_2000_x_1000_px_-21.png",
+            "mobile_image": "shopify://shop_images/Facetune_31-05-2026-15-33-42.jpg",
+            "overlay_color": "#000000",
+            "overlay_opacity": 20,
+            "eyebrow_text": "NEW COLLECTION – DROP 01",
+            "eyebrow_size": 21,
+            "eyebrow_color": "#ffffff",
+            "headline_text": "CHAMP CANNON",
+            "headline_font": "anton_n4",
+            "headline_size": 95,
+            "headline_color": "#ffffff",
+            "headline_secondary_text": "",
+            "headline_secondary_size": 30,
+            "headline_secondary_color": "#ffffff",
+            "body_text": "Our first boy's collection, designed by Brianna's firstborn son, Champ",
+            "body_size": 23,
+            "body_color": "#eaeaea",
+            "button_primary_label": "SHOP BOYS",
+            "button_primary_link": "shopify://collections/champ-by-bc",
+            "button_primary_bg": "#000000",
+            "button_primary_text_color": "#ffffff",
+            "button_primary_hover_bg": "#7fff68",
+            "button_secondary_label": "SHOP MEN",
+            "button_secondary_link": "shopify://collections/bc-mens",
+            "button_secondary_text_color": "#ffffff",
+            "button_secondary_border": "#ffffff",
+            "button_secondary_hover_bg": "#7fff68",
+            "button_secondary_hover_text": "#000000",
+            "button_size": 14,
+            "button_border_radius": 0,
+            "show_button_arrows": true,
+            "show_value_props": true,
+            "value_prop_1": "FREE SHIPPING OVER $65",
+            "value_prop_2": "",
+            "value_prop_3": "",
+            "value_prop_size": 10,
+            "value_prop_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_635fbf0_ALVicy"
+      ],
+      "settings": {}
+    },
+    "promo_grid_NLJPkM": {
+      "type": "promo-grid",
+      "blocks": {
+        "banner_hptJAn": {
+          "type": "banner",
+          "settings": {
+            "heading": "CHAMP by BC",
+            "text": "A DIVISION OF BRIANNA CANNON BRANDS, CREATED FOR CONFIDENT MEN AND BOYS WHO PREFER BOLD OVER BORING.",
+            "link": "",
+            "label": "",
+            "color_tint": "#00c2b2",
+            "color_tint_opacity": 8,
+            "framed": false
+          }
+        },
+        "advanced_d7BxVd": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "",
+            "heading": "BC MEN",
+            "textarea": "",
+            "cta_text1": "Shop Now",
+            "cta_link1": "shopify://collections/bc-mens",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify://shop_images/B99I2178.jpg",
+            "video_url": "",
+            "width": "50",
+            "height": 580,
+            "text_size": 100,
+            "text_align": "vertical-center horizontal-center",
+            "focal_point": "center",
+            "color_accent": "rgba(0,0,0,0)",
+            "boxed": false,
+            "framed": false
+          }
+        },
+        "advanced_3YQYxG": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "",
+            "heading": "CHAMP by BC",
+            "textarea": "BOYS COLLECTION",
+            "cta_text1": "Shop Now",
+            "cta_link1": "shopify://collections/champ-by-bc",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify://shop_images/9_db12089d-81de-4194-a9e9-4db174e6d2ee.png",
+            "video_url": "",
+            "width": "50",
+            "height": 580,
+            "text_size": 100,
+            "text_align": "vertical-center horizontal-center",
+            "focal_point": "center",
+            "color_accent": "rgba(0,0,0,0)",
+            "boxed": false,
+            "framed": false
+          }
+        }
+      },
+      "block_order": [
+        "banner_hptJAn",
+        "advanced_d7BxVd",
+        "advanced_3YQYxG"
+      ],
+      "custom_css": [],
+      "name": "t:sections.promo-grid.presets.promotional_grid.name",
+      "settings": {
+        "full_width": true,
+        "gutter_size": 20,
+        "space_above": true,
+        "space_below": true
+      }
+    },
+    "17769571897d3932cc": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page-full-width",
+      "name": "Champ Cannon Page",
+      "settings": {}
+    },
+    "featured_collection_iFpyk4": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.featured_collection.name",
+      "settings": {
+        "title": "KINGDOM DRIP",
+        "home_featured_products": "kingdom-drip",
+        "per_row": 4,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": false,
+        "divider": false
+      }
+    },
+    "featured_product_rFAiWy": {
+      "type": "featured-product",
+      "blocks": {
+        "inventory_status_L3tetP": {
+          "type": "inventory_status",
+          "settings": {
+            "inventory_threshold": 10,
+            "inventory_transfers_enable": true
+          }
+        },
+        "price_WdyEbi": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_7DBK4q": {
+          "type": "variant_picker",
+          "settings": {
+            "size_chart": "",
+            "variant_labels": true,
+            "picker_type": "button",
+            "color_swatches": false
+          }
+        },
+        "buy_buttons_qEzHdW": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "surface_pickup_enable": true
+          }
+        }
+      },
+      "block_order": [
+        "inventory_status_L3tetP",
+        "price_WdyEbi",
+        "variant_picker_7DBK4q",
+        "buy_buttons_qEzHdW"
+      ],
+      "name": "t:sections.featured-product.presets.featured_product.name",
+      "settings": {
+        "featured_product": "champ-by-bc-neon-shine-short-sleeves-youth-hoodie",
+        "divider": false,
+        "sku_enable": false,
+        "image_position": "left",
+        "image_size": "large",
+        "product_zoom_enable": true,
+        "thumbnail_position": "beside",
+        "thumbnail_arrows": false,
+        "mobile_layout": "partial",
+        "enable_video_looping": true,
+        "product_video_style": "muted"
+      }
+    },
+    "featured_collection_DRPxHL": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.featured_collection.name",
+      "settings": {
+        "title": "COTTON CANDY",
+        "home_featured_products": "shine-bright-copy",
+        "per_row": 4,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": false,
+        "divider": false
+      }
+    },
+    "featured_collections_PErijJ": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_rRCLUx": {
+          "type": "collection",
+          "settings": {
+            "collection": "boys-hoodies",
+            "title": "BOYS HOODIES",
+            "focal_point": "center center"
+          }
+        },
+        "collection_khBX4j": {
+          "type": "collection",
+          "settings": {
+            "collection": "boys-t-shirts",
+            "title": "BOYS T-SHIRT",
+            "focal_point": "center center"
+          }
+        },
+        "collection_YGqmXg": {
+          "type": "collection",
+          "settings": {
+            "collection": "boys-shorts",
+            "title": "BOYS SHORTS",
+            "focal_point": "center center"
+          }
+        },
+        "collection_WDfeYR": {
+          "type": "collection",
+          "settings": {
+            "collection": "bc-mens",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_9nXUaL": {
+          "type": "collection",
+          "settings": {
+            "collection": "hats",
+            "title": "",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_rRCLUx",
+        "collection_khBX4j",
+        "collection_YGqmXg",
+        "collection_WDfeYR",
+        "collection_9nXUaL"
+      ],
+      "name": "t:sections.featured-collections.presets.collection_list.name",
+      "settings": {
+        "title": "BUT WAIT...THERE'S MORE",
+        "divider": false,
+        "per_row": 3,
+        "enable_gutter": true
+      }
+    }
+  },
+  "order": [
+    "advanced_content_QWreHF",
+    "17769546695a0278b4",
+    "promo_grid_NLJPkM",
+    "17769571897d3932cc",
+    "main",
+    "featured_collection_iFpyk4",
+    "featured_product_rFAiWy",
+    "featured_collection_DRPxHL",
+    "featured_collections_PErijJ"
+  ]
+}
