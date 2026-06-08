@@ -98,6 +98,58 @@
         "divider": false
       }
     },
+    "featured_product_rFAiWy": {
+      "type": "featured-product",
+      "blocks": {
+        "inventory_status_L3tetP": {
+          "type": "inventory_status",
+          "settings": {
+            "inventory_threshold": 10,
+            "inventory_transfers_enable": true
+          }
+        },
+        "price_WdyEbi": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_7DBK4q": {
+          "type": "variant_picker",
+          "settings": {
+            "size_chart": "",
+            "variant_labels": true,
+            "picker_type": "button",
+            "color_swatches": false
+          }
+        },
+        "buy_buttons_qEzHdW": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "surface_pickup_enable": false
+          }
+        }
+      },
+      "block_order": [
+        "inventory_status_L3tetP",
+        "price_WdyEbi",
+        "variant_picker_7DBK4q",
+        "buy_buttons_qEzHdW"
+      ],
+      "name": "t:sections.featured-product.presets.featured_product.name",
+      "settings": {
+        "featured_product": "champ-by-bc-kingdom-drip-youth-performance-shorts-with-liner",
+        "divider": false,
+        "sku_enable": false,
+        "image_position": "left",
+        "image_size": "large",
+        "product_zoom_enable": true,
+        "thumbnail_position": "beside",
+        "thumbnail_arrows": false,
+        "mobile_layout": "partial",
+        "enable_video_looping": true,
+        "product_video_style": "muted"
+      }
+    },
     "promo_grid_NLJPkM": {
       "type": "promo-grid",
       "blocks": {
@@ -169,58 +221,6 @@
       "name": "Champ Cannon Page",
       "settings": {}
     },
-    "featured_product_rFAiWy": {
-      "type": "featured-product",
-      "blocks": {
-        "inventory_status_L3tetP": {
-          "type": "inventory_status",
-          "settings": {
-            "inventory_threshold": 10,
-            "inventory_transfers_enable": true
-          }
-        },
-        "price_WdyEbi": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker_7DBK4q": {
-          "type": "variant_picker",
-          "settings": {
-            "size_chart": "",
-            "variant_labels": true,
-            "picker_type": "button",
-            "color_swatches": false
-          }
-        },
-        "buy_buttons_qEzHdW": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "surface_pickup_enable": false
-          }
-        }
-      },
-      "block_order": [
-        "inventory_status_L3tetP",
-        "price_WdyEbi",
-        "variant_picker_7DBK4q",
-        "buy_buttons_qEzHdW"
-      ],
-      "name": "t:sections.featured-product.presets.featured_product.name",
-      "settings": {
-        "featured_product": "champ-by-bc-kingdom-drip-youth-performance-shorts-with-liner",
-        "divider": false,
-        "sku_enable": false,
-        "image_position": "left",
-        "image_size": "large",
-        "product_zoom_enable": true,
-        "thumbnail_position": "beside",
-        "thumbnail_arrows": false,
-        "mobile_layout": "partial",
-        "enable_video_looping": true,
-        "product_video_style": "muted"
-      }
-    },
     "featured_collections_PErijJ": {
       "type": "featured-collections",
       "blocks": {
@@ -280,16 +280,26 @@
         "per_row": 3,
         "enable_gutter": true
       }
+    },
+    "instafeed_ph6hGG": {
+      "type": "instafeed",
+      "name": "Instafeed App",
+      "settings": {
+        "heading_size": 20,
+        "feed_width": 100,
+        "html_area": ""
+      }
     }
   },
   "order": [
     "advanced_content_QWreHF",
     "17769546695a0278b4",
     "featured_collection_iFpyk4",
+    "featured_product_rFAiWy",
+    "instafeed_ph6hGG",
     "promo_grid_NLJPkM",
     "17769571897d3932cc",
     "main",
-    "featured_product_rFAiWy",
     "featured_collections_PErijJ"
   ]
 }
