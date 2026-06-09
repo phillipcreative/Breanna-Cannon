@@ -85,11 +85,71 @@
         "full_width": true,
         "space_around": false
       }
+    },
+    "1781032837415984ec": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_b95dd25_VT8iDL": {
+          "type": "ai_gen_block_b95dd25",
+          "disabled": true,
+          "settings": {
+            "title": "Shop by category",
+            "section_padding": 40,
+            "title_spacing": 30,
+            "title_size": 28,
+            "desktop_width_percent": 100,
+            "horizontal_padding": 40,
+            "mobile_horizontal_padding": 20,
+            "background_color": "#ffffff",
+            "text_color": "#000000",
+            "pill_spacing": 15,
+            "pill_padding_vertical": 12,
+            "pill_padding_horizontal": 25,
+            "pill_font_size": 15,
+            "pill_border_radius": 30,
+            "pill_border_width": 1,
+            "pill_background": "#ffffff",
+            "pill_border_color": "#000000",
+            "pill_hover_background": "#000000",
+            "pill_hover_text": "#ffffff",
+            "pill_hover_border": "#000000",
+            "arrow_size": 40,
+            "arrow_border_width": 1,
+            "arrow_background": "#ffffff",
+            "arrow_border_color": "#000000",
+            "arrow_color": "#000000",
+            "arrow_hover_background": "#000000",
+            "arrow_hover_border": "#000000",
+            "category_1_text": "Tops & Blouses",
+            "category_1_url": "",
+            "category_2_text": "Shackets & Jackets",
+            "category_2_url": "",
+            "category_3_text": "Bottoms",
+            "category_3_url": "",
+            "category_4_text": "Dresses & Jumpsuits",
+            "category_4_url": "",
+            "category_5_text": "Bags",
+            "category_5_url": "",
+            "category_6_text": "Sneakers",
+            "category_6_url": "",
+            "category_7_text": "Accessories",
+            "category_7_url": "",
+            "category_8_text": "New Arrivals",
+            "category_8_url": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_b95dd25_VT8iDL"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "collection-header",
     "main-collection",
-    "advanced_content_xnJX8t"
+    "advanced_content_xnJX8t",
+    "1781032837415984ec"
   ]
 }
