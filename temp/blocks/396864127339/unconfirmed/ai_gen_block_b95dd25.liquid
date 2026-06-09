@@ -1,6 +1,661 @@
+{% doc %}
+  @prompt
+    Use this prompt in Shopify AI:
+    
+    Create a responsive horizontal category carousel similar to a premium fashion eCommerce collection navigation.
+    
+    Desktop Requirements
+    
+    Display all category buttons in a single horizontal carousel row.
+    Include left and right navigation arrows on both sides of the carousel.
+    Clicking arrows should smoothly scroll the categories horizontally.
+    Categories should appear as clean pill-shaped buttons with thin borders.
+    Buttons should have subtle hover effects.
+    Keep spacing generous and modern.
+    Center-align the section title above the carousel.
+    Desktop should prioritize arrow navigation, while still allowing drag/scroll if available.
+    
+    Mobile Requirements
+    
+    Hide navigation arrows.
+    Enable touch swipe left/right to browse categories.
+    Show only a few category pills on screen at once.
+    Maintain smooth momentum scrolling.
+    Prevent buttons from wrapping to multiple lines.
+    Keep the experience fast, simple, and thumb-friendly.
+    
+    Styling
+    
+    Minimal luxury fashion aesthetic.
+    White or light gray background.
+    Black text.
+    Thin black borders on category pills.
+    Rounded pill buttons.
+    Clean typography with generous whitespace.
+    Subtle hover and active states.
+    
+    Functionality
+    
+    Fully responsive.
+    Works in Shopify without external libraries.
+    Uses semantic HTML, CSS, and vanilla JavaScript.
+    Smooth horizontal scrolling animation.
+    Accessible arrow controls and keyboard navigation.
+    
+    Example categories:
+    
+    Tops & Blouses
+    Shackets & Jackets
+    Bottoms
+    Dresses & Jumpsuits
+    Bags
+    Sneakers
+    Accessories
+    New Arrivals
+    
+    Build it as a reusable Shopify section with settings so I can easily add, remove, and reorder categories from the Shopify theme editor.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-category-carousel-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: {{ block.settings.section_padding }}px 0;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-category-carousel__title-{{ ai_gen_id }} {
+    text-align: center;
+    margin: 0 0 {{ block.settings.title_spacing }}px;
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.text_color }};
+    font-weight: 600;
+  }
+
+  .ai-category-carousel__wrapper-{{ ai_gen_id }} {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 {{ block.settings.horizontal_padding }}px;
+  }
+
+  .ai-category-carousel__container-{{ ai_gen_id }} {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .ai-category-carousel__scroll-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.pill_spacing }}px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 8px 0;
+  }
+
+  .ai-category-carousel__scroll-{{ ai_gen_id }}::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ai-category-carousel__pill-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    display: inline-block;
+    padding: {{ block.settings.pill_padding_vertical }}px {{ block.settings.pill_padding_horizontal }}px;
+    background-color: {{ block.settings.pill_background }};
+    color: {{ block.settings.text_color }};
+    border: {{ block.settings.pill_border_width }}px solid {{ block.settings.pill_border_color }};
+    border-radius: {{ block.settings.pill_border_radius }}px;
+    text-decoration: none;
+    font-size: {{ block.settings.pill_font_size }}px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .ai-category-carousel__pill-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.pill_hover_background }};
+    color: {{ block.settings.pill_hover_text }};
+    border-color: {{ block.settings.pill_hover_border }};
+    transform: translateY(-2px);
+  }
+
+  .ai-category-carousel__arrow-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.arrow_size }}px;
+    height: {{ block.settings.arrow_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ block.settings.arrow_background }};
+    border: {{ block.settings.arrow_border_width }}px solid {{ block.settings.arrow_border_color }};
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+  }
+
+  .ai-category-carousel__arrow-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.arrow_hover_background }};
+    border-color: {{ block.settings.arrow_hover_border }};
+    transform: scale(1.1);
+  }
+
+  .ai-category-carousel__arrow-{{ ai_gen_id }}:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .ai-category-carousel__arrow-{{ ai_gen_id }}:disabled:hover {
+    transform: none;
+  }
+
+  .ai-category-carousel__arrow-{{ ai_gen_id }} svg {
+    width: 20px;
+    height: 20px;
+    stroke: {{ block.settings.arrow_color }};
+    stroke-width: 2;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-category-carousel__arrow-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-category-carousel__wrapper-{{ ai_gen_id }} {
+      padding: 0 {{ block.settings.mobile_horizontal_padding }}px;
+    }
+
+    .ai-category-carousel__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+
+    .ai-category-carousel__pill-{{ ai_gen_id }} {
+      font-size: {{ block.settings.pill_font_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<category-carousel-{{ ai_gen_id }} class="ai-category-carousel-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.title != blank %}
+    <h2 class="ai-category-carousel__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+  {% endif %}
+
+  <div class="ai-category-carousel__wrapper-{{ ai_gen_id }}">
+    <div class="ai-category-carousel__container-{{ ai_gen_id }}">
+      <button
+        class="ai-category-carousel__arrow-{{ ai_gen_id }} ai-category-carousel__arrow-left-{{ ai_gen_id }}"
+        aria-label="Scroll left"
+        data-direction="left"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="ai-category-carousel__scroll-{{ ai_gen_id }}">
+        {% for i in (1..8) %}
+          {% liquid
+            assign category_text_key = 'category_' | append: i | append: '_text'
+            assign category_url_key = 'category_' | append: i | append: '_url'
+            assign category_text = block.settings[category_text_key]
+            assign category_url = block.settings[category_url_key]
+          %}
+
+          {% if category_text != blank %}
+            <a
+              href="{{ category_url }}"
+              class="ai-category-carousel__pill-{{ ai_gen_id }}"
+            >
+              {{ category_text }}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <button
+        class="ai-category-carousel__arrow-{{ ai_gen_id }} ai-category-carousel__arrow-right-{{ ai_gen_id }}"
+        aria-label="Scroll right"
+        data-direction="right"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</category-carousel-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CategoryCarousel{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.scrollContainer = null;
+        this.leftArrow = null;
+        this.rightArrow = null;
+        this.scrollAmount = 300;
+      }
+
+      connectedCallback() {
+        this.scrollContainer = this.querySelector('.ai-category-carousel__scroll-{{ ai_gen_id }}');
+        this.leftArrow = this.querySelector('.ai-category-carousel__arrow-left-{{ ai_gen_id }}');
+        this.rightArrow = this.querySelector('.ai-category-carousel__arrow-right-{{ ai_gen_id }}');
+
+        if (!this.scrollContainer || !this.leftArrow || !this.rightArrow) return;
+
+        this.setupEventListeners();
+        this.updateArrowStates();
+      }
+
+      setupEventListeners() {
+        this.leftArrow.addEventListener('click', () => this.scroll('left'));
+        this.rightArrow.addEventListener('click', () => this.scroll('right'));
+
+        this.scrollContainer.addEventListener('scroll', () => this.updateArrowStates());
+
+        window.addEventListener('resize', () => this.updateArrowStates());
+
+        this.scrollContainer.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            this.scroll('left');
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            this.scroll('right');
+          }
+        });
+      }
+
+      scroll(direction) {
+        const scrollDistance = direction === 'left' ? -this.scrollAmount : this.scrollAmount;
+        this.scrollContainer.scrollBy({
+          left: scrollDistance,
+          behavior: 'smooth'
+        });
+      }
+
+      updateArrowStates() {
+        const isAtStart = this.scrollContainer.scrollLeft <= 0;
+        const isAtEnd = this.scrollContainer.scrollLeft + this.scrollContainer.clientWidth >= this.scrollContainer.scrollWidth - 1;
+
+        this.leftArrow.disabled = isAtStart;
+        this.rightArrow.disabled = isAtEnd;
+      }
+    }
+
+    customElements.define('category-carousel-{{ ai_gen_id }}', CategoryCarousel{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Category carousel",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop by category"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "Title spacing",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_horizontal_padding",
+      "label": "Mobile horizontal padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Category pills"
+    },
+    {
+      "type": "range",
+      "id": "pill_spacing",
+      "label": "Spacing between pills",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "pill_padding_vertical",
+      "label": "Vertical padding",
+      "min": 5,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "pill_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "pill_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "pill_border_radius",
+      "label": "Border radius",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "pill_border_width",
+      "label": "Border width",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "pill_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pill_border_color",
+      "label": "Border",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "pill_hover_background",
+      "label": "Hover background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "pill_hover_text",
+      "label": "Hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pill_hover_border",
+      "label": "Hover border",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Navigation arrows"
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow size",
+      "min": 30,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "arrow_border_width",
+      "label": "Border width",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "arrow_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_border_color",
+      "label": "Border",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Icon",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_background",
+      "label": "Hover background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_border",
+      "label": "Hover border",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Category 1"
+    },
+    {
+      "type": "text",
+      "id": "category_1_text",
+      "label": "Text",
+      "default": "Tops & Blouses"
+    },
+    {
+      "type": "url",
+      "id": "category_1_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 2"
+    },
+    {
+      "type": "text",
+      "id": "category_2_text",
+      "label": "Text",
+      "default": "Shackets & Jackets"
+    },
+    {
+      "type": "url",
+      "id": "category_2_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 3"
+    },
+    {
+      "type": "text",
+      "id": "category_3_text",
+      "label": "Text",
+      "default": "Bottoms"
+    },
+    {
+      "type": "url",
+      "id": "category_3_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 4"
+    },
+    {
+      "type": "text",
+      "id": "category_4_text",
+      "label": "Text",
+      "default": "Dresses & Jumpsuits"
+    },
+    {
+      "type": "url",
+      "id": "category_4_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 5"
+    },
+    {
+      "type": "text",
+      "id": "category_5_text",
+      "label": "Text",
+      "default": "Bags"
+    },
+    {
+      "type": "url",
+      "id": "category_5_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 6"
+    },
+    {
+      "type": "text",
+      "id": "category_6_text",
+      "label": "Text",
+      "default": "Sneakers"
+    },
+    {
+      "type": "url",
+      "id": "category_6_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 7"
+    },
+    {
+      "type": "text",
+      "id": "category_7_text",
+      "label": "Text",
+      "default": "Accessories"
+    },
+    {
+      "type": "url",
+      "id": "category_7_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 8"
+    },
+    {
+      "type": "text",
+      "id": "category_8_text",
+      "label": "Text",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "url",
+      "id": "category_8_url",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category carousel"
+    }
+  ]
+}
 {% endschema %}
