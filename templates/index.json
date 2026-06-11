@@ -353,9 +353,9 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.featured_collection.name",
       "settings": {
-        "title": "OFFICIALLY LICENSED KENTUCKY DERBY®",
-        "home_featured_products": "kentucky-derby",
-        "per_row": 4,
+        "title": "OFFICIALLY LICENSED - GameDay Best Sellers",
+        "home_featured_products": "game-day-best-sellers",
+        "per_row": 5,
         "rows": 2,
         "mobile_scrollable": true,
         "view_all": true,
