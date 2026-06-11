@@ -62,10 +62,10 @@
             "category_5_url": "https://briannacannon.com/collections/texas-a-m-university?filter.p.t.category=aa-6-6&filter.p.t.category=aa-6&filter.p.t.category=aa-6-7&filter.p.t.category=aa-6-8",
             "category_6_text": "Hair Accessories",
             "category_6_url": "https://briannacannon.com/collections/texas-a-m-university?filter.p.t.category=aa-2-14-6&filter.p.t.category=aa-2-14-8&filter.p.t.category=aa-2-14-9",
-            "category_7_text": "",
-            "category_7_url": "",
-            "category_8_text": "New Arrivals",
-            "category_8_url": "https://briannacannon.com/collections/texas-a-m-university?sort_by=created-descending"
+            "category_7_text": "New Arrivals",
+            "category_7_url": "https://briannacannon.com/collections/texas-a-m-university?sort_by=created-descending",
+            "category_8_text": "Best Sellers",
+            "category_8_url": "https://briannacannon.com/collections/texas-a-m-university?sort_by=best-selling"
           },
           "blocks": {}
         }
