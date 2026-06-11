@@ -28,7 +28,7 @@
             "title_spacing": 30,
             "title_size": 18,
             "desktop_width_percent": 100,
-            "horizontal_padding": 60,
+            "horizontal_padding": 0,
             "mobile_horizontal_padding": 30,
             "background_color": "#ffffff",
             "text_color": "#000000",
