@@ -194,11 +194,11 @@
             "focal_point": "center center"
           }
         },
-        "collection_fi4tPy": {
+        "30fc79a2-3f30-42de-bddb-6bfc9c26f92a": {
           "type": "collection",
           "settings": {
-            "collection": "spring-2026",
-            "title": "SPRING 2026",
+            "collection": "dresses",
+            "title": "DRESSES",
             "focal_point": "center center"
           }
         },
@@ -210,19 +210,11 @@
             "focal_point": "center center"
           }
         },
-        "collection_hJf48i": {
+        "collection_fi4tPy": {
           "type": "collection",
           "settings": {
-            "collection": "sale",
-            "title": "",
-            "focal_point": "center center"
-          }
-        },
-        "30fc79a2-3f30-42de-bddb-6bfc9c26f92a": {
-          "type": "collection",
-          "settings": {
-            "collection": "dresses",
-            "title": "DRESSES",
+            "collection": "spring-2026",
+            "title": "SPRING 2026",
             "focal_point": "center center"
           }
         },
@@ -230,6 +222,14 @@
           "type": "collection",
           "settings": {
             "collection": "headbands-1",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_hJf48i": {
+          "type": "collection",
+          "settings": {
+            "collection": "sale",
             "title": "",
             "focal_point": "center center"
           }
@@ -249,11 +249,11 @@
         "collection_gFAr7A",
         "collection_JjJfPW",
         "collection_yyp3MR",
-        "collection_fi4tPy",
-        "collection_WL6Xgq",
-        "collection_hJf48i",
         "30fc79a2-3f30-42de-bddb-6bfc9c26f92a",
+        "collection_WL6Xgq",
+        "collection_fi4tPy",
         "collection_EaW6ad",
+        "collection_hJf48i",
         "collection_QUwFC6"
       ],
       "settings": {
@@ -333,6 +333,47 @@
         "divider": false
       }
     },
+    "17812025526798aec8": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_31c9821_pxHh7x": {
+          "type": "ai_gen_block_31c9821",
+          "settings": {
+            "heading": "Gameday Starts Here",
+            "subheading": "Search your favorite team & unlock your perfect game day look.",
+            "placeholder": "Search products...",
+            "max_width": 1000,
+            "search_bar_width": 700,
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "heading_size": 40,
+            "heading_spacing": 16,
+            "heading_color": "#000000",
+            "subheading_size": 18,
+            "subheading_spacing": 24,
+            "subheading_color": "#000000",
+            "input_padding": 16,
+            "input_font_size": 16,
+            "input_border_radius": 4,
+            "input_border_width": 1,
+            "input_background_color": "#ffffff",
+            "input_text_color": "#000000",
+            "input_placeholder_color": "#999999",
+            "input_border_color": "#e482a0",
+            "input_focus_border_color": "#111111",
+            "search_icon_size": 20,
+            "search_icon_color": "#000000",
+            "search_icon_hover_color": "#111111",
+            "background_color": "#fff7f7"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_31c9821_pxHh7x"
+      ],
+      "settings": {}
+    },
     "text_and_image_8XADLp": {
       "type": "text-and-image",
       "settings": {
@@ -353,7 +394,7 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.featured_collection.name",
       "settings": {
-        "title": "OFFICIALLY LICENSED - GameDay Best Sellers",
+        "title": "trending GameDay looks",
         "home_featured_products": "game-day-best-sellers",
         "per_row": 5,
         "rows": 2,
@@ -633,6 +674,7 @@
     "featured_collection_JEakX6",
     "1669620656f5ef9fcd",
     "text_and_image_kY7hRt",
+    "17812025526798aec8",
     "text_and_image_8XADLp",
     "featured_collection_Wi3GKr",
     "featured_collection_CgLEJz",
