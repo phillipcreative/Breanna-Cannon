@@ -1,0 +1,121 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection-header": {
+      "type": "collection-header",
+      "settings": {
+        "enable": true,
+        "collection_image_enable": true,
+        "parallax": false
+      }
+    },
+    "blocks_xtRcG6": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_b95dd25_NgMjL3": {
+          "type": "ai_gen_block_b95dd25",
+          "settings": {
+            "title": "SHOW YOUR TAR HEEL PRIDE WITH OFFICIALLY LICENSED UNIVERSITY OF NORTH CAROLINA PRODUCTS.",
+            "section_padding": 40,
+            "title_spacing": 30,
+            "title_size": 18,
+            "desktop_width_percent": 100,
+            "horizontal_padding": 60,
+            "mobile_horizontal_padding": 30,
+            "background_color": "#ffffff",
+            "text_color": "#000000",
+            "pill_spacing": 15,
+            "pill_padding_vertical": 12,
+            "pill_padding_horizontal": 25,
+            "pill_font_size": 15,
+            "pill_border_radius": 30,
+            "pill_border_width": 1,
+            "pill_background": "#ffffff",
+            "pill_border_color": "#000000",
+            "pill_hover_background": "#000000",
+            "pill_hover_text": "#ffffff",
+            "pill_hover_border": "#000000",
+            "arrow_size": 40,
+            "arrow_border_width": 1,
+            "arrow_background": "#ffffff",
+            "arrow_border_color": "#000000",
+            "arrow_color": "#000000",
+            "arrow_hover_background": "#000000",
+            "arrow_hover_border": "#000000",
+            "category_1_text": "Tops & Blouses",
+            "category_1_url": "https://briannacannon.com/collections/bama?filter.p.t.category=aa-1-13-8&filter.p.t.category=aa-1-13-9",
+            "category_2_text": "Shackets & Jackets",
+            "category_2_url": "https://briannacannon.com/collections/bama?filter.p.t.category=aa-1-10-2&filter.p.t.category=aa-1-13-14&filter.p.t.category=aa-1-13-13",
+            "category_3_text": "Bottoms",
+            "category_3_url": "https://briannacannon.com/collections/bama?filter.p.t.category=aa-1-1-1-4&filter.p.t.category=aa-1-14&filter.p.t.category=aa-1-16",
+            "category_4_text": "Dresses & Jumpsuits",
+            "category_4_url": "https://briannacannon.com/collections/bama?filter.p.t.category=aa-1-4",
+            "category_5_text": "Jewelry",
+            "category_5_url": "https://briannacannon.com/collections/bama?filter.p.t.category=aa-6-6&filter.p.t.category=aa-6&filter.p.t.category=aa-6-7&filter.p.t.category=aa-6-8",
+            "category_6_text": "Hair Accessories",
+            "category_6_url": "https://briannacannon.com/collections/bama?filter.p.t.category=aa-2-14-6&filter.p.t.category=aa-2-14-8&filter.p.t.category=aa-2-14-9",
+            "category_7_text": "Best Sellers",
+            "category_7_url": "https://briannacannon.com/collections/bama?sort_by=best-selling",
+            "category_8_text": "New Arrivals",
+            "category_8_url": "https://briannacannon.com/collections/bama?sort_by=created-descending"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_b95dd25_NgMjL3"
+      ],
+      "name": "Category carousel",
+      "settings": {}
+    },
+    "main-collection": {
+      "type": "main-collection",
+      "blocks": {
+        "subcollections": {
+          "type": "subcollections",
+          "settings": {
+            "subcollections_per_row": 5
+          }
+        },
+        "product_grid": {
+          "type": "product_grid",
+          "settings": {
+            "enable_collection_count": true,
+            "per_row": 4,
+            "rows_per_page": 16,
+            "mobile_flush_grid": true
+          }
+        },
+        "collection_description": {
+          "type": "collection_description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "subcollections",
+        "product_grid",
+        "collection_description"
+      ],
+      "settings": {
+        "enable_sidebar": true,
+        "collapsed": true,
+        "filter_style": "sidebar",
+        "enable_color_swatches": false,
+        "enable_sort": true
+      }
+    }
+  },
+  "order": [
+    "collection-header",
+    "blocks_xtRcG6",
+    "main-collection"
+  ]
+}
