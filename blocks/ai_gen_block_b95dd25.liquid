@@ -199,23 +199,41 @@
       </button>
 
       <div class="ai-category-carousel__scroll-{{ ai_gen_id }}">
-        {% for i in (1..8) %}
-          {% liquid
-            assign category_text_key = 'category_' | append: i | append: '_text'
-            assign category_url_key = 'category_' | append: i | append: '_url'
-            assign category_text = block.settings[category_text_key]
-            assign category_url = block.settings[category_url_key]
-          %}
+       {% for i in (1..8) %}
+  {% liquid
+    assign cat_label_key = 'cat_' | append: i | append: '_label'
+    assign cat_url_key = 'cat_' | append: i | append: '_url'
+    assign category_text_key = 'category_' | append: i | append: '_text'
+    assign category_url_key = 'category_' | append: i | append: '_url'
 
-          {% if category_text != blank %}
-            <a
-              href="{{ category_url }}"
-              class="ai-category-carousel__pill-{{ ai_gen_id }}"
-            >
-              {{ category_text }}
-            </a>
-          {% endif %}
-        {% endfor %}
+    assign meta_label = collection.metafields.category_nav[cat_label_key].value
+    assign meta_url = collection.metafields.category_nav[cat_url_key].value
+    assign fallback_text = block.settings[category_text_key]
+    assign fallback_url = block.settings[category_url_key]
+
+    if meta_label != blank
+      assign pill_text = meta_label
+    else
+      assign pill_text = fallback_text
+    endif
+
+    if meta_url != blank
+      assign pill_url = meta_url
+    else
+      assign pill_url = fallback_url
+    endif
+  %}
+
+  {% if pill_text != blank %}
+    <a
+      href="{{ pill_url }}"
+      class="ai-category-carousel__pill-{{ ai_gen_id }}"
+    >
+      {{ pill_text }}
+    </a>
+  {% endif %}
+{% endfor %}
+
       </div>
 
       <button
