@@ -1,6 +1,615 @@
+{% doc %}
+  @prompt
+    A magazine-style editorial layout, this is supposed to function like a horozontal menue - like this pill box nav from https://briannacannon.com/collections/bama  // redesign this 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-pill-nav-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.vertical_padding }}px {{ block.settings.horizontal_padding }}px;
+  }
+
+  .ai-pill-nav-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: {{ block.settings.alignment }};
+    gap: {{ block.settings.pill_gap }}px;
+    flex-wrap: wrap;
+  }
+
+  .ai-pill-nav-item-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: {{ block.settings.pill_padding_vertical }}px {{ block.settings.pill_padding_horizontal }}px;
+    background-color: {{ block.settings.pill_bg_color }};
+    color: {{ block.settings.pill_text_color }};
+    text-decoration: none;
+    font-size: {{ block.settings.pill_text_size }}px;
+    border: {{ block.settings.pill_border_width }}px solid {{ block.settings.pill_border_color }};
+    border-radius: {{ block.settings.pill_border_radius }}px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    text-transform: {{ block.settings.text_transform }};
+    letter-spacing: {{ block.settings.letter_spacing }}px;
+    font-weight: {{ block.settings.font_weight }};
+  }
+
+  .ai-pill-nav-item-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.pill_hover_bg_color }};
+    color: {{ block.settings.pill_hover_text_color }};
+    border-color: {{ block.settings.pill_hover_border_color }};
+    transform: translateY(-2px);
+  }
+
+  .ai-pill-nav-item-{{ ai_gen_id }}.active {
+    background-color: {{ block.settings.pill_active_bg_color }};
+    color: {{ block.settings.pill_active_text_color }};
+    border-color: {{ block.settings.pill_active_border_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-pill-nav-{{ ai_gen_id }} {
+      padding: {{ block.settings.mobile_vertical_padding }}px {{ block.settings.mobile_horizontal_padding }}px;
+    }
+
+    .ai-pill-nav-wrapper-{{ ai_gen_id }} {
+      gap: {{ block.settings.mobile_pill_gap }}px;
+      {% if block.settings.mobile_scroll %}
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      {% endif %}
+    }
+
+    .ai-pill-nav-wrapper-{{ ai_gen_id }}::-webkit-scrollbar {
+      display: none;
+    }
+
+    .ai-pill-nav-item-{{ ai_gen_id }} {
+      font-size: {{ block.settings.pill_text_size | times: 0.9 }}px;
+      padding: {{ block.settings.pill_padding_vertical | times: 0.9 }}px {{ block.settings.pill_padding_horizontal | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<nav class="ai-pill-nav-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-pill-nav-wrapper-{{ ai_gen_id }}">
+    {% if block.settings.link_1_text != blank %}
+      <a
+        href="{{ block.settings.link_1_url }}"
+        class="ai-pill-nav-item-{{ ai_gen_id }} {% if block.settings.link_1_active %}active{% endif %}"
+      >
+        {{ block.settings.link_1_text }}
+      </a>
+    {% endif %}
+
+    {% if block.settings.link_2_text != blank %}
+      <a
+        href="{{ block.settings.link_2_url }}"
+        class="ai-pill-nav-item-{{ ai_gen_id }} {% if block.settings.link_2_active %}active{% endif %}"
+      >
+        {{ block.settings.link_2_text }}
+      </a>
+    {% endif %}
+
+    {% if block.settings.link_3_text != blank %}
+      <a
+        href="{{ block.settings.link_3_url }}"
+        class="ai-pill-nav-item-{{ ai_gen_id }} {% if block.settings.link_3_active %}active{% endif %}"
+      >
+        {{ block.settings.link_3_text }}
+      </a>
+    {% endif %}
+
+    {% if block.settings.link_4_text != blank %}
+      <a
+        href="{{ block.settings.link_4_url }}"
+        class="ai-pill-nav-item-{{ ai_gen_id }} {% if block.settings.link_4_active %}active{% endif %}"
+      >
+        {{ block.settings.link_4_text }}
+      </a>
+    {% endif %}
+
+    {% if block.settings.link_5_text != blank %}
+      <a
+        href="{{ block.settings.link_5_url }}"
+        class="ai-pill-nav-item-{{ ai_gen_id }} {% if block.settings.link_5_active %}active{% endif %}"
+      >
+        {{ block.settings.link_5_text }}
+      </a>
+    {% endif %}
+
+    {% if block.settings.link_6_text != blank %}
+      <a
+        href="{{ block.settings.link_6_url }}"
+        class="ai-pill-nav-item-{{ ai_gen_id }} {% if block.settings.link_6_active %}active{% endif %}"
+      >
+        {{ block.settings.link_6_text }}
+      </a>
+    {% endif %}
+
+    {% if block.settings.link_7_text != blank %}
+      <a
+        href="{{ block.settings.link_7_url }}"
+        class="ai-pill-nav-item-{{ ai_gen_id }} {% if block.settings.link_7_active %}active{% endif %}"
+      >
+        {{ block.settings.link_7_text }}
+      </a>
+    {% endif %}
+
+    {% if block.settings.link_8_text != blank %}
+      <a
+        href="{{ block.settings.link_8_url }}"
+        class="ai-pill-nav-item-{{ ai_gen_id }} {% if block.settings.link_8_active %}active{% endif %}"
+      >
+        {{ block.settings.link_8_text }}
+      </a>
+    {% endif %}
+  </div>
+</nav>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Pill navigation",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pill_gap",
+      "label": "Gap between pills",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_scroll",
+      "label": "Enable horizontal scroll on mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "mobile_vertical_padding",
+      "label": "Mobile vertical padding",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_horizontal_padding",
+      "label": "Mobile horizontal padding",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_pill_gap",
+      "label": "Mobile gap between pills",
+      "min": 5,
+      "max": 20,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Pill style"
+    },
+    {
+      "type": "range",
+      "id": "pill_text_size",
+      "label": "Text size",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 3,
+      "step": 0.5,
+      "default": 0.5
+    },
+    {
+      "type": "range",
+      "id": "pill_padding_vertical",
+      "label": "Vertical padding",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "pill_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pill_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "pill_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Default state"
+    },
+    {
+      "type": "color",
+      "id": "pill_bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pill_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "pill_border_color",
+      "label": "Border",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Hover state"
+    },
+    {
+      "type": "color",
+      "id": "pill_hover_bg_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "pill_hover_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pill_hover_border_color",
+      "label": "Border",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Active state"
+    },
+    {
+      "type": "color",
+      "id": "pill_active_bg_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "pill_active_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pill_active_border_color",
+      "label": "Border",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Link 1"
+    },
+    {
+      "type": "text",
+      "id": "link_1_text",
+      "label": "Text",
+      "default": "All"
+    },
+    {
+      "type": "url",
+      "id": "link_1_url",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_1_active",
+      "label": "Set as active",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Link 2"
+    },
+    {
+      "type": "text",
+      "id": "link_2_text",
+      "label": "Text",
+      "default": "Headbands"
+    },
+    {
+      "type": "url",
+      "id": "link_2_url",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_2_active",
+      "label": "Set as active",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Link 3"
+    },
+    {
+      "type": "text",
+      "id": "link_3_text",
+      "label": "Text",
+      "default": "Earrings"
+    },
+    {
+      "type": "url",
+      "id": "link_3_url",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_3_active",
+      "label": "Set as active",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Link 4"
+    },
+    {
+      "type": "text",
+      "id": "link_4_text",
+      "label": "Text",
+      "default": "Sunglasses"
+    },
+    {
+      "type": "url",
+      "id": "link_4_url",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_4_active",
+      "label": "Set as active",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Link 5"
+    },
+    {
+      "type": "text",
+      "id": "link_5_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_5_url",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_5_active",
+      "label": "Set as active",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Link 6"
+    },
+    {
+      "type": "text",
+      "id": "link_6_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_6_url",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_6_active",
+      "label": "Set as active",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Link 7"
+    },
+    {
+      "type": "text",
+      "id": "link_7_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_7_url",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_7_active",
+      "label": "Set as active",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Link 8"
+    },
+    {
+      "type": "text",
+      "id": "link_8_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_8_url",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_8_active",
+      "label": "Set as active",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pill navigation"
+    }
+  ]
+}
 {% endschema %}
