@@ -1,6 +1,910 @@
+{% doc %}
+  @prompt
+    look at the pill box nav at the top of this page - https://briannacannon.com/collections/bama - make me something like this, but include drop downs for each menu item. And give me the ability to set my own drop down lables and links for each nav item. 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-pill-nav-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-pill-nav-container-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ block.settings.pill_spacing }}px;
+    justify-content: {{ block.settings.alignment }};
+    padding: {{ block.settings.vertical_padding }}px 0;
+  }
+
+  .ai-pill-nav-item-{{ ai_gen_id }} {
+    position: relative;
+  }
+
+  .ai-pill-nav-link-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: {{ block.settings.pill_padding_vertical }}px {{ block.settings.pill_padding_horizontal }}px;
+    background-color: {{ block.settings.pill_bg_color }};
+    color: {{ block.settings.pill_text_color }};
+    border: {{ block.settings.pill_border_width }}px solid {{ block.settings.pill_border_color }};
+    border-radius: {{ block.settings.pill_border_radius }}px;
+    text-decoration: none;
+    font-size: {{ block.settings.pill_font_size }}px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .ai-pill-nav-link-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.pill_bg_hover_color }};
+    color: {{ block.settings.pill_text_hover_color }};
+    border-color: {{ block.settings.pill_border_hover_color }};
+  }
+
+  .ai-pill-nav-arrow-{{ ai_gen_id }} {
+    width: 10px;
+    height: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-pill-nav-item-{{ ai_gen_id }}.active .ai-pill-nav-arrow-{{ ai_gen_id }} {
+    transform: rotate(180deg);
+  }
+
+  .ai-pill-nav-dropdown-{{ ai_gen_id }} {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 200px;
+    background-color: {{ block.settings.dropdown_bg_color }};
+    border: 1px solid {{ block.settings.dropdown_border_color }};
+    border-radius: {{ block.settings.dropdown_border_radius }}px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    z-index: 100;
+    padding: {{ block.settings.dropdown_padding }}px 0;
+  }
+
+  .ai-pill-nav-item-{{ ai_gen_id }}.active .ai-pill-nav-dropdown-{{ ai_gen_id }} {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .ai-pill-nav-dropdown-link-{{ ai_gen_id }} {
+    display: block;
+    padding: {{ block.settings.dropdown_item_padding }}px {{ block.settings.dropdown_padding }}px;
+    color: {{ block.settings.dropdown_text_color }};
+    text-decoration: none;
+    font-size: {{ block.settings.dropdown_font_size }}px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .ai-pill-nav-dropdown-link-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.dropdown_hover_bg_color }};
+    color: {{ block.settings.dropdown_hover_text_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-pill-nav-container-{{ ai_gen_id }} {
+      gap: {{ block.settings.pill_spacing | times: 0.75 }}px;
+    }
+
+    .ai-pill-nav-link-{{ ai_gen_id }} {
+      font-size: {{ block.settings.pill_font_size | times: 0.9 }}px;
+      padding: {{ block.settings.pill_padding_vertical | times: 0.8 }}px {{ block.settings.pill_padding_horizontal | times: 0.8 }}px;
+    }
+
+    .ai-pill-nav-dropdown-{{ ai_gen_id }} {
+      left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+    }
+
+    .ai-pill-nav-item-{{ ai_gen_id }}.active .ai-pill-nav-dropdown-{{ ai_gen_id }} {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+{% endstyle %}
+
+<pill-nav-{{ ai_gen_id }} class="ai-pill-nav-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <nav class="ai-pill-nav-container-{{ ai_gen_id }}">
+    {% for i in (1..6) %}
+      {% liquid
+        assign nav_enabled_key = 'nav_' | append: i | append: '_enabled'
+        assign nav_label_key = 'nav_' | append: i | append: '_label'
+        assign nav_link_key = 'nav_' | append: i | append: '_link'
+        assign dropdown_1_label_key = 'nav_' | append: i | append: '_dropdown_1_label'
+        assign dropdown_1_link_key = 'nav_' | append: i | append: '_dropdown_1_link'
+        assign dropdown_2_label_key = 'nav_' | append: i | append: '_dropdown_2_label'
+        assign dropdown_2_link_key = 'nav_' | append: i | append: '_dropdown_2_link'
+        assign dropdown_3_label_key = 'nav_' | append: i | append: '_dropdown_3_label'
+        assign dropdown_3_link_key = 'nav_' | append: i | append: '_dropdown_3_link'
+        assign dropdown_4_label_key = 'nav_' | append: i | append: '_dropdown_4_label'
+        assign dropdown_4_link_key = 'nav_' | append: i | append: '_dropdown_4_link'
+        assign dropdown_5_label_key = 'nav_' | append: i | append: '_dropdown_5_label'
+        assign dropdown_5_link_key = 'nav_' | append: i | append: '_dropdown_5_link'
+
+        assign nav_enabled = block.settings[nav_enabled_key]
+        assign nav_label = block.settings[nav_label_key]
+        assign nav_link = block.settings[nav_link_key]
+        assign dropdown_1_label = block.settings[dropdown_1_label_key]
+        assign dropdown_1_link = block.settings[dropdown_1_link_key]
+        assign dropdown_2_label = block.settings[dropdown_2_label_key]
+        assign dropdown_2_link = block.settings[dropdown_2_link_key]
+        assign dropdown_3_label = block.settings[dropdown_3_label_key]
+        assign dropdown_3_link = block.settings[dropdown_3_link_key]
+        assign dropdown_4_label = block.settings[dropdown_4_label_key]
+        assign dropdown_4_link = block.settings[dropdown_4_link_key]
+        assign dropdown_5_label = block.settings[dropdown_5_label_key]
+        assign dropdown_5_link = block.settings[dropdown_5_link_key]
+
+        assign has_dropdown = false
+        if dropdown_1_label != blank or dropdown_2_label != blank or dropdown_3_label != blank or dropdown_4_label != blank or dropdown_5_label != blank
+          assign has_dropdown = true
+        endif
+      %}
+
+      {% if nav_enabled and nav_label != blank %}
+        <div class="ai-pill-nav-item-{{ ai_gen_id }}" data-nav-item="{{ i }}">
+          {% if has_dropdown %}
+            <button class="ai-pill-nav-link-{{ ai_gen_id }}" aria-expanded="false" aria-haspopup="true">
+              {{ nav_label }}
+              <svg class="ai-pill-nav-arrow-{{ ai_gen_id }}" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="ai-pill-nav-dropdown-{{ ai_gen_id }}">
+              {% if dropdown_1_label != blank %}
+                <a href="{{ dropdown_1_link }}" class="ai-pill-nav-dropdown-link-{{ ai_gen_id }}">{{ dropdown_1_label }}</a>
+              {% endif %}
+              {% if dropdown_2_label != blank %}
+                <a href="{{ dropdown_2_link }}" class="ai-pill-nav-dropdown-link-{{ ai_gen_id }}">{{ dropdown_2_label }}</a>
+              {% endif %}
+              {% if dropdown_3_label != blank %}
+                <a href="{{ dropdown_3_link }}" class="ai-pill-nav-dropdown-link-{{ ai_gen_id }}">{{ dropdown_3_label }}</a>
+              {% endif %}
+              {% if dropdown_4_label != blank %}
+                <a href="{{ dropdown_4_link }}" class="ai-pill-nav-dropdown-link-{{ ai_gen_id }}">{{ dropdown_4_label }}</a>
+              {% endif %}
+              {% if dropdown_5_label != blank %}
+                <a href="{{ dropdown_5_link }}" class="ai-pill-nav-dropdown-link-{{ ai_gen_id }}">{{ dropdown_5_label }}</a>
+              {% endif %}
+            </div>
+          {% else %}
+            <a href="{{ nav_link }}" class="ai-pill-nav-link-{{ ai_gen_id }}">{{ nav_label }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </nav>
+</pill-nav-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PillNav{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.activeItem = null;
+      }
+
+      connectedCallback() {
+        this.navItems = this.querySelectorAll('.ai-pill-nav-item-{{ ai_gen_id }}');
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.navItems.forEach((item) => {
+          const button = item.querySelector('button.ai-pill-nav-link-{{ ai_gen_id }}');
+          if (button) {
+            button.addEventListener('click', (e) => {
+              e.preventDefault();
+              this.toggleDropdown(item, button);
+            });
+          }
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.ai-pill-nav-item-{{ ai_gen_id }}')) {
+            this.closeAllDropdowns();
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.closeAllDropdowns();
+          }
+        });
+      }
+
+      toggleDropdown(item, button) {
+        const isActive = item.classList.contains('active');
+
+        this.closeAllDropdowns();
+
+        if (!isActive) {
+          item.classList.add('active');
+          button.setAttribute('aria-expanded', 'true');
+          this.activeItem = item;
+        }
+      }
+
+      closeAllDropdowns() {
+        this.navItems.forEach((item) => {
+          const button = item.querySelector('button.ai-pill-nav-link-{{ ai_gen_id }}');
+          item.classList.remove('active');
+          if (button) {
+            button.setAttribute('aria-expanded', 'false');
+          }
+        });
+        this.activeItem = null;
+      }
+    }
+
+    customElements.define('pill-nav-{{ ai_gen_id }}', PillNav{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Pill navigation",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pill_spacing",
+      "label": "Spacing between pills",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Pill style"
+    },
+    {
+      "type": "range",
+      "id": "pill_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "pill_padding_vertical",
+      "label": "Vertical padding",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "pill_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pill_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "pill_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "pill_bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pill_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "pill_border_color",
+      "label": "Border",
+      "default": "#e8e8e1"
+    },
+    {
+      "type": "color",
+      "id": "pill_bg_hover_color",
+      "label": "Hover background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "pill_text_hover_color",
+      "label": "Hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pill_border_hover_color",
+      "label": "Hover border",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Dropdown style"
+    },
+    {
+      "type": "range",
+      "id": "dropdown_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "dropdown_padding",
+      "label": "Padding",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "dropdown_item_padding",
+      "label": "Item padding",
+      "min": 4,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "dropdown_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "dropdown_bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_border_color",
+      "label": "Border",
+      "default": "#e8e8e1"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_hover_bg_color",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_hover_text_color",
+      "label": "Hover text",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Nav item 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "nav_1_enabled",
+      "label": "Enable nav item 1",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "nav_1_label",
+      "label": "Label",
+      "default": "Shop"
+    },
+    {
+      "type": "url",
+      "id": "nav_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "nav_1_dropdown_1_label",
+      "label": "Dropdown item 1 label",
+      "default": "New arrivals"
+    },
+    {
+      "type": "url",
+      "id": "nav_1_dropdown_1_link",
+      "label": "Dropdown item 1 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_1_dropdown_2_label",
+      "label": "Dropdown item 2 label",
+      "default": "Best sellers"
+    },
+    {
+      "type": "url",
+      "id": "nav_1_dropdown_2_link",
+      "label": "Dropdown item 2 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_1_dropdown_3_label",
+      "label": "Dropdown item 3 label",
+      "default": "Sale"
+    },
+    {
+      "type": "url",
+      "id": "nav_1_dropdown_3_link",
+      "label": "Dropdown item 3 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_1_dropdown_4_label",
+      "label": "Dropdown item 4 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_1_dropdown_4_link",
+      "label": "Dropdown item 4 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_1_dropdown_5_label",
+      "label": "Dropdown item 5 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_1_dropdown_5_link",
+      "label": "Dropdown item 5 link"
+    },
+    {
+      "type": "header",
+      "content": "Nav item 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "nav_2_enabled",
+      "label": "Enable nav item 2",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "nav_2_label",
+      "label": "Label",
+      "default": "Collections"
+    },
+    {
+      "type": "url",
+      "id": "nav_2_link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "nav_2_dropdown_1_label",
+      "label": "Dropdown item 1 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_2_dropdown_1_link",
+      "label": "Dropdown item 1 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_2_dropdown_2_label",
+      "label": "Dropdown item 2 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_2_dropdown_2_link",
+      "label": "Dropdown item 2 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_2_dropdown_3_label",
+      "label": "Dropdown item 3 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_2_dropdown_3_link",
+      "label": "Dropdown item 3 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_2_dropdown_4_label",
+      "label": "Dropdown item 4 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_2_dropdown_4_link",
+      "label": "Dropdown item 4 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_2_dropdown_5_label",
+      "label": "Dropdown item 5 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_2_dropdown_5_link",
+      "label": "Dropdown item 5 link"
+    },
+    {
+      "type": "header",
+      "content": "Nav item 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "nav_3_enabled",
+      "label": "Enable nav item 3",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "nav_3_label",
+      "label": "Label",
+      "default": "About"
+    },
+    {
+      "type": "url",
+      "id": "nav_3_link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "nav_3_dropdown_1_label",
+      "label": "Dropdown item 1 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_3_dropdown_1_link",
+      "label": "Dropdown item 1 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_3_dropdown_2_label",
+      "label": "Dropdown item 2 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_3_dropdown_2_link",
+      "label": "Dropdown item 2 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_3_dropdown_3_label",
+      "label": "Dropdown item 3 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_3_dropdown_3_link",
+      "label": "Dropdown item 3 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_3_dropdown_4_label",
+      "label": "Dropdown item 4 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_3_dropdown_4_link",
+      "label": "Dropdown item 4 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_3_dropdown_5_label",
+      "label": "Dropdown item 5 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_3_dropdown_5_link",
+      "label": "Dropdown item 5 link"
+    },
+    {
+      "type": "header",
+      "content": "Nav item 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "nav_4_enabled",
+      "label": "Enable nav item 4",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "nav_4_label",
+      "label": "Label"
+    },
+    {
+      "type": "url",
+      "id": "nav_4_link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "nav_4_dropdown_1_label",
+      "label": "Dropdown item 1 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_4_dropdown_1_link",
+      "label": "Dropdown item 1 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_4_dropdown_2_label",
+      "label": "Dropdown item 2 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_4_dropdown_2_link",
+      "label": "Dropdown item 2 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_4_dropdown_3_label",
+      "label": "Dropdown item 3 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_4_dropdown_3_link",
+      "label": "Dropdown item 3 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_4_dropdown_4_label",
+      "label": "Dropdown item 4 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_4_dropdown_4_link",
+      "label": "Dropdown item 4 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_4_dropdown_5_label",
+      "label": "Dropdown item 5 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_4_dropdown_5_link",
+      "label": "Dropdown item 5 link"
+    },
+    {
+      "type": "header",
+      "content": "Nav item 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "nav_5_enabled",
+      "label": "Enable nav item 5",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "nav_5_label",
+      "label": "Label"
+    },
+    {
+      "type": "url",
+      "id": "nav_5_link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "nav_5_dropdown_1_label",
+      "label": "Dropdown item 1 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_5_dropdown_1_link",
+      "label": "Dropdown item 1 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_5_dropdown_2_label",
+      "label": "Dropdown item 2 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_5_dropdown_2_link",
+      "label": "Dropdown item 2 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_5_dropdown_3_label",
+      "label": "Dropdown item 3 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_5_dropdown_3_link",
+      "label": "Dropdown item 3 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_5_dropdown_4_label",
+      "label": "Dropdown item 4 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_5_dropdown_4_link",
+      "label": "Dropdown item 4 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_5_dropdown_5_label",
+      "label": "Dropdown item 5 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_5_dropdown_5_link",
+      "label": "Dropdown item 5 link"
+    },
+    {
+      "type": "header",
+      "content": "Nav item 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "nav_6_enabled",
+      "label": "Enable nav item 6",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "nav_6_label",
+      "label": "Label"
+    },
+    {
+      "type": "url",
+      "id": "nav_6_link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "nav_6_dropdown_1_label",
+      "label": "Dropdown item 1 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_6_dropdown_1_link",
+      "label": "Dropdown item 1 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_6_dropdown_2_label",
+      "label": "Dropdown item 2 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_6_dropdown_2_link",
+      "label": "Dropdown item 2 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_6_dropdown_3_label",
+      "label": "Dropdown item 3 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_6_dropdown_3_link",
+      "label": "Dropdown item 3 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_6_dropdown_4_label",
+      "label": "Dropdown item 4 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_6_dropdown_4_link",
+      "label": "Dropdown item 4 link"
+    },
+    {
+      "type": "text",
+      "id": "nav_6_dropdown_5_label",
+      "label": "Dropdown item 5 label"
+    },
+    {
+      "type": "url",
+      "id": "nav_6_dropdown_5_link",
+      "label": "Dropdown item 5 link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pill navigation"
+    }
+  ]
+}
 {% endschema %}
