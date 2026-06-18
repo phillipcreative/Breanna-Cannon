@@ -552,6 +552,14 @@
     "featured-collections": {
       "type": "featured-collections",
       "blocks": {
+        "collection_Pfapne": {
+          "type": "collection",
+          "settings": {
+            "collection": "gameday-jackets",
+            "title": "Jackets",
+            "focal_point": "center center"
+          }
+        },
         "featured-collections-0": {
           "type": "collection",
           "settings": {
@@ -602,6 +610,7 @@
         }
       },
       "block_order": [
+        "collection_Pfapne",
         "featured-collections-0",
         "featured-collections-1",
         "featured-collections-2",
@@ -664,6 +673,72 @@
         "space_above": false,
         "space_below": false
       }
+    },
+    "1781741139fa2f44ca": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_cb9fbc0_PU9Tf9": {
+          "type": "ai_gen_block_cb9fbc0",
+          "settings": {
+            "desktop_width_percent": 100,
+            "alignment": "center",
+            "vertical_padding": 20,
+            "horizontal_padding": 20,
+            "pill_gap": 10,
+            "background_color": "#ffffff",
+            "mobile_scroll": true,
+            "mobile_vertical_padding": 15,
+            "mobile_horizontal_padding": 15,
+            "mobile_pill_gap": 10,
+            "pill_text_size": 14,
+            "font_weight": "400",
+            "text_transform": "uppercase",
+            "letter_spacing": 0.5,
+            "pill_padding_vertical": 10,
+            "pill_padding_horizontal": 20,
+            "pill_border_radius": 30,
+            "pill_border_width": 1,
+            "pill_bg_color": "#ffffff",
+            "pill_text_color": "#000000",
+            "pill_border_color": "#000000",
+            "pill_hover_bg_color": "#000000",
+            "pill_hover_text_color": "#ffffff",
+            "pill_hover_border_color": "#000000",
+            "pill_active_bg_color": "#000000",
+            "pill_active_text_color": "#ffffff",
+            "pill_active_border_color": "#000000",
+            "link_1_text": "All",
+            "link_1_url": "",
+            "link_1_active": false,
+            "link_2_text": "Headbands",
+            "link_2_url": "",
+            "link_2_active": false,
+            "link_3_text": "Earrings",
+            "link_3_url": "",
+            "link_3_active": false,
+            "link_4_text": "Sunglasses",
+            "link_4_url": "",
+            "link_4_active": false,
+            "link_5_text": "",
+            "link_5_url": "",
+            "link_5_active": false,
+            "link_6_text": "",
+            "link_6_url": "",
+            "link_6_active": false,
+            "link_7_text": "",
+            "link_7_url": "",
+            "link_7_active": false,
+            "link_8_text": "",
+            "link_8_url": "",
+            "link_8_active": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_cb9fbc0_PU9Tf9"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -686,6 +761,7 @@
     "featured_collection_D8CmtX",
     "featured-collections",
     "featured_collection_HJaqR4",
-    "promo-grid2"
+    "promo-grid2",
+    "1781741139fa2f44ca"
   ]
 }
