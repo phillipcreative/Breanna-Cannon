@@ -338,6 +338,7 @@
       "blocks": {
         "ai_gen_block_31c9821_pxHh7x": {
           "type": "ai_gen_block_31c9821",
+          "disabled": true,
           "settings": {
             "heading": "Gameday Starts Here",
             "subheading": "Search your favorite team & unlock your perfect game day look.",
