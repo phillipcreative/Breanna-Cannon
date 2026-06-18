@@ -409,6 +409,36 @@
         "divider": false
       }
     },
+    "1781741730f4f2a45a": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_9bjRkb": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "25173",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_9bjRkb"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
     "featured_collections_ntwYzU": {
       "type": "featured-collections",
       "blocks": {
@@ -664,35 +694,138 @@
         "color_text": "#1c1d1d"
       }
     },
-    "1781741730f4f2a45a": {
-      "type": "apps",
+    "1781742227e323f08c": {
+      "type": "_blocks",
       "blocks": {
-        "instafeed_app_block_9bjRkb": {
-          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+        "ai_gen_block_feca4c2_7Tqjmq": {
+          "type": "ai_gen_block_feca4c2",
           "settings": {
-            "title": "",
-            "title_color": "",
-            "title_size_v2": 0,
             "alignment": "center",
-            "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 0,
-            "instafeed_margin_sides": 0,
-            "show_instagram_link": false,
-            "link_alignment": "left",
-            "link_color": "#000000",
-            "background_color": "",
-            "feed_id": "25173",
-            "html_area": ""
-          }
+            "desktop_width_percent": 100,
+            "vertical_padding": 20,
+            "pill_spacing": 8,
+            "pill_font_size": 16,
+            "pill_padding_vertical": 10,
+            "pill_padding_horizontal": 20,
+            "pill_border_radius": 30,
+            "pill_border_width": 1,
+            "pill_bg_color": "#ffffff",
+            "pill_text_color": "#000000",
+            "pill_border_color": "#e8e8e1",
+            "pill_bg_hover_color": "#000000",
+            "pill_text_hover_color": "#ffffff",
+            "pill_border_hover_color": "#000000",
+            "dropdown_font_size": 14,
+            "dropdown_padding": 8,
+            "dropdown_item_padding": 10,
+            "dropdown_border_radius": 8,
+            "dropdown_bg_color": "#ffffff",
+            "dropdown_text_color": "#000000",
+            "dropdown_border_color": "#e8e8e1",
+            "dropdown_hover_bg_color": "#f5f5f5",
+            "dropdown_hover_text_color": "#000000",
+            "ncaa_alabama_link": "shopify://collections/bama",
+            "ncaa_arizona_link": "shopify://collections/university-of-arizona",
+            "ncaa_arizona_state_link": "shopify://collections/arizona-state-university-1",
+            "ncaa_arkansas_link": "shopify://collections/arkansas-the-university-of-arkansas",
+            "ncaa_auburn_link": "shopify://collections/auburn-university",
+            "ncaa_baylor_link": "shopify://collections/baylor",
+            "ncaa_central_florida_link": "shopify://collections/university-of-central-florida-1",
+            "ncaa_clemson_link": "shopify://collections/clemson-university",
+            "ncaa_colorado_link": "shopify://collections/university-of-colorado-1",
+            "ncaa_east_carolina_link": "shopify://collections/east-carolina-university-1",
+            "ncaa_florida_link": "shopify://collections/university-of-florida",
+            "ncaa_florida_state_link": "shopify://collections/florida-state-university",
+            "ncaa_georgia_link": "shopify://collections/university-of-georgia",
+            "ncaa_houston_link": "shopify://collections/university-of-houston",
+            "ncaa_indiana_link": "shopify://collections/indiana-university",
+            "ncaa_kansas_link": "shopify://collections/university-of-kansas",
+            "ncaa_kansas_state_link": "shopify://collections/kansas-state-university",
+            "ncaa_kentucky_link": "shopify://collections/university-of-kentucky",
+            "ncaa_lsu_link": "shopify://collections/lsu",
+            "ncaa_louisiana_tech_link": "shopify://collections/louisiana-tech-university",
+            "ncaa_ole_miss_link": "shopify://collections/ole-miss",
+            "ncaa_michigan_link": "shopify://collections/university-of-michigan-1",
+            "ncaa_michigan_state_link": "shopify://collections/michigan-state-university-1",
+            "ncaa_mississippi_state_link": "shopify://collections/mississippi-state-university",
+            "ncaa_missouri_link": "shopify://collections/mizzou",
+            "ncaa_nc_state_link": "shopify://collections/nc-state-university",
+            "ncaa_north_carolina_link": "shopify://collections/university-of-north-carolina-1",
+            "ncaa_north_texas_link": "shopify://collections/university-of-north-texas",
+            "ncaa_ohio_state_link": "shopify://collections/ohio-state-university",
+            "ncaa_oklahoma_link": "shopify://collections/university-of-oklahoma",
+            "ncaa_oklahoma_state_link": "shopify://collections/osu-oklahoma-state-university",
+            "ncaa_penn_state_link": "shopify://collections/penn-state",
+            "ncaa_pepperdine_link": "shopify://collections/pepperdine-university",
+            "ncaa_purdue_link": "shopify://collections/purdue-university-1",
+            "ncaa_south_carolina_link": "shopify://collections/university-of-south-carolina",
+            "ncaa_southern_methodist_link": "shopify://collections/smu",
+            "ncaa_tennessee_link": "shopify://collections/university-of-tennessee",
+            "ncaa_texas_link": "shopify://collections/texas",
+            "ncaa_texas_am_link": "shopify://collections/texas-a-m-university",
+            "ncaa_tcu_link": "shopify://collections/tcu",
+            "ncaa_texas_tech_link": "shopify://collections/texas-tech-university",
+            "ncaa_vanderbilt_link": "shopify://collections/vanderbilt-university",
+            "ncaa_virginia_link": "shopify://collections/west-virginia-university-1",
+            "ncaa_wake_forest_link": "shopify://collections/wake-forest-university-1",
+            "ncaa_west_virginia_link": "shopify://collections/west-virginia-university-1",
+            "nfl_arizona_cardinals_link": "shopify://collections/arizona-cardinals",
+            "nfl_atlanta_falcons_link": "shopify://collections/atlanta-falcons",
+            "nfl_baltimore_ravens_link": "shopify://collections/baltimore-ravens",
+            "nfl_buffalo_bills_link": "shopify://collections/buffalo-bills",
+            "nfl_carolina_panthers_link": "shopify://collections/carolina-panthers",
+            "nfl_chicago_bears_link": "shopify://collections/chicago-bears",
+            "nfl_cincinnati_bengals_link": "shopify://collections/cincinnati-bengals",
+            "nfl_cleveland_browns_link": "shopify://collections/cleveland-browns",
+            "nfl_dallas_cowboys_link": "shopify://collections/dallas-cowboys",
+            "nfl_denver_broncos_link": "shopify://collections/denver-broncos",
+            "nfl_detroit_lions_link": "shopify://collections/detroit-lions",
+            "nfl_green_bay_packers_link": "shopify://collections/green-bay-packers",
+            "nfl_houston_texans_link": "shopify://collections/houston-texans",
+            "nfl_indianapolis_colts_link": "shopify://collections/indianapolis-colts",
+            "nfl_jacksonville_jaguars_link": "shopify://collections/jacksonville-jaguars",
+            "nfl_kansas_city_chiefs_link": "shopify://collections/kansas-city-chiefs",
+            "nfl_las_vegas_raiders_link": "shopify://collections/las-vegas-raiders",
+            "nfl_los_angeles_chargers_link": "shopify://collections/los-angeles-chargers",
+            "nfl_los_angeles_rams_link": "shopify://collections/los-angeles-rams",
+            "nfl_miami_dolphins_link": "shopify://collections/miami-dolphins",
+            "nfl_minnesota_vikings_link": "",
+            "nfl_new_england_patriots_link": "shopify://collections/new-england-patriots",
+            "nfl_new_orleans_saints_link": "shopify://collections/new-orleans-saints",
+            "nfl_new_york_giants_link": "shopify://collections/new-york-giants",
+            "nfl_new_york_jets_link": "shopify://collections/new-york-jets",
+            "nfl_philadelphia_eagles_link": "shopify://collections/philadelphia-eagles",
+            "nfl_pittsburgh_steelers_link": "shopify://collections/pittsburgh-steelers",
+            "nfl_san_francisco_49ers_link": "shopify://collections/san-francisco-49ers",
+            "nfl_seattle_seahawks_link": "shopify://collections/seattle-seahawks",
+            "nfl_tampa_bay_buccaneers_link": "shopify://collections/tampa-bay-buccaneers",
+            "nfl_tennessee_titans_link": "shopify://collections/tennessee-titans",
+            "college_vault_shop_link": "shopify://collections/college-vault",
+            "banana_ball_savannah_bananas_link": "shopify://collections/savannah-bananas-party-animals",
+            "banana_ball_party_animals_link": "shopify://collections/savannah-bananas-party-animals",
+            "fan_gear_football_link": "shopify://collections/football",
+            "fan_gear_baseball_softball_link": "shopify://collections/baseball-softball",
+            "fan_gear_basketball_link": "shopify://collections/basketball",
+            "fan_gear_golf_link": "shopify://collections/golf-1",
+            "fan_gear_tennis_link": "shopify://collections/tennis",
+            "fan_gear_pickleball_link": "shopify://collections/pickleball",
+            "fan_gear_soccer_link": "shopify://collections/soccer",
+            "fan_gear_hockey_link": "shopify://collections/hockey",
+            "fan_gear_ice_skating_link": "shopify://collections/ice-skating",
+            "high_schools_legacy_christian_link": "shopify://collections/legacy-christian-academy",
+            "high_schools_kentucky_derby_link": "shopify://collections/kentucky-derby",
+            "high_schools_prestonwood_christian_link": "shopify://collections/prestonwood-christian-academy",
+            "high_schools_prince_of_peace_link": "shopify://collections/prince-of-peace-christian-school",
+            "high_schools_southlake_carroll_link": "shopify://collections/southlake-carroll-dragons",
+            "high_schools_trinity_christian_link": "shopify://collections/trinity-christian-academy"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "instafeed_app_block_9bjRkb"
+        "ai_gen_block_feca4c2_7Tqjmq"
       ],
-      "settings": {
-        "full_width": false,
-        "space_around": true
-      }
+      "settings": {}
     }
   },
   "order": [
@@ -709,6 +842,7 @@
     "text_and_image_KTpYWm",
     "featured_collections_X8tn4w",
     "faq_C7mbCT",
-    "newsletter_gt6F9A"
+    "newsletter_gt6F9A",
+    "1781742227e323f08c"
   ]
 }
