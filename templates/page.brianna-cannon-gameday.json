@@ -292,6 +292,18 @@
             "button_link": ""
           }
         },
+        "text_block_WfH8DG": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/game_day_jackets_college_teams.png",
+            "image_width": 650,
+            "title": "Jackets",
+            "text": "<p><a href=\"https://briannacannon.com/collections/gameday-jackets\" title=\"https://briannacannon.com/collections/gameday-jackets\">NCAA</a></p>",
+            "button_label": "",
+            "button_link": "https://briannacannon.com/collections/gameday-jackets"
+          }
+        },
         "text_block_mKwVBN": {
           "type": "text_block",
           "settings": {
@@ -381,6 +393,7 @@
         "text_block_qJxKMe",
         "text_block_6y7tQ4",
         "text_block_z737H4",
+        "text_block_WfH8DG",
         "text_block_mKwVBN",
         "text_block_pEYwmh",
         "text_block_ECMaH4",
