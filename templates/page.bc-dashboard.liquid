@@ -237,8 +237,9 @@
   .evinfo{display:flex;flex-direction:column;min-width:0;}
   .evttl{font-size:16px;}
   .evsub{font-size:12px;color:var(--muted);font-style:italic;}
-  .gcalbtn{margin-left:auto;flex-shrink:0;font-size:13px;font-family:var(--display);font-weight:600;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:6px 13px;text-decoration:none;white-space:nowrap;}
+  .gcalbtn{flex-shrink:0;font-size:13px;font-family:var(--display);font-weight:600;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:6px 13px;text-decoration:none;white-space:nowrap;}
   .gcalbtn:hover{background:var(--accent-soft);}
+  .evacts{margin-left:auto;display:flex;gap:8px;align-items:center;flex-shrink:0;}
   .pill.recur{background:#EFEAFB;color:#6A4FB0;}
   .lastdone{font-size:12px;color:var(--muted);font-style:italic;margin-top:7px;}
   .kudos .khead{font-family:var(--display);font-style:italic;font-size:17px;color:#9A4F86;}
@@ -489,6 +490,7 @@ const VIEWS=[["home","Home"],["mydash","My Dashboard"],["assignments","Assignmen
 let state={company:"BRIANNA CANNON",news:[],assignments:[],notes:[],questions:[],seen:{},kudos:[],featured:[],events:[]};
 let me="",activeView="home",profileView=null,filterDept="",filterPerson="",calRef=new Date();
 let mgEditing=undefined; // undefined = no form open, null = adding new, string = editing that name
+let evEditing=null; // event id currently being edited on the calendar, or null
 
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const esc=s=>(s||"").replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -573,7 +575,7 @@ function renderSidebar(){
     return `<div class="navitem deptitem ${(activeView==='assignments'&&filterDept===d)?'active':''}" data-dept="${esc(d)}"><span class="dot" style="background:${dColor(d)}"></span><span class="nm">${esc(d)}</span><span class="ct">${open||""}</span></div>`;}).join("");
   const sb=document.getElementById("sidebar");
   sb.innerHTML=html;
-  sb.querySelectorAll("[data-view]").forEach(el=>el.onclick=()=>{activeView=el.dataset.view;profileView=null;mgEditing=undefined;if(el.dataset.view!=='assignments'){filterDept="";filterPerson="";}render();});
+  sb.querySelectorAll("[data-view]").forEach(el=>el.onclick=()=>{activeView=el.dataset.view;profileView=null;mgEditing=undefined;evEditing=null;if(el.dataset.view!=='assignments'){filterDept="";filterPerson="";}render();});
   sb.querySelectorAll("[data-dept]").forEach(el=>el.onclick=()=>{activeView='assignments';profileView=null;filterDept=el.dataset.dept;filterPerson="";render();});
 }
 document.getElementById("company").addEventListener("click",async()=>{const v=prompt("Hub name:",state.company);if(v&&v.trim()){state.company=v.trim();await dbSet("bc:company",state.company);renderMast();}});
@@ -913,16 +915,18 @@ function renderCalendar(){
     cells+=`<div class="calcell ${iso===todayStr?'today':''}"><span class="dnum">${d}</span>${evs.map(e=>`<span class="calev ${e.type}" title="${esc(e.detail||e.title)}${e.recur?' (repeats)':''}">${e.recur?'↻ ':''}${esc(e.title)}</span>`).join("")}</div>`;
   }
   const total=start+dim;for(let i=total;i<Math.ceil(total/7)*7;i++)cells+=`<div class="calcell dim"><span class="dnum">${i-total+1}</span></div>`;
+  const ed=evEditing?state.events.find(e=>e.id===evEditing):null;
+  const sel=(v,o)=>v===o?'selected':'';
   panel().innerHTML=`
-    <div class="card composer"><div class="eyebrow">— Add a calendar event —</div>
+    <div class="card composer"><div class="eyebrow">— ${ed?'Edit event':'Add a calendar event'} —</div>
       <div class="row">
-        <div class="col" style="min-width:200px"><label class="fld">Event</label><input type="text" id="evT" placeholder="e.g. Fall line photoshoot"></div>
-        <div class="col"><label class="fld">Date</label><input type="date" id="evD"></div>
-        <div class="col" style="min-width:140px"><label class="fld">Type</label><select class="in" id="evType"><option value="event">Company event</option><option value="milestone">Milestone</option></select></div>
-        <div class="col" style="min-width:200px"><label class="fld">Repeat</label><select class="in" id="evRecur"><option value="">One-time</option><option value="WEEKLY">Weekly (same weekday)</option><option value="MONTHLY_DATE">Monthly (same date)</option><option value="MONTHLY_NTH">Monthly (Nth weekday — e.g. 1st Monday)</option><option value="YEARLY">Yearly</option></select></div>
-        <div style="flex:0 0 auto"><button class="btn" id="evAdd" ${me?'':'disabled'}>${me?'+ Add':'Pick name'}</button></div>
+        <div class="col" style="min-width:200px"><label class="fld">Event</label><input type="text" id="evT" placeholder="e.g. Fall line photoshoot" value="${ed?esc(ed.title):''}"></div>
+        <div class="col"><label class="fld">Date</label><input type="date" id="evD" value="${ed?esc(ed.date):''}"></div>
+        <div class="col" style="min-width:140px"><label class="fld">Type</label><select class="in" id="evType"><option value="event" ${sel(ed&&ed.type,'event')}>Company event</option><option value="milestone" ${sel(ed&&ed.type,'milestone')}>Milestone</option></select></div>
+        <div class="col" style="min-width:200px"><label class="fld">Repeat</label><select class="in" id="evRecur"><option value="" ${sel(ed&&ed.recur,'')}>One-time</option><option value="WEEKLY" ${sel(ed&&ed.recur,'WEEKLY')}>Weekly (same weekday)</option><option value="MONTHLY_DATE" ${sel(ed&&ed.recur,'MONTHLY_DATE')}>Monthly (same date)</option><option value="MONTHLY_NTH" ${sel(ed&&ed.recur,'MONTHLY_NTH')}>Monthly (Nth weekday — e.g. 1st Monday)</option><option value="YEARLY" ${sel(ed&&ed.recur,'YEARLY')}>Yearly</option></select></div>
+        <div style="flex:0 0 auto;display:flex;gap:8px"><button class="btn" id="evAdd" ${me?'':'disabled'}>${me?(ed?'Save changes':'+ Add'):'Pick name'}</button>${ed?`<button class="btn ghost" id="evCancel">Cancel</button>`:''}</div>
       </div>
-      <div class="mt"><input type="text" id="evDetail" placeholder="Details (optional)…"></div>
+      <div class="mt"><input type="text" id="evDetail" placeholder="Details (optional)…" value="${ed?esc(ed.detail||''):''}"></div>
     </div>
     <div class="calbar">
       <span class="mlabel">${calRef.toLocaleDateString(undefined,{month:'long',year:'numeric'})}</span>
@@ -930,12 +934,15 @@ function renderCalendar(){
     </div>
     <div class="calgrid">${dows.map(d=>`<div class="caldow">${d}</div>`).join("")}${cells}</div>
     <p class="hint" style="margin-top:12px">Purple = company event · Pink = birthday · Gold = milestone · ↻ = repeats. Birthdays appear automatically once dates are added.</p>
-    ${(()=>{const list=state.events.map(e=>({e,days:occurrencesInMonth(e,y,m)})).filter(x=>x.days.length).sort((a,b)=>a.days[0]-b.days[0]);return list.length?`<div class="card" style="margin-top:18px"><div class="sectionhead"><h2 class="h-script">Events this month</h2></div>${list.map(({e,days})=>{const dlabel=days.length>1?`${days.length} times this month`:new Date(y,m,days[0]).toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});const rl=recurLabel(e);return `<div class="evrow"><span class="evdot ${e.type}"></span><div class="evinfo"><span class="evttl">${esc(e.title)}</span><span class="evsub">${dlabel}${e.detail?' · '+esc(e.detail):''}${rl?` · ${esc(rl)}`:''}</span></div><a class="gcalbtn" href="${gcalUrl(e)}" target="_blank" rel="noopener">＋ Google Calendar</a></div>`;}).join("")}</div>`:"";})()}`;
+    ${(()=>{const list=state.events.map(e=>({e,days:occurrencesInMonth(e,y,m)})).filter(x=>x.days.length).sort((a,b)=>a.days[0]-b.days[0]);return list.length?`<div class="card" style="margin-top:18px"><div class="sectionhead"><h2 class="h-script">Events this month</h2></div>${list.map(({e,days})=>{const dlabel=days.length>1?`${days.length} times this month`:new Date(y,m,days[0]).toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});const rl=recurLabel(e);return `<div class="evrow"><span class="evdot ${e.type}"></span><div class="evinfo"><span class="evttl">${esc(e.title)}</span><span class="evsub">${dlabel}${e.detail?' · '+esc(e.detail):''}${rl?` · ${esc(rl)}`:''}</span></div><div class="evacts"><a class="gcalbtn" href="${gcalUrl(e)}" target="_blank" rel="noopener">＋ Google Calendar</a>${me?`<button class="nbtn" data-evedit="${e.id}">Edit</button><button class="nbtn dismiss" data-evdel="${e.id}">Delete</button>`:''}</div></div>`;}).join("")}</div>`:"";})()}`;
   document.getElementById("calPrev").onclick=()=>{calRef=new Date(y,m-1,1);render();};
   document.getElementById("calNext").onclick=()=>{calRef=new Date(y,m+1,1);render();};
   document.getElementById("calToday").onclick=()=>{calRef=new Date();render();};
   const add=document.getElementById("evAdd");
-  if(me)add.onclick=async()=>{const t=document.getElementById("evT").value.trim(),d=document.getElementById("evD").value;if(!t||!d)return;state.events.push({id:uid(),title:t,date:d,type:document.getElementById("evType").value,detail:document.getElementById("evDetail").value.trim(),recur:document.getElementById("evRecur").value});await saveEvents();render();};
+  if(me)add.onclick=async()=>{const t=document.getElementById("evT").value.trim(),d=document.getElementById("evD").value;if(!t||!d)return;const data={title:t,date:d,type:document.getElementById("evType").value,detail:document.getElementById("evDetail").value.trim(),recur:document.getElementById("evRecur").value};if(evEditing){const e=state.events.find(x=>x.id===evEditing);if(e)Object.assign(e,data);evEditing=null;}else{state.events.push({id:uid(),...data});}await saveEvents();render();};
+  const evc=document.getElementById("evCancel");if(evc)evc.onclick=()=>{evEditing=null;render();};
+  panel().querySelectorAll("[data-evedit]").forEach(b=>b.onclick=()=>{evEditing=b.dataset.evedit;render();window.scrollTo({top:0,behavior:'smooth'});});
+  panel().querySelectorAll("[data-evdel]").forEach(b=>b.onclick=async()=>{const e=state.events.find(x=>x.id===b.dataset.evdel);if(!e)return;if(!confirm(`Delete "${e.title}" from the calendar?`))return;state.events=state.events.filter(x=>x.id!==b.dataset.evdel);if(evEditing===b.dataset.evdel)evEditing=null;await saveEvents();render();});
 }
 
 /* ---------- Manage Team (admin only) ---------- */
