@@ -213,6 +213,15 @@
   /* Kudos wall */
   .kudos{background:linear-gradient(135deg,#FFF4F9,#F3EEFB);border:1px solid #F0E2EE;border-radius:11px;padding:16px 18px;margin-bottom:14px;}
   .reccount{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;margin-left:10px;border-radius:999px;background:linear-gradient(135deg,#EC6BA0,#9A4F86);color:#fff;font-family:var(--display);font-weight:600;font-size:13px;vertical-align:middle;}
+  .mgform{margin-bottom:18px;}
+  .mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+  .mgchecks{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:8px;}
+  .mgchk{display:inline-flex;align-items:center;gap:7px;font-size:15px;cursor:pointer;}
+  .mgchk input{width:16px;height:16px;accent-color:var(--accent);}
+  .mgrow{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line-soft);}
+  .mgrow:first-child{border-top:none;}
+  .mgacts{margin-left:auto;display:flex;gap:8px;flex-shrink:0;}
+  .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);}
   .kudos .khead{font-family:var(--display);font-style:italic;font-size:17px;color:#9A4F86;}
   .kudos .khead b{font-weight:600;font-style:normal;}
   .kudos .ktext{margin:6px 0 0;color:var(--ink-soft);font-size:16px;}
@@ -365,6 +374,12 @@ async function dbSet(k,v,s=true){
 const LIVE_KEYS={"bc:company":"company","bc:news":"news","bc:assignments":"assignments","bc:notes":"notes","bc:questions":"questions","bc:seen":"seen","bc:kudos":"kudos","bc:featured":"featured","bc:events":"events"};
 function attachLiveSync(){
   if(!FB.ready)return;
+  FB.fs.onSnapshot(FB.fs.doc(FB.db,"dashboard",docId("bc:roster")),snap=>{
+    if(!snap.exists())return;
+    let val;try{val=JSON.parse(snap.data().json);}catch(e){return;}
+    if(!Array.isArray(val)||JSON.stringify(EMPLOYEES)===JSON.stringify(val))return;
+    EMPLOYEES=val;rebuildDerived();buildMeSelect();render();
+  });
   Object.entries(LIVE_KEYS).forEach(([key,prop])=>{
     FB.fs.onSnapshot(FB.fs.doc(FB.db,"dashboard",docId(key)),snap=>{
       if(!snap.exists())return;
@@ -382,31 +397,32 @@ function attachLiveSync(){
 /* ---------- Your org (edit anytime) ---------- */
 const DEPARTMENTS=["Social Media / Marketing / Advertising","DTC Customer Service","Operations / Shipping / Logistics / Finance","BC Style Club","Ecomm / Website","Wholesale","Warehouse / Inventory","Design / Production"];
 const DEPT_COLOR={"Ecomm / Website":"#84C734","Social Media / Marketing / Advertising":"#EC2C8F","Design / Production":"#8A3FD1","BC Style Club":"#F2C20E","Warehouse / Inventory":"#2C50DB","DTC Customer Service":"#F2A0C4","Operations / Shipping / Logistics / Finance":"#F0832B","Wholesale":"#19BEB5"};
-const EMPLOYEES=[
-  {name:"Brianna Cannon",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","Design / Production","BC Style Club","Wholesale"]},
-  {name:"Eric Cannon",office:"BCHQ",depts:["Warehouse / Inventory","Operations / Shipping / Logistics / Finance","Wholesale"]},
-  {name:"Lisa Boone-Carris",office:"BCHQ",depts:["Warehouse / Inventory","DTC Customer Service","Operations / Shipping / Logistics / Finance"]},
-  {name:"Isis Agular",office:"BCHQ",depts:["Warehouse / Inventory"]},
-  {name:"Rachel Low",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","BC Style Club"]},
-  {name:"Macie Jones",office:"Dallas WTC",depts:["Wholesale"]},
-  {name:"Clare Moorman-Wolfe",office:"Dallas WTC",depts:["Wholesale"]},
-  {name:"Bryant Jaquez",office:"Remote",depts:["Ecomm / Website","Social Media / Marketing / Advertising"]},
-  {name:"Sarah Hamlin",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","BC Style Club"]},
-  {name:"Jodie Becker",office:"BCHQ",depts:["Design / Production"]},
-  {name:"Marketa Pokorney",office:"Remote",depts:["Design / Production"]},
-  {name:"Jillian Patterson",office:"BCHQ",depts:["Social Media / Marketing / Advertising"],type:"intern"},
-  {name:"Kevin",office:"Remote",depts:["Social Media / Marketing / Advertising"],type:"contract",access:false},
-  {name:"Eugenia",office:"Remote",depts:["Social Media / Marketing / Advertising"],type:"contract",access:false},
-  {name:"Rachel Knight",office:"Flex",depts:["Social Media / Marketing / Advertising"],type:"contract",access:false}
+let EMPLOYEES=[
+  {name:"Brianna Cannon",title:"Co-Founder · CEO · Designer · CMO",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","Design / Production","BC Style Club","Wholesale"],reportsTo:null,birthday:""},
+  {name:"Eric Cannon",title:"Co-Founder · CFO · COO",office:"BCHQ",depts:["Warehouse / Inventory","Operations / Shipping / Logistics / Finance","Wholesale"],reportsTo:null,birthday:""},
+  {name:"Lisa Boone-Carris",title:"Warehouse, Inventory & Customer Service Manager",office:"BCHQ",depts:["Warehouse / Inventory","DTC Customer Service","Operations / Shipping / Logistics / Finance"],reportsTo:"Eric Cannon",birthday:""},
+  {name:"Isis Agular",title:"Faire Manager · Warehouse Asst. Manager",office:"BCHQ",depts:["Warehouse / Inventory"],reportsTo:"Lisa Boone-Carris",birthday:""},
+  {name:"Rachel Low",title:"Marketing Manager",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","BC Style Club"],reportsTo:"Brianna Cannon",birthday:""},
+  {name:"Macie Jones",title:"Fashion Wholesale Director",office:"Dallas WTC",depts:["Wholesale"],reportsTo:"Brianna Cannon",birthday:""},
+  {name:"Clare Moorman-Wolfe",title:"Licensing Wholesale Director",office:"Dallas WTC",depts:["Wholesale"],reportsTo:"Brianna Cannon",birthday:""},
+  {name:"Bryant Jaquez",title:"Ecomm / Marketing Director",office:"Remote",depts:["Ecomm / Website","Social Media / Marketing / Advertising"],reportsTo:"Brianna Cannon",birthday:""},
+  {name:"Sarah Hamlin",title:"Social Media Coordinator",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","BC Style Club"],reportsTo:"Rachel Low",birthday:""},
+  {name:"Jodie Becker",title:"Samples, Production & Licensing Manager",office:"BCHQ",depts:["Design / Production"],reportsTo:"Brianna Cannon",birthday:""},
+  {name:"Marketa Pokorney",title:"Designer",office:"Remote",depts:["Design / Production"],reportsTo:"Brianna Cannon",birthday:""},
+  {name:"Jillian Patterson",title:"Marketing Intern",office:"BCHQ",depts:["Social Media / Marketing / Advertising"],reportsTo:"Brianna Cannon",birthday:"",type:"intern"},
+  {name:"Kevin",title:"Media Buyer",office:"Remote",depts:["Social Media / Marketing / Advertising"],reportsTo:"Rachel Low",birthday:"",type:"contract",access:false},
+  {name:"Eugenia",title:"Marketing Assistant / Klaviyo",office:"Remote",depts:["Social Media / Marketing / Advertising"],reportsTo:"Rachel Low",birthday:"",type:"contract",access:false},
+  {name:"Rachel Knight",title:"Marketing Support",office:"Flex",depts:["Social Media / Marketing / Advertising"],reportsTo:"Rachel Low",birthday:"",type:"contract",access:false}
 ];
 const ACCESS=e=>e.access!==false;
 const emp=n=>EMPLOYEES.find(e=>e.name===n)||{};
 const deptsOf=n=>emp(n).depts||[];
-const peopleIn=d=>EMPLOYEES.filter(e=>e.depts.includes(d)).map(e=>e.name);
+const peopleIn=d=>EMPLOYEES.filter(e=>(e.depts||[]).includes(d)).map(e=>e.name);
 const initials=n=>{const p=String(n).trim().split(/\s+/);return (p.length>1?p[0][0]+p[p.length-1][0]:n.slice(0,2)).toUpperCase();};
 const dColor=d=>DEPT_COLOR[d]||"#9090AE";
 const DEPT_OWNER={"Design / Production":"Brianna Cannon","Social Media / Marketing / Advertising":"Brianna Cannon","Ecomm / Website":"Brianna Cannon","BC Style Club":"Brianna Cannon","Warehouse / Inventory":"Eric Cannon","Customer Service":"Eric Cannon","Operations / Logistics / Finance":"Eric Cannon","Wholesale":"Shared"};
 const isFounder=n=>REPORTS_TO[n]===null;
+const isAdmin=()=>!!me&&isFounder(me);
 function rankOf(n){const t=(TITLE[n]||"").toLowerCase();
   if(/founder|ceo|cfo|coo/.test(t))return 0;
   if(/director/.test(t))return 1;
@@ -416,22 +432,25 @@ function rankOf(n){const t=(TITLE[n]||"").toLowerCase();
   if(/buyer|specialist|analyst/.test(t))return 4;
   if(/intern/.test(t))return 6;
   return 4;}
-const ORG={
-  "Ecomm / Website":{heads:["Brianna Cannon"],rep:{"Brianna Cannon":["Bryant Jaquez","Rachel Low"],"Rachel Low":["Sarah Hamlin"]}},
-  "Social Media / Marketing / Advertising":{heads:["Brianna Cannon"],rep:{"Brianna Cannon":["Bryant Jaquez","Rachel Low","Jillian Patterson"],"Rachel Low":["Kevin","Eugenia","Sarah Hamlin","Rachel Knight"]}},
-  "Design / Production":{heads:["Brianna Cannon"],rep:{"Brianna Cannon":["Marketa Pokorney","Jodie Becker"]}},
-  "BC Style Club":{heads:["Brianna Cannon"],rep:{"Brianna Cannon":["Rachel Low"],"Rachel Low":["Sarah Hamlin"]}},
-  "Warehouse / Inventory":{heads:["Eric Cannon"],rep:{"Eric Cannon":["Lisa Boone-Carris"],"Lisa Boone-Carris":["Isis Agular"]}},
-  "DTC Customer Service":{heads:["Lisa Boone-Carris"],rep:{}},
-  "Operations / Shipping / Logistics / Finance":{heads:["Eric Cannon"],rep:{"Eric Cannon":["Lisa Boone-Carris"]}},
-  "Wholesale":{heads:["Eric Cannon","Brianna Cannon"],shared:["Clare Moorman-Wolfe","Macie Jones"],note:"Eric → Clare & Macie for sales & operations · Brianna → Clare & Macie for samples, design & tradeshows"}
-};
-
-/* Birthdays (MM-DD) and reporting lines — fill in the real values; blanks are fine.
-   REPORTS_TO maps each person to their manager (null = top of the org). */
-const BIRTHDAYS={"Brianna Cannon":"","Eric Cannon":"","Lisa Boone-Carris":"","Isis Agular":"","Rachel Low":"","Macie Jones":"","Clare Moorman-Wolfe":"","Bryant Jaquez":"","Sarah Hamlin":"","Jodie Becker":"","Marketa Pokorney":"","Jillian Patterson":"",Kevin:"",Eugenia:"","Rachel Knight":""};
-const TITLE={"Brianna Cannon":"Co-Founder · CEO · Designer · CMO","Eric Cannon":"Co-Founder · CFO · COO","Rachel Low":"Marketing Manager","Lisa Boone-Carris":"Warehouse, Inventory & Customer Service Manager","Isis Agular":"Faire Manager · Warehouse Asst. Manager","Macie Jones":"Fashion Wholesale Director","Clare Moorman-Wolfe":"Licensing Wholesale Director","Bryant Jaquez":"Ecomm / Marketing Director","Sarah Hamlin":"Social Media Coordinator","Jodie Becker":"Samples, Production & Licensing Manager","Marketa Pokorney":"Designer","Jillian Patterson":"Marketing Intern",Kevin:"Media Buyer",Eugenia:"Marketing Assistant / Klaviyo","Rachel Knight":"Marketing Support"};
-const REPORTS_TO={"Brianna Cannon":null,"Eric Cannon":null,"Rachel Low":"Brianna Cannon","Lisa Boone-Carris":"Eric Cannon","Isis Agular":"Lisa Boone-Carris","Macie Jones":"Brianna Cannon","Clare Moorman-Wolfe":"Brianna Cannon","Bryant Jaquez":"Brianna Cannon","Sarah Hamlin":"Rachel Low","Jodie Becker":"Brianna Cannon","Marketa Pokorney":"Brianna Cannon","Jillian Patterson":"Brianna Cannon",Kevin:"Rachel Low",Eugenia:"Rachel Low","Rachel Knight":"Rachel Low"};
+/* These are DERIVED from the roster above and rebuilt whenever it changes. */
+let TITLE={}, REPORTS_TO={}, BIRTHDAYS={}, ORG={};
+const DEPT_NOTE={"Wholesale":"Eric → Clare & Macie for sales & operations · Brianna → Clare & Macie for samples, design & tradeshows"};
+function rebuildDerived(){
+  TITLE={};REPORTS_TO={};BIRTHDAYS={};ORG={};
+  EMPLOYEES.forEach(e=>{
+    TITLE[e.name]=e.title||"";
+    REPORTS_TO[e.name]=(e.reportsTo===undefined||e.reportsTo==="")?null:e.reportsTo;
+    BIRTHDAYS[e.name]=e.birthday||"";
+  });
+  DEPARTMENTS.forEach(d=>{
+    const members=peopleIn(d), inDept=new Set(members);
+    const heads=members.filter(n=>{const m=REPORTS_TO[n];return !m||!inDept.has(m);});
+    const rep={};
+    members.forEach(n=>{const m=REPORTS_TO[n];if(m&&inDept.has(m)){(rep[m]=rep[m]||[]).push(n);}});
+    ORG[d]={heads,rep};
+    if(DEPT_NOTE[d])ORG[d].note=DEPT_NOTE[d];
+  });
+}
 const SECONDARY={"Isis Agular":"Eric (sort of)","Macie Jones":"Eric · Sales","Clare Moorman-Wolfe":"Eric · Sales"};
 
 const ICON={
@@ -442,13 +461,15 @@ const ICON={
   progress:'<svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>',
   questions:'<svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-3.5-6.6L21 4l-1 4"/><path d="M9.5 9a2.5 2.5 0 1 1 3 2.5V13"/><path d="M12 16.5h.01"/></svg>',
   calendar:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>',
-  orgchart:'<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-2h12v2M12 12v2"/></svg>'
+  orgchart:'<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-2h12v2M12 12v2"/></svg>',
+  manage:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 3-5.5 6-5.5s6 2 6 5.5"/><path d="M17 8.5l1.2 1.2L21 7"/><path d="M17 14.5l1.2 1.2L21 13"/></svg>'
 };
 const VIEWS=[["home","Home"],["mydash","My Dashboard"],["assignments","Assignments"],["calendar","Calendar"],["team","Team"],["orgchart","Org Chart"],["progress","Progress"],["questions","Questions"]];
 
 /* ---------- State ---------- */
 let state={company:"BRIANNA CANNON",news:[],assignments:[],notes:[],questions:[],seen:{},kudos:[],featured:[],events:[]};
 let me="",activeView="home",profileView=null,filterDept="",filterPerson="",calRef=new Date();
+let mgEditing=undefined; // undefined = no form open, null = adding new, string = editing that name
 
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const esc=s=>(s||"").replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -460,10 +481,12 @@ const isHigh=a=>!a.done&&a.due&&["over","today","soon"].includes(dueState(a.due,
 
 /* ---------- Load / persist ---------- */
 async function loadAll(){
-  const [c,n,a,no,q,sn,name,k,f,ev]=await Promise.all([dbGet("bc:company"),dbGet("bc:news"),dbGet("bc:assignments"),dbGet("bc:notes"),dbGet("bc:questions"),dbGet("bc:seen"),dbGet("bc:me",false),dbGet("bc:kudos"),dbGet("bc:featured"),dbGet("bc:events")]);
+  const [c,n,a,no,q,sn,name,k,f,ev,roster]=await Promise.all([dbGet("bc:company"),dbGet("bc:news"),dbGet("bc:assignments"),dbGet("bc:notes"),dbGet("bc:questions"),dbGet("bc:seen"),dbGet("bc:me",false),dbGet("bc:kudos"),dbGet("bc:featured"),dbGet("bc:events"),dbGet("bc:roster")]);
   if(c)state.company=c;
   state.news=n||[];state.assignments=a||[];state.notes=no||[];state.questions=q||[];state.seen=sn||{};me=name||"";
   state.kudos=k||[];state.featured=f||[];state.events=ev||[];
+  if(Array.isArray(roster)&&roster.length)EMPLOYEES=roster;
+  rebuildDerived();
 }
 const saveNews=()=>dbSet("bc:news",state.news);
 const saveAssign=()=>dbSet("bc:assignments",state.assignments);
@@ -473,6 +496,7 @@ const saveSeen=()=>dbSet("bc:seen",state.seen);
 const saveKudos=()=>dbSet("bc:kudos",state.kudos);
 const saveFeatured=()=>dbSet("bc:featured",state.featured);
 const saveEvents=()=>dbSet("bc:events",state.events);
+const saveRoster=()=>dbSet("bc:roster",EMPLOYEES);
 
 /* ---------- Notifications ---------- */
 const myAssignments=p=>state.assignments.filter(a=>a.assignee===p);
@@ -500,12 +524,13 @@ function renderSidebar(){
     const c=cnt[id], alert=(id==='mydash'&&attn>0);
     return `<div class="navitem ${activeView===id?'active':''}" data-view="${id}"><span class="ico">${ICON[id]}</span><span class="nm">${label}</span>${c!==""?`<span class="ct ${alert?'alert':''}">${c}</span>`:""}</div>`;
   }).join("");
+  if(isAdmin())html+=`<div class="navitem ${activeView==='manage'?'active':''}" data-view="manage"><span class="ico">${ICON.manage}</span><span class="nm">Manage Team</span></div>`;
   html+=`<div class="navhead caps">Departments</div>`;
   html+=DEPARTMENTS.map(d=>{const open=state.assignments.filter(a=>a.dept===d&&!a.done).length;
     return `<div class="navitem deptitem ${(activeView==='assignments'&&filterDept===d)?'active':''}" data-dept="${esc(d)}"><span class="dot" style="background:${dColor(d)}"></span><span class="nm">${esc(d)}</span><span class="ct">${open||""}</span></div>`;}).join("");
   const sb=document.getElementById("sidebar");
   sb.innerHTML=html;
-  sb.querySelectorAll("[data-view]").forEach(el=>el.onclick=()=>{activeView=el.dataset.view;profileView=null;if(el.dataset.view!=='assignments'){filterDept="";filterPerson="";}render();});
+  sb.querySelectorAll("[data-view]").forEach(el=>el.onclick=()=>{activeView=el.dataset.view;profileView=null;mgEditing=undefined;if(el.dataset.view!=='assignments'){filterDept="";filterPerson="";}render();});
   sb.querySelectorAll("[data-dept]").forEach(el=>el.onclick=()=>{activeView='assignments';profileView=null;filterDept=el.dataset.dept;filterPerson="";render();});
 }
 document.getElementById("company").addEventListener("click",async()=>{const v=prompt("Hub name:",state.company);if(v&&v.trim()){state.company=v.trim();await dbSet("bc:company",state.company);renderMast();}});
@@ -520,6 +545,7 @@ function render(){
   else if(activeView==="team")profileView?renderProfile(profileView):renderTeam();
   else if(activeView==="orgchart")renderOrgChart();
   else if(activeView==="progress")renderProgress();
+  else if(activeView==="manage")renderManage();
   else renderQuestions();
 }
 
@@ -808,7 +834,63 @@ function renderCalendar(){
   if(me)add.onclick=async()=>{const t=document.getElementById("evT").value.trim(),d=document.getElementById("evD").value;if(!t||!d)return;state.events.push({id:uid(),title:t,date:d,type:document.getElementById("evType").value,detail:document.getElementById("evDetail").value.trim()});await saveEvents();render();};
 }
 
-/* ---------- Org chart (department-based, with reporting arrows) ---------- */
+/* ---------- Manage Team (admin only) ---------- */
+function renderManage(){
+  if(!isAdmin()){panel().innerHTML=`<div class="card empty"><div class="big">Admins only</div>Managing the team is limited to the founders. Pick your name top-right if that's you.</div>`;return;}
+  const OFFICES=["BCHQ","Dallas WTC","Remote","Flex"];
+  const editing=(typeof mgEditing==="string");
+  const cur=editing?emp(mgEditing):{};
+  const formOpen=(mgEditing!==undefined);
+  const nameOpts=EMPLOYEES.filter(e=>e.name!==mgEditing).map(e=>e.name);
+  const form=formOpen?`
+    <div class="card mgform">
+      <div class="sectionhead"><h2 class="h-script">${editing?"Edit "+esc(mgEditing):"Add a person"}</h2></div>
+      <div class="mgrid">
+        <div class="col"><label class="fld">Name</label><input class="in" id="mgName" value="${esc(cur.name||"")}" placeholder="First Last"></div>
+        <div class="col"><label class="fld">Title</label><input class="in" id="mgTitle" value="${esc(cur.title||"")}" placeholder="e.g. Marketing Manager"></div>
+        <div class="col"><label class="fld">Office</label><select class="in" id="mgOffice">${OFFICES.map(o=>`<option ${cur.office===o?'selected':''}>${o}</option>`).join("")}</select></div>
+        <div class="col"><label class="fld">Reports to</label><select class="in" id="mgReports"><option value="">— None (top of org) —</option>${nameOpts.map(n=>`<option ${cur.reportsTo===n?'selected':''}>${esc(n)}</option>`).join("")}</select></div>
+        <div class="col"><label class="fld">Role type</label><select class="in" id="mgType"><option value="" ${!cur.type?'selected':''}>Team member</option><option value="intern" ${cur.type==='intern'?'selected':''}>Intern</option><option value="contract" ${cur.type==='contract'?'selected':''}>Contractor</option></select></div>
+        <div class="col"><label class="fld">Birthday (MM-DD)</label><input class="in" id="mgBday" value="${esc(cur.birthday||"")}" placeholder="e.g. 03-21"></div>
+      </div>
+      <label class="fld" style="margin-top:14px">Departments</label>
+      <div class="mgchecks">${DEPARTMENTS.map(d=>`<label class="mgchk"><input type="checkbox" class="mgDept" value="${esc(d)}" ${(cur.depts||[]).includes(d)?'checked':''}><span class="dot" style="background:${dColor(d)}"></span>${esc(d)}</label>`).join("")}</div>
+      <label class="mgchk" style="margin-top:12px"><input type="checkbox" id="mgAccess" ${cur.access!==false?'checked':''}> Has dashboard access <span class="hint" style="margin-left:6px">(uncheck for contractors who shouldn't appear in pickers)</span></label>
+      <div style="margin-top:16px;display:flex;gap:10px"><button class="btn" id="mgSave">${editing?"Save changes":"Add person"}</button><button class="btn ghost" id="mgCancel">Cancel</button></div>
+    </div>`:"";
+  const tag=e=>e.type==='contract'?'<span class="mtag contract">Contract</span>':e.type==='intern'?'<span class="mtag intern">Intern</span>':'';
+  const rows=EMPLOYEES.map(e=>`<div class="mgrow"><div class="avatar">${initials(e.name)}</div>
+    <div class="pinfo"><span class="pname">${esc(e.name)} ${tag(e)}</span><span class="ptitle">${esc(e.title||"")}${e.office?' · '+esc(e.office):''}</span></div>
+    <div class="mgacts"><button class="nbtn" data-edit="${esc(e.name)}">Edit</button><button class="nbtn dismiss" data-remove="${esc(e.name)}">Remove</button></div></div>`).join("");
+  panel().innerHTML=`<div class="sectionhead"><h2 class="h-script">Manage Team</h2>${mgEditing===undefined?`<button class="btn" id="mgAdd">+ Add person</button>`:''}</div>
+    <p class="hint" style="margin-bottom:16px">Changes here save to the company database and update for everyone instantly — the team directory, profiles, org chart, assignment pickers, and birthdays all read from this list.</p>
+    ${form}
+    <div class="card">${rows}</div>`;
+  const addBtn=document.getElementById("mgAdd");if(addBtn)addBtn.onclick=()=>{mgEditing=null;render();};
+  panel().querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>{mgEditing=b.dataset.edit;render();});
+  panel().querySelectorAll("[data-remove]").forEach(b=>b.onclick=async()=>{const n=b.dataset.remove;if(!confirm(`Remove ${n} from the team?`))return;EMPLOYEES=EMPLOYEES.filter(e=>e.name!==n);EMPLOYEES.forEach(e=>{if(e.reportsTo===n)e.reportsTo=null;});mgEditing=undefined;rebuildDerived();await saveRoster();buildMeSelect();render();});
+  const cancel=document.getElementById("mgCancel");if(cancel)cancel.onclick=()=>{mgEditing=undefined;render();};
+  const save=document.getElementById("mgSave");if(save)save.onclick=async()=>{
+    const name=document.getElementById("mgName").value.trim();
+    if(!name){alert("Please enter a name.");return;}
+    const depts=[...panel().querySelectorAll(".mgDept:checked")].map(c=>c.value);
+    const rep=document.getElementById("mgReports").value||null;
+    const bday=document.getElementById("mgBday").value.trim();
+    const person={name,title:document.getElementById("mgTitle").value.trim(),office:document.getElementById("mgOffice").value,depts,reportsTo:(rep===name?null:rep),birthday:bday,type:document.getElementById("mgType").value||undefined,access:document.getElementById("mgAccess").checked};
+    if(editing){
+      const old=mgEditing;
+      const i=EMPLOYEES.findIndex(e=>e.name===old);
+      if(i>=0)EMPLOYEES[i]=person;
+      if(name!==old)EMPLOYEES.forEach(e=>{if(e.reportsTo===old)e.reportsTo=name;}); // keep reporting lines intact on rename
+    } else {
+      if(EMPLOYEES.some(e=>e.name===name)){alert("Someone with that name already exists.");return;}
+      EMPLOYEES.push(person);
+    }
+    mgEditing=undefined;rebuildDerived();await saveRoster();buildMeSelect();render();
+  };
+}
+
+
 function renderOrgChart(){
   const tagFor=n=>{const t=emp(n).type;return t==='contract'?'<span class="mtag contract">Contract</span>':t==='intern'?'<span class="mtag intern">Intern</span>':'';};
   const titleOf=n=>n.includes('&')?'Co-Founders':(TITLE[n]||'');
