@@ -383,17 +383,29 @@ const firebaseConfig = {
   appId: "1:617271632211:web:6c2d6576b6edac79a081a6"
 };
 const FB={ready:false};
+// Capture the browser's native fetch now, before any third-party Shopify app script
+// (loyalty/booking widgets) can replace window.fetch with a wrapper that breaks Firebase.
+const NATIVE_FETCH=(typeof window!=="undefined"&&window.fetch)?window.fetch.bind(window):null;
 const mem={};
 const docId=k=>String(k).replace(/[^A-Za-z0-9_-]/g,"_");
 async function fbInit(){
-  try{
+  // Undo any hijacked fetch so Firebase's own network calls work reliably on this page.
+  if(NATIVE_FETCH){try{window.fetch=NATIVE_FETCH;}catch(e){}}
+  const tryImport=async()=>{
     const a=await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js");
     const f=await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js");
     const au=await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js");
     FB.app=a.initializeApp(firebaseConfig);
     FB.db=f.getFirestore(FB.app);
     FB.fs=f; FB.auth=au.getAuth(FB.app); FB.authMod=au; FB.ready=true;
-  }catch(e){ console.warn("Firebase unavailable — using in-memory store for this session:",e); FB.ready=false; }
+  };
+  try{ await tryImport(); }
+  catch(e1){
+    // one retry after a short pause handles a transient CDN/network blip
+    await new Promise(r=>setTimeout(r,900));
+    try{ if(NATIVE_FETCH){try{window.fetch=NATIVE_FETCH;}catch(e){}} await tryImport(); }
+    catch(e2){ FB.ready=false; FB.error=e2; console.error("[BC Dashboard] Firebase failed to load:",e2); }
+  }
 }
 function localGet(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return (k in mem)?mem[k]:null;}}
 function localSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){mem[k]=v;}}
@@ -1141,6 +1153,11 @@ function showClaim(u){
   document.getElementById("claimSignout").onclick=doSignOut;
 }
 
+function showConnError(){
+  gateHTML(`<p class="authtext">The dashboard couldn't reach the database just now. This is almost always temporary — your data is safe.</p><button class="btn" id="connRetry">Try again</button><p class="authmsg" id="authmsg">${FB.error?esc(String(FB.error.message||FB.error)).slice(0,140):""}</p>`);
+  document.getElementById("connRetry").onclick=()=>location.reload();
+}
+
 let liveAttached=false;
 function finishStart(){
   document.body.classList.remove("locked");
@@ -1158,6 +1175,7 @@ async function startApp(){
   }
   finishStart();
 }
+const FIREBASE_REQUIRED=/(^|\.)briannacannon\.com$/i.test(location.hostname);
 (async()=>{
   await fbInit();
   if(FB.ready&&FB.auth){
@@ -1167,7 +1185,11 @@ async function startApp(){
       else if(u){document.body.classList.add("locked");showDenied(u);}
       else{document.body.classList.add("locked");showSignIn();}
     });
+  }else if(FIREBASE_REQUIRED){
+    // On the live site, never fall back to an empty offline view — show a clear retry instead.
+    document.body.classList.add("locked");showConnError();
   }else{
+    // Preview / local only: no Firebase available, open the offline name-picker version.
     document.body.classList.remove("locked");
     await startApp();
   }
