@@ -386,6 +386,9 @@ const FB={ready:false};
 // Capture the browser's native fetch now, before any third-party Shopify app script
 // (loyalty/booking widgets) can replace window.fetch with a wrapper that breaks Firebase.
 const NATIVE_FETCH=(typeof window!=="undefined"&&window.fetch)?window.fetch.bind(window):null;
+// Third-party Shopify app scripts load AFTER ours and re-wrap window.fetch with a broken
+// version. Re-assert the native fetch right before every Firebase call so reads/writes work.
+function keepNativeFetch(){if(NATIVE_FETCH){try{if(window.fetch!==NATIVE_FETCH)window.fetch=NATIVE_FETCH;}catch(e){}}}
 const mem={};
 const docId=k=>String(k).replace(/[^A-Za-z0-9_-]/g,"_");
 async function fbInit(){
@@ -411,18 +414,19 @@ function localGet(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):
 function localSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){mem[k]=v;}}
 async function dbGet(k,s=true){
   if(s===false) return localGet(k);
-  if(FB.ready){try{const snap=await FB.fs.getDoc(FB.fs.doc(FB.db,"dashboard",docId(k)));return snap.exists()?JSON.parse(snap.data().json):null;}catch(e){return (k in mem)?mem[k]:null;}}
+  if(FB.ready){keepNativeFetch();try{const snap=await FB.fs.getDoc(FB.fs.doc(FB.db,"dashboard",docId(k)));FB.readOk=true;return snap.exists()?JSON.parse(snap.data().json):null;}catch(e){FB.readError=e;return (k in mem)?mem[k]:null;}}
   return (k in mem)?mem[k]:null;
 }
 async function dbSet(k,v,s=true){
   if(s===false){ localSet(k,v); return; }
-  if(FB.ready){try{await FB.fs.setDoc(FB.fs.doc(FB.db,"dashboard",docId(k)),{json:JSON.stringify(v),updated:Date.now()});}catch(e){mem[k]=v;}}
+  if(FB.ready){keepNativeFetch();try{await FB.fs.setDoc(FB.fs.doc(FB.db,"dashboard",docId(k)),{json:JSON.stringify(v),updated:Date.now()});}catch(e){mem[k]=v;}}
   else { mem[k]=v; }
 }
 /* live sync: when another device changes a shared key, update + re-render */
 const LIVE_KEYS={"bc:company":"company","bc:news":"news","bc:assignments":"assignments","bc:notes":"notes","bc:questions":"questions","bc:seen":"seen","bc:kudos":"kudos","bc:featured":"featured","bc:events":"events"};
 function attachLiveSync(){
   if(!FB.ready)return;
+  keepNativeFetch();
   FB.fs.onSnapshot(FB.fs.doc(FB.db,"dashboard",docId("bc:roster")),snap=>{
     if(!snap.exists())return;
     let val;try{val=JSON.parse(snap.data().json);}catch(e){return;}
@@ -1157,6 +1161,13 @@ function showConnError(){
   gateHTML(`<p class="authtext">The dashboard couldn't reach the database just now. This is almost always temporary — your data is safe.</p><button class="btn" id="connRetry">Try again</button><p class="authmsg" id="authmsg">${FB.error?esc(String(FB.error.message||FB.error)).slice(0,140):""}</p>`);
   document.getElementById("connRetry").onclick=()=>location.reload();
 }
+function showReadError(){
+  document.body.classList.add("locked");
+  const msg=FB.readError?String(FB.readError.code||FB.readError.message||FB.readError):"";
+  gateHTML(`<p class="authtext">You're signed in, but the dashboard couldn't load your data. Your data is safe in the database — this is a connection issue.</p><button class="btn" id="connRetry">Try again</button><button class="btn ghost" id="connOut" style="margin-top:8px">Sign out</button><p class="authmsg" id="authmsg">${esc(msg).slice(0,160)}</p>`);
+  document.getElementById("connRetry").onclick=()=>location.reload();
+  document.getElementById("connOut").onclick=doSignOut;
+}
 
 let liveAttached=false;
 function finishStart(){
@@ -1167,7 +1178,11 @@ function finishStart(){
   if(!liveAttached){attachLiveSync();liveAttached=true;}
 }
 async function startApp(){
+  keepNativeFetch();
   await loadAll();
+  // If we're signed in on the live site but Firestore reads were blocked, don't show an
+  // empty dashboard — surface the real error so it's clear (and recoverable).
+  if(AUTH.user&&FB.ready&&FB.readError&&!FB.readOk){showReadError();return;}
   if(AUTH.user){
     const p=findByEmail(AUTH.user.email);
     if(!p){showClaim(AUTH.user);return;} // stay locked until they confirm who they are
