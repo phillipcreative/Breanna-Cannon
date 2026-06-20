@@ -1,0 +1,838 @@
+{% layout none %}
+{% raw %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brianna Cannon — Company Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --display:"Playfair Display",Georgia,serif;
+    --body:"Cormorant Garamond",Georgia,serif;
+    --ink:#16172B; --ink-soft:#43445C; --muted:#8B8BA3;
+    --bg:#F4F3F8; --surface:#FFFFFF; --line:#E8E6F0; --line-soft:#F0EEF6;
+    --band:#16172B; --accent:#8B6DD4; --accent-soft:#EEEAF8;
+    --done:#3FA877; --over:#D85A3C; --high-bg:#FBE7DD; --high-tx:#C2502E;
+    --note:#FFF8E6; --note-line:#F1E4BB;
+    --radius:11px; --shadow:0 1px 2px rgba(22,23,43,.05),0 8px 26px rgba(22,23,43,.06);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.45;-webkit-font-smoothing:antialiased;}
+  .caps{text-transform:uppercase;letter-spacing:.22em;}
+
+  /* Masthead */
+  header.mast{background:linear-gradient(95deg,#F8CBA6 0%,#FBE5A6 16%,#F2EE9E 28%,#CBEBAF 42%,#B6E6DF 56%,#BAD6F2 70%,#D6C8F1 84%,#F4C8E2 100%);}
+  .mast-inner{max-width:1180px;margin:0 auto;padding:30px 34px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
+  .mast .title{font-family:var(--display);font-weight:700;font-size:34px;letter-spacing:.06em;color:var(--ink);line-height:1;cursor:text;}
+  .mast .title:hover{opacity:.75;}
+  .mast .subtitle{font-size:15px;color:var(--ink);font-weight:600;letter-spacing:.16em;margin-top:10px;}
+  .mast .tagline{font-family:var(--display);font-style:italic;font-weight:500;font-size:17px;color:var(--muted);margin-top:8px;}
+  .mast-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px;}
+  .mast-right .dayname{font-size:13px;font-weight:600;color:var(--ink);}
+  .mast-right .datefull{font-size:13px;color:var(--ink-soft);}
+  .whoami{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-soft);}
+  .whoami select{font-family:var(--body);font-size:15px;color:var(--ink);background:rgba(255,255,255,.55);border:1px solid rgba(22,23,43,.18);border-radius:8px;padding:6px 10px;cursor:pointer;}
+  .whoami select:focus{outline:none;border-color:var(--ink);}
+
+  /* Scripture banner */
+  .verseband{background:var(--band);}
+  .verseband-inner{max-width:1180px;margin:0 auto;padding:15px 34px;display:flex;align-items:baseline;justify-content:flex-end;gap:16px;text-align:right;flex-wrap:wrap;}
+  .verse-ref{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#EC6BA0;font-weight:600;flex-shrink:0;}
+  .verse-text{font-family:var(--display);font-style:italic;font-size:18px;color:#fff;font-weight:500;}
+
+  /* Shell */
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:0;}
+  .sidebar{width:248px;flex-shrink:0;padding:26px 18px;position:sticky;top:0;align-self:flex-start;}
+  .main{flex:1;min-width:0;padding:26px 34px 80px 22px;}
+  .navhead{font-size:11px;color:var(--muted);margin:18px 12px 8px;}
+  .navhead:first-child{margin-top:0;}
+  .navitem{display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:9px;cursor:pointer;color:var(--ink-soft);font-size:14px;letter-spacing:.04em;}
+  .navitem .ico{width:17px;height:17px;flex-shrink:0;color:var(--muted);display:flex;}
+  .navitem .ico svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.5;}
+  .navitem .nm{flex:1;text-transform:uppercase;letter-spacing:.1em;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .navitem .ct{font-size:13px;color:var(--muted);font-family:var(--display);}
+  .navitem .ct.alert{color:var(--over);font-weight:600;}
+  .navitem:hover{background:var(--line-soft);color:var(--ink);}
+  .navitem.active{background:var(--accent-soft);color:var(--ink);}
+  .navitem.active .ico,.navitem.active .ct{color:var(--accent);}
+  .deptitem .dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
+  .deptitem .nm{text-transform:none;letter-spacing:.01em;font-size:13.5px;}
+
+  /* Cards / shared */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);}
+  .eyebrow{font-style:italic;color:var(--muted);font-size:15px;letter-spacing:.16em;text-transform:uppercase;text-align:center;margin-bottom:16px;}
+  .h-script{font-family:var(--display);font-style:italic;font-size:26px;font-weight:600;color:var(--ink);margin:0;}
+  .sectionhead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:4px 2px 14px;}
+  .composer{padding:22px 24px;margin-bottom:26px;}
+  label.fld{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.12em;}
+  input[type=text],input[type=date],textarea,select.in{width:100%;font-family:var(--body);font-size:16px;color:var(--ink);background:var(--surface);border:none;border-bottom:1px solid var(--line);border-radius:0;padding:9px 2px;}
+  input::placeholder,textarea::placeholder{font-style:italic;color:#B7B7C9;}
+  input:focus,textarea:focus,select.in:focus{outline:none;border-bottom-color:var(--accent);}
+  select.in{cursor:pointer;}
+  textarea{resize:vertical;min-height:46px;}
+  .row{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;}
+  .row>.col{flex:1;min-width:150px;}
+  .mt{margin-top:16px;}
+  .btn{appearance:none;cursor:pointer;font-family:var(--body);font-size:14px;letter-spacing:.14em;text-transform:uppercase;background:var(--band);color:#fff;border:none;border-radius:8px;padding:13px 22px;}
+  .btn:hover{background:#262741;}
+  .btn:disabled{background:var(--line);color:var(--muted);cursor:not-allowed;}
+  .btn.outline{background:transparent;color:var(--muted);border:1px solid var(--line);}
+  .btn.outline:hover{border-color:var(--accent);color:var(--accent);}
+  .btn.sm{padding:9px 14px;font-size:12px;}
+  .priorityhint{color:var(--over);font-style:italic;font-size:15px;margin-top:14px;min-height:1px;}
+  .del{appearance:none;background:none;border:none;color:#C4C4D2;cursor:pointer;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:4px;}
+  .del:hover{color:var(--over);}
+
+  /* Task rows */
+  .grouphead{display:flex;align-items:flex-end;justify-content:space-between;margin:26px 2px 10px;}
+  .grouphead .gname{font-family:var(--display);font-style:italic;font-size:21px;font-weight:600;}
+  .grouphead .rem{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;}
+  .task{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;padding:15px 18px;margin-bottom:10px;box-shadow:var(--shadow);}
+  .check{flex-shrink:0;width:22px;height:22px;border:2px solid #CFCDE0;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:2px;background:var(--surface);transition:all .15s;}
+  .check:hover{border-color:var(--accent);}
+  .check.on{background:var(--accent);border-color:var(--accent);}
+  .check.on svg{display:block;} .check svg{display:none;width:12px;height:12px;stroke:#fff;stroke-width:3;fill:none;}
+  .task .body{flex:1;min-width:0;}
+  .task .head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+  .task .title{font-size:19px;color:var(--ink);}
+  .task.done .title{text-decoration:line-through;color:var(--muted);}
+  .task .desc{font-size:15px;color:var(--ink-soft);margin-top:3px;}
+  .task .pills{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:11px;}
+  .pill{font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 9px;display:inline-flex;align-items:center;gap:6px;background:var(--line-soft);color:var(--muted);}
+  .pill .cal{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:1.3;}
+  .pill.high{background:var(--high-bg);color:var(--high-tx);font-weight:600;}
+  .pill.due.over{background:var(--high-bg);color:var(--high-tx);}
+  .pill.due.today{background:#FCEFD8;color:#9A6B16;}
+  .pill.who{background:var(--accent-soft);color:#6A4FB0;text-transform:none;letter-spacing:.02em;}
+  .pill.dept{text-transform:none;letter-spacing:.02em;}
+  .pill.dept .dot{width:8px;height:8px;border-radius:50%;}
+  .pill.doneby{background:#E7F6EE;color:var(--done);text-transform:none;letter-spacing:.02em;}
+  .newtag{font-size:10px;font-weight:600;letter-spacing:.12em;color:#fff;background:var(--over);border-radius:5px;padding:2px 7px;text-transform:uppercase;margin-left:8px;vertical-align:middle;}
+
+  /* Filters */
+  .filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px;}
+  .filters select{font-family:var(--body);font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;cursor:pointer;}
+
+  /* Team */
+  .deptgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;}
+  .deptcard{padding:18px 20px;}
+  .deptcard h3{font-family:var(--display);font-style:italic;font-size:19px;font-weight:600;margin:0 0 12px;display:flex;align-items:center;gap:9px;}
+  .deptcard h3 .dot{width:11px;height:11px;border-radius:50%;}
+  .person{display:flex;align-items:center;gap:11px;padding:9px 0;border-top:1px solid var(--line-soft);cursor:pointer;}
+  .person:hover .pname{color:var(--accent);}
+  .avatar{width:32px;height:32px;border-radius:50%;background:var(--accent-soft);color:#6A4FB0;font-family:var(--display);font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .pname{font-size:16px;}
+  .poffice{margin-left:auto;flex-shrink:0;display:inline-flex;align-items:center;gap:3px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;font-family:var(--display);font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap;}
+  .poffice .pin{font-size:10px;opacity:.7;}
+  .poffice.bchq{background:#F3E9FB;color:#7A3FC4;}
+  .poffice.dallas{background:#E9F3FB;color:#2C6FB0;}
+  .poffice.remote{background:#EFEFEC;color:#7B7768;}
+  .poffice.flex{background:#FBF1E9;color:#B06A2C;}
+
+  /* Profile + greeting */
+  .profhead{display:flex;align-items:center;gap:18px;padding:22px 24px;margin-bottom:22px;}
+  .profhead .avatar{width:62px;height:62px;font-size:24px;}
+  .profhead h2{font-family:var(--display);font-size:30px;font-weight:600;margin:0;}
+  .profhead .depts{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px;}
+  .back{appearance:none;background:none;border:none;color:var(--accent);font-family:var(--body);font-size:15px;cursor:pointer;padding:0;margin-bottom:14px;letter-spacing:.04em;}
+  .colcards{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media(max-width:780px){.colcards{grid-template-columns:1fr;}}
+  .greet{padding:22px 26px;margin-bottom:26px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;}
+  .greet .g-name{font-family:var(--display);font-style:italic;font-size:24px;font-weight:600;}
+  .greet .g-sub{font-size:16px;color:var(--ink-soft);margin-top:4px;}
+
+  /* Items / news / questions */
+  .item{padding:18px 22px;border-top:1px solid var(--line-soft);}
+  .item:first-child{border-top:none;}
+  .item .head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+  .item h3{font-family:var(--display);font-size:20px;font-weight:600;margin:0;}
+  .item .meta{font-size:13px;color:var(--muted);font-style:italic;margin-top:3px;}
+  .item p{margin:8px 0 0;color:var(--ink-soft);font-size:16px;}
+  .replies{margin-top:13px;padding-left:14px;border-left:2px solid var(--line);display:flex;flex-direction:column;gap:11px;}
+  .reply .meta{font-size:12px;color:var(--muted);font-style:italic;}
+  .reply p{margin:2px 0 0;font-size:15px;color:var(--ink-soft);}
+  .replybox{display:flex;gap:10px;margin-top:14px;align-items:center;}
+  .replybox input{flex:1;border:1px solid var(--line);border-radius:8px;padding:9px 12px;}
+
+  /* Sticky notes */
+  .note{background:var(--note);border:1px solid var(--note-line);border-radius:11px;padding:16px 18px;margin-bottom:15px;box-shadow:0 3px 12px rgba(150,120,30,.09);}
+  .note .nmeta{font-size:12px;color:#9A8438;font-style:italic;letter-spacing:.04em;}
+  .note .ntext{margin:7px 0 0;color:#5A5024;font-size:16px;}
+  .note .nreplies{margin-top:11px;padding-left:12px;border-left:2px solid var(--note-line);display:flex;flex-direction:column;gap:8px;}
+  .note .nreply .rm{font-size:11px;color:#9A8438;font-style:italic;}
+  .note .nreply p{margin:1px 0 0;font-size:15px;color:#5A5024;}
+  .note .nactions{display:flex;gap:9px;margin-top:13px;align-items:center;}
+  .note .nactions input{flex:1;background:rgba(255,255,255,.75);border:1px solid var(--note-line);border-radius:8px;padding:8px 11px;font-size:15px;}
+  .nbtn{appearance:none;cursor:pointer;font-family:var(--body);font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-radius:7px;padding:9px 13px;border:1px solid var(--note-line);background:rgba(255,255,255,.7);color:#8A7528;}
+  .nbtn.dismiss{background:#fff;} .nbtn:hover{border-color:#C9A93A;}
+
+  /* Progress */
+  .breakdown{padding:22px 24px;margin-bottom:22px;}
+  .breakdown h2{font-family:var(--display);font-style:italic;font-size:20px;font-weight:600;margin:0 0 16px;}
+  .prow{display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid var(--line-soft);}
+  .prow:first-of-type{border-top:none;}
+  .prow .who{font-size:15px;width:170px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:9px;}
+  .prow .dot{width:9px;height:9px;border-radius:50%;}
+  .prow .track{flex:1;height:7px;background:var(--line-soft);border-radius:999px;overflow:hidden;}
+  .prow .fill{height:100%;border-radius:999px;background:var(--done);}
+  .prow .frac{font-size:13px;color:var(--muted);width:48px;text-align:right;flex-shrink:0;font-family:var(--display);}
+
+  .empty{padding:42px 20px;text-align:center;color:var(--muted);}
+  .empty .big{font-family:var(--display);font-style:italic;font-size:19px;color:var(--ink);margin-bottom:5px;}
+  .hint{font-size:14px;color:var(--muted);font-style:italic;}
+
+  @media(max-width:860px){
+    .shell{flex-direction:column;}
+    .sidebar{width:100%;position:static;display:flex;flex-wrap:wrap;gap:6px;padding:16px 22px;border-bottom:1px solid var(--line);}
+    .navhead{width:100%;margin:6px 4px 2px;}
+    .navitem{flex:0 0 auto;}
+    .main{padding:22px;width:100%;}
+    .statcell .n{font-size:24px;}
+  }
+  @media(max-width:560px){.statband-inner{flex-wrap:wrap;}.statcell{flex:1 0 33%;}}
+
+  /* Newsletter / featured */
+  .featgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+  .feat{overflow:hidden;display:flex;flex-direction:column;}
+  .feat .thumb{height:150px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .feat .thumb img{width:100%;height:100%;object-fit:cover;}
+  .feat .thumb .doc{font-family:var(--display);font-style:italic;font-size:42px;color:var(--accent);}
+  .feat .fbody{padding:14px 16px;flex:1;display:flex;flex-direction:column;gap:4px;}
+  .feat .ftitle{font-family:var(--display);font-size:18px;font-weight:600;}
+  .feat .fmeta{font-size:12px;color:var(--muted);font-style:italic;}
+  .feat .flinks{display:flex;gap:14px;margin-top:8px;}
+  .feat .flinks a{color:var(--accent);font-size:14px;letter-spacing:.04em;text-decoration:none;border-bottom:1px solid transparent;}
+  .feat .flinks a:hover{border-bottom-color:var(--accent);}
+  .feat .del{align-self:flex-start;margin-top:6px;}
+
+  /* Kudos wall */
+  .kudos{background:linear-gradient(135deg,#FFF4F9,#F3EEFB);border:1px solid #F0E2EE;border-radius:11px;padding:16px 18px;margin-bottom:14px;}
+  .reccount{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;margin-left:10px;border-radius:999px;background:linear-gradient(135deg,#EC6BA0,#9A4F86);color:#fff;font-family:var(--display);font-weight:600;font-size:13px;vertical-align:middle;}
+  .kudos .khead{font-family:var(--display);font-style:italic;font-size:17px;color:#9A4F86;}
+  .kudos .khead b{font-weight:600;font-style:normal;}
+  .kudos .ktext{margin:6px 0 0;color:var(--ink-soft);font-size:16px;}
+  .kudos .kmeta{font-size:12px;color:var(--muted);font-style:italic;margin-top:7px;}
+  .kstar{color:#E0A93B;}
+
+  /* Upcoming */
+  .upcoming{padding:18px 22px;margin-bottom:26px;}
+  .upcoming h2{font-family:var(--display);font-style:italic;font-size:19px;margin:0 0 12px;}
+  .urow{display:flex;align-items:center;gap:12px;padding:8px 0;border-top:1px solid var(--line-soft);}
+  .urow:first-of-type{border-top:none;}
+  .urow .uicon{font-size:18px;width:24px;text-align:center;}
+  .urow .ulabel{flex:1;font-size:16px;}
+  .urow .uwhen{font-size:13px;color:var(--muted);font-style:italic;}
+
+  /* Calendar */
+  .calbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap;}
+  .calbar .mlabel{font-family:var(--display);font-style:italic;font-size:24px;font-weight:600;}
+  .calnav{display:flex;gap:8px;}
+  .calnav button{appearance:none;cursor:pointer;font-family:var(--body);font-size:14px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 14px;color:var(--ink);}
+  .calnav button:hover{border-color:var(--accent);color:var(--accent);}
+  .calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:11px;overflow:hidden;}
+  .caldow{background:var(--surface);text-align:center;padding:10px 4px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .calcell{background:var(--surface);min-height:104px;padding:7px 8px;display:flex;flex-direction:column;gap:4px;}
+  .calcell.dim{background:#FAFAFC;}
+  .calcell .dnum{font-family:var(--display);font-size:15px;color:var(--ink-soft);}
+  .calcell.today .dnum{background:var(--accent);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;}
+  .calev{font-size:12px;border-radius:5px;padding:2px 6px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:default;}
+  .calev.event{background:var(--accent);} .calev.birthday{background:#EC6BA0;} .calev.milestone{background:#E0A93B;}
+  @media(max-width:620px){.calcell{min-height:74px;}.calev{font-size:10px;}}
+
+  /* Org chart */
+  .org{display:flex;flex-direction:column;align-items:center;gap:0;overflow-x:auto;padding:10px 4px;}
+  .founders{display:flex;align-items:center;justify-content:center;}
+  .founders .orgcard{border-top-color:#16172B;}
+  .cofound{width:30px;height:2px;background:var(--line);}
+  .branchrow{display:flex;gap:48px;align-items:flex-start;justify-content:center;flex-wrap:wrap;}
+  .branch{display:flex;flex-direction:column;align-items:center;}
+  .branchlabel{font-family:var(--display);font-style:italic;font-size:14px;color:var(--muted);margin-bottom:14px;}
+  .orgnode{display:flex;flex-direction:column;align-items:center;}
+  .orgcard{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:10px;padding:11px 16px;text-align:center;box-shadow:var(--shadow);min-width:140px;max-width:190px;}
+  .orgcard .on{font-family:var(--display);font-size:17px;font-weight:600;}
+  .orgcard .ot{font-size:12px;color:var(--muted);font-style:italic;margin-top:3px;line-height:1.3;}
+  .orgcard .odot{font-size:11px;color:var(--accent);margin-top:5px;font-style:italic;}
+  .orgchildren{display:flex;gap:22px;margin-top:12px;position:relative;flex-wrap:wrap;justify-content:center;max-width:620px;}
+  .orgconn{width:2px;height:18px;background:var(--line);}
+  /* Department-based org chart */
+  .org2{display:flex;flex-direction:column;align-items:center;gap:0;overflow-x:auto;padding:4px;width:100%;}
+  .ownerwrap{display:flex;gap:38px;align-items:flex-start;justify-content:center;flex-wrap:wrap;width:100%;}
+  .ownergroup{display:flex;flex-direction:column;align-items:center;}
+  .ownergroup.shared{margin-top:30px;}
+  .ownerlabel{font-family:var(--display);font-style:italic;font-size:17px;color:var(--ink);margin:16px 0;}
+  .deptcols{display:flex;gap:16px;align-items:flex-start;justify-content:center;flex-wrap:wrap;}
+  .deptcol{background:var(--surface);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow);min-width:208px;max-width:248px;overflow:hidden;}
+  .deptcolhead{display:flex;align-items:center;gap:8px;padding:11px 14px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--line);background:var(--line-soft);font-weight:600;}
+  .deptcolhead .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .deptmembers{padding:6px 13px 12px;display:flex;flex-direction:column;}
+  .memcard{padding:10px 2px;border-top:1px solid var(--line-soft);}
+  .memcard:first-child{border-top:none;}
+  .memcard .mn{font-family:var(--display);font-size:16px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .memcard .mt{font-size:13px;color:var(--muted);font-style:italic;margin-top:1px;line-height:1.3;}
+  .mtag{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:2px 7px;font-style:normal;font-weight:600;}
+  .mtag.contract{background:#ECECF8;color:#6A5FB0;}
+  .mtag.intern{background:#E7F6EE;color:#2E8B62;}
+  .pinfo{display:flex;flex-direction:column;}
+  .ptitle{font-size:12px;color:var(--muted);font-style:italic;}
+  /* Per-department org tree */
+  .orgdept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:18px;align-items:start;}
+  .obox{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;}
+  .obox .ohead{display:flex;align-items:center;gap:9px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--line-soft);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--ink);}
+  .obox .ohead .dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
+  .otree{padding:4px 14px 12px;}
+  .orow{display:flex;align-items:flex-start;gap:7px;padding:9px 0;border-top:1px solid var(--line-soft);}
+  .orow.lead{border-top:none;}
+  .orow .oconn{color:var(--accent);font-size:15px;line-height:1.2;flex-shrink:0;margin-top:1px;}
+  .orow .obody{flex:1;min-width:0;}
+  .orow .onm{font-family:var(--display);font-size:16px;font-weight:600;display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .orow.lead .onm{font-size:17px;}
+  .orow .ott{font-size:13px;color:var(--muted);font-style:italic;line-height:1.3;margin-top:1px;}
+  .onote{font-size:12.5px;color:var(--muted);font-style:italic;padding:0 16px 14px;line-height:1.4;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="mast-inner">
+    <div class="mast-left">
+      <div class="title" id="company" title="Click to rename">BRIANNA CANNON</div>
+      <div class="subtitle caps">Company Dashboard</div>
+    </div>
+    <div class="mast-right">
+      <div class="dayname caps" id="dayName"></div>
+      <div class="datefull caps" id="dateFull"></div>
+      <div class="whoami"><span class="caps">You are</span><select id="meSelect"></select></div>
+    </div>
+  </div>
+</header>
+
+<div class="verseband"><div class="verseband-inner"><span class="verse-text">“Commit your work to the Lord, and He will establish your steps.”</span><span class="verse-ref">Proverbs 16:3</span></div></div>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main"><div id="panel"></div></main>
+</div>
+
+<script>
+/* ============================================================
+   DATA LAYER — connected to your Firebase (Firestore) project.
+   Shared data (news, assignments, notes, kudos, calendar, etc.)
+   lives in Firestore and syncs live to every device. Per-device
+   settings (the name you pick at top-right) stay local to the
+   browser. If Firebase can't load, it falls back to in-memory so
+   the page still opens. NOTE: this must be served over http(s)
+   (your website) — opening the raw file via file:// will block
+   the Firebase module load.
+   ============================================================ */
+const firebaseConfig = {
+  apiKey: "AIzaSyCgKiDm1N_8vwYIh46oZg97pq5sFY-YOZ0",
+  authDomain: "bc-company-dashboard.firebaseapp.com",
+  projectId: "bc-company-dashboard",
+  storageBucket: "bc-company-dashboard.firebasestorage.app",
+  messagingSenderId: "617271632211",
+  appId: "1:617271632211:web:6c2d6576b6edac79a081a6"
+};
+const FB={ready:false};
+const mem={};
+const docId=k=>String(k).replace(/[^A-Za-z0-9_-]/g,"_");
+async function fbInit(){
+  try{
+    const a=await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js");
+    const f=await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js");
+    FB.app=a.initializeApp(firebaseConfig);
+    FB.db=f.getFirestore(FB.app);
+    FB.fs=f; FB.ready=true;
+  }catch(e){ console.warn("Firebase unavailable — using in-memory store for this session:",e); FB.ready=false; }
+}
+function localGet(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return (k in mem)?mem[k]:null;}}
+function localSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){mem[k]=v;}}
+async function dbGet(k,s=true){
+  if(s===false) return localGet(k);
+  if(FB.ready){try{const snap=await FB.fs.getDoc(FB.fs.doc(FB.db,"dashboard",docId(k)));return snap.exists()?JSON.parse(snap.data().json):null;}catch(e){return (k in mem)?mem[k]:null;}}
+  return (k in mem)?mem[k]:null;
+}
+async function dbSet(k,v,s=true){
+  if(s===false){ localSet(k,v); return; }
+  if(FB.ready){try{await FB.fs.setDoc(FB.fs.doc(FB.db,"dashboard",docId(k)),{json:JSON.stringify(v),updated:Date.now()});}catch(e){mem[k]=v;}}
+  else { mem[k]=v; }
+}
+/* live sync: when another device changes a shared key, update + re-render */
+const LIVE_KEYS={"bc:company":"company","bc:news":"news","bc:assignments":"assignments","bc:notes":"notes","bc:questions":"questions","bc:seen":"seen","bc:kudos":"kudos","bc:featured":"featured","bc:events":"events"};
+function attachLiveSync(){
+  if(!FB.ready)return;
+  Object.entries(LIVE_KEYS).forEach(([key,prop])=>{
+    FB.fs.onSnapshot(FB.fs.doc(FB.db,"dashboard",docId(key)),snap=>{
+      if(!snap.exists())return;
+      let val; try{val=JSON.parse(snap.data().json);}catch(e){return;}
+      const curr=(prop==="company")?state.company:state[prop];
+      if(JSON.stringify(curr)===JSON.stringify(val))return;
+      if(prop==="company"){ if(val) state.company=val; }
+      else if(prop==="seen"){ state.seen=val||{}; }
+      else { state[prop]=val||[]; }
+      render();
+    });
+  });
+}
+
+/* ---------- Your org (edit anytime) ---------- */
+const DEPARTMENTS=["Social Media / Marketing / Advertising","DTC Customer Service","Operations / Shipping / Logistics / Finance","BC Style Club","Ecomm / Website","Wholesale","Warehouse / Inventory","Design / Production"];
+const DEPT_COLOR={"Ecomm / Website":"#84C734","Social Media / Marketing / Advertising":"#EC2C8F","Design / Production":"#8A3FD1","BC Style Club":"#F2C20E","Warehouse / Inventory":"#2C50DB","DTC Customer Service":"#F2A0C4","Operations / Shipping / Logistics / Finance":"#F0832B","Wholesale":"#19BEB5"};
+const EMPLOYEES=[
+  {name:"Brianna Cannon",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","Design / Production","BC Style Club","Wholesale"]},
+  {name:"Eric Cannon",office:"BCHQ",depts:["Warehouse / Inventory","Operations / Shipping / Logistics / Finance","Wholesale"]},
+  {name:"Lisa Boone-Carris",office:"BCHQ",depts:["Warehouse / Inventory","DTC Customer Service","Operations / Shipping / Logistics / Finance"]},
+  {name:"Isis Agular",office:"BCHQ",depts:["Warehouse / Inventory"]},
+  {name:"Rachel Low",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","BC Style Club"]},
+  {name:"Macie Jones",office:"Dallas WTC",depts:["Wholesale"]},
+  {name:"Clare Moorman-Wolfe",office:"Dallas WTC",depts:["Wholesale"]},
+  {name:"Bryant Jaquez",office:"Remote",depts:["Ecomm / Website","Social Media / Marketing / Advertising"]},
+  {name:"Sarah Hamlin",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","BC Style Club"]},
+  {name:"Jodie Becker",office:"BCHQ",depts:["Design / Production"]},
+  {name:"Marketa Pokorney",office:"Remote",depts:["Design / Production"]},
+  {name:"Jillian Patterson",office:"BCHQ",depts:["Social Media / Marketing / Advertising"],type:"intern"},
+  {name:"Kevin",office:"Remote",depts:["Social Media / Marketing / Advertising"],type:"contract",access:false},
+  {name:"Eugenia",office:"Remote",depts:["Social Media / Marketing / Advertising"],type:"contract",access:false},
+  {name:"Rachel Knight",office:"Flex",depts:["Social Media / Marketing / Advertising"],type:"contract",access:false}
+];
+const ACCESS=e=>e.access!==false;
+const emp=n=>EMPLOYEES.find(e=>e.name===n)||{};
+const deptsOf=n=>emp(n).depts||[];
+const peopleIn=d=>EMPLOYEES.filter(e=>e.depts.includes(d)).map(e=>e.name);
+const initials=n=>{const p=String(n).trim().split(/\s+/);return (p.length>1?p[0][0]+p[p.length-1][0]:n.slice(0,2)).toUpperCase();};
+const dColor=d=>DEPT_COLOR[d]||"#9090AE";
+const DEPT_OWNER={"Design / Production":"Brianna Cannon","Social Media / Marketing / Advertising":"Brianna Cannon","Ecomm / Website":"Brianna Cannon","BC Style Club":"Brianna Cannon","Warehouse / Inventory":"Eric Cannon","Customer Service":"Eric Cannon","Operations / Logistics / Finance":"Eric Cannon","Wholesale":"Shared"};
+const isFounder=n=>REPORTS_TO[n]===null;
+function rankOf(n){const t=(TITLE[n]||"").toLowerCase();
+  if(/founder|ceo|cfo|coo/.test(t))return 0;
+  if(/director/.test(t))return 1;
+  if(/assistant|asst/.test(t))return 5;
+  if(/manager/.test(t))return 2;
+  if(/coordinator|lead/.test(t))return 3;
+  if(/buyer|specialist|analyst/.test(t))return 4;
+  if(/intern/.test(t))return 6;
+  return 4;}
+const ORG={
+  "Ecomm / Website":{heads:["Brianna Cannon"],rep:{"Brianna Cannon":["Bryant Jaquez","Rachel Low"],"Rachel Low":["Sarah Hamlin"]}},
+  "Social Media / Marketing / Advertising":{heads:["Brianna Cannon"],rep:{"Brianna Cannon":["Bryant Jaquez","Rachel Low","Jillian Patterson"],"Rachel Low":["Kevin","Eugenia","Sarah Hamlin","Rachel Knight"]}},
+  "Design / Production":{heads:["Brianna Cannon"],rep:{"Brianna Cannon":["Marketa Pokorney","Jodie Becker"]}},
+  "BC Style Club":{heads:["Brianna Cannon"],rep:{"Brianna Cannon":["Rachel Low"],"Rachel Low":["Sarah Hamlin"]}},
+  "Warehouse / Inventory":{heads:["Eric Cannon"],rep:{"Eric Cannon":["Lisa Boone-Carris"],"Lisa Boone-Carris":["Isis Agular"]}},
+  "DTC Customer Service":{heads:["Lisa Boone-Carris"],rep:{}},
+  "Operations / Shipping / Logistics / Finance":{heads:["Eric Cannon"],rep:{"Eric Cannon":["Lisa Boone-Carris"]}},
+  "Wholesale":{heads:["Eric Cannon","Brianna Cannon"],shared:["Clare Moorman-Wolfe","Macie Jones"],note:"Eric → Clare & Macie for sales & operations · Brianna → Clare & Macie for samples, design & tradeshows"}
+};
+
+/* Birthdays (MM-DD) and reporting lines — fill in the real values; blanks are fine.
+   REPORTS_TO maps each person to their manager (null = top of the org). */
+const BIRTHDAYS={"Brianna Cannon":"","Eric Cannon":"","Lisa Boone-Carris":"","Isis Agular":"","Rachel Low":"","Macie Jones":"","Clare Moorman-Wolfe":"","Bryant Jaquez":"","Sarah Hamlin":"","Jodie Becker":"","Marketa Pokorney":"","Jillian Patterson":"",Kevin:"",Eugenia:"","Rachel Knight":""};
+const TITLE={"Brianna Cannon":"Co-Founder · CEO · Designer · CMO","Eric Cannon":"Co-Founder · CFO · COO","Rachel Low":"Marketing Manager","Lisa Boone-Carris":"Warehouse, Inventory & Customer Service Manager","Isis Agular":"Faire Manager · Warehouse Asst. Manager","Macie Jones":"Fashion Wholesale Director","Clare Moorman-Wolfe":"Licensing Wholesale Director","Bryant Jaquez":"Ecomm / Marketing Director","Sarah Hamlin":"Social Media Coordinator","Jodie Becker":"Samples, Production & Licensing Manager","Marketa Pokorney":"Designer","Jillian Patterson":"Marketing Intern",Kevin:"Media Buyer",Eugenia:"Marketing Assistant / Klaviyo","Rachel Knight":"Marketing Support"};
+const REPORTS_TO={"Brianna Cannon":null,"Eric Cannon":null,"Rachel Low":"Brianna Cannon","Lisa Boone-Carris":"Eric Cannon","Isis Agular":"Lisa Boone-Carris","Macie Jones":"Brianna Cannon","Clare Moorman-Wolfe":"Brianna Cannon","Bryant Jaquez":"Brianna Cannon","Sarah Hamlin":"Rachel Low","Jodie Becker":"Brianna Cannon","Marketa Pokorney":"Brianna Cannon","Jillian Patterson":"Brianna Cannon",Kevin:"Rachel Low",Eugenia:"Rachel Low","Rachel Knight":"Rachel Low"};
+const SECONDARY={"Isis Agular":"Eric (sort of)","Macie Jones":"Eric · Sales","Clare Moorman-Wolfe":"Eric · Sales"};
+
+const ICON={
+  home:'<svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>',
+  mydash:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>',
+  assignments:'<svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>',
+  team:'<svg viewBox="0 0 24 24"><circle cx="8" cy="9" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5M14 20c0-2 2-4 4.5-4S22 18 22 20"/></svg>',
+  progress:'<svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>',
+  questions:'<svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-3.5-6.6L21 4l-1 4"/><path d="M9.5 9a2.5 2.5 0 1 1 3 2.5V13"/><path d="M12 16.5h.01"/></svg>',
+  calendar:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>',
+  orgchart:'<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-2h12v2M12 12v2"/></svg>'
+};
+const VIEWS=[["home","Home"],["mydash","My Dashboard"],["assignments","Assignments"],["calendar","Calendar"],["team","Team"],["orgchart","Org Chart"],["progress","Progress"],["questions","Questions"]];
+
+/* ---------- State ---------- */
+let state={company:"BRIANNA CANNON",news:[],assignments:[],notes:[],questions:[],seen:{},kudos:[],featured:[],events:[]};
+let me="",activeView="home",profileView=null,filterDept="",filterPerson="",calRef=new Date();
+
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const esc=s=>(s||"").replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const todayISO=()=>new Date().toISOString().slice(0,10);
+function timeAgo(ts){const s=Math.floor((Date.now()-ts)/1000);if(s<60)return"just now";const m=Math.floor(s/60);if(m<60)return m+"m ago";const h=Math.floor(m/60);if(h<24)return h+"h ago";const d=Math.floor(h/24);if(d<7)return d+"d ago";return new Date(ts).toLocaleDateString(undefined,{month:'short',day:'numeric'});}
+function fmtDate(iso){if(!iso)return"";return new Date(iso+"T00:00:00").toLocaleDateString(undefined,{month:'short',day:'numeric'});}
+function dueState(iso,done){if(!iso||done)return"";if(iso<todayISO())return"over";if(iso===todayISO())return"today";const s=new Date();s.setDate(s.getDate()+3);return iso<=s.toISOString().slice(0,10)?"soon":"";}
+const isHigh=a=>!a.done&&a.due&&["over","today","soon"].includes(dueState(a.due,a.done));
+
+/* ---------- Load / persist ---------- */
+async function loadAll(){
+  const [c,n,a,no,q,sn,name,k,f,ev]=await Promise.all([dbGet("bc:company"),dbGet("bc:news"),dbGet("bc:assignments"),dbGet("bc:notes"),dbGet("bc:questions"),dbGet("bc:seen"),dbGet("bc:me",false),dbGet("bc:kudos"),dbGet("bc:featured"),dbGet("bc:events")]);
+  if(c)state.company=c;
+  state.news=n||[];state.assignments=a||[];state.notes=no||[];state.questions=q||[];state.seen=sn||{};me=name||"";
+  state.kudos=k||[];state.featured=f||[];state.events=ev||[];
+}
+const saveNews=()=>dbSet("bc:news",state.news);
+const saveAssign=()=>dbSet("bc:assignments",state.assignments);
+const saveNotes=()=>dbSet("bc:notes",state.notes);
+const saveQ=()=>dbSet("bc:questions",state.questions);
+const saveSeen=()=>dbSet("bc:seen",state.seen);
+const saveKudos=()=>dbSet("bc:kudos",state.kudos);
+const saveFeatured=()=>dbSet("bc:featured",state.featured);
+const saveEvents=()=>dbSet("bc:events",state.events);
+
+/* ---------- Notifications ---------- */
+const myAssignments=p=>state.assignments.filter(a=>a.assignee===p);
+const newAssignmentsFor=p=>{const s=state.seen[p]||[];return myAssignments(p).filter(a=>!a.done&&!s.includes(a.id));};
+const inboxFor=p=>state.notes.filter(x=>x.to===p&&!x.dismissed).sort((a,b)=>b.ts-a.ts);
+function markAssignmentsSeen(p){if(!p)return;state.seen[p]=myAssignments(p).map(a=>a.id);saveSeen();}
+
+/* ---------- Masthead / stat band / sidebar ---------- */
+function renderMast(){
+  document.getElementById("company").textContent=state.company;
+  document.getElementById("dayName").textContent=new Date().toLocaleDateString(undefined,{weekday:'long'});
+  document.getElementById("dateFull").textContent=new Date().toLocaleDateString(undefined,{month:'long',day:'numeric',year:'numeric'});
+}
+function buildMeSelect(){
+  const sel=document.getElementById("meSelect");
+  sel.innerHTML=`<option value="">Pick your name…</option>`+EMPLOYEES.filter(ACCESS).map(e=>`<option value="${e.name}" ${e.name===me?'selected':''}>${e.name}</option>`).join("");
+  sel.onchange=async()=>{me=sel.value;await dbSet("bc:me",me,false);render();};
+}
+function renderSidebar(){
+  const attn=me?(newAssignmentsFor(me).length+inboxFor(me).length):0;
+  const openCt=state.assignments.filter(x=>!x.done).length;
+  const cnt={home:"",mydash:attn,assignments:openCt,calendar:"",team:"",orgchart:"",progress:"",questions:state.questions.length};
+  let html=`<div class="navhead caps">Views</div>`;
+  html+=VIEWS.map(([id,label])=>{
+    const c=cnt[id], alert=(id==='mydash'&&attn>0);
+    return `<div class="navitem ${activeView===id?'active':''}" data-view="${id}"><span class="ico">${ICON[id]}</span><span class="nm">${label}</span>${c!==""?`<span class="ct ${alert?'alert':''}">${c}</span>`:""}</div>`;
+  }).join("");
+  html+=`<div class="navhead caps">Departments</div>`;
+  html+=DEPARTMENTS.map(d=>{const open=state.assignments.filter(a=>a.dept===d&&!a.done).length;
+    return `<div class="navitem deptitem ${(activeView==='assignments'&&filterDept===d)?'active':''}" data-dept="${esc(d)}"><span class="dot" style="background:${dColor(d)}"></span><span class="nm">${esc(d)}</span><span class="ct">${open||""}</span></div>`;}).join("");
+  const sb=document.getElementById("sidebar");
+  sb.innerHTML=html;
+  sb.querySelectorAll("[data-view]").forEach(el=>el.onclick=()=>{activeView=el.dataset.view;profileView=null;if(el.dataset.view!=='assignments'){filterDept="";filterPerson="";}render();});
+  sb.querySelectorAll("[data-dept]").forEach(el=>el.onclick=()=>{activeView='assignments';profileView=null;filterDept=el.dataset.dept;filterPerson="";render();});
+}
+document.getElementById("company").addEventListener("click",async()=>{const v=prompt("Hub name:",state.company);if(v&&v.trim()){state.company=v.trim();await dbSet("bc:company",state.company);renderMast();}});
+
+const panel=()=>document.getElementById("panel");
+function render(){
+  renderMast();renderSidebar();
+  if(activeView==="home")renderHome();
+  else if(activeView==="mydash")renderMyDash();
+  else if(activeView==="assignments")renderAssignments();
+  else if(activeView==="calendar")renderCalendar();
+  else if(activeView==="team")profileView?renderProfile(profileView):renderTeam();
+  else if(activeView==="orgchart")renderOrgChart();
+  else if(activeView==="progress")renderProgress();
+  else renderQuestions();
+}
+
+/* ---------- Task row ---------- */
+const CAL='<svg class="cal" viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M2 6.5h12M5 1.5v3M11 1.5v3"/></svg>';
+function duePill(a){
+  if(!a.due)return"";
+  const ds=dueState(a.due,a.done);let label;
+  if(a.done)label="Done";else if(ds==="over")label="Overdue · "+fmtDate(a.due);else if(ds==="today")label="Due today · "+fmtDate(a.due);else label="Due · "+fmtDate(a.due);
+  return `<span class="pill due ${ds}">${CAL}${label}</span>`;
+}
+function renderTask(a,isNew){
+  const border=a.dept?dColor(a.dept):"#CFCDE0";
+  return `<div class="task ${a.done?'done':''}" style="border-left-color:${border}">
+    <div class="check ${a.done?'on':''}" data-toggle="${a.id}" role="checkbox" aria-checked="${a.done}" tabindex="0" title="Mark complete"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"></polyline></svg></div>
+    <div class="body"><div class="head"><span class="title">${esc(a.title)}${isNew?'<span class="newtag">New</span>':''}</span><button class="del" data-del="${a.id}">Delete</button></div>
+    ${a.desc?`<div class="desc">${esc(a.desc)}</div>`:""}
+    <div class="pills">
+      ${isHigh(a)?'<span class="pill high">High</span>':""}
+      ${a.assignee?`<span class="pill who">${esc(a.assignee)}</span>`:""}
+      ${a.dept?`<span class="pill dept"><span class="dot" style="background:${dColor(a.dept)}"></span>${esc(a.dept)}</span>`:""}
+      ${duePill(a)}
+      ${a.done?`<span class="pill doneby">✓ done by ${esc(a.doneBy||'someone')}</span>`:""}
+    </div></div></div>`;
+}
+function wireTasks(){
+  const toggle=async id=>{const a=state.assignments.find(x=>x.id===id);if(!a)return;a.done=!a.done;a.doneBy=a.done?(me||'someone'):null;await saveAssign();render();};
+  panel().querySelectorAll("[data-toggle]").forEach(c=>{c.onclick=()=>toggle(c.dataset.toggle);c.onkeydown=e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();toggle(c.dataset.toggle);}};});
+  panel().querySelectorAll(".task [data-del]").forEach(b=>b.onclick=async()=>{if(!confirm("Delete this assignment?"))return;state.assignments=state.assignments.filter(a=>a.id!==b.dataset.del);await saveAssign();render();});
+}
+
+/* ---------- Home ---------- */
+function isImageUrl(u){return /\.(png|jpe?g|gif|webp|svg|avif)(\?|#|$)/i.test(u||"");}
+function renderHome(){
+  const feed=state.news.slice().sort((a,b)=>b.ts-a.ts);
+  const feat=state.featured.slice().sort((a,b)=>b.ts-a.ts);
+  const kud=state.kudos.slice().sort((a,b)=>b.ts-a.ts);
+  const up=upcomingItems(30);
+  let greet;
+  if(me){const open=myAssignments(me).filter(a=>!a.done).length,inb=inboxFor(me).length,nw=newAssignmentsFor(me).length;
+    const bits=[];if(open)bits.push(`${open} open task${open>1?'s':''}`);if(inb)bits.push(`${inb} note${inb>1?'s':''} waiting`);
+    greet=`<div class="card greet"><div><div class="g-name">Hello, ${esc(String(me).split(" ")[0])}.</div><div class="g-sub">${bits.length?bits.join(" · "):"You're all caught up."}${nw?` · <strong style="color:var(--over)">${nw} new</strong>`:""}</div></div><button class="btn" id="toMine">Open my dashboard</button></div>`;
+  } else greet=`<div class="card greet"><div><div class="g-name">Welcome to the BC Dashboard.</div><div class="g-sub">Choose your name, top right, to see your tasks and notes.</div></div></div>`;
+
+  const upHtml = up.length?`<div class="card upcoming"><h2>Upcoming</h2>${up.map(u=>`<div class="urow"><span class="uicon">${u.icon}</span><span class="ulabel">${esc(u.label)}</span><span class="uwhen">${esc(u.when)}</span></div>`).join("")}</div>`:"";
+
+  const featHtml = feat.length?`<div class="featgrid">${feat.map(f=>{
+    const img=isImageUrl(f.url);
+    return `<div class="card feat">
+      <div class="thumb">${img?`<img src="${esc(f.url)}" alt="${esc(f.title)}">`:`<span class="doc">PDF</span>`}</div>
+      <div class="fbody"><div class="ftitle">${esc(f.title)}</div><div class="fmeta">${esc(f.author)} · ${timeAgo(f.ts)}</div>${f.note?`<div style="font-size:14px;color:var(--ink-soft)">${esc(f.note)}</div>`:""}
+      <div class="flinks"><a href="${esc(f.url)}" target="_blank" rel="noopener">View</a><a href="${esc(f.url)}" download target="_blank" rel="noopener">Download</a></div>
+      <button class="del" data-fdel="${f.id}">Delete</button></div></div>`;}).join("")}</div>`
+    :`<div class="card empty"><div class="big">No newsletters or graphics yet</div>Paste a link to a PDF or image above — it'll appear here to view or download.</div>`;
+
+  const kudHtml = kud.length?kud.map(k=>`<div class="kudos"><div class="khead"><span class="kstar">★</span> For <b>${esc(k.to)}</b></div><div class="ktext">"${esc(k.text)}"</div><div class="kmeta">— ${esc(k.from)} · ${timeAgo(k.ts)}</div></div>`).join("")
+    :`<div class="card empty"><div class="big">No kudos yet</div>Be the first to recognize a teammate above.</div>`;
+
+  panel().innerHTML=greet+upHtml+`
+    <div class="card composer"><div class="eyebrow">— Newsletter / graphic —</div>
+      <input type="text" id="fT" placeholder="Title (e.g. June Newsletter)">
+      <div class="mt"><input type="text" id="fU" placeholder="Paste a link to the PDF or image…"></div>
+      <div class="mt"><input type="text" id="fN" placeholder="A short note (optional)…"></div>
+      <div class="mt" style="text-align:right"><button class="btn" id="fPost" ${me?'':'disabled'}>${me?'Post to home':'Pick your name'}</button></div>
+    </div>
+    ${featHtml}
+
+    <div class="sectionhead" style="margin-top:30px"><h2 class="h-script">Recognition & Kudos</h2></div>
+    <div class="card composer"><div class="eyebrow">— Give a shout-out —</div>
+      <div class="row">
+        <div class="col" style="min-width:160px"><label class="fld">For</label><select class="in" id="kWho"><option value="">— Teammate —</option>${EMPLOYEES.filter(ACCESS).map(e=>`<option value="${e.name}">${e.name}</option>`).join("")}</select></div>
+        <div class="col" style="min-width:220px"><label class="fld">Kudos</label><input type="text" id="kMsg" placeholder="What did they do well?"></div>
+        <div style="flex:0 0 auto"><button class="btn" id="kPost" ${me?'':'disabled'}>${me?'Send kudos':'Pick your name'}</button></div>
+      </div>
+    </div>
+    ${kudHtml}
+
+    <div class="sectionhead" style="margin-top:30px"><h2 class="h-script">Company News</h2></div>
+    <div class="card composer"><div class="eyebrow">— Share with the team —</div>
+      <input type="text" id="nT" placeholder="What's the news?">
+      <div class="mt"><textarea id="nB" placeholder="Details (optional)…"></textarea></div>
+      <div class="mt" style="text-align:right"><button class="btn" id="nPost" ${me?'':'disabled'}>${me?'Post update':'Pick your name'}</button></div>
+    </div>
+    <div class="card">${feed.length?feed.map(n=>`<div class="item"><div class="head"><h3>${esc(n.title)}</h3><button class="del" data-del="${n.id}">Delete</button></div><div class="meta">${esc(n.author)} · ${timeAgo(n.ts)}</div>${n.body?`<p>${esc(n.body)}</p>`:""}</div>`).join(""):`<div class="empty"><div class="big">No news yet</div>Post the first update to get the team in the loop.</div>`}</div>`;
+
+  const tm=document.getElementById("toMine");if(tm)tm.onclick=()=>{activeView="mydash";render();};
+  if(me){
+    document.getElementById("fPost").onclick=async()=>{const t=document.getElementById("fT").value.trim(),u=document.getElementById("fU").value.trim();if(!t||!u)return;state.featured.push({id:uid(),title:t,url:u,note:document.getElementById("fN").value.trim(),author:me,ts:Date.now()});await saveFeatured();render();};
+    document.getElementById("kPost").onclick=async()=>{const w=document.getElementById("kWho").value,m=document.getElementById("kMsg").value.trim();if(!w||!m)return;state.kudos.push({id:uid(),to:w,from:me,text:m,ts:Date.now()});await saveKudos();render();};
+    document.getElementById("nPost").onclick=async()=>{const t=document.getElementById("nT").value.trim();if(!t)return;state.news.push({id:uid(),title:t,body:document.getElementById("nB").value.trim(),author:me,ts:Date.now()});await saveNews();render();};
+  }
+  panel().querySelectorAll("[data-fdel]").forEach(b=>b.onclick=async()=>{if(!confirm("Remove this post?"))return;state.featured=state.featured.filter(f=>f.id!==b.dataset.fdel);await saveFeatured();render();});
+  panel().querySelectorAll(".item [data-del]").forEach(b=>b.onclick=async()=>{if(!confirm("Delete this update?"))return;state.news=state.news.filter(n=>n.id!==b.dataset.del);await saveNews();render();});
+}
+
+/* ---------- My Dashboard ---------- */
+function renderMyDash(){
+  if(!me){panel().innerHTML=`<div class="card empty"><div class="big">Who are you?</div>Pick your name in the top-right to open your personal dashboard.</div>`;return;}
+  const newIds=newAssignmentsFor(me).map(a=>a.id);
+  const mine=myAssignments(me).slice().sort((a,b)=>{if(a.done!==b.done)return a.done?1:-1;return (a.due||"9999")<(b.due||"9999")?-1:1;});
+  const inbox=inboxFor(me);
+  const assigned=state.assignments.filter(a=>a.assignedBy===me&&a.assignee!==me).sort((a,b)=>{if(a.done!==b.done)return a.done?1:-1;return (a.due||"9999")<(b.due||"9999")?-1:1;});
+  const myKudos=state.kudos.filter(k=>k.to===me).sort((a,b)=>b.ts-a.ts);
+  const recHtml=myKudos.length?myKudos.map(k=>`<div class="kudos"><div class="khead"><span class="kstar">★</span> From <b>${esc(k.from)}</b></div><div class="ktext">"${esc(k.text)}"</div><div class="kmeta">${timeAgo(k.ts)}</div></div>`).join(""):`<div class="card empty"><div class="big">No recognition yet</div>Kudos from teammates will appear here.</div>`;
+  panel().innerHTML=`
+    <div class="card profhead"><div class="avatar">${initials(me)}</div><div><h2>${esc(me)}</h2>${TITLE[me]?`<div class="ptitle" style="margin-top:3px">${esc(TITLE[me])}</div>`:''}<div class="depts">${deptsOf(me).map(d=>`<span class="pill dept"><span class="dot" style="background:${dColor(d)}"></span>${esc(d)}</span>`).join("")}</div></div></div>
+    <div class="colcards">
+      <div><div class="sectionhead"><h2 class="h-script">My To-Do List</h2></div>${mine.length?mine.map(a=>renderTask(a,newIds.includes(a.id))).join(""):`<div class="card empty"><div class="big">Nothing assigned to you</div>New tasks will appear here.</div>`}</div>
+      <div><div class="sectionhead"><h2 class="h-script">My Inbox</h2></div>${inbox.length?inbox.map(renderNote).join(""):`<div class="card empty"><div class="big">Inbox empty</div>Notes from teammates land here.</div>`}</div>
+    </div>
+    <div class="sectionhead" style="margin-top:30px"><h2 class="h-script">Recognition You've Received</h2>${myKudos.length?`<span class="reccount">${myKudos.length}</span>`:''}</div>
+    ${recHtml}
+    <div class="sectionhead" style="margin-top:30px"><h2 class="h-script">Tasks I've Assigned</h2></div>
+    <div class="card">${assigned.length?assigned.map(a=>renderTask(a,false)).join(""):`<div class="empty"><div class="big">You haven't assigned anything yet</div>Tasks you assign to others — and whether they're done — will show up here.</div>`}</div>`;
+  wireTasks();wireNotes();markAssignmentsSeen(me);renderSidebar();
+}
+
+/* ---------- Sticky notes ---------- */
+function renderNote(n){
+  return `<div class="note"><div class="nmeta">From ${esc(n.from)} · ${timeAgo(n.ts)}</div><p class="ntext">${esc(n.text)}</p>
+    ${n.replies&&n.replies.length?`<div class="nreplies">${n.replies.map(r=>`<div class="nreply"><div class="rm">${esc(r.from)}</div><p>${esc(r.text)}</p></div>`).join("")}</div>`:""}
+    <div class="nactions"><input type="text" placeholder="Reply…" data-rin="${n.id}"><button class="nbtn" data-reply="${n.id}">Reply</button><button class="nbtn dismiss" data-dismiss="${n.id}">Dismiss</button></div></div>`;
+}
+function wireNotes(){
+  panel().querySelectorAll("[data-reply]").forEach(b=>b.onclick=async()=>{const inp=panel().querySelector(`[data-rin="${b.dataset.reply}"]`);const v=inp.value.trim();if(!v)return;const n=state.notes.find(x=>x.id===b.dataset.reply);n.replies=n.replies||[];n.replies.push({from:me||'someone',text:v,ts:Date.now()});await saveNotes();render();});
+  panel().querySelectorAll("[data-dismiss]").forEach(b=>b.onclick=async()=>{const n=state.notes.find(x=>x.id===b.dataset.dismiss);n.dismissed=true;await saveNotes();render();});
+}
+
+/* ---------- Assignments ---------- */
+function renderAssignments(){
+  const opts=arr=>arr.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("");
+  let list=state.assignments.slice();
+  if(filterDept)list=list.filter(a=>a.dept===filterDept);
+  if(filterPerson)list=list.filter(a=>a.assignee===filterPerson);
+  const sortFn=(a,b)=>{if(a.done!==b.done)return a.done?1:-1;return (a.due||"9999")<(b.due||"9999")?-1:1;};
+  const grouped=!filterDept&&!filterPerson;
+  let body="";
+  if(!list.length){body=`<div class="card empty"><div class="big">No assignments here</div>Add one above${(filterDept||filterPerson)?', or clear the filters':''}.</div>`;}
+  else if(grouped){
+    DEPARTMENTS.concat(["__none__"]).forEach(d=>{
+      const items=list.filter(a=>(d==="__none__"?!a.dept:a.dept===d)).sort(sortFn);
+      if(!items.length)return;
+      const open=items.filter(a=>!a.done).length;
+      const label=d==="__none__"?"Unsorted":d;
+      body+=`<div class="grouphead"><span class="gname" style="color:${d==="__none__"?'var(--muted)':dColor(d)}">${esc(label)}</span><span class="rem">${open} remaining</span></div>`;
+      body+=items.map(a=>renderTask(a,false)).join("");
+    });
+  } else { body=list.sort(sortFn).map(a=>renderTask(a,false)).join(""); }
+  panel().innerHTML=`
+    <div class="card composer"><div class="eyebrow">— Add an assignment —</div>
+      <input type="text" id="aT" placeholder="What needs doing?">
+      <div class="mt"><textarea id="aD" placeholder="Notes (optional)…"></textarea></div>
+      <div class="row mt">
+        <div class="col"><label class="fld">Assign to</label><select class="in" id="aWho"><option value="">— Person —</option>${opts(EMPLOYEES.filter(ACCESS).map(e=>e.name))}</select></div>
+        <div class="col"><label class="fld">Department</label><select class="in" id="aDept"><option value="">— Optional —</option>${opts(DEPARTMENTS)}</select></div>
+        <div class="col"><label class="fld">Due date</label><input type="date" id="aDue"></div>
+        <div style="flex:0 0 auto"><button class="btn" id="aAdd">+ Add task</button></div>
+      </div>
+      <div class="priorityhint" id="pHint"></div>
+    </div>
+    <div class="sectionhead">
+      <h2 class="h-script">${filterDept?esc(filterDept):filterPerson?esc(filterPerson)+"'s tasks":"All Assignments"}</h2>
+      <button class="btn outline sm" id="clearDone">Clear completed</button>
+    </div>
+    <div class="filters">
+      <select id="fDept"><option value="">All departments</option>${DEPARTMENTS.map(d=>`<option value="${esc(d)}" ${filterDept===d?'selected':''}>${esc(d)}</option>`).join("")}</select>
+      <select id="fPerson"><option value="">Everyone</option>${EMPLOYEES.filter(ACCESS).map(e=>`<option value="${e.name}" ${filterPerson===e.name?'selected':''}>${e.name}</option>`).join("")}</select>
+    </div>
+    ${body}`;
+  const due=document.getElementById("aDue"),hint=document.getElementById("pHint");
+  due.onchange=()=>{const v=due.value;hint.textContent=(v&&["over","today","soon"].includes(dueState(v,false)))?"High priority — due within 3 days.":"";};
+  document.getElementById("aAdd").onclick=async()=>{const t=document.getElementById("aT").value.trim();if(!t)return;state.assignments.push({id:uid(),title:t,desc:document.getElementById("aD").value.trim(),assignee:document.getElementById("aWho").value,dept:document.getElementById("aDept").value,due:due.value,done:false,doneBy:null,assignedBy:me,ts:Date.now()});await saveAssign();render();};
+  document.getElementById("fDept").onchange=e=>{filterDept=e.target.value;render();};
+  document.getElementById("fPerson").onchange=e=>{filterPerson=e.target.value;render();};
+  document.getElementById("clearDone").onclick=async()=>{const n=state.assignments.filter(a=>a.done).length;if(!n)return;if(!confirm(`Clear ${n} completed assignment${n>1?'s':''}?`))return;state.assignments=state.assignments.filter(a=>!a.done);await saveAssign();render();};
+  wireTasks();
+}
+
+/* ---------- Team ---------- */
+function renderTeam(){
+  const officeClass=o=>o==='Dallas WTC'?'dallas':o==='Remote'?'remote':o==='Flex'?'flex':'bchq';
+  const officeChip=n=>{const o=emp(n).office;return o?`<span class="poffice ${officeClass(o)}"><span class="pin">📍</span>${esc(o)}</span>`:'';};
+  panel().innerHTML=`<div class="sectionhead"><h2 class="h-script">Team & Departments</h2></div>
+    <div class="deptgrid">${DEPARTMENTS.map(d=>`<div class="card deptcard"><h3><span class="dot" style="background:${dColor(d)}"></span>${esc(d)}</h3>${peopleIn(d).map(p=>`<div class="person" data-person="${p}"><div class="avatar">${initials(p)}</div><div class="pinfo"><span class="pname">${esc(p)}</span>${TITLE[p]?`<span class="ptitle">${esc(TITLE[p])}</span>`:''}</div>${officeChip(p)}</div>`).join("")}</div>`).join("")}</div>
+    <p class="hint" style="margin-top:18px;text-align:center">📍 Office — <strong>BCHQ</strong> · <strong>Dallas WTC</strong> · <strong>Remote</strong> · <strong>Flex</strong></p>`;
+  panel().querySelectorAll("[data-person]").forEach(el=>el.onclick=()=>{profileView=el.dataset.person;render();});
+}
+
+/* ---------- Profile ---------- */
+function renderProfile(name){
+  const list=myAssignments(name).slice().sort((a,b)=>{if(a.done!==b.done)return a.done?1:-1;return (a.due||"9999")<(b.due||"9999")?-1:1;});
+  panel().innerHTML=`
+    <button class="back" id="back">← Back to team</button>
+    <div class="card profhead"><div class="avatar">${initials(name)}</div><div><h2>${esc(name)}</h2>${TITLE[name]?`<div class="ptitle" style="margin-top:3px">${esc(TITLE[name])}</div>`:''}<div class="depts">${emp(name).office?`<span class="pill dept" style="background:#F6F2FB"><span class="pin" style="font-size:11px">📍</span> ${esc(emp(name).office)}</span>`:''}${deptsOf(name).map(d=>`<span class="pill dept"><span class="dot" style="background:${dColor(d)}"></span>${esc(d)}</span>`).join("")}</div></div></div>
+    <div class="colcards">
+      <div><div class="sectionhead"><h2 class="h-script">${esc(name)}'s Tasks</h2></div>${list.length?list.map(a=>renderTask(a,false)).join(""):`<div class="card empty"><div class="big">No tasks yet</div>Assign one from the Assignments view.</div>`}</div>
+      <div><div class="sectionhead"><h2 class="h-script">Send a Note</h2></div><div class="card composer"><p class="hint">Leave a sticky note in ${esc(name)}'s inbox — they can reply or dismiss it.</p><div class="mt"><textarea id="noteText" placeholder="Write your note…"></textarea></div><div class="mt" style="text-align:right"><button class="btn" id="sendNote" ${me?'':'disabled'}>${me?'Send note':'Pick your name'}</button></div></div></div>
+    </div>`;
+  document.getElementById("back").onclick=()=>{profileView=null;render();};
+  const send=document.getElementById("sendNote");
+  if(me)send.onclick=async()=>{const t=document.getElementById("noteText").value.trim();if(!t)return;state.notes.push({id:uid(),to:name,from:me,text:t,ts:Date.now(),replies:[],dismissed:false});await saveNotes();alert("Note sent to "+name+".");render();};
+  wireTasks();
+}
+
+/* ---------- Progress ---------- */
+function renderProgress(){
+  const a=state.assignments;
+  const byPerson=EMPLOYEES.filter(ACCESS).map(e=>{const t=myAssignments(e.name);return{name:e.name,t:t.length,d:t.filter(x=>x.done).length};}).filter(x=>x.t>0).sort((x,y)=>y.t-x.t);
+  const byDept=DEPARTMENTS.map(d=>{const t=a.filter(x=>x.dept===d);return{name:d,t:t.length,d:t.filter(x=>x.done).length};}).filter(x=>x.t>0);
+  const bar=(o,color)=>{const pct=o.t?Math.round(o.d/o.t*100):0;return `<div class="prow"><span class="who">${color?`<span class="dot" style="background:${color}"></span>`:''}${esc(o.name)}</span><span class="track"><span class="fill" style="width:${pct}%${color?`;background:${color}`:''}"></span></span><span class="frac">${o.d}/${o.t}</span></div>`;};
+  panel().innerHTML=`<div class="sectionhead"><h2 class="h-script">Progress</h2></div>
+    <div class="card breakdown"><h2>By Person</h2>${byPerson.length?byPerson.map(o=>bar(o,null)).join(""):`<div class="empty">No assignments to track yet.</div>`}</div>
+    <div class="card breakdown"><h2>By Department</h2>${byDept.length?byDept.map(o=>bar(o,dColor(o.name))).join(""):`<div class="empty">Tag tasks with a department to see this.</div>`}</div>`;
+}
+
+/* ---------- Questions ---------- */
+function renderQuestions(){
+  const qs=state.questions.slice().sort((a,b)=>b.ts-a.ts);
+  panel().innerHTML=`
+    <div class="card composer"><div class="eyebrow">— Ask the team —</div><textarea id="qT" placeholder="What's your question?"></textarea><div class="mt" style="text-align:right"><button class="btn" id="qAdd" ${me?'':'disabled'}>${me?'Post question':'Pick your name'}</button></div></div>
+    <div class="sectionhead"><h2 class="h-script">Questions</h2></div>
+    <div class="card">${qs.length?qs.map(q=>`<div class="item"><div class="head"><h3>${esc(q.text)}</h3><button class="del" data-del="${q.id}">Delete</button></div><div class="meta">Asked by ${esc(q.author)} · ${timeAgo(q.ts)}</div>${q.replies&&q.replies.length?`<div class="replies">${q.replies.map(r=>`<div class="reply"><div class="meta">${esc(r.author)} · ${timeAgo(r.ts)}</div><p>${esc(r.text)}</p></div>`).join("")}</div>`:""}<div class="replybox"><input type="text" placeholder="Write a reply…" data-rinput="${q.id}"><button class="btn outline sm" data-reply="${q.id}">Reply</button></div></div>`).join(""):`<div class="empty"><div class="big">No questions yet</div>Be the first to ask — the team can reply right here.</div>`}</div>`;
+  const add=document.getElementById("qAdd");
+  if(me)add.onclick=async()=>{const t=document.getElementById("qT").value.trim();if(!t)return;state.questions.push({id:uid(),text:t,author:me,ts:Date.now(),replies:[]});await saveQ();render();};
+  panel().querySelectorAll("[data-reply]").forEach(b=>b.onclick=async()=>{const inp=panel().querySelector(`[data-rinput="${b.dataset.reply}"]`);const v=inp.value.trim();if(!v)return;const q=state.questions.find(x=>x.id===b.dataset.reply);q.replies.push({author:me||'someone',text:v,ts:Date.now()});await saveQ();render();});
+  panel().querySelectorAll(".item [data-del]").forEach(b=>b.onclick=async()=>{if(!confirm("Delete this question?"))return;state.questions=state.questions.filter(q=>q.id!==b.dataset.del);await saveQ();render();});
+}
+
+/* ---------- Upcoming (birthdays + events) ---------- */
+function upcomingItems(days){
+  const today=new Date();today.setHours(0,0,0,0);
+  const horizon=new Date(today);horizon.setDate(horizon.getDate()+days);
+  const out=[];
+  state.events.forEach(e=>{const d=new Date(e.date+"T00:00:00");if(d>=today&&d<=horizon)out.push({date:d,icon:e.type==='milestone'?'🎉':'📌',label:e.title,type:e.type});});
+  Object.entries(BIRTHDAYS).forEach(([name,md])=>{
+    if(!md)return;const[mm,dd]=md.split("-").map(Number);if(!mm||!dd)return;
+    let d=new Date(today.getFullYear(),mm-1,dd);if(d<today)d=new Date(today.getFullYear()+1,mm-1,dd);
+    if(d>=today&&d<=horizon)out.push({date:d,icon:'🎂',label:`${name}'s birthday`,type:'birthday'});
+  });
+  out.sort((a,b)=>a.date-b.date);
+  return out.map(o=>{
+    const diff=Math.round((o.date-today)/86400000);
+    o.when=diff===0?"Today":diff===1?"Tomorrow":`in ${diff} days`;
+    return o;
+  });
+}
+
+/* ---------- Calendar ---------- */
+function renderCalendar(){
+  const y=calRef.getFullYear(),m=calRef.getMonth();
+  const first=new Date(y,m,1),start=first.getDay(),dim=new Date(y,m+1,0).getDate();
+  const prevDim=new Date(y,m,0).getDate();
+  const todayStr=todayISO();
+  const evByDay={};
+  state.events.forEach(e=>{const d=new Date(e.date+"T00:00:00");if(d.getFullYear()===y&&d.getMonth()===m){(evByDay[d.getDate()]=evByDay[d.getDate()]||[]).push({type:e.type,title:e.title,id:e.id,detail:e.detail});}});
+  Object.entries(BIRTHDAYS).forEach(([name,md])=>{if(!md)return;const[mm,dd]=md.split("-").map(Number);if(mm-1===m&&dd){(evByDay[dd]=evByDay[dd]||[]).push({type:'birthday',title:`🎂 ${name}`});}});
+  const dows=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  let cells="";
+  for(let i=0;i<start;i++)cells+=`<div class="calcell dim"><span class="dnum">${prevDim-start+1+i}</span></div>`;
+  for(let d=1;d<=dim;d++){
+    const iso=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const evs=evByDay[d]||[];
+    cells+=`<div class="calcell ${iso===todayStr?'today':''}"><span class="dnum">${d}</span>${evs.map(e=>`<span class="calev ${e.type}" title="${esc(e.detail||e.title)}">${esc(e.title)}</span>`).join("")}</div>`;
+  }
+  const total=start+dim;for(let i=total;i<Math.ceil(total/7)*7;i++)cells+=`<div class="calcell dim"><span class="dnum">${i-total+1}</span></div>`;
+  panel().innerHTML=`
+    <div class="card composer"><div class="eyebrow">— Add a calendar event —</div>
+      <div class="row">
+        <div class="col" style="min-width:200px"><label class="fld">Event</label><input type="text" id="evT" placeholder="e.g. Fall line photoshoot"></div>
+        <div class="col"><label class="fld">Date</label><input type="date" id="evD"></div>
+        <div class="col" style="min-width:140px"><label class="fld">Type</label><select class="in" id="evType"><option value="event">Company event</option><option value="milestone">Milestone</option></select></div>
+        <div style="flex:0 0 auto"><button class="btn" id="evAdd" ${me?'':'disabled'}>${me?'+ Add':'Pick name'}</button></div>
+      </div>
+      <div class="mt"><input type="text" id="evDetail" placeholder="Details (optional)…"></div>
+    </div>
+    <div class="calbar">
+      <span class="mlabel">${calRef.toLocaleDateString(undefined,{month:'long',year:'numeric'})}</span>
+      <div class="calnav"><button id="calPrev">‹ Prev</button><button id="calToday">Today</button><button id="calNext">Next ›</button></div>
+    </div>
+    <div class="calgrid">${dows.map(d=>`<div class="caldow">${d}</div>`).join("")}${cells}</div>
+    <p class="hint" style="margin-top:12px">Purple = company event · Pink = birthday · Gold = milestone. Birthdays appear automatically once dates are added.</p>`;
+  document.getElementById("calPrev").onclick=()=>{calRef=new Date(y,m-1,1);render();};
+  document.getElementById("calNext").onclick=()=>{calRef=new Date(y,m+1,1);render();};
+  document.getElementById("calToday").onclick=()=>{calRef=new Date();render();};
+  const add=document.getElementById("evAdd");
+  if(me)add.onclick=async()=>{const t=document.getElementById("evT").value.trim(),d=document.getElementById("evD").value;if(!t||!d)return;state.events.push({id:uid(),title:t,date:d,type:document.getElementById("evType").value,detail:document.getElementById("evDetail").value.trim()});await saveEvents();render();};
+}
+
+/* ---------- Org chart (department-based, with reporting arrows) ---------- */
+function renderOrgChart(){
+  const tagFor=n=>{const t=emp(n).type;return t==='contract'?'<span class="mtag contract">Contract</span>':t==='intern'?'<span class="mtag intern">Intern</span>':'';};
+  const titleOf=n=>n.includes('&')?'Co-Founders':(TITLE[n]||'');
+  const rowHtml=(name,depth,color)=>`<div class="orow ${depth===0?'lead':''}" style="padding-left:${depth*20}px">${depth>0?`<span class="oconn" style="color:${color}">↳</span>`:''}<div class="obody"><div class="onm">${esc(name)} ${tagFor(name)}</div>${titleOf(name)?`<div class="ott">${esc(titleOf(name))}</div>`:''}</div></div>`;
+  const deptBox=dept=>{
+    const o=ORG[dept],col=dColor(dept);let rows="";
+    if(o.shared){
+      rows+=rowHtml(o.heads.join(" & "),0,col);
+      o.shared.forEach(n=>rows+=rowHtml(n,1,col));
+    } else {
+      const walk=(name,depth)=>{rows+=rowHtml(name,depth,col);(o.rep[name]||[]).forEach(c=>walk(c,depth+1));};
+      o.heads.forEach(h=>walk(h,0));
+    }
+    return `<div class="obox"><div class="ohead"><span class="dot" style="background:${col}"></span>${esc(dept)}</div><div class="otree">${rows}</div>${o.note?`<div class="onote">${esc(o.note)}</div>`:''}</div>`;
+  };
+  panel().innerHTML=`<div class="sectionhead"><h2 class="h-script">Org Chart</h2></div>
+    <div class="orgdept-grid">${DEPARTMENTS.map(deptBox).join("")}</div>
+    <p class="hint" style="margin-top:20px;text-align:center">Each department is headed by the name at the top; ↳ shows who reports to whom within it. "Contract" and "Intern" tags note non-permanent roles.</p>`;
+}
+
+/* ---------- Boot ---------- */
+(async()=>{await fbInit();await loadAll();buildMeSelect();render();attachLiveSync();})();
+</script>
+</body>
+</html>
+
+{% endraw %}
