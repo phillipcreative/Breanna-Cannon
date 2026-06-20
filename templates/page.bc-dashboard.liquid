@@ -229,6 +229,16 @@
   .nentry.mine{background:#FBEFF5;border-color:#F2D7E5;align-self:flex-end;}
   .nentry .rm{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:3px;}
   .nentry p{margin:0;font-size:15px;}
+  .evrow{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line-soft);}
+  .evrow:first-of-type{border-top:none;}
+  .evdot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .evdot.event{background:var(--accent);}
+  .evdot.milestone{background:#E0A52A;}
+  .evinfo{display:flex;flex-direction:column;min-width:0;}
+  .evttl{font-size:16px;}
+  .evsub{font-size:12px;color:var(--muted);font-style:italic;}
+  .gcalbtn{margin-left:auto;flex-shrink:0;font-size:13px;font-family:var(--display);font-weight:600;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:6px 13px;text-decoration:none;white-space:nowrap;}
+  .gcalbtn:hover{background:var(--accent-soft);}
   .kudos .khead{font-family:var(--display);font-style:italic;font-size:17px;color:#9A4F86;}
   .kudos .khead b{font-weight:600;font-style:normal;}
   .kudos .ktext{margin:6px 0 0;color:var(--ink-soft);font-size:16px;}
@@ -385,7 +395,7 @@ function attachLiveSync(){
     if(!snap.exists())return;
     let val;try{val=JSON.parse(snap.data().json);}catch(e){return;}
     if(!Array.isArray(val)||JSON.stringify(EMPLOYEES)===JSON.stringify(val))return;
-    EMPLOYEES=val;rebuildDerived();buildMeSelect();render();
+    EMPLOYEES=val;normalizeRoster();rebuildDerived();buildMeSelect();render();
   });
   Object.entries(LIVE_KEYS).forEach(([key,prop])=>{
     FB.fs.onSnapshot(FB.fs.doc(FB.db,"dashboard",docId(key)),snap=>{
@@ -402,24 +412,24 @@ function attachLiveSync(){
 }
 
 /* ---------- Your org (edit anytime) ---------- */
-const DEPARTMENTS=["Social Media / Marketing / Advertising","DTC Customer Service","Operations / Shipping / Logistics / Finance","BC Style Club","Ecomm / Website","Wholesale","Warehouse / Inventory","Design / Production"];
-const DEPT_COLOR={"Ecomm / Website":"#84C734","Social Media / Marketing / Advertising":"#EC2C8F","Design / Production":"#8A3FD1","BC Style Club":"#F2C20E","Warehouse / Inventory":"#2C50DB","DTC Customer Service":"#F2A0C4","Operations / Shipping / Logistics / Finance":"#F0832B","Wholesale":"#19BEB5"};
+const DEPARTMENTS=["Social Media / Marketing / Advertising","DTC Customer Service","Operations / Shipping / Logistics / Finance","BC Style Club / Events","Ecomm / Website","Wholesale","Warehouse / Inventory","Design / Production"];
+const DEPT_COLOR={"Ecomm / Website":"#84C734","Social Media / Marketing / Advertising":"#EC2C8F","Design / Production":"#8A3FD1","BC Style Club / Events":"#F2C20E","Warehouse / Inventory":"#2C50DB","DTC Customer Service":"#F2A0C4","Operations / Shipping / Logistics / Finance":"#F0832B","Wholesale":"#19BEB5"};
 let EMPLOYEES=[
-  {name:"Brianna Cannon",title:"Co-Founder · CEO · Designer · CMO",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","Design / Production","BC Style Club","Wholesale"],reportsTo:null,birthday:""},
+  {name:"Brianna Cannon",title:"Co-Founder · CEO · Designer · CMO",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","Design / Production","BC Style Club / Events","Wholesale"],reportsTo:null,birthday:""},
   {name:"Eric Cannon",title:"Co-Founder · CFO · COO",office:"BCHQ",depts:["Warehouse / Inventory","Operations / Shipping / Logistics / Finance","Wholesale"],reportsTo:null,birthday:""},
   {name:"Lisa Boone-Carris",title:"Warehouse, Inventory & Customer Service Manager",office:"BCHQ",depts:["Warehouse / Inventory","DTC Customer Service","Operations / Shipping / Logistics / Finance"],reportsTo:"Eric Cannon",birthday:""},
   {name:"Isis Agular",title:"Faire Manager · Warehouse Asst. Manager",office:"BCHQ",depts:["Warehouse / Inventory"],reportsTo:"Lisa Boone-Carris",birthday:""},
-  {name:"Rachel Low",title:"Marketing Manager",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","BC Style Club"],reportsTo:"Brianna Cannon",birthday:""},
+  {name:"Rachel Low",title:"Marketing Manager",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","BC Style Club / Events"],reportsTo:"Brianna Cannon",birthday:""},
   {name:"Macie Jones",title:"Fashion Wholesale Director",office:"Dallas WTC",depts:["Wholesale"],reportsTo:"Brianna Cannon",birthday:""},
   {name:"Clare Moorman-Wolfe",title:"Licensing Wholesale Director",office:"Dallas WTC",depts:["Wholesale"],reportsTo:"Brianna Cannon",birthday:""},
   {name:"Bryant Jaquez",title:"Ecomm / Marketing Director",office:"Remote",depts:["Ecomm / Website","Social Media / Marketing / Advertising"],reportsTo:"Brianna Cannon",birthday:""},
-  {name:"Sarah Hamlin",title:"Social Media Coordinator",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","BC Style Club"],reportsTo:"Rachel Low",birthday:""},
+  {name:"Sarah Hamlin",title:"Social Media Coordinator",office:"BCHQ",depts:["Ecomm / Website","Social Media / Marketing / Advertising","BC Style Club / Events"],reportsTo:"Rachel Low",birthday:""},
+  {name:"Rachel Knight",title:"Marketing Support",office:"Flex",depts:["Social Media / Marketing / Advertising"],reportsTo:"Rachel Low",birthday:"",type:"contract",access:false},
   {name:"Jodie Becker",title:"Samples, Production & Licensing Manager",office:"BCHQ",depts:["Design / Production"],reportsTo:"Brianna Cannon",birthday:""},
   {name:"Marketa Pokorney",title:"Designer",office:"Remote",depts:["Design / Production"],reportsTo:"Brianna Cannon",birthday:""},
   {name:"Jillian Patterson",title:"Marketing Intern",office:"BCHQ",depts:["Social Media / Marketing / Advertising"],reportsTo:"Brianna Cannon",birthday:"",type:"intern"},
   {name:"Kevin",title:"Media Buyer",office:"Remote",depts:["Social Media / Marketing / Advertising"],reportsTo:"Rachel Low",birthday:"",type:"contract",access:false},
-  {name:"Eugenia",title:"Marketing Assistant / Klaviyo",office:"Remote",depts:["Social Media / Marketing / Advertising"],reportsTo:"Rachel Low",birthday:"",type:"contract",access:false},
-  {name:"Rachel Knight",title:"Marketing Support",office:"Flex",depts:["Social Media / Marketing / Advertising"],reportsTo:"Rachel Low",birthday:"",type:"contract",access:false}
+  {name:"Eugenia",title:"Marketing Assistant / Klaviyo",office:"Remote",depts:["Social Media / Marketing / Advertising"],reportsTo:"Rachel Low",birthday:"",type:"contract",access:false}
 ];
 const ACCESS=e=>e.access!==false;
 const emp=n=>EMPLOYEES.find(e=>e.name===n)||{};
@@ -427,7 +437,7 @@ const deptsOf=n=>emp(n).depts||[];
 const peopleIn=d=>EMPLOYEES.filter(e=>(e.depts||[]).includes(d)).map(e=>e.name);
 const initials=n=>{const p=String(n).trim().split(/\s+/);return (p.length>1?p[0][0]+p[p.length-1][0]:n.slice(0,2)).toUpperCase();};
 const dColor=d=>DEPT_COLOR[d]||"#9090AE";
-const DEPT_OWNER={"Design / Production":"Brianna Cannon","Social Media / Marketing / Advertising":"Brianna Cannon","Ecomm / Website":"Brianna Cannon","BC Style Club":"Brianna Cannon","Warehouse / Inventory":"Eric Cannon","Customer Service":"Eric Cannon","Operations / Logistics / Finance":"Eric Cannon","Wholesale":"Shared"};
+const DEPT_OWNER={"Design / Production":"Brianna Cannon","Social Media / Marketing / Advertising":"Brianna Cannon","Ecomm / Website":"Brianna Cannon","BC Style Club / Events":"Brianna Cannon","Warehouse / Inventory":"Eric Cannon","Customer Service":"Eric Cannon","Operations / Logistics / Finance":"Eric Cannon","Wholesale":"Shared"};
 const isFounder=n=>REPORTS_TO[n]===null;
 const isAdmin=()=>!!me&&isFounder(me);
 function rankOf(n){const t=(TITLE[n]||"").toLowerCase();
@@ -493,7 +503,17 @@ async function loadAll(){
   state.news=n||[];state.assignments=a||[];state.notes=no||[];state.questions=q||[];state.seen=sn||{};me=name||"";
   state.kudos=k||[];state.featured=f||[];state.events=ev||[];
   if(Array.isArray(roster)&&roster.length)EMPLOYEES=roster;
+  normalizeRoster();
   rebuildDerived();
+}
+/* Applies structural roster fixes to whatever list loaded (seed or saved): renames the
+   BC Style Club department to its new label, and keeps Rachel Knight directly below Sarah Hamlin. */
+function normalizeRoster(){
+  const OLD="BC Style Club",NEW="BC Style Club / Events";
+  EMPLOYEES.forEach(e=>{if(Array.isArray(e.depts))e.depts=e.depts.map(d=>d===OLD?NEW:d);});
+  if(state&&Array.isArray(state.assignments))state.assignments.forEach(a=>{if(a.dept===OLD)a.dept=NEW;});
+  const ri=EMPLOYEES.findIndex(e=>e.name==="Rachel Knight"),si=EMPLOYEES.findIndex(e=>e.name==="Sarah Hamlin");
+  if(ri>=0&&si>=0&&ri!==si+1){const[rk]=EMPLOYEES.splice(ri,1);const ns=EMPLOYEES.findIndex(e=>e.name==="Sarah Hamlin");EMPLOYEES.splice(ns+1,0,rk);}
 }
 const saveNews=()=>dbSet("bc:news",state.news);
 const saveAssign=()=>dbSet("bc:assignments",state.assignments);
@@ -745,8 +765,9 @@ function renderAssignments(){
 function renderTeam(){
   const officeClass=o=>o==='Dallas WTC'?'dallas':o==='Remote'?'remote':o==='Flex'?'flex':'bchq';
   const officeChip=n=>{const o=emp(n).office;return o?`<span class="poffice ${officeClass(o)}"><span class="pin">📍</span>${esc(o)}</span>`:'';};
+  const orderedDepts=DEPARTMENTS.map((d,i)=>({d,i,n:peopleIn(d).length})).sort((a,b)=>b.n-a.n||a.i-b.i).map(x=>x.d);
   panel().innerHTML=`<div class="sectionhead"><h2 class="h-script">Team & Departments</h2></div>
-    <div class="deptgrid">${DEPARTMENTS.map(d=>`<div class="card deptcard"><h3><span class="dot" style="background:${dColor(d)}"></span>${esc(d)}</h3>${peopleIn(d).map(p=>`<div class="person" data-person="${p}"><div class="avatar">${initials(p)}</div><div class="pinfo"><span class="pname">${esc(p)}</span>${TITLE[p]?`<span class="ptitle">${esc(TITLE[p])}</span>`:''}</div>${officeChip(p)}</div>`).join("")}</div>`).join("")}</div>
+    <div class="deptgrid">${orderedDepts.map(d=>`<div class="card deptcard"><h3><span class="dot" style="background:${dColor(d)}"></span>${esc(d)}</h3>${peopleIn(d).map(p=>`<div class="person" data-person="${p}"><div class="avatar">${initials(p)}</div><div class="pinfo"><span class="pname">${esc(p)}</span>${TITLE[p]?`<span class="ptitle">${esc(TITLE[p])}</span>`:''}</div>${officeChip(p)}</div>`).join("")}</div>`).join("")}</div>
     <p class="hint" style="margin-top:18px;text-align:center">📍 Office — <strong>BCHQ</strong> · <strong>Dallas WTC</strong> · <strong>Remote</strong> · <strong>Flex</strong></p>`;
   panel().querySelectorAll("[data-person]").forEach(el=>el.onclick=()=>{profileView=el.dataset.person;render();});
 }
@@ -796,7 +817,7 @@ function upcomingItems(days){
   const today=new Date();today.setHours(0,0,0,0);
   const horizon=new Date(today);horizon.setDate(horizon.getDate()+days);
   const out=[];
-  state.events.forEach(e=>{const d=new Date(e.date+"T00:00:00");if(d>=today&&d<=horizon)out.push({date:d,icon:e.type==='milestone'?'🎉':'📌',label:e.title,type:e.type});});
+  for(let i=0;i<=days;i++){const dt=new Date(today);dt.setDate(today.getDate()+i);state.events.forEach(e=>{if(occursOn(e,dt))out.push({date:new Date(dt),icon:e.type==='milestone'?'🎉':'📌',label:e.title,type:e.type});});}
   Object.entries(BIRTHDAYS).forEach(([name,md])=>{
     if(!md)return;const[mm,dd]=md.split("-").map(Number);if(!mm||!dd)return;
     let d=new Date(today.getFullYear(),mm-1,dd);if(d<today)d=new Date(today.getFullYear()+1,mm-1,dd);
@@ -810,6 +831,55 @@ function upcomingItems(days){
   });
 }
 
+/* ---------- Recurrence + Google Calendar links ---------- */
+const WD=["SU","MO","TU","WE","TH","FR","SA"];
+const WDNAME=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const ordinal=n=>(["","1st","2nd","3rd","4th","5th"][n])||(n+"th");
+function occursOn(e,dt){
+  const s=new Date(e.date+"T00:00:00");
+  const sMid=new Date(s.getFullYear(),s.getMonth(),s.getDate());
+  const d=new Date(dt.getFullYear(),dt.getMonth(),dt.getDate());
+  if(d<sMid)return false;
+  const r=e.recur||"";
+  if(!r)return d.getTime()===sMid.getTime();
+  if(r==="WEEKLY")return d.getDay()===s.getDay();
+  if(r==="MONTHLY_DATE")return d.getDate()===s.getDate();
+  if(r==="MONTHLY_NTH")return d.getDay()===s.getDay()&&Math.ceil(d.getDate()/7)===Math.ceil(s.getDate()/7);
+  if(r==="YEARLY")return d.getMonth()===s.getMonth()&&d.getDate()===s.getDate();
+  return false;
+}
+function occurrencesInMonth(e,y,m){const dim=new Date(y,m+1,0).getDate();const out=[];for(let d=1;d<=dim;d++){if(occursOn(e,new Date(y,m,d)))out.push(d);}return out;}
+function recurLabel(e){
+  const s=new Date(e.date+"T00:00:00");
+  switch(e.recur){
+    case"WEEKLY":return"Repeats weekly on "+WDNAME[s.getDay()];
+    case"MONTHLY_DATE":return"Repeats monthly on the "+ordinal(s.getDate())+" of the month";
+    case"MONTHLY_NTH":return"Repeats monthly on the "+ordinal(Math.ceil(s.getDate()/7))+" "+WDNAME[s.getDay()];
+    case"YEARLY":return"Repeats yearly";
+    default:return"";
+  }
+}
+function gcalRecur(e){
+  const s=new Date(e.date+"T00:00:00");
+  switch(e.recur){
+    case"WEEKLY":return"RRULE:FREQ=WEEKLY;BYDAY="+WD[s.getDay()];
+    case"MONTHLY_DATE":return"RRULE:FREQ=MONTHLY;BYMONTHDAY="+s.getDate();
+    case"MONTHLY_NTH":return"RRULE:FREQ=MONTHLY;BYDAY="+Math.ceil(s.getDate()/7)+WD[s.getDay()];
+    case"YEARLY":return"RRULE:FREQ=YEARLY";
+    default:return"";
+  }
+}
+function gcalUrl(e){
+  const iso=e.date;if(!iso)return"#";
+  const s=iso.replace(/-/g,"");
+  const nx=new Date(iso+"T00:00:00");nx.setDate(nx.getDate()+1);
+  const en=nx.getFullYear()+String(nx.getMonth()+1).padStart(2,"0")+String(nx.getDate()).padStart(2,"0");
+  const p=new URLSearchParams({action:"TEMPLATE",text:e.title||"Event",dates:s+"/"+en});
+  if(e.detail)p.set("details",e.detail);
+  const rr=gcalRecur(e);if(rr)p.set("recur",rr);
+  return"https://calendar.google.com/calendar/render?"+p.toString();
+}
+
 /* ---------- Calendar ---------- */
 function renderCalendar(){
   const y=calRef.getFullYear(),m=calRef.getMonth();
@@ -817,7 +887,7 @@ function renderCalendar(){
   const prevDim=new Date(y,m,0).getDate();
   const todayStr=todayISO();
   const evByDay={};
-  state.events.forEach(e=>{const d=new Date(e.date+"T00:00:00");if(d.getFullYear()===y&&d.getMonth()===m){(evByDay[d.getDate()]=evByDay[d.getDate()]||[]).push({type:e.type,title:e.title,id:e.id,detail:e.detail});}});
+  state.events.forEach(e=>{occurrencesInMonth(e,y,m).forEach(day=>{(evByDay[day]=evByDay[day]||[]).push({type:e.type,title:e.title,id:e.id,detail:e.detail,recur:e.recur});});});
   Object.entries(BIRTHDAYS).forEach(([name,md])=>{if(!md)return;const[mm,dd]=md.split("-").map(Number);if(mm-1===m&&dd){(evByDay[dd]=evByDay[dd]||[]).push({type:'birthday',title:`🎂 ${name}`});}});
   const dows=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
   let cells="";
@@ -825,7 +895,7 @@ function renderCalendar(){
   for(let d=1;d<=dim;d++){
     const iso=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const evs=evByDay[d]||[];
-    cells+=`<div class="calcell ${iso===todayStr?'today':''}"><span class="dnum">${d}</span>${evs.map(e=>`<span class="calev ${e.type}" title="${esc(e.detail||e.title)}">${esc(e.title)}</span>`).join("")}</div>`;
+    cells+=`<div class="calcell ${iso===todayStr?'today':''}"><span class="dnum">${d}</span>${evs.map(e=>`<span class="calev ${e.type}" title="${esc(e.detail||e.title)}${e.recur?' (repeats)':''}">${e.recur?'↻ ':''}${esc(e.title)}</span>`).join("")}</div>`;
   }
   const total=start+dim;for(let i=total;i<Math.ceil(total/7)*7;i++)cells+=`<div class="calcell dim"><span class="dnum">${i-total+1}</span></div>`;
   panel().innerHTML=`
@@ -834,6 +904,7 @@ function renderCalendar(){
         <div class="col" style="min-width:200px"><label class="fld">Event</label><input type="text" id="evT" placeholder="e.g. Fall line photoshoot"></div>
         <div class="col"><label class="fld">Date</label><input type="date" id="evD"></div>
         <div class="col" style="min-width:140px"><label class="fld">Type</label><select class="in" id="evType"><option value="event">Company event</option><option value="milestone">Milestone</option></select></div>
+        <div class="col" style="min-width:200px"><label class="fld">Repeat</label><select class="in" id="evRecur"><option value="">One-time</option><option value="WEEKLY">Weekly (same weekday)</option><option value="MONTHLY_DATE">Monthly (same date)</option><option value="MONTHLY_NTH">Monthly (Nth weekday — e.g. 1st Monday)</option><option value="YEARLY">Yearly</option></select></div>
         <div style="flex:0 0 auto"><button class="btn" id="evAdd" ${me?'':'disabled'}>${me?'+ Add':'Pick name'}</button></div>
       </div>
       <div class="mt"><input type="text" id="evDetail" placeholder="Details (optional)…"></div>
@@ -843,12 +914,13 @@ function renderCalendar(){
       <div class="calnav"><button id="calPrev">‹ Prev</button><button id="calToday">Today</button><button id="calNext">Next ›</button></div>
     </div>
     <div class="calgrid">${dows.map(d=>`<div class="caldow">${d}</div>`).join("")}${cells}</div>
-    <p class="hint" style="margin-top:12px">Purple = company event · Pink = birthday · Gold = milestone. Birthdays appear automatically once dates are added.</p>`;
+    <p class="hint" style="margin-top:12px">Purple = company event · Pink = birthday · Gold = milestone · ↻ = repeats. Birthdays appear automatically once dates are added.</p>
+    ${(()=>{const list=state.events.map(e=>({e,days:occurrencesInMonth(e,y,m)})).filter(x=>x.days.length).sort((a,b)=>a.days[0]-b.days[0]);return list.length?`<div class="card" style="margin-top:18px"><div class="sectionhead"><h2 class="h-script">Events this month</h2></div>${list.map(({e,days})=>{const dlabel=days.length>1?`${days.length} times this month`:new Date(y,m,days[0]).toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});const rl=recurLabel(e);return `<div class="evrow"><span class="evdot ${e.type}"></span><div class="evinfo"><span class="evttl">${esc(e.title)}</span><span class="evsub">${dlabel}${e.detail?' · '+esc(e.detail):''}${rl?` · ${esc(rl)}`:''}</span></div><a class="gcalbtn" href="${gcalUrl(e)}" target="_blank" rel="noopener">＋ Google Calendar</a></div>`;}).join("")}</div>`:"";})()}`;
   document.getElementById("calPrev").onclick=()=>{calRef=new Date(y,m-1,1);render();};
   document.getElementById("calNext").onclick=()=>{calRef=new Date(y,m+1,1);render();};
   document.getElementById("calToday").onclick=()=>{calRef=new Date();render();};
   const add=document.getElementById("evAdd");
-  if(me)add.onclick=async()=>{const t=document.getElementById("evT").value.trim(),d=document.getElementById("evD").value;if(!t||!d)return;state.events.push({id:uid(),title:t,date:d,type:document.getElementById("evType").value,detail:document.getElementById("evDetail").value.trim()});await saveEvents();render();};
+  if(me)add.onclick=async()=>{const t=document.getElementById("evT").value.trim(),d=document.getElementById("evD").value;if(!t||!d)return;state.events.push({id:uid(),title:t,date:d,type:document.getElementById("evType").value,detail:document.getElementById("evDetail").value.trim(),recur:document.getElementById("evRecur").value});await saveEvents();render();};
 }
 
 /* ---------- Manage Team (admin only) ---------- */
