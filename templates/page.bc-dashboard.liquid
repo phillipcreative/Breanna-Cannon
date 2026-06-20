@@ -222,6 +222,13 @@
   .mgrow:first-child{border-top:none;}
   .mgacts{margin-left:auto;display:flex;gap:8px;flex-shrink:0;}
   .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);}
+  .note.unread{box-shadow:0 0 0 2px var(--accent-soft);}
+  .newtag{display:inline-block;margin-left:8px;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--over);padding:2px 8px;border-radius:999px;vertical-align:middle;}
+  .nthread{display:flex;flex-direction:column;gap:9px;margin:10px 0 4px;}
+  .nentry{background:var(--paper);border:1px solid var(--line-soft);border-radius:11px;padding:9px 13px;max-width:88%;align-self:flex-start;}
+  .nentry.mine{background:#FBEFF5;border-color:#F2D7E5;align-self:flex-end;}
+  .nentry .rm{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:3px;}
+  .nentry p{margin:0;font-size:15px;}
   .kudos .khead{font-family:var(--display);font-style:italic;font-size:17px;color:#9A4F86;}
   .kudos .khead b{font-weight:600;font-style:normal;}
   .kudos .ktext{margin:6px 0 0;color:var(--ink-soft);font-size:16px;}
@@ -501,7 +508,13 @@ const saveRoster=()=>dbSet("bc:roster",EMPLOYEES);
 /* ---------- Notifications ---------- */
 const myAssignments=p=>state.assignments.filter(a=>a.assignee===p);
 const newAssignmentsFor=p=>{const s=state.seen[p]||[];return myAssignments(p).filter(a=>!a.done&&!s.includes(a.id));};
-const inboxFor=p=>state.notes.filter(x=>x.to===p&&!x.dismissed).sort((a,b)=>b.ts-a.ts);
+const noteLastTs=n=>{const r=(n.replies&&n.replies.length)?n.replies[n.replies.length-1].ts:0;return Math.max(n.ts||0,r||0);};
+const noteLastAuthor=n=>(n.replies&&n.replies.length)?n.replies[n.replies.length-1].from:n.from;
+const noteHidden=(n,p)=>(n.hiddenFor&&n.hiddenFor.includes(p))||(n.dismissed&&!n.hiddenFor&&p===n.to);
+const noteUnread=(n,p)=>noteLastAuthor(n)!==p&&noteLastTs(n)>((n.seen&&n.seen[p])||0);
+const inboxFor=p=>state.notes.filter(x=>(x.to===p||x.from===p)&&!noteHidden(x,p)).sort((a,b)=>noteLastTs(b)-noteLastTs(a));
+const inboxUnread=p=>inboxFor(p).filter(n=>noteUnread(n,p)).length;
+function markNotesSeen(p){if(!p)return;let changed=false;state.notes.forEach(n=>{if((n.to===p||n.from===p)&&!noteHidden(n,p)){n.seen=n.seen||{};const lt=noteLastTs(n);if((n.seen[p]||0)!==lt){n.seen[p]=lt;changed=true;}}});if(changed)saveNotes();}
 function markAssignmentsSeen(p){if(!p)return;state.seen[p]=myAssignments(p).map(a=>a.id);saveSeen();}
 
 /* ---------- Masthead / stat band / sidebar ---------- */
@@ -516,7 +529,7 @@ function buildMeSelect(){
   sel.onchange=async()=>{me=sel.value;await dbSet("bc:me",me,false);render();};
 }
 function renderSidebar(){
-  const attn=me?(newAssignmentsFor(me).length+inboxFor(me).length):0;
+  const attn=me?(newAssignmentsFor(me).length+inboxUnread(me)):0;
   const openCt=state.assignments.filter(x=>!x.done).length;
   const cnt={home:"",mydash:attn,assignments:openCt,calendar:"",team:"",orgchart:"",progress:"",questions:state.questions.length};
   let html=`<div class="navhead caps">Views</div>`;
@@ -585,7 +598,7 @@ function renderHome(){
   const kud=state.kudos.slice().sort((a,b)=>b.ts-a.ts);
   const up=upcomingItems(30);
   let greet;
-  if(me){const open=myAssignments(me).filter(a=>!a.done).length,inb=inboxFor(me).length,nw=newAssignmentsFor(me).length;
+  if(me){const open=myAssignments(me).filter(a=>!a.done).length,inb=inboxUnread(me),nw=newAssignmentsFor(me).length;
     const bits=[];if(open)bits.push(`${open} open task${open>1?'s':''}`);if(inb)bits.push(`${inb} note${inb>1?'s':''} waiting`);
     greet=`<div class="card greet"><div><div class="g-name">Hello, ${esc(String(me).split(" ")[0])}.</div><div class="g-sub">${bits.length?bits.join(" · "):"You're all caught up."}${nw?` · <strong style="color:var(--over)">${nw} new</strong>`:""}</div></div><button class="btn" id="toMine">Open my dashboard</button></div>`;
   } else greet=`<div class="card greet"><div><div class="g-name">Welcome to the BC Dashboard.</div><div class="g-sub">Choose your name, top right, to see your tasks and notes.</div></div></div>`;
@@ -660,18 +673,22 @@ function renderMyDash(){
     ${recHtml}
     <div class="sectionhead" style="margin-top:30px"><h2 class="h-script">Tasks I've Assigned</h2></div>
     <div class="card">${assigned.length?assigned.map(a=>renderTask(a,false)).join(""):`<div class="empty"><div class="big">You haven't assigned anything yet</div>Tasks you assign to others — and whether they're done — will show up here.</div>`}</div>`;
-  wireTasks();wireNotes();markAssignmentsSeen(me);renderSidebar();
+  wireTasks();wireNotes();markAssignmentsSeen(me);markNotesSeen(me);renderSidebar();
 }
 
 /* ---------- Sticky notes ---------- */
 function renderNote(n){
-  return `<div class="note"><div class="nmeta">From ${esc(n.from)} · ${timeAgo(n.ts)}</div><p class="ntext">${esc(n.text)}</p>
-    ${n.replies&&n.replies.length?`<div class="nreplies">${n.replies.map(r=>`<div class="nreply"><div class="rm">${esc(r.from)}</div><p>${esc(r.text)}</p></div>`).join("")}</div>`:""}
+  const other=(n.from===me)?n.to:n.from;
+  const unread=noteUnread(n,me);
+  const entries=[{from:n.from,text:n.text,ts:n.ts}].concat(n.replies||[]);
+  const body=entries.map(e=>`<div class="nentry ${e.from===me?'mine':''}"><div class="rm">${esc(e.from)} · ${timeAgo(e.ts)}</div><p>${esc(e.text)}</p></div>`).join("");
+  return `<div class="note ${unread?'unread':''}"><div class="nmeta">Conversation with ${esc(other)}${unread?' <span class="newtag">New</span>':''}</div>
+    <div class="nthread">${body}</div>
     <div class="nactions"><input type="text" placeholder="Reply…" data-rin="${n.id}"><button class="nbtn" data-reply="${n.id}">Reply</button><button class="nbtn dismiss" data-dismiss="${n.id}">Dismiss</button></div></div>`;
 }
 function wireNotes(){
-  panel().querySelectorAll("[data-reply]").forEach(b=>b.onclick=async()=>{const inp=panel().querySelector(`[data-rin="${b.dataset.reply}"]`);const v=inp.value.trim();if(!v)return;const n=state.notes.find(x=>x.id===b.dataset.reply);n.replies=n.replies||[];n.replies.push({from:me||'someone',text:v,ts:Date.now()});await saveNotes();render();});
-  panel().querySelectorAll("[data-dismiss]").forEach(b=>b.onclick=async()=>{const n=state.notes.find(x=>x.id===b.dataset.dismiss);n.dismissed=true;await saveNotes();render();});
+  panel().querySelectorAll("[data-reply]").forEach(b=>b.onclick=async()=>{const inp=panel().querySelector(`[data-rin="${b.dataset.reply}"]`);const v=inp.value.trim();if(!v)return;const n=state.notes.find(x=>x.id===b.dataset.reply);n.replies=n.replies||[];n.replies.push({from:me||'someone',text:v,ts:Date.now()});n.hiddenFor=[];n.seen=n.seen||{};n.seen[me]=Date.now();await saveNotes();render();});
+  panel().querySelectorAll("[data-dismiss]").forEach(b=>b.onclick=async()=>{const n=state.notes.find(x=>x.id===b.dataset.dismiss);n.hiddenFor=n.hiddenFor||[];if(!n.hiddenFor.includes(me))n.hiddenFor.push(me);await saveNotes();render();});
 }
 
 /* ---------- Assignments ---------- */
@@ -746,7 +763,7 @@ function renderProfile(name){
     </div>`;
   document.getElementById("back").onclick=()=>{profileView=null;render();};
   const send=document.getElementById("sendNote");
-  if(me)send.onclick=async()=>{const t=document.getElementById("noteText").value.trim();if(!t)return;state.notes.push({id:uid(),to:name,from:me,text:t,ts:Date.now(),replies:[],dismissed:false});await saveNotes();alert("Note sent to "+name+".");render();};
+  if(me)send.onclick=async()=>{const t=document.getElementById("noteText").value.trim();if(!t)return;state.notes.push({id:uid(),to:name,from:me,text:t,ts:Date.now(),replies:[],hiddenFor:[],seen:{[me]:Date.now()}});await saveNotes();alert("Note sent to "+name+".");render();};
   wireTasks();
 }
 
