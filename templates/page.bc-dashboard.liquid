@@ -241,7 +241,19 @@
   .gcalbtn:hover{background:var(--accent-soft);}
   .evacts{margin-left:auto;display:flex;gap:8px;align-items:center;flex-shrink:0;}
   .pill.recur{background:#EFEAFB;color:#6A4FB0;}
+  .pills .reassign{font-family:var(--body);font-size:13px;border:1px solid var(--line);border-radius:999px;padding:3px 26px 3px 11px;background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><polyline points='1,1 5,5 9,1' fill='none' stroke='%23b8889f' stroke-width='1.5'/></svg>") no-repeat right 10px center;color:var(--accent);font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;}
+  .pills .reassign:hover{background-color:var(--accent-soft);}
   .lastdone{font-size:12px;color:var(--muted);font-style:italic;margin-top:7px;}
+  body.locked .mast,body.locked .verseband,body.locked .shell{display:none;}
+  #authgate{display:none;}
+  body.locked #authgate{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;background:linear-gradient(160deg,#FBF0F5,#F3EEFB);}
+  .authcard{background:#fff;border:1px solid var(--line-soft);border-radius:18px;padding:40px 34px;max-width:440px;width:100%;text-align:center;box-shadow:0 12px 40px rgba(120,80,120,.12);}
+  .authbrand{font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:.04em;}
+  .authsub{font-family:var(--display);font-size:13px;letter-spacing:.18em;color:var(--muted);margin-top:4px;margin-bottom:22px;}
+  .authtext{font-size:16px;color:var(--ink);margin-bottom:20px;line-height:1.5;}
+  .authmsg{font-size:13px;color:var(--over);margin-top:12px;min-height:16px;}
+  .signout{margin-left:14px;align-self:center;background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--display);font-size:12px;letter-spacing:.04em;padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;}
+  .signout:hover{background:#fff;}
   .kudos .khead{font-family:var(--display);font-style:italic;font-size:17px;color:#9A4F86;}
   .kudos .khead b{font-weight:600;font-style:normal;}
   .kudos .ktext{margin:6px 0 0;color:var(--ink-soft);font-size:16px;}
@@ -256,6 +268,7 @@
   .urow .uicon{font-size:18px;width:24px;text-align:center;}
   .urow .ulabel{flex:1;font-size:16px;}
   .urow .uwhen{font-size:13px;color:var(--muted);font-style:italic;}
+  .urow .gcalbtn{margin-left:6px;padding:4px 11px;font-size:12px;}
 
   /* Calendar */
   .calbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap;}
@@ -325,7 +338,8 @@
   @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
 </style>
 </head>
-<body>
+<body class="locked">
+<div id="authgate"></div>
 <header class="mast">
   <div class="mast-inner">
     <div class="mast-left">
@@ -336,6 +350,7 @@
       <div class="dayname caps" id="dayName"></div>
       <div class="datefull caps" id="dateFull"></div>
       <div class="whoami"><span class="caps">You are</span><select id="meSelect"></select></div>
+      <button id="signOut" class="signout" style="display:none">Sign out</button>
     </div>
   </div>
 </header>
@@ -373,9 +388,10 @@ async function fbInit(){
   try{
     const a=await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js");
     const f=await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js");
+    const au=await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js");
     FB.app=a.initializeApp(firebaseConfig);
     FB.db=f.getFirestore(FB.app);
-    FB.fs=f; FB.ready=true;
+    FB.fs=f; FB.auth=au.getAuth(FB.app); FB.authMod=au; FB.ready=true;
   }catch(e){ console.warn("Firebase unavailable — using in-memory store for this session:",e); FB.ready=false; }
 }
 function localGet(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return (k in mem)?mem[k]:null;}}
@@ -490,6 +506,7 @@ const VIEWS=[["home","Home"],["mydash","My Dashboard"],["assignments","Assignmen
 let state={company:"BRIANNA CANNON",news:[],assignments:[],notes:[],questions:[],seen:{},kudos:[],featured:[],events:[]};
 let me="",activeView="home",profileView=null,filterDept="",filterPerson="",calRef=new Date();
 let mgEditing=undefined; // undefined = no form open, null = adding new, string = editing that name
+let mgRemoving=null; // name of person being removed (offboarding flow), or null
 let evEditing=null; // event id currently being edited on the calendar, or null
 
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
@@ -575,7 +592,7 @@ function renderSidebar(){
     return `<div class="navitem deptitem ${(activeView==='assignments'&&filterDept===d)?'active':''}" data-dept="${esc(d)}"><span class="dot" style="background:${dColor(d)}"></span><span class="nm">${esc(d)}</span><span class="ct">${open||""}</span></div>`;}).join("");
   const sb=document.getElementById("sidebar");
   sb.innerHTML=html;
-  sb.querySelectorAll("[data-view]").forEach(el=>el.onclick=()=>{activeView=el.dataset.view;profileView=null;mgEditing=undefined;evEditing=null;if(el.dataset.view!=='assignments'){filterDept="";filterPerson="";}render();});
+  sb.querySelectorAll("[data-view]").forEach(el=>el.onclick=()=>{activeView=el.dataset.view;profileView=null;mgEditing=undefined;mgRemoving=null;evEditing=null;if(el.dataset.view!=='assignments'){filterDept="";filterPerson="";}render();});
   sb.querySelectorAll("[data-dept]").forEach(el=>el.onclick=()=>{activeView='assignments';profileView=null;filterDept=el.dataset.dept;filterPerson="";render();});
 }
 document.getElementById("company").addEventListener("click",async()=>{const v=prompt("Hub name:",state.company);if(v&&v.trim()){state.company=v.trim();await dbSet("bc:company",state.company);renderMast();}});
@@ -604,6 +621,9 @@ function duePill(a){
 }
 function renderTask(a,isNew){
   const border=a.dept?dColor(a.dept):"#CFCDE0";
+  const assigneeControl=me
+    ? `<select class="reassign" data-reassign="${a.id}" title="Reassign this task"><option value="" ${!a.assignee?'selected':''}>— Unassigned —</option>${EMPLOYEES.filter(ACCESS).map(e=>`<option value="${esc(e.name)}" ${a.assignee===e.name?'selected':''}>${esc(e.name)}</option>`).join("")}</select>`
+    : (a.assignee?`<span class="pill who">${esc(a.assignee)}</span>`:"");
   return `<div class="task ${a.done?'done':''}" style="border-left-color:${border}">
     <div class="check ${a.done?'on':''}" data-toggle="${a.id}" role="checkbox" aria-checked="${a.done}" tabindex="0" title="Mark complete"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"></polyline></svg></div>
     <div class="body"><div class="head"><span class="title">${esc(a.title)}${isNew?'<span class="newtag">New</span>':''}</span><button class="del" data-del="${a.id}">Delete</button></div>
@@ -611,7 +631,7 @@ function renderTask(a,isNew){
     <div class="pills">
       ${isHigh(a)?'<span class="pill high">High</span>':""}
       ${a.recur?`<span class="pill recur">↻ ${esc(recurShort(a.recur))}</span>`:""}
-      ${a.assignee?`<span class="pill who">${esc(a.assignee)}</span>`:""}
+      ${assigneeControl}
       ${a.dept?`<span class="pill dept"><span class="dot" style="background:${dColor(a.dept)}"></span>${esc(a.dept)}</span>`:""}
       ${duePill(a)}
       ${a.done?`<span class="pill doneby">✓ done by ${esc(a.doneBy||'someone')}</span>`:""}
@@ -624,6 +644,7 @@ function wireTasks(){
     await saveAssign();render();};
   panel().querySelectorAll("[data-toggle]").forEach(c=>{c.onclick=()=>toggle(c.dataset.toggle);c.onkeydown=e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();toggle(c.dataset.toggle);}};});
   panel().querySelectorAll(".task [data-del]").forEach(b=>b.onclick=async()=>{if(!confirm("Delete this assignment?"))return;state.assignments=state.assignments.filter(a=>a.id!==b.dataset.del);await saveAssign();render();});
+  panel().querySelectorAll("[data-reassign]").forEach(s=>s.onchange=async()=>{const a=state.assignments.find(x=>x.id===s.dataset.reassign);if(!a)return;a.assignee=s.value;await saveAssign();render();});
 }
 
 /* ---------- Home ---------- */
@@ -639,7 +660,8 @@ function renderHome(){
     greet=`<div class="card greet"><div><div class="g-name">Hello, ${esc(String(me).split(" ")[0])}.</div><div class="g-sub">${bits.length?bits.join(" · "):"You're all caught up."}${nw?` · <strong style="color:var(--over)">${nw} new</strong>`:""}</div></div><button class="btn" id="toMine">Open my dashboard</button></div>`;
   } else greet=`<div class="card greet"><div><div class="g-name">Welcome to the BC Dashboard.</div><div class="g-sub">Choose your name, top right, to see your tasks and notes.</div></div></div>`;
 
-  const upHtml = up.length?`<div class="card upcoming"><h2>Upcoming</h2>${up.map(u=>`<div class="urow"><span class="uicon">${u.icon}</span><span class="ulabel">${esc(u.label)}</span><span class="uwhen">${esc(u.when)}</span></div>`).join("")}</div>`:"";
+  const upHtml = `<div class="sectionhead" style="margin-top:26px"><h2 class="h-script">Important Dates</h2></div>
+    <div class="card">${up.length?up.map(u=>`<div class="urow"><span class="uicon">${u.icon}</span><span class="ulabel">${esc(u.label)}</span><span class="uwhen">${esc(u.when)}</span>${u.cal?`<a class="gcalbtn" href="${gcalUrl(u.cal)}" target="_blank" rel="noopener">＋ Calendar</a>`:''}</div>`).join(""):`<div class="empty"><div class="big">Nothing coming up</div>Add events on the Calendar and they'll show here.</div>`}</div>`;
 
   const featHtml = feat.length?`<div class="featgrid">${feat.map(f=>{
     const img=isImageUrl(f.url);
@@ -648,37 +670,40 @@ function renderHome(){
       <div class="fbody"><div class="ftitle">${esc(f.title)}</div><div class="fmeta">${esc(f.author)} · ${timeAgo(f.ts)}</div>${f.note?`<div style="font-size:14px;color:var(--ink-soft)">${esc(f.note)}</div>`:""}
       <div class="flinks"><a href="${esc(f.url)}" target="_blank" rel="noopener">View</a><a href="${esc(f.url)}" download target="_blank" rel="noopener">Download</a></div>
       <button class="del" data-fdel="${f.id}">Delete</button></div></div>`;}).join("")}</div>`
-    :`<div class="card empty"><div class="big">No newsletters or graphics yet</div>Paste a link to a PDF or image above — it'll appear here to view or download.</div>`;
+    :`<div class="card empty"><div class="big">No newsletters or graphics yet</div>Paste a link to a PDF or image below — it'll appear here to view or download.</div>`;
 
   const kudHtml = kud.length?kud.map(k=>`<div class="kudos"><div class="khead"><span class="kstar">★</span> For <b>${esc(k.to)}</b></div><div class="ktext">"${esc(k.text)}"</div><div class="kmeta">— ${esc(k.from)} · ${timeAgo(k.ts)}</div></div>`).join("")
-    :`<div class="card empty"><div class="big">No kudos yet</div>Be the first to recognize a teammate above.</div>`;
+    :`<div class="card empty"><div class="big">No kudos yet</div>Be the first to recognize a teammate below.</div>`;
+
+  const newsHtml = `<div class="card">${feed.length?feed.map(n=>`<div class="item"><div class="head"><h3>${esc(n.title)}</h3><button class="del" data-del="${n.id}">Delete</button></div><div class="meta">${esc(n.author)} · ${timeAgo(n.ts)}</div>${n.body?`<p>${esc(n.body)}</p>`:""}</div>`).join(""):`<div class="empty"><div class="big">No news yet</div>Post the first update to get the team in the loop.</div>`}</div>`;
 
   panel().innerHTML=greet+upHtml+`
-    <div class="card composer"><div class="eyebrow">— Newsletter / graphic —</div>
-      <input type="text" id="fT" placeholder="Title (e.g. June Newsletter)">
-      <div class="mt"><input type="text" id="fU" placeholder="Paste a link to the PDF or image…"></div>
-      <div class="mt"><input type="text" id="fN" placeholder="A short note (optional)…"></div>
-      <div class="mt" style="text-align:right"><button class="btn" id="fPost" ${me?'':'disabled'}>${me?'Post to home':'Pick your name'}</button></div>
+    <div class="sectionhead" style="margin-top:30px"><h2 class="h-script">Company News</h2></div>
+    ${newsHtml}
+    <div class="card composer" style="margin-top:14px"><div class="eyebrow">— Share with the team —</div>
+      <input type="text" id="nT" placeholder="What's the news?">
+      <div class="mt"><textarea id="nB" placeholder="Details (optional)…"></textarea></div>
+      <div class="mt" style="text-align:right"><button class="btn" id="nPost" ${me?'':'disabled'}>${me?'Post update':'Pick your name'}</button></div>
     </div>
-    ${featHtml}
 
     <div class="sectionhead" style="margin-top:30px"><h2 class="h-script">Recognition & Kudos</h2></div>
-    <div class="card composer"><div class="eyebrow">— Give a shout-out —</div>
+    ${kudHtml}
+    <div class="card composer" style="margin-top:14px"><div class="eyebrow">— Give a shout-out —</div>
       <div class="row">
         <div class="col" style="min-width:160px"><label class="fld">For</label><select class="in" id="kWho"><option value="">— Teammate —</option>${EMPLOYEES.filter(ACCESS).map(e=>`<option value="${e.name}">${e.name}</option>`).join("")}</select></div>
         <div class="col" style="min-width:220px"><label class="fld">Kudos</label><input type="text" id="kMsg" placeholder="What did they do well?"></div>
         <div style="flex:0 0 auto"><button class="btn" id="kPost" ${me?'':'disabled'}>${me?'Send kudos':'Pick your name'}</button></div>
       </div>
     </div>
-    ${kudHtml}
 
-    <div class="sectionhead" style="margin-top:30px"><h2 class="h-script">Company News</h2></div>
-    <div class="card composer"><div class="eyebrow">— Share with the team —</div>
-      <input type="text" id="nT" placeholder="What's the news?">
-      <div class="mt"><textarea id="nB" placeholder="Details (optional)…"></textarea></div>
-      <div class="mt" style="text-align:right"><button class="btn" id="nPost" ${me?'':'disabled'}>${me?'Post update':'Pick your name'}</button></div>
-    </div>
-    <div class="card">${feed.length?feed.map(n=>`<div class="item"><div class="head"><h3>${esc(n.title)}</h3><button class="del" data-del="${n.id}">Delete</button></div><div class="meta">${esc(n.author)} · ${timeAgo(n.ts)}</div>${n.body?`<p>${esc(n.body)}</p>`:""}</div>`).join(""):`<div class="empty"><div class="big">No news yet</div>Post the first update to get the team in the loop.</div>`}</div>`;
+    <div class="sectionhead" style="margin-top:30px"><h2 class="h-script">Newsletters & Graphics</h2></div>
+    ${featHtml}
+    <div class="card composer" style="margin-top:14px"><div class="eyebrow">— Share a newsletter / graphic —</div>
+      <input type="text" id="fT" placeholder="Title (e.g. June Newsletter)">
+      <div class="mt"><input type="text" id="fU" placeholder="Paste a link to the PDF or image…"></div>
+      <div class="mt"><input type="text" id="fN" placeholder="A short note (optional)…"></div>
+      <div class="mt" style="text-align:right"><button class="btn" id="fPost" ${me?'':'disabled'}>${me?'Post to home':'Pick your name'}</button></div>
+    </div>`;
 
   const tm=document.getElementById("toMine");if(tm)tm.onclick=()=>{activeView="mydash";render();};
   if(me){
@@ -834,11 +859,11 @@ function upcomingItems(days){
   const today=new Date();today.setHours(0,0,0,0);
   const horizon=new Date(today);horizon.setDate(horizon.getDate()+days);
   const out=[];
-  for(let i=0;i<=days;i++){const dt=new Date(today);dt.setDate(today.getDate()+i);state.events.forEach(e=>{if(occursOn(e,dt))out.push({date:new Date(dt),icon:e.type==='milestone'?'🎉':'📌',label:e.title,type:e.type});});}
+  for(let i=0;i<=days;i++){const dt=new Date(today);dt.setDate(today.getDate()+i);state.events.forEach(e=>{if(occursOn(e,dt))out.push({date:new Date(dt),icon:e.type==='milestone'?'🎉':'📌',label:e.title,type:e.type,cal:e});});}
   Object.entries(BIRTHDAYS).forEach(([name,md])=>{
     if(!md)return;const[mm,dd]=md.split("-").map(Number);if(!mm||!dd)return;
     let d=new Date(today.getFullYear(),mm-1,dd);if(d<today)d=new Date(today.getFullYear()+1,mm-1,dd);
-    if(d>=today&&d<=horizon)out.push({date:d,icon:'🎂',label:`${name}'s birthday`,type:'birthday'});
+    if(d>=today&&d<=horizon){const iso=`${d.getFullYear()}-${String(mm).padStart(2,'0')}-${String(dd).padStart(2,'0')}`;out.push({date:d,icon:'🎂',label:`${name}'s birthday`,type:'birthday',cal:{title:`${name}'s birthday`,date:iso,recur:'YEARLY'}});}
   });
   out.sort((a,b)=>a.date-b.date);
   return out.map(o=>{
@@ -948,6 +973,7 @@ function renderCalendar(){
 /* ---------- Manage Team (admin only) ---------- */
 function renderManage(){
   if(!isAdmin()){panel().innerHTML=`<div class="card empty"><div class="big">Admins only</div>Managing the team is limited to the founders. Pick your name top-right if that's you.</div>`;return;}
+  if(mgRemoving){renderRemove(mgRemoving);return;}
   const OFFICES=["BCHQ","Dallas WTC","Remote","Flex"];
   const editing=(typeof mgEditing==="string");
   const cur=editing?emp(mgEditing):{};
@@ -979,7 +1005,7 @@ function renderManage(){
     <div class="card">${rows}</div>`;
   const addBtn=document.getElementById("mgAdd");if(addBtn)addBtn.onclick=()=>{mgEditing=null;render();};
   panel().querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>{mgEditing=b.dataset.edit;render();});
-  panel().querySelectorAll("[data-remove]").forEach(b=>b.onclick=async()=>{const n=b.dataset.remove;if(!confirm(`Remove ${n} from the team?`))return;EMPLOYEES=EMPLOYEES.filter(e=>e.name!==n);EMPLOYEES.forEach(e=>{if(e.reportsTo===n)e.reportsTo=null;});mgEditing=undefined;rebuildDerived();await saveRoster();buildMeSelect();render();});
+  panel().querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{mgRemoving=b.dataset.remove;mgEditing=undefined;render();});
   const cancel=document.getElementById("mgCancel");if(cancel)cancel.onclick=()=>{mgEditing=undefined;render();};
   const save=document.getElementById("mgSave");if(save)save.onclick=async()=>{
     const name=document.getElementById("mgName").value.trim();
@@ -999,6 +1025,54 @@ function renderManage(){
     }
     mgEditing=undefined;rebuildDerived();await saveRoster();buildMeSelect();render();
   };
+}
+
+/* ---------- Offboarding: remove a person, reassign their work ---------- */
+function renderRemove(name){
+  const openTasks=state.assignments.filter(a=>a.assignee===name&&!a.done);
+  const assignedOut=state.assignments.filter(a=>a.assignedBy===name&&a.assignee!==name&&!a.done);
+  const others=EMPLOYEES.filter(e=>e.name!==name&&ACCESS(e)).map(e=>e.name);
+  const openCount=openTasks.length, outCount=assignedOut.length;
+  const summary=openCount
+    ? `<strong>${esc(name)}</strong> has <strong>${openCount}</strong> open task${openCount>1?'s':''} assigned to them${outCount?`, and ${outCount} task${outCount>1?'s':''} they assigned to other people`:''}. Choose what happens to that work before removing them.`
+    : `<strong>${esc(name)}</strong> has no open tasks. ${outCount?`They assigned ${outCount} task${outCount>1?'s':''} to other people — those will stay with whoever owns them.`:''}`;
+  panel().innerHTML=`
+    <div class="sectionhead"><h2 class="h-script">Remove ${esc(name)}</h2></div>
+    <div class="card mgform">
+      <p style="font-size:16px;line-height:1.5;margin:0 0 4px">${summary}</p>
+      ${openCount?`
+      <div class="mt" style="max-width:340px"><label class="fld">Reassign their open tasks to</label>
+        <select class="in" id="rmTo"><option value="">— Choose a person —</option>${others.map(n=>`<option>${esc(n)}</option>`).join("")}</select></div>
+      <p class="hint" style="margin-top:8px">Recurring tasks keep their schedule, so the new person inherits the repeat. Completed tasks stay in the record under ${esc(name)}.</p>
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" id="rmReassign">Reassign &amp; remove</button>
+        <button class="btn ghost" id="rmUnassign">Leave unassigned &amp; remove</button>
+        <button class="btn ghost" id="rmDelete">Delete their tasks &amp; remove</button>
+        <button class="btn ghost" id="rmCancel">Cancel</button>
+      </div>`:`
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" id="rmJust">Remove ${esc(name)}</button>
+        <button class="btn ghost" id="rmCancel">Cancel</button>
+      </div>`}
+    </div>`;
+  const cancel=document.getElementById("rmCancel");if(cancel)cancel.onclick=()=>{mgRemoving=null;render();};
+  const just=document.getElementById("rmJust");if(just)just.onclick=()=>finalizeRemove(name,"none");
+  const re=document.getElementById("rmReassign");if(re)re.onclick=()=>{const to=document.getElementById("rmTo").value;if(!to){alert("Pick who should take over their tasks, or choose Leave unassigned / Delete.");return;}finalizeRemove(name,"reassign",to);};
+  const un=document.getElementById("rmUnassign");if(un)un.onclick=()=>finalizeRemove(name,"unassign");
+  const del=document.getElementById("rmDelete");if(del)del.onclick=()=>{if(!confirm(`Delete ${name}'s ${openCount} open task${openCount>1?'s':''} for good? This can't be undone.`))return;finalizeRemove(name,"delete");};
+}
+async function finalizeRemove(name,action,reassignTo){
+  if(action==="reassign"&&reassignTo){
+    state.assignments.forEach(a=>{if(!a.done){if(a.assignee===name)a.assignee=reassignTo;if(a.assignedBy===name)a.assignedBy=reassignTo;}});
+  } else if(action==="unassign"){
+    state.assignments.forEach(a=>{if(a.assignee===name&&!a.done)a.assignee="";});
+  } else if(action==="delete"){
+    state.assignments=state.assignments.filter(a=>!(a.assignee===name&&!a.done));
+  }
+  EMPLOYEES=EMPLOYEES.filter(e=>e.name!==name);
+  EMPLOYEES.forEach(e=>{if(e.reportsTo===name)e.reportsTo=null;});
+  mgRemoving=null;mgEditing=undefined;
+  rebuildDerived();await saveAssign();await saveRoster();buildMeSelect();render();
 }
 
 
@@ -1023,7 +1097,38 @@ function renderOrgChart(){
 }
 
 /* ---------- Boot ---------- */
-(async()=>{await fbInit();await loadAll();buildMeSelect();render();attachLiveSync();})();
+/* ---------- Access control (Google sign-in, restricted to company domain) ---------- */
+const AUTH={user:null};
+const ALLOWED_DOMAIN="briannacannon.com";
+const isAllowed=u=>!!u&&u.emailVerified&&typeof u.email==="string"&&u.email.toLowerCase().endsWith("@"+ALLOWED_DOMAIN);
+async function doSignIn(){try{const p=new FB.authMod.GoogleAuthProvider();p.setCustomParameters({hd:ALLOWED_DOMAIN,prompt:"select_account"});await FB.authMod.signInWithPopup(FB.auth,p);}catch(e){const el=document.getElementById("authmsg");if(el)el.textContent="Sign-in didn't complete. Please try again.";}}
+async function doSignOut(){try{await FB.authMod.signOut(FB.auth);}catch(e){}}
+function gateHTML(inner){document.getElementById("authgate").innerHTML=`<div class="authcard"><div class="authbrand">BRIANNA CANNON</div><div class="authsub caps">Company Dashboard</div>${inner}</div>`;}
+function showChecking(){gateHTML(`<p class="authtext">Checking your access…</p>`);}
+function showSignIn(){gateHTML(`<p class="authtext">Please sign in with your <strong>@briannacannon.com</strong> Google account to continue.</p><button class="btn" id="signinBtn">Sign in with Google</button><p class="authmsg" id="authmsg"></p>`);document.getElementById("signinBtn").onclick=doSignIn;}
+function showDenied(u){gateHTML(`<p class="authtext">This dashboard is limited to <strong>briannacannon.com</strong> accounts. You're signed in as <strong>${esc(u.email||'')}</strong>, which isn't on the list.</p><button class="btn ghost" id="signoutBtn">Sign out & switch account</button>`);document.getElementById("signoutBtn").onclick=doSignOut;}
+
+let liveAttached=false;
+async function startApp(){
+  await loadAll();buildMeSelect();render();
+  const so=document.getElementById("signOut");
+  if(so&&AUTH.user){so.style.display="";so.title="Signed in as "+AUTH.user.email;so.onclick=doSignOut;}
+  if(!liveAttached){attachLiveSync();liveAttached=true;}
+}
+(async()=>{
+  await fbInit();
+  if(FB.ready&&FB.auth){
+    showChecking();
+    FB.authMod.onAuthStateChanged(FB.auth,async u=>{
+      if(isAllowed(u)){AUTH.user=u;document.body.classList.remove("locked");await startApp();}
+      else if(u){document.body.classList.add("locked");showDenied(u);}
+      else{document.body.classList.add("locked");showSignIn();}
+    });
+  }else{
+    document.body.classList.remove("locked");
+    await startApp();
+  }
+})();
 </script>
 </body>
 </html>
