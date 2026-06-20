@@ -38,6 +38,7 @@
   .whoami{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-soft);}
   .whoami select{font-family:var(--body);font-size:15px;color:var(--ink);background:rgba(255,255,255,.55);border:1px solid rgba(22,23,43,.18);border-radius:8px;padding:6px 10px;cursor:pointer;}
   .whoami select:focus{outline:none;border-color:var(--ink);}
+  .whoami .melock{font-family:var(--display);font-size:16px;color:var(--ink);font-weight:600;}
 
   /* Scripture banner */
   .verseband{background:var(--band);}
@@ -349,7 +350,7 @@
     <div class="mast-right">
       <div class="dayname caps" id="dayName"></div>
       <div class="datefull caps" id="dateFull"></div>
-      <div class="whoami"><span class="caps">You are</span><select id="meSelect"></select></div>
+      <div class="whoami" id="whoami"><span class="caps">You are</span><select id="meSelect"></select></div>
       <button id="signOut" class="signout" style="display:none">Sign out</button>
     </div>
   </div>
@@ -573,10 +574,18 @@ function renderMast(){
   document.getElementById("dateFull").textContent=new Date().toLocaleDateString(undefined,{month:'long',day:'numeric',year:'numeric'});
 }
 function buildMeSelect(){
+  const wrap=document.getElementById("whoami");if(!wrap)return;
+  if(AUTH.user){ // real sign-in: identity is locked to the Google account
+    wrap.innerHTML=`<span class="caps">You are</span><span class="melock">${esc(me||'—')}</span>`;
+    return;
+  }
+  // no auth (e.g. preview): fall back to the name picker
+  wrap.innerHTML=`<span class="caps">You are</span><select id="meSelect"></select>`;
   const sel=document.getElementById("meSelect");
   sel.innerHTML=`<option value="">Pick your name…</option>`+EMPLOYEES.filter(ACCESS).map(e=>`<option value="${e.name}" ${e.name===me?'selected':''}>${e.name}</option>`).join("");
   sel.onchange=async()=>{me=sel.value;await dbSet("bc:me",me,false);render();};
 }
+function findByEmail(email){if(!email)return null;const x=String(email).toLowerCase();return EMPLOYEES.find(e=>(e.email||"").toLowerCase()===x)||null;}
 function renderSidebar(){
   const attn=me?(newAssignmentsFor(me).length+inboxUnread(me)):0;
   const openCt=state.assignments.filter(x=>!x.done).length;
@@ -989,6 +998,7 @@ function renderManage(){
         <div class="col"><label class="fld">Reports to</label><select class="in" id="mgReports"><option value="">— None (top of org) —</option>${nameOpts.map(n=>`<option ${cur.reportsTo===n?'selected':''}>${esc(n)}</option>`).join("")}</select></div>
         <div class="col"><label class="fld">Role type</label><select class="in" id="mgType"><option value="" ${!cur.type?'selected':''}>Team member</option><option value="intern" ${cur.type==='intern'?'selected':''}>Intern</option><option value="contract" ${cur.type==='contract'?'selected':''}>Contractor</option></select></div>
         <div class="col"><label class="fld">Birthday (MM-DD)</label><input class="in" id="mgBday" value="${esc(cur.birthday||"")}" placeholder="e.g. 03-21"></div>
+        <div class="col"><label class="fld">Work email <span class="hint">(links their Google sign-in)</span></label><input class="in" id="mgEmail" value="${esc(cur.email||"")}" placeholder="name@briannacannon.com"></div>
       </div>
       <label class="fld" style="margin-top:14px">Departments</label>
       <div class="mgchecks">${DEPARTMENTS.map(d=>`<label class="mgchk"><input type="checkbox" class="mgDept" value="${esc(d)}" ${(cur.depts||[]).includes(d)?'checked':''}><span class="dot" style="background:${dColor(d)}"></span>${esc(d)}</label>`).join("")}</div>
@@ -997,7 +1007,7 @@ function renderManage(){
     </div>`:"";
   const tag=e=>e.type==='contract'?'<span class="mtag contract">Contract</span>':e.type==='intern'?'<span class="mtag intern">Intern</span>':'';
   const rows=EMPLOYEES.map(e=>`<div class="mgrow"><div class="avatar">${initials(e.name)}</div>
-    <div class="pinfo"><span class="pname">${esc(e.name)} ${tag(e)}</span><span class="ptitle">${esc(e.title||"")}${e.office?' · '+esc(e.office):''}</span></div>
+    <div class="pinfo"><span class="pname">${esc(e.name)} ${tag(e)}</span><span class="ptitle">${esc(e.title||"")}${e.office?' · '+esc(e.office):''}${e.email?' · '+esc(e.email):(ACCESS(e)?' · <em>not linked yet</em>':'')}</span></div>
     <div class="mgacts"><button class="nbtn" data-edit="${esc(e.name)}">Edit</button><button class="nbtn dismiss" data-remove="${esc(e.name)}">Remove</button></div></div>`).join("");
   panel().innerHTML=`<div class="sectionhead"><h2 class="h-script">Manage Team</h2>${mgEditing===undefined?`<button class="btn" id="mgAdd">+ Add person</button>`:''}</div>
     <p class="hint" style="margin-bottom:16px">Changes here save to the company database and update for everyone instantly — the team directory, profiles, org chart, assignment pickers, and birthdays all read from this list.</p>
@@ -1013,7 +1023,7 @@ function renderManage(){
     const depts=[...panel().querySelectorAll(".mgDept:checked")].map(c=>c.value);
     const rep=document.getElementById("mgReports").value||null;
     const bday=document.getElementById("mgBday").value.trim();
-    const person={name,title:document.getElementById("mgTitle").value.trim(),office:document.getElementById("mgOffice").value,depts,reportsTo:(rep===name?null:rep),birthday:bday,type:document.getElementById("mgType").value||undefined,access:document.getElementById("mgAccess").checked};
+    const person={name,title:document.getElementById("mgTitle").value.trim(),office:document.getElementById("mgOffice").value,depts,reportsTo:(rep===name?null:rep),birthday:bday,type:document.getElementById("mgType").value||undefined,access:document.getElementById("mgAccess").checked,email:(document.getElementById("mgEmail").value.trim().toLowerCase()||undefined)};
     if(editing){
       const old=mgEditing;
       const i=EMPLOYEES.findIndex(e=>e.name===old);
@@ -1108,12 +1118,45 @@ function showChecking(){gateHTML(`<p class="authtext">Checking your access…</p
 function showSignIn(){gateHTML(`<p class="authtext">Please sign in with your <strong>@briannacannon.com</strong> Google account to continue.</p><button class="btn" id="signinBtn">Sign in with Google</button><p class="authmsg" id="authmsg"></p>`);document.getElementById("signinBtn").onclick=doSignIn;}
 function showDenied(u){gateHTML(`<p class="authtext">This dashboard is limited to <strong>briannacannon.com</strong> accounts. You're signed in as <strong>${esc(u.email||'')}</strong>, which isn't on the list.</p><button class="btn ghost" id="signoutBtn">Sign out & switch account</button>`);document.getElementById("signoutBtn").onclick=doSignOut;}
 
+function showClaim(u){
+  const opts=EMPLOYEES.filter(e=>ACCESS(e)&&!e.email);
+  if(!opts.length){
+    gateHTML(`<p class="authtext">You're signed in as <strong>${esc(u.email||'')}</strong>, but you're not on the team roster yet. Ask Brianna or Eric to add you in Manage Team, then sign in again.</p><button class="btn ghost" id="claimSignout">Sign out</button>`);
+    document.getElementById("claimSignout").onclick=doSignOut;return;
+  }
+  gateHTML(`<p class="authtext">You're signed in as <strong>${esc(u.email||'')}</strong>.<br>Which team member are you? This links your account to your name so the dashboard always knows it's you.</p>
+    <select class="in" id="claimSel" style="margin-bottom:14px;max-width:280px"><option value="">— Select your name —</option>${opts.map(e=>`<option>${esc(e.name)}</option>`).join("")}</select><br>
+    <button class="btn" id="claimBtn">That's me</button>
+    <p class="authmsg" id="authmsg"></p>
+    <button class="btn ghost" id="claimSignout" style="margin-top:6px">Not listed? Sign out</button>`);
+  document.getElementById("claimBtn").onclick=async()=>{
+    const n=document.getElementById("claimSel").value;
+    if(!n){document.getElementById("authmsg").textContent="Please select your name.";return;}
+    const p=EMPLOYEES.find(e=>e.name===n);if(!p)return;
+    p.email=(u.email||"").toLowerCase();
+    await saveRoster();
+    me=n;
+    finishStart();
+  };
+  document.getElementById("claimSignout").onclick=doSignOut;
+}
+
 let liveAttached=false;
-async function startApp(){
-  await loadAll();buildMeSelect();render();
+function finishStart(){
+  document.body.classList.remove("locked");
+  buildMeSelect();render();
   const so=document.getElementById("signOut");
   if(so&&AUTH.user){so.style.display="";so.title="Signed in as "+AUTH.user.email;so.onclick=doSignOut;}
   if(!liveAttached){attachLiveSync();liveAttached=true;}
+}
+async function startApp(){
+  await loadAll();
+  if(AUTH.user){
+    const p=findByEmail(AUTH.user.email);
+    if(!p){showClaim(AUTH.user);return;} // stay locked until they confirm who they are
+    me=p.name;
+  }
+  finishStart();
 }
 (async()=>{
   await fbInit();
