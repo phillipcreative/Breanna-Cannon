@@ -210,7 +210,7 @@
         "collection_6Q8bwY": {
           "type": "collection",
           "settings": {
-            "collection": "university-of-central-florida-1",
+            "collection": "university-of-central-florida",
             "title": "UNIVERSITY OF CENTRAL FLORIDA",
             "focal_point": "center center"
           }
@@ -226,7 +226,7 @@
         "collection_8VkXWc": {
           "type": "collection",
           "settings": {
-            "collection": "university-of-colorado-1",
+            "collection": "university-of-colorado",
             "title": "UNIVERSITY OF COLORADO",
             "focal_point": "center center"
           }
@@ -330,7 +330,7 @@
         "collection_yapTTH": {
           "type": "collection",
           "settings": {
-            "collection": "university-of-michigan-1",
+            "collection": "university-of-michigan",
             "title": "UNIVERSITY OF MICHIGAN",
             "focal_point": "center center"
           }
@@ -378,7 +378,7 @@
         "collection_r6wwHe": {
           "type": "collection",
           "settings": {
-            "collection": "university-of-north-carolina-1",
+            "collection": "university-of-north-carolina",
             "title": "UNIVERSITY OF NORTH CAROLINA",
             "focal_point": "center center"
           }
@@ -442,7 +442,7 @@
         "collection_NiLfEC": {
           "type": "collection",
           "settings": {
-            "collection": "purdue-university-1",
+            "collection": "purdue-university",
             "title": "PURDUE UNIVERSITY",
             "focal_point": "center center"
           }
@@ -538,7 +538,7 @@
         "collection_8ArPAa": {
           "type": "collection",
           "settings": {
-            "collection": "wake-forest-university-1",
+            "collection": "wake-forest-university",
             "title": "WAKE FOREST UNIVERSITY",
             "focal_point": "center center"
           }
