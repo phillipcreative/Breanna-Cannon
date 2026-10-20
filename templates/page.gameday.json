@@ -178,7 +178,7 @@
         "collection_Awrq4q": {
           "type": "collection",
           "settings": {
-            "collection": "arizona-state-university-1",
+            "collection": "arizona-state-university",
             "title": "ARIZONA STATE UNIVERSITY",
             "focal_point": "center center"
           }
@@ -242,7 +242,7 @@
         "collection_Vmk9Wd": {
           "type": "collection",
           "settings": {
-            "collection": "east-carolina-university-1",
+            "collection": "east-carolina-university",
             "title": "East Carolina University",
             "focal_point": "center center"
           }
@@ -338,7 +338,7 @@
         "collection_Py6LFH": {
           "type": "collection",
           "settings": {
-            "collection": "michigan-state-university-1",
+            "collection": "michigan-state-university",
             "title": "MICHIGAN STATE UNIVERSITY",
             "focal_point": "center center"
           }

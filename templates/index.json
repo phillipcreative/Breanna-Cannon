@@ -76,7 +76,7 @@
             "title": "BASEBALL SZN",
             "title_size": 80,
             "subheading": "",
-            "link": "shopify://collections/baseball-softball-copy",
+            "link": "shopify://collections/baseball-season",
             "link_text": "BALLPARK DRIP",
             "link_2": "",
             "link_text_2": "",
@@ -189,7 +189,7 @@
         "collection_yyp3MR": {
           "type": "collection",
           "settings": {
-            "collection": "baseball-softball-copy",
+            "collection": "baseball-season",
             "title": "BASEBALL SZN",
             "focal_point": "center center"
           }

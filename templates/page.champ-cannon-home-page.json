@@ -236,7 +236,7 @@
       "name": "t:sections.featured-collection.presets.featured_collection.name",
       "settings": {
         "title": "COTTON CANDY",
-        "home_featured_products": "shine-bright-copy",
+        "home_featured_products": "cotton-candy",
         "per_row": 4,
         "rows": 1,
         "mobile_scrollable": true,
