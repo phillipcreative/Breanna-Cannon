@@ -35,7 +35,7 @@
         "collection_Awrq4q": {
           "type": "collection",
           "settings": {
-            "collection": "arizona-state-university-1",
+            "collection": "arizona-state-university",
             "title": "ARIZONA STATE UNIVERSITY",
             "focal_point": "center center"
           }
@@ -67,7 +67,7 @@
         "collection_6Q8bwY": {
           "type": "collection",
           "settings": {
-            "collection": "university-of-central-florida-1",
+            "collection": "university-of-central-florida",
             "title": "UNIVERSITY OF CENTRAL FLORIDA",
             "focal_point": "center center"
           }
@@ -83,7 +83,7 @@
         "collection_8VkXWc": {
           "type": "collection",
           "settings": {
-            "collection": "university-of-colorado-1",
+            "collection": "university-of-colorado",
             "title": "UNIVERSITY OF COLORADO",
             "focal_point": "center center"
           }
@@ -99,7 +99,7 @@
         "collection_Vmk9Wd": {
           "type": "collection",
           "settings": {
-            "collection": "east-carolina-university-1",
+            "collection": "east-carolina-university",
             "title": "East Carolina University",
             "focal_point": "center center"
           }
@@ -187,7 +187,7 @@
         "collection_yapTTH": {
           "type": "collection",
           "settings": {
-            "collection": "university-of-michigan-1",
+            "collection": "university-of-michigan",
             "title": "UNIVERSITY OF MICHIGAN",
             "focal_point": "center center"
           }
@@ -195,7 +195,7 @@
         "collection_Py6LFH": {
           "type": "collection",
           "settings": {
-            "collection": "michigan-state-university-1",
+            "collection": "michigan-state-university",
             "title": "MICHIGAN STATE UNIVERSITY",
             "focal_point": "center center"
           }
@@ -291,7 +291,7 @@
         "collection_NiLfEC": {
           "type": "collection",
           "settings": {
-            "collection": "purdue-university-1",
+            "collection": "purdue-university",
             "title": "PURDUE UNIVERSITY",
             "focal_point": "center center"
           }
