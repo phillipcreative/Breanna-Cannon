@@ -227,7 +227,7 @@
         "collection_r6wwHe": {
           "type": "collection",
           "settings": {
-            "collection": "university-of-north-carolina-1",
+            "collection": "university-of-north-carolina",
             "title": "UNIVERSITY OF NORTH CAROLINA",
             "focal_point": "center center"
           }
@@ -387,7 +387,7 @@
         "collection_8ArPAa": {
           "type": "collection",
           "settings": {
-            "collection": "wake-forest-university-1",
+            "collection": "wake-forest-university",
             "title": "WAKE FOREST UNIVERSITY",
             "focal_point": "center center"
           }
@@ -395,7 +395,7 @@
         "collection_MiCGhB": {
           "type": "collection",
           "settings": {
-            "collection": "west-virginia-university-1",
+            "collection": "west-virginia-university",
             "title": "WEST VIRGINIA UNIVERSITY",
             "focal_point": "center center"
           }
